@@ -1,0 +1,32 @@
+{
+  "name": "questspace",
+  "version": "1.0.0",
+  "description": "A web application that enables organizations to customize, host and manage co-curricular contests online.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quest-space/QuestSpace.git"
+  },
+  "keywords": [
+    "quest",
+    "online",
+    "contest",
+    "rounds",
+    "rapidfire",
+    "quiz",
+    "competition"
+  ],
+  "author": "group10-SE21",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quest-space/QuestSpace/issues"
+  },
+  "homepage": "https://github.com/quest-space/QuestSpace#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
