@@ -5,9 +5,9 @@ const app = express();
 
 //set up static files
 // app.use(express.static('public_html'));
-app.use("/",express.static("frontend/build"))
-app.use("/signin",express.static("frontend/build"))
-app.use("/signup",express.static("frontend/build"))
+app.use("/",express.static("front-end/build"))
+app.use("/signin",express.static("front-end/build"))
+app.use("/signup",express.static("front-end/build"))
 
 
 // use parser middleware
