@@ -4,7 +4,11 @@ const express = require('express');
 const app = express();
 
 //set up static files
-app.use(express.static('public_html'));
+// app.use(express.static('public_html'));
+app.use("/",express.static("frontend/build"))
+app.use("/signin",express.static("frontend/build"))
+app.use("/signup",express.static("frontend/build"))
+
 
 // use parser middleware
 app.use(express.json()); // Parse JSON
