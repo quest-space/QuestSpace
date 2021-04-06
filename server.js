@@ -8,6 +8,7 @@ const app = express();
 app.use("/",express.static("front-end/build"))
 app.use("/signin",express.static("front-end/build"))
 app.use("/signup",express.static("front-end/build"))
+app.use("/card",express.static("front-end/build"))
 
 
 // use parser middleware
