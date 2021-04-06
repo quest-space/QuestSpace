@@ -1,15 +1,20 @@
 const express = require('express');
 
+const mongoose = require('mongoose')
+// autoIncrement = require('mongoose-auto-increment') // To auto-increment
+
+// const mongoDB = 'mongodb://localhost/QuestSpace'
+// mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true})
+// const db = mongoose.connection
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+// db.once('open', function() { console.log('Database has been connected') })
+
+// autoIncrement.initialize(mongoose.connection);
+
 // set up express app
 const app = express();
 
-//set up static files
-// app.use(express.static('public_html'));
-app.use("/",express.static("front-end/build"))
-app.use("/signin",express.static("front-end/build"))
-app.use("/signup",express.static("front-end/build"))
-app.use("/card",express.static("front-end/build"))
-
+app.use(require('./front-end/front-end-routes'));
 
 // use parser middleware
 app.use(express.json()); // Parse JSON
