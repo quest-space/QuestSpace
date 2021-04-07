@@ -1,10 +1,10 @@
 import React from "react"
+import PageFooter from "./PageFooter"
+import "../css/LandingPage.css"
 
 const LandingPage = () => {
     return (
-        <h1>
-            Welcome to QuestSpace's Landing Page!!!
-        </h1>
+        <PageFooter />
     )
 }
 
