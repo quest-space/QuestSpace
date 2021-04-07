@@ -1,8 +1,7 @@
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-// import linkedin.png from "../logo/linked.png"
 
-const PageFooter = (props) => {
+const PageFooter = () => {
   return (
     <MDBFooter  >
       <MDBContainer fluid >
@@ -20,7 +19,7 @@ const PageFooter = (props) => {
         </MDBRow>
       </MDBContainer>
     </MDBFooter>
-  );
+  )
 }
 
 export default PageFooter;
