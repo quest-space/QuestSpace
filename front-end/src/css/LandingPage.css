@@ -1,9 +1,38 @@
+.questspace {
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 38px;
+  text-align: left;
+}
+
 .stack {
-    font-family: Barlow;
-    font-style: normal;
-    /* font-weight: normal; */
-    text-align: center;
-    margin: auto;
+  font-family: Barlow;
+  font-style: normal;
+  text-align: center;
+  margin: auto;
+}
+
+.stack .title.col1 {
+  font-weight: normal;
+  font-size: 49px;
+  text-align: left;
+}
+
+.stack .text.col1 {
+  font-weight: 300;
+  font-size: 31px;
+  text-align: left;
+  padding-right: 50px;
+}
+
+.stack .title.col2 {
+  font-weight: 500;
+  font-size: 37px;
+}
+
+.stack .text.col2 {
+  font-size: 24px;
 }
 
 .stack .title.col3 {
@@ -12,8 +41,8 @@
 }
 
 .stack .text.col3 {
-    font-size: 24px;
-  }
+  font-size: 24px;
+}
 
 footer {
   background-color: #3caf96;
