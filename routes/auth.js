@@ -1,43 +1,41 @@
 const { Router } = require (`express`);
-const Participant = require(`../models/participant`);
 const router = Router();
 
-const { handleErrorsFromDB } = require(`./helperFunctions`)
+// imports from other files
+const Participant = require(`../models/participant`);
+const { handleErrorsFromDB } = require(`./helperFunctions`);
+const { createToken, maxAge } = require(`./jwsTokenization`);
+const { sendRes } = require(`./sendRes`);
 
-// global variables
-const BAQ_REQUEST_STATUS_CODE = 400;
+// status codes
+const OK_STATUS_CODE = 200;
 const CREATED_STATUS_CODE = 201;
+const BAQ_REQUEST_STATUS_CODE = 400;
 
-const sendReq = (res, statusCode, objToSend) => {
-  res.status(statusCode).json(objToSend);
-}
-
-// add a new ninja to the db
+// sign up handler
 router.post(`/signup/participant`, async (req, res) => {
-
-  console.log(req.cookie);
-
   const { username, password, firstname, lastname, organization } = req.body;
-
   try {
     const participant = await Participant.create({ username, password, firstname, lastname, organization });
-
-    res.cookie(`username`, participant.username, { maxAge: 1000 * 60 * 20, /* secure: true, */ httpOnly: true });
-    sendReq(res, CREATED_STATUS_CODE, participant) // req succeeded and led to a resource creation
-
+    const token = createToken(participant._id, participant.username, `participant`);
+    res.cookie('qsUser', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    sendRes(res, CREATED_STATUS_CODE, {}) // req succeeded and led to a resource creation
   } catch (err) {
-    const errObjToReturn = handleErrorsFromDB(err);
-    sendReq(res, BAQ_REQUEST_STATUS_CODE, errObjToReturn);
+    sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err));
   }
-  
 });
 
-// add a new ninja to the db
-router.post(`/signin`, (req, res) => {
-  res.send({
-    request_type: `POST signin`,
-    data_recieved: req.body
-  });
+// sign in handler
+router.get(`/signin/participant`, async (req, res) => {
+  const { username, password } = req.query;
+  try {
+    const participant = await Participant.login(username, password);
+    const token = createToken(participant._id, participant.username, `participant`);
+    res.cookie('qsUser', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    sendRes(res, OK_STATUS_CODE, {});
+  } catch (err) {
+    sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err));
+  }
 });
 
 module.exports = router;

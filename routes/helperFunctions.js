@@ -41,6 +41,12 @@ const parseDBError = (err) => {
         valueReceived: properties.value
       }
     });
+  } else if (err.message.includes(`frd234sf,`)) {
+    const errMsgTokens = err.message.split(`,`);
+    errMsg[`errors`][errMsgTokens[1]] = { 
+      message: errMsgTokens[2],
+      valueReceived: errMsgTokens[3]
+    }
   } else {
     errMsg[`genericErrMsg`] = err.message;
   }
