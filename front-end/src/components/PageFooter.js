@@ -7,14 +7,18 @@ const PageFooter = () => {
       <MDBContainer fluid >
         <MDBRow >
           <MDBCol md="4" className="footerLeft">
-                QuestSpace
+            QuestSpace
           </MDBCol>
-          <MDBCol md="4"  className="footerMid">
-            <img src="/logos/linkedin.png" style={{paddingRight:"10px"}}></img>
-            <img src="/logos/github.png" style={{paddingLeft:"10px"}}></img>
+          <MDBCol md="4" className="footerMid">
+            <a >
+              <img src="/logos/linkedin.png" style={{ paddingRight: "10px" }}></img>
+            </a>
+            <a href="https://github.com/quest-space">
+              <img src="/logos/github.png" style={{ paddingLeft: "10px" }}></img>
+            </a>
           </MDBCol>
-          <MDBCol  className="footerRight">
-              Come and join our space!
+          <MDBCol className="footerRight">
+            Come and join our space!
           </MDBCol>
         </MDBRow>
       </MDBContainer>

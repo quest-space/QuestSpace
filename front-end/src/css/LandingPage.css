@@ -1,9 +1,30 @@
+.divider {
+  width: 55px;
+  border-top: solid;
+  border-width: 2px;
+  color: #000000;
+}
+
 .questspace {
   font-family: Barlow;
   font-style: normal;
   font-weight: normal;
   font-size: 38px;
   text-align: left;
+  padding-bottom: 5px;
+}
+
+.btn2 {
+  border-radius: 30px;
+  border: none;
+  background-color: white;
+  color: black;
+  width: 130px;
+  padding: 5px;
+
+  font-family: Barlow;
+  font-weight: 300;
+  font-size: 18px;
 }
 
 .stack {
@@ -17,6 +38,7 @@
   font-weight: normal;
   font-size: 49px;
   text-align: left;
+  line-height: 50px;
 }
 
 .stack .text.col1 {
@@ -24,6 +46,26 @@
   font-size: 31px;
   text-align: left;
   padding-right: 50px;
+  padding-bottom: 40px;
+  line-height: 37px;
+}
+
+.stack.col1 {
+  text-align: left;
+}
+
+.stack .btn1 {
+  border-radius: 30px;
+  border-color: white;
+  background-color: #3caf96;
+  color: white;
+  width: 250px;
+  padding: 10px;
+  /* padding-left: 0px; */
+
+  font-family: Barlow;
+  font-weight: 300;
+  font-size: 20px;
 }
 
 .stack .title.col2 {
@@ -33,6 +75,26 @@
 
 .stack .text.col2 {
   font-size: 24px;
+  padding-bottom: 30px;
+}
+
+.stack .btn.col2 {
+  width: 100%;
+  /* padding-right: 170px; */
+  padding-top: 40px;
+}
+
+.stack .btn3 {
+  border-radius: 30px;
+  border-color: white;
+  background-color: #3caf96;
+  color: white;
+  width: 250px;
+  padding: 10px;
+
+  font-family: Barlow;
+  font-weight: 300;
+  font-size: 20px;
 }
 
 .stack .title.col3 {
