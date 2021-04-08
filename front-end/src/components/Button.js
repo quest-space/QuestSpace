@@ -1,17 +1,13 @@
 import React from "react"
-// import Button from "react-bootstrap"
-import Button from 'react-bootstrap/Button';
 
-
-const Buttonss = (props) => {
+const Button = (props) => {
     return (
-        <React.Fragment>
-            <Button style={{ width: props.width, height: props.height, backgroundColor: props.color , color: props.tcolor, borderRadius: "25px"}}>hello
-            </Button>
-        </React.Fragment>
-
-        // </div>
+        <a href={props.link}>
+            <button className={props.class}>
+                {props.text}
+            </button>
+        </a>
     )
 }
 
-export default Buttonss
+export default Button
