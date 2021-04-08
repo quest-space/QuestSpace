@@ -4,7 +4,7 @@ const router = Router();
 
 // imported files
 const { createToken, verifyToken, maxAge } = require(`./jwsTokenization`);
-const { sendRes } = require(`./sendRes`);
+const { sendRes } = require(`../helpers/sendRes`);
 
 // status codes
 const UNAUTHORIZED_STATUS_CODE = 401;

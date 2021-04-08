@@ -1,36 +1,33 @@
 const { Router } = require (`express`);
-const Participant = require(`../models/participant`);
-const Quest = require(`../models/quest`);
-const Host = require(`../models/host`);
-const Rating = require(`../models/ratings`);
-const Participation = require(`../models/participation`);
+const Participant = require(`../../models/participant`);
+const Quest = require(`../../models/quest`);
+const Host = require(`../../models/host`);
+const Rating = require(`../../models/ratings`);
+const Participation = require(`../../models/participation`);
 
 const router = Router();
 
-const { handleErrorsFromDB } = require(`./helperFunctions`)
+const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
+const { sendRes } = require(`../helpers/sendRes`)
 
 // global variables
 const BAQ_REQUEST_STATUS_CODE = 400;
 const CREATED_STATUS_CODE = 201;
-
-const sendReq = (res, statusCode, objToSend) => {
-  res.status(statusCode).json(objToSend);
-}
+const OK_STATUS_CODE = 200;
 
 // Session cookies will already be stored. Fetch username from there.
 
 let username = 'HassaanAW';
-let combined_data = []
 
 router.post(`/`, async (req, res) => {
     try {
         // fetch list of all quests in which participant registered
-        const all_quests = await Participation.find({ participantUser: username}).limit(2);
-        // console.log(all_quests)
-
+        const all_quests = await Participation.find({ participantUser: username});
+        
         const questDatas = await (Promise.all(all_quests.map(async (val) => 
             Quest.find({ questName: val.questName})
         )));
+        console.log(questDatas)
 
         const neededQuestData = questDatas.map((questData) => ({
             questName: questData[0].questName,
@@ -63,8 +60,9 @@ router.post(`/`, async (req, res) => {
         ))))
 
         ratings.forEach((rating, i) => {
-            neededQuestData[i][`rating`] = rating;
+            neededQuestData[i][`rating`] = rating[0].score;
         });
+        sendRes(res, OK_STATUS_CODE , neededQuestData)
 
         // Promise.all(all_quests.map( async (val, index) => {
         //     try {
@@ -98,16 +96,16 @@ router.post(`/`, async (req, res) => {
         //     }
         //     catch (err) {
         //         const errObjToReturn = handleErrorsFromDB(err);
-        //         sendReq(res, BAQ_REQUEST_STATUS_CODE, errObjToReturn);
+        //         sendRes(res, BAQ_REQUEST_STATUS_CODE, errObjToReturn);
         //         return Promise.reject()
         //     }
         // })).then(console.log(combined_data))
         
-        //sendReq(res, CREATED_STATUS_CODE, combined_data)
+        //sendRes(res, CREATED_STATUS_CODE, combined_data)
     }  
     catch (err) {
       const errObjToReturn = handleErrorsFromDB(err);
-      sendReq(res, BAQ_REQUEST_STATUS_CODE, errObjToReturn);
+      sendRes(res, BAQ_REQUEST_STATUS_CODE, errObjToReturn);
     }
     
   });

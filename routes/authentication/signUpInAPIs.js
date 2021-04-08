@@ -2,11 +2,11 @@ const { Router } = require (`express`);
 const router = Router();
 
 // imports from other files
-const Participant = require(`../models/participant`);
-const Host = require(`../models/host`);
-const { handleErrorsFromDB } = require(`./helperFunctions`);
+const Participant = require(`../../models/participant`);
+const Host = require(`../../models/host`);
+const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
 const { createToken, maxAge } = require(`./jwsTokenization`);
-const { sendRes } = require(`./sendRes`);
+const { sendRes } = require(`../helpers/sendRes`);
 
 // status codes
 const OK_STATUS_CODE = 200;
