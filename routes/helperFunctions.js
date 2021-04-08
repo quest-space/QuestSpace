@@ -35,10 +35,14 @@ const parseDBError = (err) => {
   }
   // validation errors
   if (err.message.includes('validation failed')) {
-    Object.values(err.errors).forEach(({ properties }) => {
-      errMsg[`errors`][properties.path] = { 
-        message: properties.message,
-        valueReceived: properties.value
+    Object.keys(err.errors).forEach((field) => {
+      try {
+        errMsg[`errors`][field] = { 
+          message: err.errors[field].message,
+          valueReceived: err.errors[field].value
+        }
+      } catch (e) {
+        errMsg[`genericErrMsg`] = err.message;
       }
     });
   } else if (err.message.includes(`frd234sf,`)) {
