@@ -25,10 +25,11 @@ router.use(`/:type`, async (req, res, next) => {
     if (token) {
       try {
         const decodedToken = await verifyToken(token);
-        setGenericVars(req, decodedToken);
         // check if this is correct type of User
         if (decodedToken.type === req.params.type) {
           console.log(`${decodedToken.type} and ${req.params.type} are equal`);
+          // set vars
+          setGenericVars(req, decodedToken);
           // send new cookie
           const newToken = createToken(decodedToken.id, decodedToken.username, decodedToken.type);
           res.cookie('qsUser', newToken, { httpOnly: true, maxAge: maxAge * 1000 });
