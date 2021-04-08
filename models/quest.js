@@ -15,7 +15,7 @@ const questSchema = new Schema({
       },
     hostUser: {
         type: String,
-        required: [true, 'Host name is required']
+        required: [true, 'Host username is required']
         },
     nature: {
         type: String,

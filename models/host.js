@@ -36,14 +36,6 @@ const hostSchema = new Schema({
     validate: [/^[A-Za-z ]+$/, 'Designation should have alphabets or spaces only'],
     require: [true, 'Representative Designation is required']
   },
-  rating: {
-    type: Schema.Types.ObjectId,
-    ref: 'rating'
-  },
-  quest: {
-    type: Schema.Types.ObjectId,
-    ref: 'quest'
-  }
 });
 
 // fire a function before doc saved to db
