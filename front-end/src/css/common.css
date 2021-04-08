@@ -1,0 +1,119 @@
+.card {
+    box-shadow: 1px 4px 11px rgba(0, 0, 0, 0.2);
+    transition: 0.06s;
+    border: none;
+    border-radius: 1em;
+    /* width: 16.3125em; */
+    /* height: 22.2em */
+}
+
+.card:hover{
+    box-shadow: 1px 4px 11px rgba(0, 0, 0, 0.4);
+    top: -2px;
+}
+
+.fa-star{
+    color: #ffd700;
+    font-size: 0.8rem;
+}
+
+.card-img-top{
+    height: 10.125em;
+    /* width: 16.3125em; */
+}
+
+.row{
+    padding: 1.5rem;
+}
+
+
+/* jumbotron and tab */
+
+
+  button{
+    /* margin-right:15px; */
+    font-size:18px;
+    background:transparent;
+    border:none;
+    outline:none;
+    padding:4px 0px ;
+    cursor:pointer;
+    color:rgba(0,0,0,.4);
+    transition:all ease-in-out .2s;
+    font-weight:bold;
+    border-bottom:2px solid transparent;
+    
+  }
+  button:hover{
+    background-color: #46B7A1;
+  }
+  
+  button:hover:not(.active){
+    background-color:#5ec7b2;
+  }
+  
+  /*SUBNAV WITH TABS*/
+
+  ul {list-style:none;text-align:center;}
+  
+  button {font-weight:500; font-size: 22px; color:#ffffff !important;}
+  
+  #top {
+    background-color: #46B7A1;
+    width:100%;
+    height:50px;
+  }
+  
+  #top li, #top li #subnav-list .kid {
+    display:inline-block; /* this is necessary to help center the submenu and make the items align to the left. Refrain from using "float:left" as it makes "text-align" useless. */
+  }
+  
+  #top li button{
+    display:block;
+    padding:0 0;
+    line-height:45px;
+  }
+
+  button.parent{
+    background-color: #46B7A1;
+  }
+  
+  button.parent:hover {
+    text-decoration:none;
+    background-color: #5ec7b2;
+    /* border-bottom:4px solid #ffffff; */
+  }
+  
+  #top li #subnav-list {
+    display:none; /* hides the submenu */
+    position:absolute; /* makes it independent of it's father */
+    left:0; /* this and the line below makes sure it spreads 100% through the page */ 
+    right:0;
+    top:50px; /* the hight of #top */
+    background-color: #73d3bb;
+    text-align:center; /* makes sure the items are centered */
+  }
+  
+  #top li #subnav-list .kid button {
+    border-bottom: none;
+  }
+  
+  button.kid:hover{
+    background-color: rgb(130, 221, 213);
+  }
+
+  button.kid{
+    width: 10rem;
+  }
+
+  #top .subnav:hover #subnav-list {
+    display:block; /* shows the submenu when I hover on .subnav */
+  }
+
+
+
+  .jumbotron{
+    background-image: url('../img/jumbotronBg.png') !important;
+    background-size:cover!important;
+    background-position: right !important;
+  }
