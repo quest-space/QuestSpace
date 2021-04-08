@@ -19,7 +19,7 @@ const OK_STATUS_CODE = 200;
 
 let username = 'HassaanAW';
 
-router.post(`/`, async (req, res) => {
+router.post(`/home`, async (req, res) => {
     try {
         // fetch list of all quests in which participant registered
         const all_quests = await Participation.find({ participantUser: username});
