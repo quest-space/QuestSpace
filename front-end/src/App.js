@@ -5,7 +5,7 @@ import './css/App.css';
 import LandingPage from "./components/LandingPage"
 import SignUpPage from "./components/SignUpPage"
 import SignInPage from "./components/SignInPage"
-import Cards from "./components/Cards"
+import Homepage from "./components/Homepage"
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
         
         <Route path="/signup" component={SignUpPage} />
         <Route path="/signin" component={SignInPage} />
-        <Route path="/card" component={Cards} />
+        <Route path="/homepage" component={Homepage} />
         <Route exact path="/" component={LandingPage} />
         
 
