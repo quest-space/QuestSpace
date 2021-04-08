@@ -8,7 +8,8 @@ const Participation = require(`../../models/participation`);
 const router = Router();
 
 const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
-const { sendRes } = require(`../helpers/sendRes`)
+const { sendRes } = require(`../helpers/sendRes`);
+const { fetchCard } = require(`../helpers/fetchCard`);
 
 // global variables
 const BAQ_REQUEST_STATUS_CODE = 400;
@@ -20,6 +21,15 @@ const OK_STATUS_CODE = 200;
 let username = 'HassaanAW';
 
 router.post(`/home`, async (req, res) => {
+
+    const [cards, err] = await fetchCard(username, `participant`, []);
+    if (err) {
+        sendRes(res, BAQ_REQUEST_STATUS_CODE, err);
+    } else {
+        sendRes(res, OK_STATUS_CODE, cards);
+    }
+    return;
+
     try {
         // fetch list of all quests in which participant registered
         const all_quests = await Participation.find({ participantUser: username});
