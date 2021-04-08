@@ -19,7 +19,7 @@ const Cards = (props) => {
       <div className="card" style ={{borderRadius: '1rem'}} >
         <img src = {props.imgUrl}  alt="" className="card-img-top" style={{borderRadius: '1rem 1rem 0rem 0rem'}}/>
         <div className="card-body" style={{paddingTop:'0.80em'}}>
-          <h5 className="card-title" style={{margin:'0em',fontWeight: 'bold'}}>{props.title}</h5>
+          <h5 className="card-title" style={{margin:'0em',fontWeight: '500'}}>{props.title}</h5>
           <p className= "text-muted" style={{margin:'0em', fontSize:'0.9rem'}}>{props.host}</p>
           {
             full.map((a,index) => {
