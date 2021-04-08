@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import logo from './logos/logo.svg';
+// import logo from './logos/logo.svg';
 import './css/App.css';
 import LandingPage from "./components/LandingPage"
 import SignUpPage from "./components/SignUpPage"
