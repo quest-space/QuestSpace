@@ -15,7 +15,7 @@ const NOT_FOUND_STATUS_CODE = 404;
 const setGenericVars = (req, decodedToken) => {
   req.body.id = decodedToken.id;
   req.body.username = decodedToken.username;
-  req.body.type = decodedToken.type;
+  req.body.userType = decodedToken.type;
 }
 
 // filter out authentic users
