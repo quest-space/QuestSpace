@@ -4,7 +4,7 @@ const jwt = require(`jsonwebtoken`);
 const ACCESS_TOKEN_SECRET = `d18548bafc962592dc6c25cfdcb67ef974a4a217c612049501d9481f999ea747b9c2cd764389b6742a990d265a0651c6a9043f049637be03187b4a8154f71d1e`
 
 // max age of token
-const maxAge = 60 * 0.5;
+const maxAge = 60 * 20; // 20 minutes
 
 // create json web token
 const createToken = (id, username, type) => {

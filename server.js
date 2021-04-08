@@ -19,7 +19,7 @@ app.use(express.json()); // Parse JSON
 app.use(cookieParser()); // Parse Cookies
 
 // initialize routes
-app.use('/api', require('./routes/api'));
+app.use('/api', require('./routes/mainRouter'));
 
 // error handling (from routes) middleware
 app.use((err, req, res, next) => {
