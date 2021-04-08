@@ -7,13 +7,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const participationSchema = new Schema({  
-    participant: {
-        type: Schema.Types.ObjectId,
-        ref: 'participant'
+    participantUser: {
+        type: String,
+        required: ['true', 'Participant username is required']
+        
     },
-    quest: {
-        type: Schema.Types.ObjectId,
-        ref: 'quest'
+    questName: {
+        type: String,
+        required: ['true', 'Quest name is required']
     }
 });
 

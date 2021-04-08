@@ -22,7 +22,6 @@ const ratingSchema = new Schema({
         max: 5,
         required: [true, 'Host rating is required']
     }
-
 });
 
 //Export function to create "ratingSchema" model class

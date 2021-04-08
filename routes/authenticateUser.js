@@ -9,6 +9,7 @@ const { sendRes } = require(`./sendRes`);
 // status codes
 const UNAUTHORIZED_STATUS_CODE = 401;
 const FORBIDDEN_STATUS_CODE = 403;
+const NOT_FOUND_STATUS_CODE = 404;
 
 // set vars to be used in routes
 const setGenericVars = (req, decodedToken) => {
@@ -18,28 +19,44 @@ const setGenericVars = (req, decodedToken) => {
 }
 
 // filter out authentic users
-router.use(`*`, async (req, res, next) => {
-  const token = req.cookies.qsUser;
-  if (token) {
-    try {
-      const decodedToken = await verifyToken(token);
-      setGenericVars(req, decodedToken);
-      // send new cookie
-      const newToken = createToken(decodedToken.id, decodedToken.username, `participant`);
-      res.cookie('qsUser', newToken, { httpOnly: true, maxAge: maxAge * 1000 });
-      // move one
-      next();
-    } catch (err) {
-      // console.log(err);
-      sendRes(res, FORBIDDEN_STATUS_CODE, {
+router.use(`/:type`, async (req, res, next) => {
+  if (req.params.type === `participant` || req.params.type === `host`) {
+    const token = req.cookies.qsUser;
+    if (token) {
+      try {
+        const decodedToken = await verifyToken(token);
+        setGenericVars(req, decodedToken);
+        // check if this is correct type of User
+        if (decodedToken.type === req.params.type) {
+          console.log(`${decodedToken.type} and ${req.params.type} are equal`);
+          // send new cookie
+          const newToken = createToken(decodedToken.id, decodedToken.username, decodedToken.type);
+          res.cookie('qsUser', newToken, { httpOnly: true, maxAge: maxAge * 1000 });
+          // move one
+          next();
+        } else {
+          sendRes(res, UNAUTHORIZED_STATUS_CODE, {
+            errors: {},
+            genericErrMsg: `No authorization for this resource`
+          });
+        }
+      } catch (err) {
+        // console.log(err);
+        sendRes(res, FORBIDDEN_STATUS_CODE, {
+          errors: {},
+          genericErrMsg: `Unrecognized identity`
+        });
+      }
+    } else {
+      sendRes(res, UNAUTHORIZED_STATUS_CODE, {
         errors: {},
-        genericErrMsg: `Unrecognized identity`
+        genericErrMsg: `No identification`
       });
     }
   } else {
-    sendRes(res, UNAUTHORIZED_STATUS_CODE, {
+    sendRes(res, NOT_FOUND_STATUS_CODE, {
       errors: {},
-      genericErrMsg: `No identification`
+      genericErrMsg: `API not found`
     });
   }
 });
