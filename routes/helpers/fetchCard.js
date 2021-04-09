@@ -65,23 +65,23 @@ const fetchCard = async (username, userType, cardTypes) => {
           questData[`organization`] = hostDatasForQuest.find((hostData) => hostData[0].username === questData[`organization`])[0].organization;
       });
 
-      const ratings = await (Promise.all(neededQuestData.map((questData) => (
-          Rating.aggregate(
-              [
-                  { $match: { hostUser: questData[`rating`]} },
-                  {  
-                      $group: {
-                          _id: '$hostUser',
-                          score: { $avg: '$score' }
-                      }
-                  }
-              ]
-          )
-      ))));
+      // const ratings = await (Promise.all(neededQuestData.map((questData) => (
+      //     Rating.aggregate(
+      //         [
+      //             { $match: { hostUser: questData[`rating`]} },
+      //             {  
+      //                 $group: {
+      //                     _id: '$hostUser',
+      //                     score: { $avg: '$score' }
+      //                 }
+      //             }
+      //         ]
+      //     )
+      // ))));
       
-      ratings.forEach((rating, i) => {
-        neededQuestData[i][`rating`] = rating.length ? rating[0].score : DEFAULT_RATING;
-      });
+      // ratings.forEach((rating, i) => {
+      //   neededQuestData[i][`rating`] = rating.length ? rating[0].score : DEFAULT_RATING;
+      // });
 
       return [neededQuestData, undefined];
   }
