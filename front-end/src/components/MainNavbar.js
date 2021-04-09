@@ -20,6 +20,7 @@ const MainNavbar = () => {
             <img src={questspacelogo} height="44" className="d-inline-block" />
             <span
               style={{
+                fontWeight: 400,
                 postion: "relative",
                 fontSize: 29,
                 fontFamily: "Barlow",
