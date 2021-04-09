@@ -14,7 +14,7 @@ const MainNavbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light" style={{marginLeft: "7.5%", boxShadow: "none"}}>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -66,7 +66,7 @@ const MainNavbar = () => {
               {/* <a class="dropdown-item" href="#">Something else here</a> */}
             </div>
           </li>
-          <li className="nav-item dropdown">
+          <li className="nav-item dropdown d-none d-sm-none d-md-none d-lg-block">
           <a className="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{marginRight:"5.9rem", paddingTop:"0em", paddingBottom:"0em"}}>
           <div className="circle">
           <span className="initials">MS</span>
@@ -95,6 +95,32 @@ const MainNavbar = () => {
               Sign Out
             </a>
           </div>
+          </li>
+            {/* SIGN OUT AND VIEW PROFILE FOR MOBILE VERSION */}
+          <li className="nav-item d-lg-none d-md-none">
+            <a className="nav-link" href="#" style={{
+              fontWeight: 400,
+              fontSize: 18,
+              fontFamily: "Barlow",
+              marginRight: "1.5rem",
+              lineHeight:"1.6",
+              color: "#313131",
+
+            }}>
+              View Profile</a>
+          </li>
+
+          <li className="nav-item d-lg-none d-md-none">
+            <a className="nav-link" href="#" style={{
+              fontWeight: 400,
+              fontSize: 18,
+              fontFamily: "Barlow",
+              marginRight: "1.5rem",
+              lineHeight:"1.6",
+              color: "#313131",
+
+            }}>
+              Sign Out</a>
           </li>
           
         </ul>
