@@ -5,7 +5,7 @@ const router = Router();
 router.use(`/auth`, require(`./authentication/signUpInAPIs`));
 
 // Filters authenticated users and refreshes their authentication:
-// router.use(require(`./authentication/authenticateUser`));
+router.use(require(`./authentication/authenticateUser`));
 // An authenticated user is who
 // 1. routes at /api/participant or /api/host
 // 2. has a token in cookie

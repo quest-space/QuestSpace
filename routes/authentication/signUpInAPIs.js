@@ -41,7 +41,7 @@ router.post(`/signup/host`, async (req, res) => {
 
 // sign in handler [participant]
 router.post(`/signin/participant`, async (req, res) => {
-  const { username, password } = req.query;
+  const { username, password } = req.body;
   try {
     const participant = await Participant.login(username, password);
     const token = createToken(participant._id, participant.username, `participant`);
@@ -54,7 +54,7 @@ router.post(`/signin/participant`, async (req, res) => {
 
 // sign in handler [host]
 router.post(`/signin/host`, async (req, res) => {
-  const { username, password } = req.query;
+  const { username, password } = req.body;
   try {
     const host = await Host.login(username, password);
     const token = createToken(host._id, host.username, `host`);
