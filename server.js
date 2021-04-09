@@ -9,6 +9,8 @@ const PORT = 4333;
 const DB_URL = `mongodb://localhost:8000`
 const DB_NAME = `testDBTalha`;
 
+const Rating = require(`./models/ratings`);
+
 // set up express app
 const app = express();
 
@@ -30,7 +32,7 @@ app.use((err, req, res, next) => {
 // database connection
 const dbURI = `${DB_URL}/${DB_NAME}`;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
-  .then((result) => {
+  .then(async (result) => {
     // listen for requests
     app.listen(PORT, () => {
       console.log(`Listening for requests at port ${PORT}`);

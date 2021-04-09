@@ -23,7 +23,8 @@ const hostSchema = new Schema({
     required: [true, 'Organization is required']
   },
   phone: {
-    type: Number, 
+    type: String,
+    validate: [/^\+?\d(?:[\d-]*\d)$/, 'Phone Number is not valid'], 
     require: [true, 'Phone number is required']
   },
   representativeName: {
@@ -33,9 +34,15 @@ const hostSchema = new Schema({
   },
   representativeDesignation: {
     type: String,
-    validate: [/^[A-Za-z ]+$/, 'Designation should have alphabets or spaces only'],
     require: [true, 'Representative Designation is required']
   },
+  rating: {
+    type: Number,
+    default: 3,
+    min: 0,
+    max: 5,
+    required: [true, 'Host rating is required']
+}
 });
 
 // fire a function before doc saved to db
