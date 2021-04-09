@@ -36,6 +36,13 @@ const hostSchema = new Schema({
     type: String,
     required: [true, 'Representative Designation is required']
   },
+  rating: {
+    type: Number,
+    default: 3,
+    min: 0,
+    max: 5,
+    required: [true, 'Host rating is required']
+}
 });
 
 // fire a function before doc saved to db

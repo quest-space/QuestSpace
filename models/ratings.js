@@ -24,5 +24,5 @@ const ratingSchema = new Schema({
     }
 });
 
-//Export function to create "ratingSchema" model class
+// Export function to create "ratingSchema" model class
 module.exports = mongoose.model('ratings', ratingSchema);
