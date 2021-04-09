@@ -27,7 +27,7 @@ const InitialNavbar = () => {
                 fontWeight: 400,
                 fontSize: 18,
                 fontFamily: "Barlow",
-                color: "#212529",
+                // color: "#212529",
                 marginRight: "1.5rem",
               }}>
                 About us</a>
@@ -37,7 +37,7 @@ const InitialNavbar = () => {
                 fontWeight: 400,
                 fontSize: 18,
                 fontFamily: "Barlow",
-                color: "#212529",
+                // color: "#212529",
                 marginRight: "5.9rem",
               }}>
                 Sign In</a>

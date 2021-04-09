@@ -1,14 +1,14 @@
 import React from "react"
 import CardsContainer from "./CardsContainer"
 import JumbotronWithTabs from "./JumbotronWithTabs"
-import InitialNavbar from "./InitialNavbar"
+import MainNavbar from "./MainNavbar"
 
 
 const Header = () => {
 
   return(
     <div>
-      <InitialNavbar/>
+      <MainNavbar/>
       <JumbotronWithTabs/>
       <CardsContainer/>
     </div>
