@@ -1,7 +1,5 @@
 import React from "react"
 import '../css/common.css'
-// import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
 
 const Cards = (props) => {
 

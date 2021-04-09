@@ -9,7 +9,7 @@ const CardsContainer = () => {
 
         ///FOR TESTIING
             <div className="container" style={{marginTop:'6rem'}}>
-      <div className="row">
+      <div className="row" style={{padding:'1.5rem'}}>
       <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
             <Cards 
                 imgUrl = "https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
