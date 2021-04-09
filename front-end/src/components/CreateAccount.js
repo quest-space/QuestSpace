@@ -60,15 +60,16 @@ const CreateAccount = () => {
                 </div>
             </form>
 
-            <div style={{paddingTop: "20px", textAlign: "center"}}>
+            <div style={{ paddingTop: "20px", textAlign: "center" }}>
                 <button className="btnNext">
-                    Next
+                    Next&nbsp;&nbsp;
+                    <i className="fa fa-angle-right" aria-hidden="true"></i>
                 </button>
             </div>
-                
 
-            <i className="fa fa-angle-right" aria-hidden="true"></i>
-            
+
+
+
 
         </div>
     )
