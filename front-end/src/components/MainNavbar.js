@@ -32,9 +32,9 @@ const MainNavbar = () => {
           </span></a>
 
         <ul className="navbar-nav ml-auto">
-          <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" style={{display:disp}}/>
-          <button onClick = {turnOnDisplay} style={{marginRight: "1.9rem", backgroundColor:"#ffffff", border:"none"}}><i class="fas fa-search"></i></button>
+          <form className="form-inline my-2 my-lg-0">
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" style={{display:disp}}/>
+          <button onClick = {turnOnDisplay} style={{marginRight: "1.9rem", backgroundColor:"#ffffff", border:"none"}}><i className="fas fa-search"></i></button>
           </form>
 
           <li className="nav-item">
