@@ -16,7 +16,9 @@ const participationSchema = new Schema({
         type: String,
         required: ['true', 'Quest name is required']
     }
-});
+},
+{timestamps: true} // Add timestamp property
+);
 
 //Export function to create " participationSchema" model class
 module.exports = mongoose.model('participation',  participationSchema);

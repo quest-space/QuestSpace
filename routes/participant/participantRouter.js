@@ -3,7 +3,7 @@ const router = Router();
 
 router.use(`/signout`, require(`../authentication/signOutAPI`));
 
-router.use(`/homepage`, require(`./homepage-home`));
+router.use(`/homepage`, require(`./homepage`));
 
 router.get(`/quest/:questid`, (req, res) => {
   // nature: private -> requestor must be enrolled
