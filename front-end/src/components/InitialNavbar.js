@@ -5,7 +5,7 @@ const InitialNavbar = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light" style={{marginLeft: "7.5%", boxShadow: "none"}}>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -27,7 +27,7 @@ const InitialNavbar = () => {
                 fontWeight: 400,
                 fontSize: 18,
                 fontFamily: "Barlow",
-                // color: "#212529",
+                color: "#313131",
                 marginRight: "1.5rem",
               }}>
                 About us</a>
@@ -37,7 +37,7 @@ const InitialNavbar = () => {
                 fontWeight: 400,
                 fontSize: 18,
                 fontFamily: "Barlow",
-                // color: "#212529",
+                color: "#313131",
                 marginRight: "5.9rem",
               }}>
                 Sign In</a>
