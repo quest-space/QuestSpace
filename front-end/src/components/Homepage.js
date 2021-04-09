@@ -1,19 +1,16 @@
-import React from "react"
-import CardsContainer from "./CardsContainer"
-import JumbotronWithTabs from "./JumbotronWithTabs"
-import MainNavbar from "./MainNavbar"
-
+import React from "react";
+import CardsContainer from "./CardsContainer";
+import JumbotronWithTabs from "./JumbotronWithTabs";
+import MainNavbar from "./MainNavbar";
 
 const Header = () => {
-
-  return(
+  return (
     <div>
-      <MainNavbar/>
-      <JumbotronWithTabs/>
-      <CardsContainer/>
+      <MainNavbar />
+      <JumbotronWithTabs />
+      <CardsContainer />
     </div>
-  )
+  );
+};
 
-}
-
-export default Header
+export default Header;
