@@ -16,8 +16,8 @@ const App = () => {
         <Route path="/signup" component={SignUpPage} />
         <Route path="/signin" component={SignInPage} />
         <Route path="/homepage" component={Homepage} />
-        <Route path="/Navbar1" component={InitialNavbar} />
-        <Route path="/Navbar2" component={MainNavbar} />
+        <Route path="/navbar1" component={InitialNavbar} />
+        <Route path="/navbar2" component={MainNavbar} />
         <Route exact path="/" component={LandingPage} />
       </Switch>
     </Router>
