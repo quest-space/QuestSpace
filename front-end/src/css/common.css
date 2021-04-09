@@ -22,12 +22,6 @@
   /* width: 16.3125em; */
 }
 
-<<<<<<< Updated upstream
-.row {
-  padding: 1.5rem;
-}
-=======
->>>>>>> Stashed changes
 
 /* jumbotron and tab */
 
@@ -82,49 +76,6 @@ button {
   line-height: 45px;
 }
 
-<<<<<<< Updated upstream
-button.parent {
-  background-color: #46b7a1;
-}
-
-button.parent:hover {
-  text-decoration: none;
-  background-color: #5ec7b2;
-  /* border-bottom:4px solid #ffffff; */
-}
-
-#top li #subnav-list {
-  display: none; /* hides the submenu */
-  position: absolute; /* makes it independent of it's father */
-  left: 0; /* this and the line below makes sure it spreads 100% through the page */
-  right: 0;
-  top: 50px; /* the hight of #top */
-  background-color: #73d3bb;
-  text-align: center; /* makes sure the items are centered */
-}
-
-#top li #subnav-list .kid button {
-  border-bottom: none;
-}
-
-button.kid:hover {
-  background-color: rgb(130, 221, 213);
-}
-
-button.kid {
-  width: 10rem;
-}
-
-#top .subnav:hover #subnav-list {
-  display: block; /* shows the submenu when I hover on .subnav */
-}
-
-.jumbotron {
-  background-image: url("../img/jumbotronBg.png") !important;
-  background-size: cover !important;
-  background-position: right !important;
-}
-=======
   .kid, .parent{
     background:transparent;
     border:none;
@@ -203,4 +154,3 @@ button.kid {
     background-size:cover!important;
     background-position: right !important;
   }
->>>>>>> Stashed changes
