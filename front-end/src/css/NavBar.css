@@ -1,0 +1,41 @@
+.dropdown-toggle:after {
+  display: none;
+  border: 0;
+}
+
+.invisiblebutton {
+  border: 0;
+  background-color: none;
+}
+
+.dropdown-menu {
+  white-space: pre-wrap;
+  width: 15rem;
+  overflow: auto;
+}
+
+.dropdown-menu-center {
+  left: 50% !important;
+  right: auto !important;
+  text-align: center !important;
+  transform: translate(-50%, 0) !important;
+}
+
+.linkformat {
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20;
+  padding-bottom: 5px;
+  color: "#313131";
+}
+
+.button1 {
+  color: #313131;
+  font-size: 20px;
+  background-color: white;
+  border: none;
+  font-family: Barlow;
+  font-weight: 500;
+  font-size: 20px;
+}
