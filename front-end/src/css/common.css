@@ -108,7 +108,19 @@
   }
 
 
-/*ASADADASDSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAA*/
+  .dropKid{
+    box-sizing: content-box !important;
+    background-color: #46B7A1 !important;
+    border-top:0.01px solid #ffffff !important;
+    font-size: 16px !important; 
+    color:#ffffff !important;
+    width: 100% !important;
+    /* box-shadow: black !important; */
+  }
+  .dropKid:hover{
+    background-color: #5ec7b2 !important;
+  }
+
 
 
 
