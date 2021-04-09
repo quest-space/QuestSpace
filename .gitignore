@@ -119,3 +119,4 @@ dist
 # testing files
 test.js
 dump.js
+testDB.js
