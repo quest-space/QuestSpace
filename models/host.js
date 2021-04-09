@@ -23,18 +23,18 @@ const hostSchema = new Schema({
     required: [true, 'Organization is required']
   },
   phone: {
-    type: Number, 
-    require: [true, 'Phone number is required']
+    type: String,
+    validate: [/^\+?\d(?:[\d-]*\d)?$/, 'Phone Number is not valid'],
+    required: [true, 'Phone number is required']
   },
   representativeName: {
     type: String,
     validate: [/^[A-Za-z ]+$/, 'Name should have alphabets or spaces only'],
-    require: [true, 'Representative Name is required']
+    required: [true, 'Representative Name is required']
   },
   representativeDesignation: {
     type: String,
-    validate: [/^[A-Za-z ]+$/, 'Designation should have alphabets or spaces only'],
-    require: [true, 'Representative Designation is required']
+    required: [true, 'Representative Designation is required']
   },
 });
 
