@@ -25,56 +25,8 @@
 
 /* jumbotron and tab */
 
-button {
-  /* margin-right:15px; */
-  font-size: 18px;
-  background: transparent;
-  border: none;
-  outline: none;
-  padding: 4px 0px;
-  cursor: pointer;
-  color: rgba(0, 0, 0, 0.4);
-  transition: all ease-in-out 0.2s;
-  font-weight: bold;
-  border-bottom: 2px solid transparent;
-}
-button:hover {
-  background-color: #46b7a1;
-}
-
-button:hover:not(.active) {
-  background-color: #5ec7b2;
-}
 
 /*SUBNAV WITH TABS*/
-
-ul {
-  list-style: none;
-  text-align: center;
-}
-
-button {
-  font-weight: 500;
-  font-size: 22px;
-  color: #ffffff !important;
-}
-
-#top {
-  background-color: #46b7a1;
-  width: 100%;
-  height: 50px;
-}
-
-#top li,
-#top li #subnav-list .kid {
-  display: inline-block; /* this is necessary to help center the submenu and make the items align to the left. Refrain from using "float:left" as it makes "text-align" useless. */
-}
-
-#top li button {
-  display: block;
-  padding: 0 0;
-  line-height: 45px;
-}
 
   .kid, .parent{
     background:transparent;
