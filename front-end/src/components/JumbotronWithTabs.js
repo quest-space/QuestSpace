@@ -7,7 +7,8 @@ const JumbotronWithTabs = () => {
   const [bar1, setBorderBar1] = React.useState('5px solid #ffffff')
   const [bar2, setBorderBar2] = React.useState('5px solid transparent')
   const [bar3, setBorderBar3] = React.useState('5px solid transparent')
-  // const bgImg = '../img/jumbotronBg.png'
+        
+            
 
   const setBar = (x) => {
     if(x === 'home'){

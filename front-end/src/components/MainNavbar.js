@@ -1,151 +1,93 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import questspacelogo from "./../logos/questspacelogo.png";
-import { MDBIcon } from "mdbreact";
-import Avatar from "react-avatar";
 import "../css/NavBar.css";
 
-// There is a slight issue in the drop down button when I pulled.
-// Will fix it in the morning.
+
 const MainNavbar = () => {
   return (
-    <div>
-      <Navbar collapseOnSelect className="shadow bg-white rounded" expand="md">
-        <Nav
-          className="mr-auto"
-          style={{ alignItems: "center", marginLeft: "7.5%" }}
-        >
-          <Navbar.Brand className="navbar-brand" href="#home">
-            <img src={questspacelogo} height="44" className="d-inline-block" />
-            <span
-              style={{
-                fontWeight: 400,
-                postion: "relative",
-                fontSize: 29,
-                fontFamily: "Barlow",
-                align: "center",
-                paddingLeft: 10,
-              }}
-            >
-              <span style={{ color: "#415F78" }}>Quest</span>
-              <span style={{ color: "#46B7A1" }}>Space</span>
-            </span>
-          </Navbar.Brand>
-        </Nav>
+    <nav className="navbar navbar-expand-lg navbar-light" style={{marginLeft: "7.5%", boxShadow: "none"}}>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a className="navbar-brand" href="#"><img src={questspacelogo} height="44" style={{position: 'absolute', top:'13'}} />
+          <span
+            style={{
+              fontWeight: 400,
+              fontSize: 29,
+              fontFamily: "Barlow",
+              paddingLeft: "3.5rem",
+            }}
+          >
+            <span style={{ color: "#415F78" }}>Quest</span>
+            <span style={{ color: "#46B7A1" }}>Space</span>
+          </span></a>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <a className="nav-link" href="#" style={{
+              fontWeight: 400,
+              fontSize: 18,
+              fontFamily: "Barlow",
+              marginRight: "1.5rem",
+              lineHeight:"1.6",
+              color: "#313131"
 
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto" style={{ marginRight: "7.5%" }}>
-            <Nav
-              className="ml-auto"
-              style={{ color: "#313131", fontSize: 20, fontFamily: "Barlow" }}
-            >
-              <MDBIcon
-                className="text-black"
-                icon="search"
-                style={{
-                  margin: "auto",
-                  paddingRight: "1.5rem",
-                }}
-              />
-              <Nav.Link
-                style={{
-                  color: "#313131",
-                  margin: "auto",
-                  paddingRight: "1.5rem",
-                }}
-                href="#Home"
-              >
-                <span class="linkformat">Home</span>
-              </Nav.Link>
-
-              <div
-                class="dropdown"
-                style={{
-                  paddingRight: "1.5rem",
-                  paddingTop: "0.5rem",
-                }}
-              >
-                <button
-                  type="button"
-                  class="button1 center-block dropdown-toggle"
-                  id="dropdownMenuButton1"
-                  data-toggle="dropdown"
-                  style={{ color: "#313131" }}
-                >
-                  <span class="linkformat" style={{ color: "#313131" }}>
-                    Quests
-                  </span>
-                </button>
-                <div
-                  class="dropdown-menu dropdown-menu-center"
-                  aria-labelledby="dropdownMenuButton1"
-                >
-                  <a class="dropdown-item" href="#">
-                    <span class="linkformat">My Quests</span>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <span class="linkformat">Public Quests</span>
-                  </a>
-                </div>
+            }}>
+              Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{
+              fontWeight: 400,
+              fontSize: 18,
+              fontFamily: "Barlow",
+              marginRight: "1.5rem",
+              lineHeight:"1.6",
+              color: "#313131"
+              }}>
+              Quests
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style={{border:"none"}}>
+              <a class="dropdown-item" href="#">All Quests</a>
+              <a class="dropdown-item" href="#">My Quests</a>
+              {/* <a class="dropdown-item" href="#">Something else here</a> */}
+            </div>
+          </li>
+          <li className="nav-item dropdown">
+          <a className="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{marginRight:"5.9rem", paddingTop:"0em", paddingBottom:"0em"}}>
+          <div className="circle">
+          <span className="initials">MS</span>
+          </div>
+          </a>
+          <div className="dropdown-menu" style={{border:"none", textAlign:"center", paddingBottom:"0"}}>
+            <div className="dropdown-item" >
+              <div className="circle1">
+              <span className="initials1">MS</span>
               </div>
-
-              <div class="dropdown">
-                <button
-                  type="button"
-                  class="invisiblebutton center-block"
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <div>
-                    <Avatar
-                      color={"#D24343"}
-                      size={50}
-                      align={"center"}
-                      name="Any Name"
-                      round={true}
-                    />
-                  </div>
-                </button>
-                <div
-                  class="dropdown-menu dropdown-menu-center"
-                  aria-labelledby="dropdownMenuButton"
-                >
-                  <a class="dropdown-item">
-                    <div style={{ paddingBottom: "1rem" }}>
-                      <Avatar
-                        color={"#D24343"}
-                        size={70}
-                        align={"center"}
-                        name="Any Name"
-                        round={true}
-                      />
-                    </div>
-                    Any Name
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <span style={{ textDecorationLine: "underline" }}>
-                      View Profile
-                    </span>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">
-                    <i
-                      class="fa fa-power-off"
-                      style={{ margin: "auto", paddingRight: "1rem" }}
-                    ></i>
-                    Sign Out
-                  </a>
-                </div>
+              <div style={{fontSize:"20px", fontWeight:"400", marginTop:"0.5rem"}}>
+              Maria Saad Khan
               </div>
-            </Nav>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    </div>
-  );
-};
+            </div>
+            <a className="dropdown-item" href="#" style={{paddingTop:"0"}}>
+              <span style={{ textDecorationLine: "underline" }}>
+                View Profile
+              </span>
+            </a>
+            <div className="dropdown-divider" style={{marginBottom:"0"}}></div>
+            <a className="dropdown-item" href="#" style={{backgroundColor:"#EDEBEB", borderRadius:"0.25em"}}>
+              <i
+                className="fa fa-power-off"
+                style={{ margin: "auto", paddingRight: "0.8rem" }}
+              ></i>
+              Sign Out
+            </a>
+          </div>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
 
-export default MainNavbar;
+  )
+}
+
+export default MainNavbar
