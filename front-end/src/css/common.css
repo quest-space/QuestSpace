@@ -1,0 +1,114 @@
+.card {
+  box-shadow: 1px 4px 11px rgba(0, 0, 0, 0.2);
+  transition: 0.06s;
+  border: none;
+  border-radius: 1em;
+  /* width: 16.3125em; */
+  /* height: 22.2em */
+}
+
+.card:hover {
+  box-shadow: 1px 4px 11px rgba(0, 0, 0, 0.4);
+  top: -2px;
+}
+
+.fa-star {
+  color: #ffd700;
+  font-size: 0.8rem;
+}
+
+.card-img-top {
+  height: 10.125em;
+  /* width: 16.3125em; */
+}
+
+
+/* jumbotron and tab */
+
+
+/*SUBNAV WITH TABS*/
+
+  .kid, .parent{
+    background:transparent;
+    border:none;
+    outline:none;
+    padding:4px 0px ;
+    cursor:pointer;
+    transition:all ease-in-out .2s;
+    font-weight:500;
+    font-size: 18px; 
+    color:#ffffff;
+  }
+ 
+  /*SUBNAV WITH TABS*/
+  
+  #top {
+    list-style:none;
+    text-align:center;
+    background-color: #46B7A1;
+    width:100%;
+    height:50px;
+  }
+  
+  #subnav-list{
+    list-style:none;
+    text-align:center;
+  }
+  
+  #top li, #subnav-list li {
+    display:inline-block; /* this is necessary to help center the submenu and make the items align to the left. Refrain from using "float:left" as it makes "text-align" useless. */
+  }
+  
+  .parent,.kid{
+    display:block;
+    padding:0 0;
+    line-height:45px;
+  }
+
+  .parent{
+    background-color: #46B7A1;
+  }
+  
+  .parent:hover {
+    text-decoration:none;
+    background-color: #5ec7b2;
+    /* border-bottom:4px solid #ffffff; */
+  }
+  
+  #top li #subnav-list {
+    display:none; /* hides the submenu */
+    position:absolute; /* makes it independent of it's father */
+    left:0; /* this and the line below makes sure it spreads 100% through the page */ 
+    right:0;
+    top:50px; /* the hight of #top */
+    background-color: #73d3bb;
+    text-align:center; /* makes sure the items are centered */
+  }
+  
+  #top li #subnav-list .kid button {
+    border-bottom: none;
+  }
+  
+  .kid:hover{
+    background-color: rgb(130, 221, 213);
+  }
+
+  .kid{
+    width: 10rem;
+  }
+
+  #top .subnav:hover #subnav-list {
+    display:block; /* shows the submenu when I hover on .subnav */
+  }
+
+  #fancy{
+    background-image: url('../img/jumbotronBg.png') !important;
+    background-size:cover!important;
+    background-position: right !important;
+  }
+
+
+/*ASADADASDSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAA*/
+
+
+
