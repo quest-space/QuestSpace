@@ -19,8 +19,14 @@ const sortQuests = (quests, key, order) =>
     }
   });
 
+const extractUpcomingQuests = (quests, currTime) => 
+  quests.filter((quest) => quest[0].startTime.getTime() > currTime);
+
 const extractLiveQuests = (quests, currTime) => 
-  quests.filter((quest) => ((quest[0].startTime.getTime() < currTime) && (quest[0].endTime.getTime() > currTime)));
+  quests.filter((quest) => ((quest[0].startTime.getTime() <= currTime) && (quest[0].endTime.getTime() > currTime)));
+
+const extractPastQuests = (quests, currTime) => 
+  quests.filter((quest) => quest[0].endTime.getTime() <= currTime);
 
 const fetchCard = async (username, userType, cardTypes) => {
   
@@ -53,7 +59,7 @@ const fetchCard = async (username, userType, cardTypes) => {
         startTime: (questData[0].startTime).toDateString(),
         endTime: (questData[0].endTime).toDateString(),
         organization: questData[0].hostUser,
-        rating: questData[0].hostUser
+        rating: questData[0].rating
       }));
       console.log(neededQuestData);
 
@@ -61,27 +67,9 @@ const fetchCard = async (username, userType, cardTypes) => {
           Host.find({ username: questData[0].hostUser })
       ))));
 
-      neededQuestData.forEach((questData) => {
-          questData[`organization`] = hostDatasForQuest.find((hostData) => hostData[0].username === questData[`organization`])[0].organization;
+      neededQuestData.forEach((questData, i) => {
+          questData[`organization`] = hostDatasForQuest[i][0].organization; //.find((hostData) => hostData[0].username === questData[`organization`])[0].organization;
       });
-
-      // const ratings = await (Promise.all(neededQuestData.map((questData) => (
-      //     Rating.aggregate(
-      //         [
-      //             { $match: { hostUser: questData[`rating`]} },
-      //             {  
-      //                 $group: {
-      //                     _id: '$hostUser',
-      //                     score: { $avg: '$score' }
-      //                 }
-      //             }
-      //         ]
-      //     )
-      // ))));
-      
-      // ratings.forEach((rating, i) => {
-      //   neededQuestData[i][`rating`] = rating.length ? rating[0].score : DEFAULT_RATING;
-      // });
 
       return [neededQuestData, undefined];
   }

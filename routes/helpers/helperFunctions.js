@@ -1,3 +1,13 @@
+const getQuestStatus = (startTime, endTime, currTime) => {
+  if (startTime.getTime() <= currTime && endTime.getTime() > currTime) {
+    return `live`;
+  } else if (startTime.getTime() > currTime) {
+    return `upcoming`;
+  } else {
+    return `past`;
+  }
+}
+
 // checks if req has all params
 const getMissingParamsErr = (reqObj, params) => {
   const paramsNotInReq = params.filter((param) => !(param in reqObj));
@@ -64,3 +74,4 @@ const handleErrorsFromDB = (err) => {
 
 module.exports.handleErrorsFromDB = handleErrorsFromDB;
 module.exports.getMissingParamsErr = getMissingParamsErr;
+module.exports.getQuestStatus = getQuestStatus;

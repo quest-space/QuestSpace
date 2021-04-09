@@ -36,9 +36,8 @@ const questSchema = new Schema({
         required: [true, 'End time has not been specified']  
     },
     logo: {
-        type: Buffer,
-        required: [true, 'Logo has not been added']
-    },
+        type: Buffer
+    }
 }, // Schema completed 
 {timestamps: true} // Add timestamp property
 );
