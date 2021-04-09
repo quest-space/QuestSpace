@@ -1,6 +1,8 @@
 const { Router } = require (`express`);
 const router = Router();
 
+router.use(`/signout`, require(`../authentication/signOutAPI`));
+
 router.use(`/homepage`, require(`./homepage-home`));
 
 router.get(`/quest/:questid`, (req, res) => {
