@@ -4,6 +4,14 @@ import "../css/NavBar.css";
 
 
 const MainNavbar = () => {
+
+  const [disp, setDisplay] = React.useState('none')
+
+  const turnOnDisplay = (ev) => {
+    ev.preventDefault()
+    setDisplay('inline-block')
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light" style={{marginLeft: "7.5%", boxShadow: "none"}}>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +30,13 @@ const MainNavbar = () => {
             <span style={{ color: "#415F78" }}>Quest</span>
             <span style={{ color: "#46B7A1" }}>Space</span>
           </span></a>
+
         <ul className="navbar-nav ml-auto">
+          <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" style={{display:disp}}/>
+          <button onClick = {turnOnDisplay} style={{marginRight: "1.9rem", backgroundColor:"#ffffff", border:"none"}}><i class="fas fa-search"></i></button>
+          </form>
+
           <li className="nav-item">
             <a className="nav-link" href="#" style={{
               fontWeight: 400,
@@ -30,7 +44,7 @@ const MainNavbar = () => {
               fontFamily: "Barlow",
               marginRight: "1.5rem",
               lineHeight:"1.6",
-              color: "#313131"
+              color: "#313131",
 
             }}>
               Home</a>
