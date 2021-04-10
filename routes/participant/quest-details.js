@@ -99,20 +99,53 @@ router.get(`/:questid`, async (req, res) => {
     const to_send = {}
 
       if(check_quest_status(find_quest, currTime) == "Upcoming"){ 
-          console.log(`ddd`);
+          // Only send quest details
           to_send["status"] = "quest_details";
           to_send["quest"] = quest_details;
         sendRes(res, OK_STATUS_CODE, to_send);
         return;
       }
       else if( (check_quest_status(find_quest, currTime) == "Live") || (check_quest_status(find_quest, currTime) == "Past") ){
-        console.log(`eee`);
+        
         // Send Round Details as well 
         const RoundData = await Round.find({"questName": find_quest[0].questName}).exec();
-        console.log(`fff`);
-        to_send["status"] = "quest_and_round_details";
-        to_send["quest"] = quest_details;
-        to_send["rounds"] = RoundData;
+
+        const rounds = RoundData.map((val) =>{
+            try{
+
+                const details = {
+                    questName: val.questName,
+                    roundName: val.roundName,
+                    roundNum: val.roundNum,
+                    roundType: val.roundType,
+                    description: val.description,
+                    startTime: (val.startTime).toDateString(),
+                    endTime: (val.endTime).toDateString()
+                }
+                if(val.roundType === "Rapid Fire"){
+                    details["timer"] = val.timer,
+                    details["eachMarks"] = val.eachMarks
+                }
+                else if(val.roundType === "Quiz"){
+                    details["eachMarks"] = val.eachMarks
+                }
+                else if(val.roundType === "Submission"){
+                    details["totalMarks"] = val.totalMarks,
+                    details["Image"] = val.Image,
+                    details["Code"] = val.Code
+                }
+                const status = check_quest_status([val], currTime)
+                    details["status"] = status; // status of round
+                return details;
+            }
+            catch (err){
+                console.log(err)
+            }   
+        })
+        
+        to_send["status"] = "quest_and_round_details"; // status of quest
+        to_send["quest"] = quest_details; // details of quest
+        to_send["rounds"] = rounds; // details of round
         sendRes(res, OK_STATUS_CODE, to_send);
         return;
       }
