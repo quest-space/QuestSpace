@@ -23,7 +23,7 @@ const QuestDetailsFormat = (props) => {
   return (
     <div>
       <MainNavbar />
-      <Header heading="CodinGuru3.0" subheading="IEEE LUMS" />
+      <Header heading={props.questname} subheading={props.hostname} />
       <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
         <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
       </div>
