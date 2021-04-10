@@ -22,8 +22,7 @@ const ratingSchema = new Schema({
         max: 5,
         required: [true, 'Host rating is required']
     }
-
 });
 
-//Export function to create "ratingSchema" model class
+// Export function to create "ratingSchema" model class
 module.exports = mongoose.model('ratings', ratingSchema);

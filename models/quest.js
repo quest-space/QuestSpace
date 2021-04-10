@@ -11,11 +11,11 @@ const questSchema = new Schema({
     questName: {
         type: String,  
         required: [true, 'Quest name is required'],
-        // unique: [true, 'Quest name has already been taken'] 
+        unique: [true, 'Quest name has already been taken'] 
       },
     hostUser: {
         type: String,
-        required: [true, 'Host name is required']
+        required: [true, 'Host username is required']
         },
     nature: {
         type: String,
@@ -27,10 +27,6 @@ const questSchema = new Schema({
         required: [true, 'Description has not been provided'],
         maxlength: [50, 'Exceeded limit of 50 characters']
     },
-    createTime: {
-        type: Date, 
-        default: Date.now() 
-    },
     startTime: {
         type: Date, 
         required: [true, 'Start time has not been specified'] 
@@ -40,10 +36,11 @@ const questSchema = new Schema({
         required: [true, 'End time has not been specified']  
     },
     logo: {
-        type: Buffer,
-        required: [true, 'Logo has not been added']
-    },
-});
+        type: Buffer
+    }
+}, // Schema completed 
+{timestamps: true} // Add timestamp property
+);
 
 //Export function to create "questSchema" model class
 module.exports = mongoose.model('quest', questSchema);
