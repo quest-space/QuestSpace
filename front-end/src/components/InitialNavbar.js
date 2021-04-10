@@ -2,6 +2,19 @@ import React from "react";
 import questspacelogo from "./../logos/questspacelogo.png";
 
 const InitialNavbar = (props) => {
+
+  // const [sign, setSign] = React.useState('')
+
+  const signState = () => {
+    if(props.sign === "Sign In"){
+      return "/signin"
+    }
+    else{
+      return "/signup"
+    }
+  }
+  
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light" style={{paddingLeft: "8.7%", boxShadow: "0px 4px 15px -2px rgba(0, 0, 0, 0.2)"}}>
@@ -33,14 +46,14 @@ const InitialNavbar = (props) => {
                 About us</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" style={{
+              <a className="nav-link" href={signState()} style={{
                 fontWeight: 400,
                 fontSize: 18,
                 fontFamily: "Barlow",
                 color: "#313131",
                 marginRight: "5.9rem",
               }}>
-                Sign Up</a>
+                {props.sign}</a>
             </li>
           </ul>
         </div>
