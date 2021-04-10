@@ -24,15 +24,18 @@ const currTime = Date.now();
 // makes sure user is enrolled in quest
 // makes sure round exists
 // makes sure round is live
-router.post(`/:questid/:roundid`, (req, res, next) => {
+router.post(`/:questid/:roundid`, async (req, res, next) => {
+  console.log({participationData: req.body.participationData});
+  console.log({questData: req.body.questData});
   if (!req.body.participationData) {
     sendRes(res, FORBIDEN_STATUS_CODE, {
       errors: {},
       genericErrMsg: `You are not enrolled in quest`
     });
   } else {
-    const roundData = await Round.find({questName: req.body.questData.questName, roundNum: req.params.roundid}) // find round by roundnum
+    const roundData = await Round.findOne({questName: req.body.questData.questName, roundNum: req.params.roundid}) // find round by roundnum
     req.body.roundData = roundData;
+    console.log({roundData});
     if (!roundData) {
       sendRes(res, FORBIDEN_STATUS_CODE, {
         errors: {},
