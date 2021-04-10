@@ -68,7 +68,9 @@ const getMyQuestCards = (participantQuests, currTime) => ({
     pastQuests: groupArr(participantQuests.filter(quest => quest.status === `Past`))
   });
 
-const getAllQuestCards = (allQuests) => groupArr(allQuests);
+const getAllQuestCards = (allQuests) => ({
+  allQuests: groupArr(allQuests)
+});
 
 const getParticipantHomepageCards = async (username) => {
 
