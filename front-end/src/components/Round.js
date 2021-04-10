@@ -1,15 +1,17 @@
 import React from "react"
 import MainNavbar from "./MainNavbar"
 import Header from "./Header"
-import HeadSubhead from "./HeadSubhead"
-import "../css/RapidFireRound.css"
+import Question from "./Question"
+import "../css/Round.css"
+
 
 const RapidFireRound = () => {
     return (
         <React.Fragment>
             <MainNavbar />
             <Header />
-            hello
+            
+            <Question />
         </React.Fragment>
     )
 }
