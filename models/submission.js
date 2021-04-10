@@ -20,11 +20,22 @@ const submissionSchema = new Schema({
         required: [true, 'Participant name is required']
     },
     roundScore: {
-        type: Number,
-        required:  [true, 'Score is required']
+        type: Number
     },
     answeredTill: {
         type: Number
+    },
+    beginTime: {
+        type: Date,
+        required: [true, `beginTime is required`]
+    },
+    expireTime: {
+        type: Date,
+        required: [true, `expireTime is required`]
+    },
+    duration: {
+        type: Date,
+        required: [true, `duration is required`]
     },
     file: Buffer
 
