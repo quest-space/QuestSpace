@@ -16,14 +16,13 @@ const OK_STATUS_CODE = 200;
 const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
 const Helper = require(`../helpers/helperFunctions`);
+const { findOne } = require("../../models/participant");
+const { attemptRound } = require(`./attemptRound`);
 
 let username = 'HassaanAW';
 const currTime = Date.now();
 
 // authentication:
-// makes sure user is enrolled in quest
-// makes sure round exists
-// makes sure round is live
 router.post(`/:questid/:roundid`, async (req, res, next) => {
   console.log({participationData: req.body.participationData});
   console.log({questData: req.body.questData});
@@ -42,23 +41,35 @@ router.post(`/:questid/:roundid`, async (req, res, next) => {
         genericErrMsg: `Round doesn't exist`
       });
     } else {
-      if (!(Helper.getQuestStatus(roundData.startTime, roundData.endTime, currTime) === "Live")) {
+      const roundStatus = Helper.getQuestStatus(roundData.startTime, roundData.endTime, currTime);
+      if (roundStatus === `Upcoming`) {
         sendRes(res, FORBIDDEN_STATUS_CODE, {
           errors: {},
-          genericErrMsg: `Round isn't live`
+          genericErrMsg: `Round hasn't started yet`
+        });
+      } else if (roundStatus === `Past`) {
+        sendRes(res, FORBIDDEN_STATUS_CODE, {
+          errors: {},
+          genericErrMsg: `Round has expired!`
         });
       } else {
         next();
+        return;
       }
     }
   }
 });
+// makes sure user is enrolled in quest
+// makes sure round exists
+// makes sure round is live
 
-router.post(`/:questid/:roundid/attempt`, (req, res) => {
 
-  // make sure user is enrolled
-  // make sure that round is live
 
+router.post(`/:questid/:roundid/attempt`, async (req, res) => {
+  // sendRes(res, OK_STATUS_CODE, {a: "hello"});
+
+  attemptRound(req, res, submission);
+  
 });
 
 router.post(`/:questid/:roundid`, async (req, res) => {
