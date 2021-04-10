@@ -1,6 +1,7 @@
 import React from "react"
 import "../css/SignUp.css"
 import "bootstrap"
+import { useHistory } from "react-router-dom"
 
 
 const CreateAccountHost = (props) => {
@@ -13,6 +14,8 @@ const CreateAccountHost = (props) => {
         representativeName: "",
         representativeDesignation: ""
     })
+
+    const history = useHistory()
 
     const switchNext = () => {
         props.setNext(false)
@@ -44,6 +47,7 @@ const CreateAccountHost = (props) => {
             showError(responseBody.errors)
         } else {
             console.log("Host sign up success")
+            history.push("/hosthomepage")
         }
 
     }
@@ -65,7 +69,7 @@ const CreateAccountHost = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" onChange={(ev) => updateDetails(ev, "organization")} />
+                        <input type="text" className="input" placeholder="Enter here" value={details.organization} onChange={(ev) => updateDetails(ev, "organization")} />
                     </div>
                 </div>
                 <div className="formRow">
@@ -75,7 +79,7 @@ const CreateAccountHost = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" onChange={(ev) => updateDetails(ev, "representativeName")} />
+                        <input type="text" className="input" placeholder="Enter here" value={details.representativeName} onChange={(ev) => updateDetails(ev, "representativeName")} />
                     </div>
                 </div>
                 <div className="formRow">
@@ -85,7 +89,7 @@ const CreateAccountHost = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" onChange={(ev) => updateDetails(ev, "representativeDesignation")} />
+                        <input type="text" className="input" placeholder="Enter here" value={details.representativeDesignation} onChange={(ev) => updateDetails(ev, "representativeDesignation")} />
                     </div>
                 </div>
 
@@ -96,7 +100,7 @@ const CreateAccountHost = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" onChange={(ev) => updateDetails(ev, "phone")} />
+                        <input type="text" className="input" placeholder="Enter here" value={details.phone} onChange={(ev) => updateDetails(ev, "phone")} />
                     </div>
                 </div>
             </form>
