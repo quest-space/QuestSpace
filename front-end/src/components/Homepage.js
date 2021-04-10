@@ -9,7 +9,7 @@ const Homepage = () => {
     <div>
       <MainNavbar />
       <JumbotronWithTabs />
-      <CardsContainer />
+      <CardsContainer tab="My Quests"/>
     </div>
   );
 };
