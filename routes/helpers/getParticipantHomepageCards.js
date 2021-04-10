@@ -15,6 +15,14 @@ const sortQuestsByProximity = (quests, currTime, key, order) =>
     } 
   });
 
+const groupArr = (arr, grpLen=4) => {
+  const arrToReturn = [];
+  for (let i = 0; i < arr.length; i += grpLen) {
+    arrToReturn.push(arr.slice(i, i + grpLen));
+  }
+  return arrToReturn;
+}
+
 const parseQuests = (quests, currTime) => 
   new Promise(async (resolve, reject) => {
     try {
@@ -33,7 +41,7 @@ const parseQuests = (quests, currTime) =>
       const hosts = await (Promise.all(quests.map((quest) => (
         Host.findOne({ username: quest.hostUser }).exec()
       ))));
-      console.log(hosts);
+      // console.log(hosts);
       parsedQuests.forEach((quest, i) => {
         quest[`organization`] = hosts[i].organization;
         quest[`rating`] = hosts[i].rating;
@@ -49,18 +57,18 @@ const parseQuests = (quests, currTime) =>
   })
 
 const getHomeCards = (participantQuests, allQuests, currTime) => ({
-    myQuests: sortQuestsByProximity(participantQuests, currTime, `startTime`, `asc`).slice(0, 4),
-    popularQuests: allQuests.sort((qA, qB) => qB.participantCount - qA.participantCount).slice(0, 4)
+    myQuests: groupArr(sortQuestsByProximity(participantQuests, currTime, `startTime`, `asc`).slice(0, 4)),
+    popularQuests: groupArr(allQuests.sort((qA, qB) => qB.participantCount - qA.participantCount).slice(0, 4))
   });
 
 const getMyQuestCards = (participantQuests, currTime) => ({
-    allQuests: participantQuests,
-    liveQuests: participantQuests.filter(quest => quest.status === `Live`),
-    upcomingQuests: participantQuests.filter(quest => quest.status === `Upcoming`),
-    pastQuests: participantQuests.filter(quest => quest.status === `Past`)
+    allQuests: groupArr(participantQuests),
+    liveQuests: groupArr(participantQuests.filter(quest => quest.status === `Live`)),
+    upcomingQuests: groupArr(participantQuests.filter(quest => quest.status === `Upcoming`)),
+    pastQuests: groupArr(participantQuests.filter(quest => quest.status === `Past`))
   });
 
-const getAllQuestCards = (allQuests) => allQuests;
+const getAllQuestCards = (allQuests) => groupArr(allQuests);
 
 const getParticipantHomepageCards = async (username) => {
 
