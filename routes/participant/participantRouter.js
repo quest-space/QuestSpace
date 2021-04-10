@@ -4,6 +4,7 @@ const router = Router();
 router.use(`/signout`, require(`../authentication/signOutAPI`));
 
 router.use(`/homepage`, require(`./homepage`));
+router.use(`/profile`, require(`./participant-profile`));
 
 router.use(`/quest`, require(`./validateQuestRequestor`));
 router.use(`/quest`, require(`./quest-details`));
