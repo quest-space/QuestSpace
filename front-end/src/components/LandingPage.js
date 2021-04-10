@@ -26,16 +26,16 @@ const LandingPage = () => {
                         </div>
                         <div className="divider">
                         </div>
-                        <Stack class="col1" title="We give space to everyone!" text="The perfect place to show your intellect" img={false} button={<Button text="Join our space" class="btn1" />} />
+                        <Stack class="col1" title="We give space to everyone!" text="The perfect place to show your intellect" img={false} button={<Button text="Join our space" class="btn1" link="#join" />} />
 
                     </MDBCol>
                     <MDBCol md="8" style={{ backgroundImage: `url(${One})`, backgroundRepeat: "no-repeat", paddingBottom: "820px" }}>
                         <div style={{ textAlign: "right", paddingTop: "20px", paddingRight: "50px" }}>
                             <div style={{ display: "inline", paddingRight: "30px" }}>
-                                <Button text="About Us" class="btn2" />
+                                <Button text="About Us" class="btn2" link="#about" />
                             </div>
                             <div style={{ display: "inline" }}>
-                                <Button text="Sign In" class="btn2" />
+                                <Button text="Sign In" class="btn2" link="/signin" />
                             </div>
                         </div>
 
@@ -45,18 +45,18 @@ const LandingPage = () => {
             </MDBContainer>
 
             <MDBContainer fluid>
-                <MDBRow style={{ paddingBottom: "100px" }}>
+                <MDBRow id="join" style={{ paddingBottom: "100px" }}>
                     <MDBCol md="6" style={{ padding: "100px" }}>
-                        <Stack class="col2" title="For Hosts" text="Host your Space, Design, Manage and Grade your Quests!" img={true} imgPath={Two} imgWidth="330" imgHeight="230" button={<Button text="Sign Up" class="btn3" />} />
+                        <Stack class="col2" title="For Hosts" text="Host your Space, Design, Manage and Grade your Quests!" img={true} imgPath={Two} imgWidth="330" imgHeight="230" button={<Button text="Sign Up" class="btn3" link="/signup" />} />
                     </MDBCol>
                     <MDBCol md="6" style={{ padding: "100px" }}>
-                        <Stack class="col2" title="For Participants" text="Join Quest Spaces, Participate and View your ranks!" img={true} imgPath={Three} imgWidth="330" imgHeight="230" button={<Button text="Sign Up" class="btn3" />} />
+                        <Stack class="col2" title="For Participants" text="Join Quest Spaces, Participate and View your ranks!" img={true} imgPath={Three} imgWidth="330" imgHeight="230" button={<Button text="Sign Up" class="btn3" link="/signup" />} />
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>
 
             <MDBContainer fluid>
-                <MDBRow style={{ paddingBottom: "100px" }}>
+                <MDBRow id="about" style={{ paddingBottom: "100px" }}>
                     <MDBCol md="4" style={{ padding: "50px" }}>
                         <Stack class="col3" title="Accessibility" text="Co-curriculars on any device, anywhere." img={true} imgPath={Four} imgWidth="156" imgHeight="156" />
                     </MDBCol>

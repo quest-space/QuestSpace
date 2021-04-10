@@ -9,6 +9,10 @@ const CreateAccountCommon = (props) => {
         props.setUser(!props.user)
     }
 
+    const switchNext = () => {
+        props.setNext(true)
+    }
+
     return (
         <div className="createAccount">
             <div className="header">
@@ -59,17 +63,17 @@ const CreateAccountCommon = (props) => {
             </form>
 
             <div style={{ paddingTop: "20px", textAlign: "center" }}>
-                <button className="btnNext">
+                <button className="btnNext" onClick={switchNext}>
                     Next&nbsp;&nbsp;
                     <i className="fa fa-angle-right" aria-hidden="true"></i>
                 </button>
             </div>
-            
-            <div style={{textAlign: "center", paddingTop: "0px"}}>
-                           <i className="fa fa-circle  fa-fw  circleDark" aria-hidden="true" ></i>
-            &nbsp;&nbsp;
-            <i className="fa fa-circle circleLight" aria-hidden="true"></i>
- 
+
+            <div style={{ textAlign: "center", paddingTop: "0px" }}>
+                <i className="fa fa-circle  fa-fw  circleDark" aria-hidden="true" ></i>
+                &nbsp;&nbsp;
+                <i className="fa fa-circle circleLight" aria-hidden="true"></i>
+
             </div>
 
         </div>
