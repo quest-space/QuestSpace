@@ -59,21 +59,6 @@
   display: inline-block; /* this is necessary to help center the submenu and make the items align to the left. Refrain from using "float:left" as it makes "text-align" useless. */
 }
 
-<<<<<<< HEAD
-  .dropKid{
-    box-sizing: content-box !important;
-    background-color: #46B7A1 !important;
-    border-top:0.01px solid #ffffff !important;
-    font-size: 16px !important; 
-    color:#ffffff !important;
-    width: 100% !important;
-    /* box-shadow: black !important; */
-  }
-  .dropKid:hover{
-    background-color: #5ec7b2 !important;
-  }
-
-=======
 .parent,
 .kid {
   display: block;
@@ -108,7 +93,6 @@
 .kid:hover {
   background-color: rgb(130, 221, 213);
 }
->>>>>>> 44721e62906836e035d2dbc850b7549dd215ad0b
 
 .kid {
   width: 10rem;
@@ -124,9 +108,24 @@
   background-position: right !important;
 }
 
-/*ASADADASDSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAA*/
 
+/***********/
 #header {
   background-size: cover !important;
   background-position: right !important;
+}
+
+
+/*Responsive tabs*/
+.dropKid{
+  box-sizing: content-box !important;
+  background-color: #46B7A1 !important;
+  border-top:0.01px solid #ffffff !important;
+  font-size: 16px !important; 
+  color:#ffffff !important;
+  width: 100% !important;
+  /* box-shadow: black !important; */
+}
+.dropKid:hover{
+  background-color: #5ec7b2 !important;
 }

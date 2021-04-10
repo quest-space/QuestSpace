@@ -3,7 +3,7 @@ import CardsContainer from "./CardsContainer";
 import JumbotronWithTabs from "./JumbotronWithTabs";
 import MainNavbar from "./MainNavbar";
 
-const Header = () => {
+const Homepage = () => {
   return (
     <div>
       <MainNavbar />
@@ -13,4 +13,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Homepage;
