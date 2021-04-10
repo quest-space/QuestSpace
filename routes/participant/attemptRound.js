@@ -1,48 +1,37 @@
 //models
 const Submission = require(`../../models/submission`);
+const Question = require(`../../models/questions`);
 
 // global variables
 const FORBIDDEN_STATUS_CODE = 403;
 const BAQ_REQUEST_STATUS_CODE = 400;
+const CREATED_STATUS_CODE = 201;
 const OK_STATUS_CODE = 200;
 
 const { sendRes } = require(`../helpers/sendRes`);
 
-// fresh candidate beginning his round
-const beginAttemptingRound = (res, req) => {
-
-  const currTime = Date.now();
-
-  // make an entry in the submission table
-
-  // give the next question to the client and the endtime of the round
-
+const isAnswerValid = (answer) => {
+  return true;
+  // throw new Error(`implement isAnswerValid in attemptRound.js`);
 }
 
-const continueRound = (req, res, submission) => {
-
-  // verify if question is valid in question.
-
-  // award score to it
-
-  // update the submission table.
-
-  // response
-  // give the next question to the client and the endtime of the round
-
-}
-
-const createNewSubmission = (req, res) => 
+const createNewSubmission = (req, currTime) => 
   new Promise(async (resolve, reject) => {
     try {
       resolve(await Submission.create({
-        questName: req
+        questName: req.body.questData.questName,
+        roundNum: req.body.roundData.roundNum,
+        participantUser: req.body.username,
+        roundScore: 0,
+        numOfQsSent: 0,
+        answeredTill: 0,
+        beginTime: new Date(currTime),
+        expireTime: new Date(Math.min(currTime + req.body.roundData.timer*1000, (req.body.roundData.endTime).getTime()))
       }));
     } catch (err) {
       reject(err);
     }
   })
-
 
 const attemptRound = async (req, res) => {
 
@@ -50,7 +39,17 @@ const attemptRound = async (req, res) => {
   // const initiate = req.body.answer ? true : false;
 
   // check karo submission of this round, agar hai tou phir 
-  const submission = await findOne({ questName: req.body.questData.questName, roundNum: req.body.roundData.roundNum, participantUser: req.body.username });
+  let submission = await findOne({ questName: req.body.questData.questName, roundNum: req.body.roundData.roundNum, participantUser: req.body.username });
+
+  if (submission.isAttemptFinished) {
+    sendRes(res, BAQ_REQUEST_STATUS_CODE, {
+      errors: {},
+      genericErrMsg: `You have already attempted`
+    });
+    return;
+  }
+
+  const currTime = Date.now();
 
   // check if submissions table doesnt have an entry for a req that doesnt have an ans
   if (!submission && req.body.answer) {
@@ -61,9 +60,48 @@ const attemptRound = async (req, res) => {
     return;
   } else if (!submission) {
     // make a new submission
-    const submission = Submission.create({  })
+    submission = await createNewSubmission(req, currTime);
   }
-  
+
+  const questionRecieved = await Question.findOne({ questName: req.body.questData.questName, roundNum: req.body.roundData.roundNum, questionNum: submission.numOfQsSent });
+  const questionToSend = await Question.findOne({ questName: req.body.questData.questName, roundNum: req.body.roundData.roundNum, questionNum: submission.numOfQsSent + 1 });
+  let score = 0;
+
+  if (req.body.answer) {
+    if (!(isAnswerValid(req.body.answer))) {
+      sendRes(res, BAQ_REQUEST_STATUS_CODE, {
+        errors: {},
+        genericErrMsg: `Answer is invalid`
+      });
+      return;
+    } else {
+      score = req.body.answer === questionRecieved.answer ? req.roundData.eachMarks : 0;
+    }
+  }
+
+  const isAttemptFinished = !Boolean(questionToSend);
+
+  // update the submission
+  await Submission.updateOne({ questName: req.body.questData.questName, roundNum: req.body.roundData.roundNum, participantUser: req.body.username }, { numOfQsSent: submission.numOfQsSent + 1, roundScore: submission.roundScore + score, isAttemptFinished: isAttemptFinished });
+
+  if (isAttemptFinished) {
+    sendRes(res, CREATED_STATUS_CODE, {
+      message: "questions exhausted",
+      nextQuestion: {},
+      expireTime: submission.expireTime
+    });
+    return;
+  } else {
+    sendRes(res, CREATED_STATUS_CODE, {
+      nextQuestion: {
+        questionNum: questionToSend.questionNum,
+        statement: questionToSend.statement,
+        options: questionToSend.options
+      }, 
+      expireTime: submission.expireTime
+    });
+    return;
+  }
 }
 
 module.exports = { attemptRound };
