@@ -35,8 +35,8 @@ const JumbotronWithTabs = () => {
           <h1 className="display-4" style={{fontWeight:"400", fontSize:"40px", color:"#ffffff", marginLeft:'0.6em'}}>QuestSpace</h1>
         </div>
       </div>
-      {/* TABS */}
-      <div className="col-md-12" style={{margin:'0em', padding:'0em'}}>
+      {/* TABS ON DESKTOP*/}
+      <div className="col-md-12 d-none d-sm-none d-md-none d-lg-block" style={{margin:'0em', padding:'0em'}}>
         <ul id="top" style={{margin:'0em', padding:'0em'}}>
           <li><button className="parent" onClick = {()=>setBar("home")} style={{borderBottom: bar1, width: '22rem'}}>Home</button></li>
           <li className="subnav"><button className="parent" onClick = {()=>setBar("my")} style={{borderBottom: bar2, width: '22rem'}} >My Quests<i className="fa fa-caret-down"></i></button>
@@ -50,6 +50,20 @@ const JumbotronWithTabs = () => {
           <li><button className="parent" onClick = {()=>setBar("all")} style={{borderBottom: bar3, width: '22rem'}}>All</button></li>
         </ul>
       </div>
+      {/* TABS ON MOBILE */}
+      <div className="dropdown d-lg-none" style={{boxSizing:"content-box", width:"100%"}}>
+      <button className="parent dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
+      style={{margin:"0", textAlign:"center", width:"100%"}}>
+        Browse Quests
+      </button>
+      <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{boxSizing:"content-box", width:"100%", margin:"0", padding:"0", borderWidth:"0"}}>
+        <button className="dropdown-item dropKid" href="#">All Quests</button>
+        <button className="dropdown-item dropKid" href="#">All my Live Quests</button>
+        <button className="dropdown-item dropKid" href="#">All my Past Quests</button>
+        <button className="dropdown-item dropKid" href="#">All my Upcoming Quests</button>
+      </div>
+      </div>
+
     </div>
   )
 

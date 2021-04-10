@@ -22,93 +22,111 @@
   /* width: 16.3125em; */
 }
 
-
 /* jumbotron and tab */
-
 
 /*SUBNAV WITH TABS*/
 
-  .kid, .parent{
-    background:transparent;
-    border:none;
-    outline:none;
-    padding:4px 0px ;
-    cursor:pointer;
-    transition:all ease-in-out .2s;
-    font-weight:500;
-    font-size: 18px; 
-    color:#ffffff;
+.kid,
+.parent {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 4px 0px;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+/*SUBNAV WITH TABS*/
+
+#top {
+  list-style: none;
+  text-align: center;
+  background-color: #46b7a1;
+  width: 100%;
+  height: 50px;
+}
+
+#subnav-list {
+  list-style: none;
+  text-align: center;
+}
+
+#top li,
+#subnav-list li {
+  display: inline-block; /* this is necessary to help center the submenu and make the items align to the left. Refrain from using "float:left" as it makes "text-align" useless. */
+}
+
+<<<<<<< HEAD
+  .dropKid{
+    box-sizing: content-box !important;
+    background-color: #46B7A1 !important;
+    border-top:0.01px solid #ffffff !important;
+    font-size: 16px !important; 
+    color:#ffffff !important;
+    width: 100% !important;
+    /* box-shadow: black !important; */
   }
- 
-  /*SUBNAV WITH TABS*/
-  
-  #top {
-    list-style:none;
-    text-align:center;
-    background-color: #46B7A1;
-    width:100%;
-    height:50px;
-  }
-  
-  #subnav-list{
-    list-style:none;
-    text-align:center;
-  }
-  
-  #top li, #subnav-list li {
-    display:inline-block; /* this is necessary to help center the submenu and make the items align to the left. Refrain from using "float:left" as it makes "text-align" useless. */
-  }
-  
-  .parent,.kid{
-    display:block;
-    padding:0 0;
-    line-height:45px;
+  .dropKid:hover{
+    background-color: #5ec7b2 !important;
   }
 
-  .parent{
-    background-color: #46B7A1;
-  }
-  
-  .parent:hover {
-    text-decoration:none;
-    background-color: #5ec7b2;
-    /* border-bottom:4px solid #ffffff; */
-  }
-  
-  #top li #subnav-list {
-    display:none; /* hides the submenu */
-    position:absolute; /* makes it independent of it's father */
-    left:0; /* this and the line below makes sure it spreads 100% through the page */ 
-    right:0;
-    top:50px; /* the hight of #top */
-    background-color: #73d3bb;
-    text-align:center; /* makes sure the items are centered */
-  }
-  
-  #top li #subnav-list .kid button {
-    border-bottom: none;
-  }
-  
-  .kid:hover{
-    background-color: rgb(130, 221, 213);
-  }
+=======
+.parent,
+.kid {
+  display: block;
+  padding: 0 0;
+  line-height: 45px;
+}
 
-  .kid{
-    width: 10rem;
-  }
+.parent {
+  background-color: #46b7a1;
+}
 
-  #top .subnav:hover #subnav-list {
-    display:block; /* shows the submenu when I hover on .subnav */
-  }
+.parent:hover {
+  text-decoration: none;
+  background-color: #5ec7b2;
+  /* border-bottom:4px solid #ffffff; */
+}
 
-  #fancy{
-    background-image: url('../img/jumbotronBg.png') !important;
-    background-size:cover!important;
-    background-position: right !important;
-  }
+#top li #subnav-list {
+  display: none; /* hides the submenu */
+  position: absolute; /* makes it independent of it's father */
+  left: 0; /* this and the line below makes sure it spreads 100% through the page */
+  right: 0;
+  top: 50px; /* the hight of #top */
+  background-color: #73d3bb;
+  text-align: center; /* makes sure the items are centered */
+}
 
+#top li #subnav-list .kid button {
+  border-bottom: none;
+}
+
+.kid:hover {
+  background-color: rgb(130, 221, 213);
+}
+>>>>>>> 44721e62906836e035d2dbc850b7549dd215ad0b
+
+.kid {
+  width: 10rem;
+}
+
+#top .subnav:hover #subnav-list {
+  display: block; /* shows the submenu when I hover on .subnav */
+}
+
+#fancy {
+  background-image: url("../img/jumbotronBg.png") !important;
+  background-size: cover !important;
+  background-position: right !important;
+}
 
 /*ASADADASDSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAA*/
 
-
-
+#header {
+  background-size: cover !important;
+  background-position: right !important;
+}
