@@ -49,8 +49,8 @@ const MainNavbar = () => {
             }}>
               Home</a>
           </li>
-          <li class="nav-item dropdown d-none d-md-none d-sm-none d-lg-block">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{
+          <li className="nav-item dropdown d-none d-md-none d-sm-none d-lg-block">
+            <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{
               fontWeight: 400,
               fontSize: 18,
               fontFamily: "Barlow",
@@ -60,9 +60,9 @@ const MainNavbar = () => {
               }}>
               Quests
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style={{border:"none"}}>
-              <a class="dropdown-item" href="#">All Quests</a>
-              <a class="dropdown-item" href="#">My Quests</a>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style={{border:"none"}}>
+              <a className="dropdown-item" href="#">All Quests</a>
+              <a className="dropdown-item" href="#">My Quests</a>
               {/* <a class="dropdown-item" href="#">Something else here</a> */}
             </div>
           </li>
