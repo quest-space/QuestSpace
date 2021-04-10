@@ -1,7 +1,7 @@
 import React from "react"
 import "../css/SignUp.css"
 import "bootstrap"
-
+import { useHistory } from "react-router-dom"
 
 const CreateAccountParticipant = (props) => {
 
@@ -14,6 +14,7 @@ const CreateAccountParticipant = (props) => {
         organization: ""
     })
 
+    const history = useHistory()
 
     const switchNext = () => {
         props.setNext(false)
@@ -46,6 +47,7 @@ const CreateAccountParticipant = (props) => {
             showError(responseBody.errors)
         } else {
             console.log("Participant sign up success")
+            history.push("/participanthomepage")
         }
 
     }
@@ -67,7 +69,7 @@ const CreateAccountParticipant = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" onChange={(ev) => updateDetails(ev, "firstname")} />
+                        <input type="text" className="input" placeholder="Enter here" value={details.firstname} onChange={(ev) => updateDetails(ev, "firstname")} />
                     </div>
                 </div>
                 <div className="formRow">
@@ -77,7 +79,7 @@ const CreateAccountParticipant = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" onChange={(ev) => updateDetails(ev, "lastname")} />
+                        <input type="text" className="input" placeholder="Enter here" value={details.lastname} onChange={(ev) => updateDetails(ev, "lastname")} />
                     </div>
                 </div>
                 <div className="formRow">
@@ -87,7 +89,7 @@ const CreateAccountParticipant = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="date" className="input" placeholder="Enter here" onChange={(ev) => updateDetails(ev, "dateofbirth")} />
+                        <input type="date" className="input" placeholder="Enter here" value={details.dateofbirth} onChange={(ev) => updateDetails(ev, "dateofbirth")} />
                     </div>
                 </div>
 
@@ -98,7 +100,7 @@ const CreateAccountParticipant = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" onChange={(ev) => updateDetails(ev, "organization")} />
+                        <input type="text" className="input" placeholder="Enter here" value={details.organization} onChange={(ev) => updateDetails(ev, "organization")} />
                     </div>
                 </div>
             </form>

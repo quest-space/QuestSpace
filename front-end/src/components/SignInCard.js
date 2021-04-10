@@ -33,6 +33,8 @@ const SignInCard = () => {
             }),
         })
 
+        console.log("response is",response)
+
         const responseBody = await response.json()
 
         if (response.status !== 200) {
@@ -40,7 +42,8 @@ const SignInCard = () => {
             showError(responseBody.errors)
         } else {
             console.log(`Sign in success.`)
-            history.push("/homepage")
+            user ? history.push("/participanthomepage") : history.push("/hosthomepage")
+
         }
 
     }
