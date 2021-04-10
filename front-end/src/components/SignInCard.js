@@ -3,33 +3,26 @@ import "../css/SignUp.css"
 import "bootstrap"
 
 
-const CreateAccountCommon = (props) => {
+const SignInCard = () => {
+
+    const [user, setUser] = React.useState(true)
 
     const switchUser = () => {
-        props.setUser(!props.user)
+        setUser(!user)
     }
-
     return (
         <div className="createAccount">
             <div className="header">
                 <div className="title">
-                    Create an Account
+                    Sign In
                 </div>
-
-                <div className="titleCaption">
-                    Already have one?&nbsp;
-                    <a className="titleCaption" style={{ textDecorationLine: "underline" }} href="/signin">
-                        Sign In
-                    </a>
-                </div>
-
             </div>
 
             <nav className="nav nav-pills nav-justified">
-                <button className={`btn${props.user}`} onClick={switchUser} style={{ borderRadius: "30px 0px 0px 30px" }}>
+                <button className={`btn${user}`} onClick={switchUser} style={{ borderRadius: "30px 0px 0px 30px" }}>
                     Participant
                 </button>
-                <button className={`btn${!props.user}`} onClick={switchUser} style={{ borderRadius: "0px 30px 30px 0px" }}>
+                <button className={`btn${!user}`} onClick={switchUser} style={{ borderRadius: "0px 30px 30px 0px" }}>
                     Host
                 </button>
             </nav>
@@ -60,20 +53,20 @@ const CreateAccountCommon = (props) => {
 
             <div style={{ paddingTop: "20px", textAlign: "center" }}>
                 <button className="btnNext">
-                    Next&nbsp;&nbsp;
-                    <i className="fa fa-angle-right" aria-hidden="true"></i>
+                    Sign In
                 </button>
             </div>
-            
-            <div style={{textAlign: "center", paddingTop: "0px"}}>
-                           <i className="fa fa-circle  fa-fw  circleDark" aria-hidden="true" ></i>
-            &nbsp;&nbsp;
-            <i className="fa fa-circle circleLight" aria-hidden="true"></i>
- 
+
+
+            <div className="titleCaption" style={{ paddingTop: "10px" }}>
+                Not registered?&nbsp;
+                <a className="titleCaption" style={{ textDecorationLine: "underline" }} href="/signin">
+                    Sign Up
+                </a>
             </div>
 
         </div>
     )
 }
 
-export default CreateAccountCommon
+export default SignInCard

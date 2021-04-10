@@ -5,11 +5,12 @@ import "../css/SignUp.css"
 import CreateAccount from "./CreateAccount"
 import CardLeft from "./CardLeft"
 import CardRight from "./CardRight"
+import InitialNavbar from "./InitialNavbar"
 
 const SignUpPage = () => {
     return (
         <React.Fragment>
-            {/* Navbar from Hareem */}
+            <InitialNavbar />
             <Container className="d-none d-md-block" style={{ border: "solid" }}>
                 <Row >
                     <Col md="6" className="leftCol" >
