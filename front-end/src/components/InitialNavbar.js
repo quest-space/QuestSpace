@@ -1,5 +1,6 @@
 import React from "react";
 import questspacelogo from "./../logos/questspacelogo.png";
+import {Link} from "react-router-dom"
 
 const InitialNavbar = (props) => {
 
@@ -46,14 +47,14 @@ const InitialNavbar = (props) => {
                 About us</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href={signState()} style={{
+              <Link className="nav-link" to={signState()} style={{
                 fontWeight: 400,
                 fontSize: 18,
                 fontFamily: "Barlow",
                 color: "#313131",
                 marginRight: "5.9rem",
               }}>
-                {props.sign}</a>
+                {props.sign}</Link>
             </li>
           </ul>
         </div>

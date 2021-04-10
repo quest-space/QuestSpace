@@ -10,7 +10,7 @@ import InitialNavbar from "./InitialNavbar"
 const SignUpPage = () => {
     return (
         <React.Fragment>
-            <InitialNavbar />
+            <InitialNavbar sign="Sign In"/>
             <Container className="signUpContainer d-none d-md-block" style={{ border: "none" }}>
                 <Row >
                     <Col md="6" className="leftCol" >
