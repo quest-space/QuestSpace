@@ -51,7 +51,7 @@ const JumbotronWithTabs = () => {
         </ul>
       </div>
       {/* TABS ON MOBILE */}
-      <div className="dropdown d-lg-none" style={{boxSizing:"content-box", width:"100%"}}>
+      <div className="dropdown d-lg-none d-md-block" style={{boxSizing:"content-box", width:"100%"}}>
       <button className="parent dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
       style={{margin:"0", textAlign:"center", width:"100%"}}>
         Browse Quests

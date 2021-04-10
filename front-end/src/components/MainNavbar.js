@@ -13,7 +13,7 @@ const MainNavbar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light" style={{paddingLeft: "8.7%", boxShadow: "0px 4px 15px -2px rgba(0, 0, 0, 0.2)"}}>
+    <nav className="navbar navbar-expand-lg navbar-light" style={{paddingLeft: "7rem", boxShadow: "0px 4px 15px -2px rgba(0, 0, 0, 0.2)"}}>
       <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -50,7 +50,7 @@ const MainNavbar = () => {
               Home</a>
           </li>
           <li class="nav-item dropdown d-none d-md-none d-sm-none d-lg-block">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{
               fontWeight: 400,
               fontSize: 18,
               fontFamily: "Barlow",
@@ -67,7 +67,7 @@ const MainNavbar = () => {
             </div>
           </li>
           <li className="nav-item dropdown d-none d-sm-none d-md-none d-lg-block">
-          <a className="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{marginRight:"5.9rem", paddingTop:"0em", paddingBottom:"0em"}}>
+          <a className="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{marginRight:"5.9rem", paddingTop:"0em", paddingBottom:"0em"}}>
           <div className="circle">
           <span className="initials">MS</span>
           </div>
