@@ -40,7 +40,7 @@ const InitialNavbar = (props) => {
                 color: "#313131",
                 marginRight: "5.9rem",
               }}>
-                {props.Sign}</a>
+                Sign Up</a>
             </li>
           </ul>
         </div>
