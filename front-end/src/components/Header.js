@@ -1,7 +1,6 @@
 import React from "react";
-import "../css/header.css";
+import "../css/common.css";
 
-/*I matched the thickness with our homepage. Change it if you want*/
 /* Use this way
 <Header heading="CodinGuru3.0" subheading="IEEE LUMS" />
 */
@@ -11,14 +10,14 @@ const Header = (props) => {
     <div>
       <div
         id="header"
-        className="headerpadding jumbotron jumbotron-fluid"
+        className="jumbotron jumbotron-fluid"
         style={{
           background:
             "linear-gradient(209.34deg, rgba(71, 111, 143, 0) 17.99%, #335875 177.27%), #1F394E",
           marginBottom: "0em",
         }}
       >
-        <div style={{ marginLeft: "7.5rem", marginRight: "7.5rem" }}>
+        <div style={{ marginLeft: "7rem", marginRight: "7rem" }}>
           <h1
             className="display-4"
             style={{
@@ -32,7 +31,7 @@ const Header = (props) => {
             {props.heading}
           </h1>
         </div>
-        <div style={{ marginLeft: "7.5rem", marginRight: "7.5rem" }}>
+        <div style={{ marginLeft: "7rem", marginRight: "7rem" }}>
           <h2
             className="display-4"
             style={{

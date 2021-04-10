@@ -6,7 +6,7 @@ import LandingPage from "./components/LandingPage";
 import SignUpPage from "./components/SignUpPage";
 import SignInPage from "./components/SignInPage";
 import Homepage from "./components/Homepage";
-import MainNavbar from "./components/MainNavbar";
+import Header from "./components/Header";
 import InitialNavbar from "./components/InitialNavbar";
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/signin" component={SignInPage} />
         <Route path="/homepage" component={Homepage} />
         <Route path="/navbar1" component={InitialNavbar} />
-        <Route path="/navbar2" component={MainNavbar} />
+        <Route path="/header" component={Header} />
         <Route exact path="/" component={LandingPage} />
       </Switch>
     </Router>
