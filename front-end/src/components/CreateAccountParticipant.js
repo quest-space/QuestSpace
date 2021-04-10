@@ -3,7 +3,11 @@ import "../css/SignUp.css"
 import "bootstrap"
 
 
-const CreateAccountParticipant = () => {
+const CreateAccountParticipant = (props) => {
+
+    const switchNext = () => {
+        props.setNext(false)
+    }
 
     return (
         <div className="createAccount">
@@ -59,7 +63,7 @@ const CreateAccountParticipant = () => {
             </form>
 
             <div style={{ paddingTop: "20px", textAlign: "center" }}>
-                <button className="btnBack">
+                <button className="btnBack" onClick={switchNext}>
                     <i className="fa fa-angle-left" aria-hidden="true"></i>
                     &nbsp;&nbsp;Back
                 </button>

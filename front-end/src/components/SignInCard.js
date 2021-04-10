@@ -60,7 +60,7 @@ const SignInCard = () => {
 
             <div className="titleCaption" style={{ paddingTop: "10px" }}>
                 Not registered?&nbsp;
-                <a className="titleCaption" style={{ textDecorationLine: "underline" }} href="/signin">
+                <a className="titleCaption" style={{ textDecorationLine: "underline" }} href="/signup">
                     Sign Up
                 </a>
             </div>

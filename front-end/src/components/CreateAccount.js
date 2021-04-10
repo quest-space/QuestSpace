@@ -9,12 +9,14 @@ import CreateAccountHost from "./CreateAccountHost"
 const CreateAccount = () => {
 
     const [user, setUser] = React.useState(true)
-
+    const [next, setNext] = React.useState(false)
 
     return (
-        <CreateAccountCommon user={user} setUser={setUser} />
-        // <CreateAccountParticipant />
-        // <CreateAccountHost />
+        <React.Fragment>
+            {!next && <CreateAccountCommon user={user} setUser={setUser} setNext={setNext} />}
+            {next && user && <CreateAccountParticipant setNext={setNext} />}
+            {next && !user && <CreateAccountHost setNext={setNext} />}
+        </React.Fragment>
     )
 }
 
