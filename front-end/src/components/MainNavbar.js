@@ -13,7 +13,7 @@ const MainNavbar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light" style={{marginLeft: "7.5%", boxShadow: "none"}}>
+    <nav className="navbar navbar-expand-lg navbar-light" style={{paddingLeft: "8.7%", boxShadow: "0px 4px 15px -2px rgba(0, 0, 0, 0.2)"}}>
       <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
