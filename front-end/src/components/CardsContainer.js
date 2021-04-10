@@ -7,10 +7,28 @@ import Cards from "./Cards"
 
 const CardsContainer = (props) => {
 
+    // testing api call => success
+    const apiCall = async () => {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/homepage`,{
+            method:"POST",
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: "k",
+                password: "jh",
+            }),
+        })
+        const responseBody = await resp.json()
+        return responseBody
+    }
+
+    const homepageJSON = apiCall()
+    console.log(homepageJSON)
+    
     return(
         //WIll write a loop that dynamically will display the cards accroding to the format
         <div>
-        
             {/* /*FOR TESTIING*/ }
             <div className="container" style={{marginTop:'0rem'}}>
                 <div style={{
