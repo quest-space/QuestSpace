@@ -11,6 +11,9 @@ const questionSchema = new Schema({
         type: String,
         required: [true, 'Quest name is required']
     },
+    roundNum: {
+        type: Number  
+    },
     roundName: {
         type: String,
         required: [true, 'Round name is required']
@@ -37,9 +40,6 @@ const questionSchema = new Schema({
         required: [true, 'Correct answer is required']
     },
     Image: {
-        type: Buffer
-    },
-    Code: {
         type: Buffer
     }
 

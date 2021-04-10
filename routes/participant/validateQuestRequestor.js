@@ -15,40 +15,35 @@ const UNAUTHORIZED_STATUS_CODE = 401;
 
 // filters authorized users
 router.use(`/:questid`, async (req, res, next) => {
+  
   // nature: private -> requestor must be enrolled
   // nature: public -> requestor must be enrolled if it is a live or past quest
 
-  console.log({username: req.body.username});
   try {
     const questData = await Quest.findOne({ _id: req.params.questid }).exec();
     if (questData) {  
-      console.log(questData);
-      console.log(`----`);
+      
       const hasParticipated = await Participation.findOne({ participantUser: req.body.username, questName: questData.questName }).exec();
-      console.log(hasParticipated);
-      console.log(`----`);
+      
       let auth = false;
       if (questData.nature === `private`) {
         if (hasParticipated) {
-          console.log(1);
           auth = true;
           // next();
         }
       } else if (questData.nature === `public`) {
         const questStatus = getQuestStatus(questData.startTime, questData.endTime, Date.now());
-        if (questStatus === `live` || questStatus === `past`) {
+        if (questStatus === `Live` || questStatus === `Past`) {
           if (hasParticipated) {
-            console.log(2);
             auth = true;
             // next();
           }
         } else {
-          console.log(3);
           auth = true;
           // next();
         }
       }
-      
+
       if (auth) {
         next();
         return;

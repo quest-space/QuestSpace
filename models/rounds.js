@@ -1,5 +1,10 @@
 // Rounds Schema model 
 
+// api/participant/quest/:questid/:roundnum/attempt // if body is empty (give round details and begin button here)
+// api/participant/quest/:questid/:roundnum/attempt // body: { action: `begin` } -> { question: {} }
+// api/participant/quest/:questid/:roundnum/attempt // body: { answer: {  } } -> next question/quiz done
+// api/participant/quest/:questid/:roundnum/leaderboard
+
 //Require Mongoose
 const mongoose = require('mongoose');
 
@@ -51,9 +56,6 @@ const roundSchema = new Schema({
         type: Number,
     },
     Image: {
-        type: Buffer
-    },
-    Code: {
         type: Buffer
     }
 });
