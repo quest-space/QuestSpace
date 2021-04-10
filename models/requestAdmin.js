@@ -39,7 +39,8 @@ const requestAdminSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['accepted', 'declined', 'pending']
+        enum: ['accepted', 'rejected', 'pending'],
+        default: 'pending'
     }
 
 });
