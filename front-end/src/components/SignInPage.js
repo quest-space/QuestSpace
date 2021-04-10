@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react"
 import PageFooter from "./PageFooter"
 import { Container, Row, Col } from "react-bootstrap"
@@ -34,5 +35,12 @@ const SignInPage = () => {
         </React.Fragment>
     )
 }
+=======
+import React from "react";
 
-export default SignInPage
+const SignInPage = () => {
+  return <h1>Welcome to QuestSpace's SignIn Page!!!</h1>;
+};
+>>>>>>> c12e02e67f4501f7add3d0ff19539605624ed114
+
+export default SignInPage;

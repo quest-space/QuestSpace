@@ -49,7 +49,7 @@ const MainNavbar = () => {
             }}>
               Home</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown d-none d-md-none d-sm-none d-lg-block">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{
               fontWeight: 400,
               fontSize: 18,
