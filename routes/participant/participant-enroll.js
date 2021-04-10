@@ -25,7 +25,7 @@ router.post(`/:questid`, async (req, res) => {
         
         if (is_enrolled === null){
             // Participant is not enrolled before so a valid request
-            const create_enrollment = await Participation.create({participantUser: user, questName: questData.questName});
+            const create_enrollment = await Participation.create({participantUser: req.body.username, questName: questData.questName});
             // console.log("Created")
             sendRes(res, CREATED_STATUS_CODE, create_enrollment);
         }
@@ -36,7 +36,7 @@ router.post(`/:questid`, async (req, res) => {
     }
     catch(err){
         // console.log("Some other error")
-        sendRes(res, BAQ_REQUEST_STATUS_CODE, err_response);
+        sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err));
     }
     
 });
