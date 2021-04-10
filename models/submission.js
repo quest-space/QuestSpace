@@ -22,6 +22,9 @@ const submissionSchema = new Schema({
     roundScore: {
         type: Number
     },
+    numOfQsSent: {
+        type: Number
+    },
     answeredTill: {
         type: Number
     },
