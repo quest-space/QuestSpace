@@ -1,10 +1,11 @@
 import React from "react"
+import leftCardImage from "../img/signup/leftcard.png"
 
 const CardLeft = () => {
     return (
         <React.Fragment>
             <div className="imgSpace">
-                <img src="/img/signup/1.png" >
+                <img src={leftCardImage} >
                 </img>
             </div>
 
