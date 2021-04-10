@@ -2,7 +2,6 @@ import React from "react";
 import CardsContainer from "./CardsContainer";
 
 /*Colored Heading, Grey Subheading. Used Multiple Times in Quest and Round Pages*/
-
 const HeadSubhead = (props) => {
   return (
     <div>
