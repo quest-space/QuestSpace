@@ -20,7 +20,7 @@ const setGenericVars = (req, decodedToken) => {
 
 // filter out authentic users
 router.use(`/:type`, async (req, res, next) => {
-  console.log(`-------came here`);
+  // console.log(`-------came here`);
   if (req.params.type === `participant` || req.params.type === `host`) {
     const token = req.cookies.qsUser;
     if (token) {
@@ -28,10 +28,10 @@ router.use(`/:type`, async (req, res, next) => {
         const decodedToken = await verifyToken(token);
         // check if this is correct type of User
         if (decodedToken.type === req.params.type) {
-          console.log(`${decodedToken.type} and ${req.params.type} are equal`);
+          // console.log(`${decodedToken.type} and ${req.params.type} are equal`);
           // set vars
           setGenericVars(req, decodedToken);
-          console.log(req.body);
+          // console.log(req.body);
           // send new cookie
           const newToken = createToken(decodedToken.id, decodedToken.username, decodedToken.type);
           res.cookie('qsUser', newToken, { httpOnly: true, maxAge: maxAge * 1000 });

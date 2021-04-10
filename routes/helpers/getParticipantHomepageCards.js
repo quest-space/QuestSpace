@@ -18,22 +18,27 @@ const sortQuestsByProximity = (quests, currTime, key, order) =>
 const parseQuests = (quests, currTime) => 
   new Promise(async (resolve, reject) => {
     try {
+      // console.log(quests);
       const questParticipations = await Promise.all(quests.map(({ questName }) => 
         Participation.find({ questName }).exec()
       ));
-      const parsedQuests = quests.map(({ _id, questName, hostUser, rating, nature, description, startTime, endTime }, i) => 
-        ({ questID: _id, questName, hostUser, nature, rating, description, startTime, endTime,
+      
+      const parsedQuests = quests.map(({ _id, questName, hostUser, nature, description, startTime, endTime }, i) => 
+        ({ questID: _id, questName, hostUser, nature, description, startTime, endTime,
           startDate: startTime.toDateString(), endDate: endTime.toDateString(), status: getQuestStatus(startTime, endTime, currTime),
           participantCount: questParticipations[i].length
         })
       );
-      const orgs = await (Promise.all(quests.map((quest) => (
+
+      const hosts = await (Promise.all(quests.map((quest) => (
         Host.findOne({ username: quest.hostUser }).exec()
       ))));
-      console.log(orgs);
+      console.log(hosts);
       parsedQuests.forEach((quest, i) => {
-        quest[`organization`] = orgs[i].organization;
+        quest[`organization`] = hosts[i].organization;
+        quest[`rating`] = hosts[i].rating;
       });
+      // console.log(quests);
       resolve(parsedQuests);
 
     } catch (err) {
@@ -50,9 +55,9 @@ const getHomeCards = (participantQuests, allQuests, currTime) => ({
 
 const getMyQuestCards = (participantQuests, currTime) => ({
     allQuests: participantQuests,
-    liveQuests: participantQuests.filter(quest => quest.status === `live`),
-    upcomingQuests: participantQuests.filter(quest => quest.status === `upcoming`),
-    pastQuests: participantQuests.filter(quest => quest.status === `past`)
+    liveQuests: participantQuests.filter(quest => quest.status === `Live`),
+    upcomingQuests: participantQuests.filter(quest => quest.status === `Upcoming`),
+    pastQuests: participantQuests.filter(quest => quest.status === `Past`)
   });
 
 const getAllQuestCards = (allQuests) => allQuests;
