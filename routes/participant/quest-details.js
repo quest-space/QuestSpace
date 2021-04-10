@@ -99,22 +99,27 @@ router.get(`/:questid`, async (req, res) => {
     const to_send = {}
 
       if(check_quest_status(find_quest, currTime) == "Upcoming"){ 
-          to_send["status"] = "quest_details"
-          to_send["quest"] = quest_details
+          console.log(`ddd`);
+          to_send["status"] = "quest_details";
+          to_send["quest"] = quest_details;
         sendRes(res, OK_STATUS_CODE, to_send);
+        return;
       }
       else if( (check_quest_status(find_quest, currTime) == "Live") || (check_quest_status(find_quest, currTime) == "Past") ){
+        console.log(`eee`);
         // Send Round Details as well 
-        const RoundData = await Round.find({"questName": find_quest[0].questName})
-        
-        to_send["status"] = "quest_and_round_details"
-        to_send["quest"] = quest_details
-        to_send["rounds"] = RoundData
+        const RoundData = await Round.find({"questName": find_quest[0].questName}).exec();
+        console.log(`fff`);
+        to_send["status"] = "quest_and_round_details";
+        to_send["quest"] = quest_details;
+        to_send["rounds"] = RoundData;
         sendRes(res, OK_STATUS_CODE, to_send);
+        return;
       }
 
     }
     catch (err){
+        console.log(err);
         sendRes(res, BAQ_REQUEST_STATUS_CODE, err);
     }
     

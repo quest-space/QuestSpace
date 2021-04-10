@@ -20,6 +20,7 @@ const setGenericVars = (req, decodedToken) => {
 
 // filter out authentic users
 router.use(`/:type`, async (req, res, next) => {
+  console.log(`-------came here`);
   if (req.params.type === `participant` || req.params.type === `host`) {
     const token = req.cookies.qsUser;
     if (token) {
@@ -30,11 +31,13 @@ router.use(`/:type`, async (req, res, next) => {
           console.log(`${decodedToken.type} and ${req.params.type} are equal`);
           // set vars
           setGenericVars(req, decodedToken);
+          console.log(req.body);
           // send new cookie
           const newToken = createToken(decodedToken.id, decodedToken.username, decodedToken.type);
           res.cookie('qsUser', newToken, { httpOnly: true, maxAge: maxAge * 1000 });
           // move one
           next();
+          return;
         } else {
           sendRes(res, UNAUTHORIZED_STATUS_CODE, {
             errors: {},
