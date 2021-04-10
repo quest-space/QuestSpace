@@ -1,0 +1,28 @@
+.resp {
+  display: flexbox;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.resp2 {
+  display: inline; /* This will keep it in one line */
+  width: auto; /* for resizing */
+  height: auto; /* for resizing */
+  position: relative; /* to keep it in place */
+  display: block;
+  margin-left: auto;
+}
+
+.responsive {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+.image {
+  float: right;
+  padding-top: 2.5rem;
+  padding-bottom: 2rem;
+  width: 200;
+  height: 200;
+}
