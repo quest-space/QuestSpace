@@ -13,7 +13,7 @@ const SignInPage = () => {
     return (
         <React.Fragment>
             <InitialNavbar />
-            <Container className="d-none d-md-block" style={{ border: "none" }}>
+            <Container className="signUpContainer d-none d-md-block" style={{ border: "none" }}>
                 <Row >
                     <Col md="6" className="leftCol" >
                         <CardLeft />
