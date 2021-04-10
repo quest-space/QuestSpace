@@ -11,7 +11,7 @@ const SignUpPage = () => {
     return (
         <React.Fragment>
             <InitialNavbar />
-            <Container className="d-none d-md-block" style={{ border: "none" }}>
+            <Container className="signUpContainer d-none d-md-block" style={{ border: "none" }}>
                 <Row >
                     <Col md="6" className="leftCol" >
                         <CardLeft />
@@ -21,7 +21,7 @@ const SignUpPage = () => {
                     </Col>
                 </Row>
             </Container>
-            <Container className="d-md-none" style={{ border: "solid", paddingTop: "110px" }}>
+            <Container className="d-md-none" style={{ border: "none", paddingTop: "110px" }}>
                 <Row>
                     <Col md="6" className="rightCol" style={{ border: "none", margin: "auto", width: "100%" }}>
                         <CardRight child={<CreateAccount />} style={{ position: "relative", margin: "auto" }} />
