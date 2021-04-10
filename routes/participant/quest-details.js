@@ -18,6 +18,7 @@ const DEFAULT_RATING = 3;
 const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
 
+router.use(`/enroll`, require(`./participant-enroll`));
 router.use(`/`, require(`./round-details`));
 
 let username = 'HassaanAW';
