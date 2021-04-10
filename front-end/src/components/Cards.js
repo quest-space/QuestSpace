@@ -35,7 +35,7 @@ const Cards = (props) => {
             })
           }
 
-          <p className="card-text" style={{fontSize:'14px', marginTop:'0.3em', marginBottom:'0.1em'}}>{props.description}</p>
+          <p className="card-text" style={{fontSize:'14px', marginTop:'0.3em', marginBottom:'0.1em',color:"#313131"}}>{props.description}</p>
           <p className="card-text" ><small className="text-muted" ><i style= {{marginRight: "10px"}} className="fas fa-calendar-alt"></i>{props.date}</small></p>
         </div>
       </div>
