@@ -9,6 +9,10 @@ import { Container, Row, Col } from "react-bootstrap"
 const Round = () => {
     const options = ["Pubg", "battlefield", "fortnite", "call of duty"]
 
+    const totalTime = 100
+    const timeRemaining = 50
+    // const []
+
     return (
         <React.Fragment>
             <MainNavbar />
@@ -19,6 +23,10 @@ const Round = () => {
                 <div className="timer">
 
                     <i className="fas fa-stopwatch" style={{ color: "#575757" }}></i>
+                    
+                    <div class="progress" >700
+                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">50</div>
+                    </div>
 
                 </div>
 
