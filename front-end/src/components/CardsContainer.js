@@ -1,8 +1,11 @@
 import React from "react"
 import Cards from "./Cards"
 
+/* Example call
+<CardsContainer tab="Home"/>
+*/
 
-const CardsContainer = () => {
+const CardsContainer = (props) => {
 
     return(
         //WIll write a loop that dynamically will display the cards accroding to the format
