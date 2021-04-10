@@ -12,7 +12,7 @@ import SignInCard from "./SignInCard"
 const SignInPage = () => {
     return (
         <React.Fragment>
-            <InitialNavbar />
+            <InitialNavbar sign="Sign Up"/>
             <Container className="signUpContainer d-none d-md-block" style={{ border: "none" }}>
                 <Row >
                     <Col md="6" className="leftCol" >
