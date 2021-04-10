@@ -1,7 +1,7 @@
 import React from "react"
 import "../css/SignUp.css"
 import "bootstrap"
-
+import {Link} from "react-router-dom"
 
 const CreateAccountCommon = (props) => {
 
@@ -22,9 +22,9 @@ const CreateAccountCommon = (props) => {
 
                 <div className="titleCaption">
                     Already have one?&nbsp;
-                    <a className="titleCaption" style={{ textDecorationLine: "underline" }} href="/signin">
+                    <Link className="titleCaption" style={{ textDecorationLine: "underline" }} to="/signin">
                         Sign In
-                    </a>
+                    </Link>
                 </div>
 
             </div>

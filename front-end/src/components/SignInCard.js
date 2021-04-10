@@ -1,6 +1,7 @@
 import React from "react"
 import "../css/SignUp.css"
 import "bootstrap"
+import {Link} from "react-router-dom"
 
 
 const SignInCard = () => {
@@ -10,6 +11,12 @@ const SignInCard = () => {
     const switchUser = () => {
         setUser(!user)
     }
+
+    const signInUser = async () => {
+        const userString = user ? "Participant" : "Host"
+        const response = await fetch()
+    }
+
     return (
         <div className="createAccount">
             <div className="header">
@@ -52,7 +59,7 @@ const SignInCard = () => {
             </form>
 
             <div style={{ paddingTop: "20px", textAlign: "center" }}>
-                <button className="btnNext">
+                <button className="btnNext" onClick={signInUser}>
                     Sign In
                 </button>
             </div>
@@ -60,9 +67,9 @@ const SignInCard = () => {
 
             <div className="titleCaption" style={{ paddingTop: "10px" }}>
                 Not registered?&nbsp;
-                <a className="titleCaption" style={{ textDecorationLine: "underline" }} href="/signup">
+                <Link className="titleCaption" style={{ textDecorationLine: "underline" }} to="/signup">
                     Sign Up
-                </a>
+                </Link>
             </div>
 
         </div>
