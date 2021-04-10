@@ -2,18 +2,20 @@ import React from "react"
 import MainNavbar from "./MainNavbar"
 import Header from "./Header"
 import Question from "./Question"
-import "../css/Round.css"
+import { Container, Row, Col } from "react-bootstrap"
 
 
-const RapidFireRound = () => {
+const Round = () => {
     return (
         <React.Fragment>
             <MainNavbar />
             <Header />
-            
-            <Question />
+
+            <Container className="questionContainer" style={{ width: "60%" }}>
+                <Question />
+            </Container>
         </React.Fragment>
     )
 }
 
-export default RapidFireRound
+export default Round
