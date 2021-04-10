@@ -1,7 +1,7 @@
 import React from "react"
 import "../css/SignUp.css"
 import "bootstrap"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const CreateAccountCommon = (props) => {
 
@@ -11,6 +11,10 @@ const CreateAccountCommon = (props) => {
 
     const switchNext = () => {
         props.setNext(true)
+    }
+
+    const updateState = (ev, stateUpdateFn) => {
+        stateUpdateFn(ev.target.value)
     }
 
     return (
@@ -46,7 +50,7 @@ const CreateAccountCommon = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" />
+                        <input type="text" className="input" placeholder="Enter here" value={props.userName} onChange={(ev) => updateState(ev, props.setUserName)} />
                     </div>
                 </div>
 
@@ -57,7 +61,7 @@ const CreateAccountCommon = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="password" className="input" placeholder="Enter here" />
+                        <input type="password" className="input" placeholder="Enter here" value={props.password} onChange={(ev) => updateState(ev, props.setPassword)} />
                     </div>
                 </div>
             </form>
