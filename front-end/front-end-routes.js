@@ -2,6 +2,7 @@ const express = require('express');
 router = express.Router();
 
 // set up static files
+// router.use(express.static('public_html'));
 router.use("/participanthomepage/quest/:questID/round/:roundID", express.static("front-end/build"));
 router.use("/participanthomepage/quest/:questID", express.static("front-end/build"));
 
