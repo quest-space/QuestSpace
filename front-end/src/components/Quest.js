@@ -53,6 +53,38 @@ const Quest = () => {
 
     console.log(response)
 
+    // talha's work
+    const getEnrolled = async () => {
+
+        console.log({questID});
+
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/enroll/${questID}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                username: 'HassaanAW',
+                password: 'hassaan123',
+            }),
+        })
+
+        const responseBody = await response.json()
+
+        console.log(`response: `, {responseBody});
+
+        if (response.status !== 201) {
+            console.log(`Error in enrollment:`, {responseBody})
+            showError(responseBody.genericErrMsg)
+        } else {
+            console.log(`Successful enrolment.`)
+            requestQuest()
+        }
+
+    }
+    // -----------
+
     return (
         <div>
             {(response.quest.enrolled == 1) && <div>
@@ -74,7 +106,11 @@ const Quest = () => {
                 />
                 {/* brought this outside to implement flow of data on redirect */}
                 <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"10rem"}}>  
-                    <Stack button={<Button text="Enroll" class="btn3" link="" />} />
+                    <Stack button=
+                        { <button className="btn3" onClick={() => getEnrolled()}>
+                            Enroll
+                        </button> }
+                    />
                 </span>
             </div>
             }
