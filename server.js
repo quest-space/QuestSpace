@@ -6,13 +6,21 @@ const cookieParser = require(`cookie-parser`);
 const PORT = 4333;
 
 // DB vars:
-const DB_URL = `mongodb://localhost:8000`
+const DB_URL = `mongodb://localhost:27017`;
 const DB_NAME = `testDBTalha`;
 
 const Rating = require(`./models/ratings`);
 
 // set up express app
 const app = express();
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
 
 app.use(require('./front-end/front-end-routes'));
 
