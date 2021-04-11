@@ -12,6 +12,7 @@ import QuestDetails from "./components/QuestDetails";
 import HostHomepage from "./components/HostHomepage";
 import Round from "./components/Round";
 import RoundDetails from "./components/RoundDetails";
+import ViewProfile from "./components/ViewProfile";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/navbar1" component={InitialNavbar} />
         <Route path="/questdetails" component={QuestDetails} />
         <Route path="/rounddetails" component={RoundDetails} />
+        <Route path="/viewprofile" component={ViewProfile} />
         <Route path="/header" component={Header} />
         <Route exact path="/" component={LandingPage} />
       </Switch>
