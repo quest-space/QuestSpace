@@ -5,6 +5,7 @@ const Host = require(`../../models/host`);
 const Rating = require(`../../models/ratings`);
 const Participation = require(`../../models/participation`);
 const Round = require(`../../models/rounds`);
+const Submission = require(`../../models/submission`);
 const TimeFormatter = require(`../helpers/helperFunctions`);
 
 const router = Router();
@@ -15,7 +16,7 @@ const CREATED_STATUS_CODE = 201;
 const OK_STATUS_CODE = 200;
 const DEFAULT_RATING = 3;
 
-const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
+const { handleErrorsFromDB, getConciseDate } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
 
 router.use(`/enroll`, require(`./participant-enroll`));
@@ -116,7 +117,11 @@ router.post(`/:questid`, async (req, res) => {
         // Send Round Details as well 
         const RoundData = await Round.find({"questName": find_quest[0].questName}).exec();
 
-        const rounds = RoundData.map((val) =>{
+        const submissionDatas = await Promise.all(RoundData.map((round) => (
+            Submission.findOne({questName: find_quest[0].questName, roundNum: round.roundNum,  participantUser: req.body.username}).exec()
+        )));
+
+        const rounds = RoundData.map((val, i) =>{
             try{
 
                 const details = {
@@ -142,6 +147,36 @@ router.post(`/:questid`, async (req, res) => {
                 }
                 const status = check_quest_status([val], currTime)
                     details["status"] = status; // status of round
+
+                if (status === `Live`) {
+                    details[`btnMsg`] = `Attempt`;
+                    details[`btnColor`] = `green`;
+                    details[`isBtnClickable`] = true;
+                    details[`statusMsg1`] = `Live`;
+                    details[`statusMsg2`] = `Ends ${getConciseDate(val.endTime)}`;
+                }
+                if (submissionDatas[i] && (submissionDatas[i].isAttemptFinished || submissionDatas[i].expireTime.getTime() < Date.now())) {
+                    details[`btnMsg`] = `Attempted`;
+                    details[`btnMsg`] = `grey`;
+                    details[`isBtnClickable`] = false;
+                    details[`statusMsg1`] = `Attempted`;
+                    details[`statusMsg2`] = `Results at ${getConciseDate(val.endTime)}`;
+                }
+                if (status === `Past`) {
+                    details[`btnMsg`] = `Leaderboard`;
+                    details[`btnColor`] = `blue`;
+                    details[`isBtnClickable`] = true;
+                    details[`statusMsg1`] = `Finished`;
+                    details[`statusMsg2`] = `Results available`;
+                }
+                if (status === `Upcoming`) {
+                    details[`btnMsg`] = `Attempt`;
+                    details[`btnColor`] = `grey`;
+                    details[`isBtnClickable`] = false;
+                    details[`statusMsg1`] = `Not Started`;
+                    details[`statusMsg2`] = `Starts ${getConciseDate(val.startTime)}`;
+                }
+
                 return details;
             }
             catch (err){
