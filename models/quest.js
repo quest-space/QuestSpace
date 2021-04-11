@@ -27,6 +27,11 @@ const questSchema = new Schema({
         required: [true, 'Description has not been provided'],
         maxlength: [50, 'Exceeded limit of 50 characters']
     },
+    about: {
+        type: String,
+        required: [true, 'About has not been provided'],
+        maxlength: [300, 'Exceeded limit of 300 characters']
+    },
     startTime: {
         type: Date, 
         required: [true, 'Start time has not been specified'] 
