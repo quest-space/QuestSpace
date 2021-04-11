@@ -21,7 +21,7 @@ const { sendRes } = require(`../helpers/sendRes`);
 router.use(`/enroll`, require(`./participant-enroll`));
 router.use(`/`, require(`./round-details`));
 
-let username = 'HassaanAW';
+//let username = 'HassaanAW';
 const currTime = Date.now();
 
 /* Idea: Check public or private
@@ -94,6 +94,7 @@ router.get(`/:questid`, async (req, res) => {
         questID: find_quest[0]._id,
         questName: find_quest[0].questName,
         description: find_quest[0].description,
+        about: find_quest[0].about,
         startTime: TimeFormatter.formatAMPM(find_quest[0].startTime),
         endTime: TimeFormatter.formatAMPM(find_quest[0].endTime),
         organization: organization,
