@@ -12,16 +12,16 @@ const Question = (props) => {
 
                 <div className="progressBar" >
                     
-                    <div className="my progress-bar" style={{ borderRadius: "20px", backgroundColor: "#415F78", width: "20%", height: "100%" }} ></div>
+                    <div className="my progress-bar" style={{ borderRadius: "20px", backgroundColor: "#415F78", width: `${props.timer*100/props.totalTime}%`, height: "100%" }} ></div>
                 </div>
 
                 &nbsp;{props.timer}
 
             </div>
             <div className="questionBox" >
-                Q{props.questionNumber}) {props.question}
-                {props.options.map((option, index) => {
-                    return <QuestionOption questionNumber={index + 1} option={option} key={index} />
+                Q{props.question.questionNumber}) {props.question.statement}
+                {props.question.options.map((option, index) => {
+                    return <QuestionOption questionNumber={index + 1} option={option} key={index} fetchQuestion={props.fetchQuestion}/>
                 })}
 
             </div>
