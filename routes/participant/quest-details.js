@@ -157,7 +157,7 @@ router.post(`/:questid`, async (req, res) => {
                 }
                 if (submissionDatas[i] && (submissionDatas[i].isAttemptFinished || submissionDatas[i].expireTime.getTime() < Date.now())) {
                     details[`btnMsg`] = `Attempted`;
-                    details[`btnMsg`] = `grey`;
+                    details[`btnColor`] = `grey`;
                     details[`isBtnClickable`] = false;
                     details[`statusMsg1`] = `Attempted`;
                     details[`statusMsg2`] = `Results at ${getConciseDate(val.endTime)}`;
