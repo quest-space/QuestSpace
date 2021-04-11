@@ -107,9 +107,11 @@ const Quest = () => {
                 {/* brought this outside to implement flow of data on redirect */}
                 <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"10rem"}}>  
                     <Stack button=
+                    // talha's work
                         { <button className="btn3" onClick={() => getEnrolled()}>
                             Enroll
                         </button> }
+                    // -----
                     />
                 </span>
             </div>
