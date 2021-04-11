@@ -7,11 +7,11 @@ import SignUpPage from "./components/SignUpPage";
 import SignInPage from "./components/SignInPage";
 import ParticipantHomepage from "./components/ParticipantHomepage";
 import Header from "./components/Header";
-import InitialNavbar from "./components/InitialNavbar"
 import HostHomepage from "./components/HostHomepage";
 import Round from "./components/Round";
 import RoundDetails from "./components/RoundDetails";
 import Quest from "./components/Quest"
+import QuestEnrolled from "./components/QuestEnrolled"
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
         <Route exact path="/participanthomepage" component={ParticipantHomepage} />
         <Route exact path="/hosthomepage" component={HostHomepage} />
         <Route exact path="/round" component={Round} />
-        <Route exact path="/navbar1" component={InitialNavbar} />
+        <Route exact path="/qa" component={QuestEnrolled} />
         <Route exact path="/rounddetails" component={RoundDetails} />
         <Route exact path="/header" component={Header} />
         <Route exact path="/participanthomepage/quest/:questID/round/:roundID" component={Round} />
