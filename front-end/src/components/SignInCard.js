@@ -27,6 +27,7 @@ const SignInCard = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: "include",
             body: JSON.stringify({
                 username: userName,
                 password: password,
