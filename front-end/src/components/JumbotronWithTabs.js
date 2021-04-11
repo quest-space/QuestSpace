@@ -1,8 +1,10 @@
 import React from "react"
 import '../css/common.css'
+import ReactDOM from "react-dom";
+import CardsContainer from "./CardsContainer";
 
 
-const JumbotronWithTabs = () => {
+const JumbotronWithTabs = (props) => {
 
   const [bar1, setBorderBar1] = React.useState('5px solid #ffffff')
   const [bar2, setBorderBar2] = React.useState('5px solid transparent')
@@ -11,17 +13,20 @@ const JumbotronWithTabs = () => {
             
 
   const setBar = (x) => {
+    if(x !== "myQuests"){
+      props.setTab(x)
+    }
     if(x === 'home'){
       setBorderBar3('5px solid transparent')
       setBorderBar2('5px solid transparent')
       setBorderBar1('5px solid #ffffff')
     }
-    else if(x === 'my'){
+    else if(x === 'myQuests'){
       setBorderBar1('5px solid transparent')
       setBorderBar3('5px solid transparent')
       setBorderBar2('5px solid #ffffff')
     }
-    else{
+    else if(x == 'allQuests'){
       setBorderBar1('5px solid transparent')
       setBorderBar2('5px solid transparent')
       setBorderBar3('5px solid #ffffff')
@@ -39,15 +44,15 @@ const JumbotronWithTabs = () => {
       <div className="col-md-12 d-none d-sm-none d-md-none d-lg-block" style={{margin:'0em', padding:'0em'}}>
         <ul id="top" style={{margin:'0em', padding:'0em'}}>
           <li><button className="parent" onClick = {()=>setBar("home")} style={{borderBottom: bar1, width: '22rem'}}>Home</button></li>
-          <li className="subnav"><button className="parent" onClick = {()=>setBar("my")} style={{borderBottom: bar2, width: '22rem'}} >My Quests<i className="fa fa-caret-down"></i></button>
+          <li className="subnav"><button className="parent" onClick = {()=>setBar("myQuests")} style={{borderBottom: bar2, width: '22rem'}} >My Quests<i className="fa fa-caret-down"></i></button>
           <ul id="subnav-list" style={{margin:'0em', padding:'0em'}}>
-            <li><button className="kid" >All</button></li>
-            <li><button className="kid" >Live</button></li>
-            <li><button className="kid" >Upcoming</button></li>
-            <li><button className="kid" >Past</button></li>
+            <li><button onClick = {()=>setBar("all")} className="kid" >All</button></li>
+            <li><button onClick = {()=>setBar("live")} className="kid" >Live</button></li>
+            <li><button onClick = {()=>setBar("upcoming")} className="kid" >Upcoming</button></li>
+            <li><button onClick = {()=>setBar("past")} className="kid" >Past</button></li>
           </ul>
           </li>
-          <li><button className="parent" onClick = {()=>setBar("all")} style={{borderBottom: bar3, width: '22rem'}}>All</button></li>
+          <li><button className="parent" onClick = {()=>setBar("allQuests")} style={{borderBottom: bar3, width: '22rem'}}>All</button></li>
         </ul>
       </div>
       {/* TABS ON MOBILE */}
