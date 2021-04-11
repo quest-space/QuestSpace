@@ -54,7 +54,7 @@ router.get(`/:questid`, async (req, res) => {
     let Enrolled = 1
     if(find_quest[0].nature == "public"){
         // Check if enrolled or not
-        const result = await Participation.find({"questName":find_quest[0].questName, "participantUser": username});
+        const result = await Participation.find({"questName":find_quest[0].questName, "participantUser": req.body.username});
         if(result.length === 1){
             Enrolled = 1
         }
