@@ -21,7 +21,7 @@ const Question = (props) => {
             <div className="questionBox" >
                 Q{props.question.questionNumber}) {props.question.statement}
                 {props.question.options.map((option, index) => {
-                    return <QuestionOption questionNumber={index + 1} option={option} key={index} fetchQuestion={props.fetchQuestion}/>
+                    return <QuestionOption questionNumber={index + 1} option={option} key={index} setOption={props.setOption}/>
                 })}
 
             </div>
