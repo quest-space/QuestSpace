@@ -4,7 +4,7 @@ import "../css/Question.css"
 
 const QuestionOption = (props) => {
     return (
-        <div className="questionOption">
+        <div className="questionOption" onClick={() => props.fetchQuestion(props.option)}>
             {props.questionNumber})&nbsp;{props.option}
         </div>
     )
