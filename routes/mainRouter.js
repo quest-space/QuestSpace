@@ -12,6 +12,10 @@ router.use(`/auth`, require(`./authentication/signUpInAPIs`));
 // 4. if token is for participant, it is routing to /api/participant, and if it is
 //    host, it is routing to /api/host
 
+// As an alternative, use this:
+router.use(require(`./authentication/defaultAuthentication`));
+
+
 router.use(`/participant`, require(`./participant/participantRouter`));
 
 router.use(`/host`, require(`./host/hostRouter`));
