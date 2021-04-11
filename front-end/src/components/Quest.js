@@ -4,6 +4,10 @@ import Button from "./Button";
 import Stack from "./Stack";
 import QuestDetailsFormat from "./QuestDetailsFormat";
 import codinguru from "../img/testing/CodinGuru.png";
+import Header from "./Header";
+import MainNavbar from "./MainNavbar";
+import QuestEnrolled from "./QuestEnrolled"
+
 
 const Quest = () => {
     const { questID } = useParams()
@@ -51,20 +55,32 @@ const Quest = () => {
 
     return (
         <div>
-            <QuestDetailsFormat
-                questname= {response.quest.questName}
-                hostname={response.quest.hostUser}
-                hostrating={response.quest.rating}
-                startingtime={response.quest.startTime}
-                endingtime= {response.quest.endTime}
-                type= {response.quest.nature}
-                about="CodinGuru is being organized at national level as students from different universities across Pakistan are invited to exhibit their coding skills. It is being supervised by Department of Computer Science, SSE, LUMS. ... CodinGuru 2020 is all set to be bigger, brighter and bolder than its predecessor.CodinGuru is being organized at national level as students from different universities across Pakistan are invited to exhibit their coding skills. It is being supervised by Department of Computer Science, SSE, LUMS. ... CodinGuru 2020 is all set to be bigger, brighter and bolder than its predecessor."
-                imgsrc={codinguru}
-            />
-            {/* brought this outside to implement flow of data on redirect */}
-            <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"10rem"}}>  
-                <Stack button={<Button text="Enroll" class="btn3" link="" />} />
-            </span>
+            {(response.quest.enrolled == 1) && <div>
+                <MainNavbar />
+                <Header heading={response.quest.questName} subheading={response.quest.hostUser} />
+                <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
+                <QuestDetailsFormat
+                    questname= {response.quest.questName}
+                    hostname={response.quest.hostUser}
+                    hostrating={response.quest.rating}
+                    startingtime={response.quest.startTime}
+                    endingtime= {response.quest.endTime}
+                    type= {response.quest.nature}
+                    about={response.quest.about}
+                    imgsrc={codinguru}
+                    left="7.5rem"
+                    right="7.5rem"
+                    top="5rem"
+                />
+                {/* brought this outside to implement flow of data on redirect */}
+                <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"10rem"}}>  
+                    <Stack button={<Button text="Enroll" class="btn3" link="" />} />
+                </span>
+            </div>
+            }
+            {
+             (response.quest.enrolled == 0) && <QuestEnrolled x = {response.quest} />
+            }
         </div>
     )
 }
