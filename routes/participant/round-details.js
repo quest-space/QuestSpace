@@ -24,9 +24,10 @@ let username = 'HassaanAW';
 const currTime = Date.now();
 
 // authentication:
-router.post(`/:questid/:roundid`, async (req, res, next) => {
-  console.log({participationData: req.body.participationData});
-  console.log({questData: req.body.questData});
+router.use(`/:questid/:roundid`, async (req, res, next) => {
+  // console.log(`came here`);
+  // console.log({participationData: req.body.participationData});
+  // console.log({questData: req.body.questData});
   if (!req.body.participationData) {
     sendRes(res, FORBIDEN_STATUS_CODE, {
       errors: {},
@@ -35,7 +36,9 @@ router.post(`/:questid/:roundid`, async (req, res, next) => {
   } else {
     const roundData = await Round.findOne({questName: req.body.questData.questName, roundNum: req.params.roundid}) // find round by roundnum
     req.body.roundData = roundData;
-    console.log({roundData});
+    // console.log(`roundData:`);
+    // console.log(req.body.roundData);
+    // console.log({roundData});
     if (!roundData) {
       sendRes(res, FORBIDEN_STATUS_CODE, {
         errors: {},
@@ -69,7 +72,7 @@ router.post(`/:questid/:roundid`, async (req, res, next) => {
 router.post(`/:questid/:roundid/attempt`, async (req, res) => {
   // sendRes(res, OK_STATUS_CODE, {a: "hello"});
 
-  attemptRound(req, res, submission);
+  attemptRound(req, res);
   
 });
 
