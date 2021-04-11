@@ -22,6 +22,9 @@ const submissionSchema = new Schema({
     roundScore: {
         type: Number
     },
+    numOfQsSent: {
+        type: Number
+    },
     answeredTill: {
         type: Number
     },
@@ -33,9 +36,10 @@ const submissionSchema = new Schema({
         type: Date,
         required: [true, `expireTime is required`]
     },
-    duration: {
-        type: Date,
-        required: [true, `duration is required`]
+    isAttemptFinished: {
+        type: Boolean,
+        default: false,
+        required: [true, `isAttemptFinished is required`]
     },
     file: Buffer
 

@@ -21,10 +21,11 @@ router.use(`/:questid`, async (req, res, next) => {
 
   try {
     const questData = await Quest.findOne({ _id: req.params.questid }).exec();
+    req.body.questData = questData;
     if (questData) {  
       
       const hasParticipated = await Participation.findOne({ participantUser: req.body.username, questName: questData.questName }).exec();
-      
+      req.body.participationData = hasParticipated;
       let auth = false;
       if (questData.nature === `private`) {
         if (hasParticipated) {

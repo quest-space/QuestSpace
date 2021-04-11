@@ -5,6 +5,7 @@ const Host = require(`../../models/host`);
 const Rating = require(`../../models/ratings`);
 const Participation = require(`../../models/participation`);
 const Round = require(`../../models/rounds`);
+const TimeFormatter = require(`../helpers/helperFunctions`);
 
 const router = Router();
 
@@ -16,6 +17,9 @@ const DEFAULT_RATING = 3;
 
 const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
+
+router.use(`/enroll`, require(`./participant-enroll`));
+router.use(`/`, require(`./round-details`));
 
 let username = 'HassaanAW';
 const currTime = Date.now();
@@ -50,7 +54,7 @@ router.get(`/:questid`, async (req, res) => {
     let Enrolled = 1
     if(find_quest[0].nature == "public"){
         // Check if enrolled or not
-        const result = await Participation.find({"questName":find_quest[0].questName, "participantUser": username});
+        const result = await Participation.find({"questName":find_quest[0].questName, "participantUser": req.body.username});
         if(result.length === 1){
             Enrolled = 1
         }
@@ -90,8 +94,8 @@ router.get(`/:questid`, async (req, res) => {
         questID: find_quest[0]._id,
         questName: find_quest[0].questName,
         description: find_quest[0].description,
-        startTime: (find_quest[0].startTime).toDateString(),
-        endTime: (find_quest[0].endTime).toDateString(),
+        startTime: TimeFormatter.formatAMPM(find_quest[0].startTime),
+        endTime: TimeFormatter.formatAMPM(find_quest[0].endTime),
         organization: organization,
         enrolled: Enrolled,
         rating: rate
@@ -119,8 +123,8 @@ router.get(`/:questid`, async (req, res) => {
                     roundNum: val.roundNum,
                     roundType: val.roundType,
                     description: val.description,
-                    startTime: (val.startTime).toDateString(),
-                    endTime: (val.endTime).toDateString()
+                    startTime: TimeFormatter.formatAMPM(val.startTime),
+                    endTime: TimeFormatter.formatAMPM(val.endTime)
                 }
                 if(val.roundType === "Rapid Fire"){
                     details["timer"] = val.timer,
