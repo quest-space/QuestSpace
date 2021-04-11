@@ -6,7 +6,7 @@ const cookieParser = require(`cookie-parser`);
 const PORT = 4333;
 
 // DB vars:
-const DB_URL = `mongodb://localhost:27017`;
+const DB_URL = `mongodb://localhost:8000`;
 const DB_NAME = `testDBTalha`;
 
 const Rating = require(`./models/ratings`);
