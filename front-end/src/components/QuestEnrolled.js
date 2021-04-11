@@ -4,6 +4,7 @@ import codinguru from "../img/testing/CodinGuru.png";
 import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import QuestRounds from "./QuestRounds"
+import PageFooter from "./PageFooter"
 import Button from "./Button";
 
 
@@ -73,6 +74,7 @@ const QuestEnrolled = (props) => {
             {(tab == "Leaderboard")&&<div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>
                 Not Available
             </div>}
+            <PageFooter />
         </div>
     )
 }
