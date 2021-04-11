@@ -1,9 +1,5 @@
 import React from "react";
-import Header from "./Header";
-import MainNavbar from "./MainNavbar";
 import HeadSubhead from "./HeadSubhead";
-import Button from "./Button";
-import Stack from "./Stack";
 import "../css/questdetails.css";
 
 /*
@@ -22,16 +18,14 @@ const QuestDetailsFormat = (props) => {
   }
   return (
     <div>
-      <MainNavbar />
-      <Header heading="CodinGuru3.0" subheading="IEEE LUMS" />
+     
       <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
-        <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
       </div>
       <div
         style={{
-          marginLeft: "7.5rem",
-          marginRight: "7.5rem",
-          marginTop: "5rem",
+          marginLeft: props.left,
+          marginRight: props.right,
+          marginTop: props.top,
         }}
       >
         <p
@@ -90,9 +84,6 @@ const QuestDetailsFormat = (props) => {
           <HeadSubhead heading="Ends" subheading={props.endingtime} />
           <HeadSubhead heading="About" subheading={props.about} />
         </div>
-        <span className="responsive" style={{ float: "right" }}>
-          <Stack button={<Button text="Enroll" class="btn3" link="" />} />
-        </span>
       </div>
     </div>
   );
