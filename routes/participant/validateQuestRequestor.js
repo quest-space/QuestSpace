@@ -19,6 +19,8 @@ router.use(`/:questid`, async (req, res, next) => {
   // nature: private -> requestor must be enrolled
   // nature: public -> requestor must be enrolled if it is a live or past quest
 
+  console.log(`dfsdf`);
+
   try {
     const questData = await Quest.findOne({ _id: req.params.questid }).exec();
     req.body.questData = questData;
