@@ -1,6 +1,6 @@
 import React from "react";
 import questspacelogo from "./../logos/questspacelogo.png";
-import { useHistory, history } from "react-router-dom"
+import { useHistory, history , Link } from "react-router-dom"
 import "../css/NavBar.css";
 
 
@@ -60,7 +60,8 @@ const MainNavbar = (props) => {
           </form>
 
           <li className="nav-item">
-            <a className="nav-link" href="#" style={{
+            {/* changed to Link */}
+            <Link to="/participanthomepage" className="nav-link" style={{
               fontWeight: 400,
               fontSize: 18,
               fontFamily: "Barlow",
@@ -69,7 +70,7 @@ const MainNavbar = (props) => {
               color: "#313131",
 
             }}>
-              Home</a>
+              Home</Link>
           </li>
           <li className="nav-item dropdown d-none d-md-none d-sm-none d-lg-block">
             <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{
