@@ -32,6 +32,23 @@
 }
 
 .timer {
+  padding-bottom: 20px;
   width: 100%;
-  padding: 10px 0px;
+  display: flex;
+  flex-wrap: nowrap;
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  color: #575757;
+}
+
+.progressBar {
+  background: #e3e3e3;
+  display: inline-block;
+  width: 100%;
+  height: 15px;
+  border-radius: 20px;
+  margin: auto;
 }
