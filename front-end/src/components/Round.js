@@ -1,22 +1,28 @@
-import React from "react"
+import React, { useEffect } from "react"
 import MainNavbar from "./MainNavbar"
 import Header from "./Header"
 import Question from "./Question"
 import PageFooter from "./PageFooter"
 import RoundDetailsFormat from "./RoundDetailsFormat"
 import { Container, Row, Col } from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 
 
 const Round = () => {
     const { roundID, questID } = useParams()
 
-    const [started, setStarted] = React.useState(false)
-    // const [expireTime, setExpireTime] = React.useState(0)
+    const [expireTime, setExpireTime] = React.useState()
     const [timeLeft, setTimeLeft] = React.useState(0)
-    // const [totalTime, setTotalTime] = React.useState(0)
+
+    // Working
+    const [started, setStarted] = React.useState(false)
     const [roundDetails, setRoundDetails] = React.useState({})
+    const [roundFetched, setRoundFetched] = React.useState(false)
     const [question, setQuestion] = React.useState({})
+    const [option, setOption] = React.useState()
+    const [score, setScore] = React.useState(0)
+
+    const history = useHistory()
 
     const fetchRoundDetails = async () => {
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}`, {
@@ -31,10 +37,9 @@ const Round = () => {
 
         if (response.status !== 200) {
             console.log(`Error in fetching roundDetails.`)
-            console.log(responseBody.errors)
         } else {
             // console.log(`Sign in success.`)
-            setRoundDetails(response.body)
+            setRoundDetails(responseBody)
         }
 
     }
@@ -53,38 +58,59 @@ const Round = () => {
 
         const responseBody = await response.json()
 
-        if (response.status !== 200) {
+        if (response.status !== 201) {
             console.log(`Error in fetching questionDeatils.`)
-            console.log(responseBody.errors)
+            console.log(responseBody)
         } else {
-            // console.log(`Sign in success.`)
-            if(!started) {
-                setStarted(true)
+            console.log(responseBody)
+            setQuestion(responseBody.nextQuestion)
+            if (responseBody.message) {
+                setScore(responseBody.roundScore)
             }
-            setQuestion(response.body.nextQuestion)
+            if (!expireTime) {
+                setExpireTime(responseBody.expireTime)
+                updateTimeLeft(responseBody.expireTime)
+            }
+            if (responseBody.genericErrMsg) {
+
+            }
         }
     }
 
     const updateTimeLeft = (expireTime) => {
-        // let year = new Date().getFullYear();
-        const difference = expireTime - Date()
-        let timeLeft = {}
+        const difference = Math.floor(((new Date(expireTime)).getTime() - Date.now()) / 1000)
 
-        if (difference > 0) {
-            timeLeft = {
-                // days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60),
-            };
+        if (difference <= 0) {
+            alert("Round time is over. Redirecting back to quest page.")
+            history.push(`/participanthomepage/quest/${questID}`)
         }
 
-        return timeLeft;
+        setTimeLeft(difference)
     };
 
-    // const options = ["Pubg", "battlefield", "fortnite", "call of duty"]
+    useEffect(() => {
+        setTimeout(() => {
+            updateTimeLeft(expireTime)
+        }, 1000);
+    }, [timeLeft])
 
-    if(!roundDetails) {
+    useEffect(() => {
+        if (started) {
+            fetchQuestion(option)
+            console.log("question fetched because option changed")
+        }
+    }, [option])
+
+    useEffect(() => {
+        if (started) {
+            fetchQuestion()
+            console.log("question fetched because started changed")
+        }
+    }, [started])
+
+
+    if (!roundFetched) {
+        setRoundFetched(true)
         fetchRoundDetails()
         console.log(`Round details fetched.`)
     }
@@ -94,21 +120,31 @@ const Round = () => {
             <MainNavbar />
             <Header />
 
-            {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={`${roundDetails.timer} seconds`} about={roundDetails.description} onClick={fetchQuestion} />}
+            {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={`${roundDetails.timer} seconds`} about={roundDetails.description} onClick={setStarted} />}
 
             {started && <Container className="questionContainer d-none d-md-block" style={{ width: "60%" }}>
 
-                <Question question={question} timer={timeLeft} totalTime={roundDetails.timer} fetchQuestion={fetchQuestion}/>
+                {question.questionNum && <Question question={question} timer={timeLeft} totalTime={roundDetails.timer} setOption={setOption} />}
+
+                {!question.questionNum && <div>
+                    <h1>
+                        Congratulations!!! Your round score is {score}.
+                    </h1>
+                </div>}
 
             </Container>}
 
-            {/* <Container className="questionContainer d-md-none" style={{ width: "100%" }}>
+            {started && <Container className="questionContainer d-md-none" style={{ width: "100%" }}>
 
-                <Question questionNumber="1"
-                    question="Which popular game has released games with title World at War and Black Ops?"
-                    options={options} timer="45" />
+                {question.questionNum && <Question question={question} timer={timeLeft} totalTime={roundDetails.timer} setOption={setOption} />}
 
-            </Container> */}
+                {!question.questionNum && <div>
+                    <h1>
+                        Congratulations!!! Your round score is {score}.
+                    </h1>
+                </div>}
+
+            </Container>}
 
             <PageFooter />
         </React.Fragment>
