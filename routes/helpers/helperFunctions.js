@@ -9,6 +9,17 @@ const formatAMPM = (date) => {
   return strTime + ', ' + date.toDateString();
 }
 
+const getConciseDate = (date) => {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  const ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+ minutes : minutes;
+  const strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime + ', ' + date.toDateString().split(` `).slice(1,3).join(` `);
+}
+
 const getQuestStatus = (startTime, endTime, currTime) => {
   if (startTime.getTime() <= currTime && endTime.getTime() > currTime) {
     return `Live`;
@@ -83,4 +94,4 @@ const handleErrorsFromDB = (err) => {
   return duplicationErr ? duplicationErr : parseDBError(err);
 }
 
-module.exports = { handleErrorsFromDB, getMissingParamsErr, getQuestStatus, formatAMPM };
+module.exports = { handleErrorsFromDB, getMissingParamsErr, getQuestStatus, formatAMPM, getConciseDate };
