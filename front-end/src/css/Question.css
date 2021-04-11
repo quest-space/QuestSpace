@@ -64,5 +64,17 @@
   font-family: Barlow;
   font-weight: 300;
   font-size: 20px;
+}
+
+#top {
+  text-align: left;
+  margin: 0px 0em;
+  padding: 11px 133px;
+  color: white;
   
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  height: auto;
 }
