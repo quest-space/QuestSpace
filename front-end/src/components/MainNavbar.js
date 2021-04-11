@@ -1,6 +1,6 @@
 import React from "react";
 import questspacelogo from "./../logos/questspacelogo.png";
-import {useHistory, history} from "react-router-dom"
+import { useHistory, history } from "react-router-dom"
 import "../css/NavBar.css";
 
 
@@ -15,9 +15,7 @@ const MainNavbar = (props) => {
 
 
   // Added this function to send API call to sign out and redirect to sign in page.
-  
   const history = useHistory()
-
   const SignOutUser = async () => {
     const userString = history.location.pathname.includes("participant") ? "participant" : "host"
     console.log("user string is", userString)
@@ -111,9 +109,9 @@ const MainNavbar = (props) => {
                 </span>
               </a>
               <div className="dropdown-divider" style={{ marginBottom: "0" }}></div>
-              
-              {/* Changed anchor tag to div tag and added an inclick handler */}
-              <div className="dropdown-item" onClick={SignOutUser} style={{ backgroundColor: "#EDEBEB", borderRadius: "0.25em" }}>
+
+              {/* Changed anchor tag to div tag and added an inclick handler. Changed cursor style to pointer */}
+              <div className="dropdown-item" onClick={SignOutUser} style={{ backgroundColor: "#EDEBEB", borderRadius: "0.25em", cursor: "pointer" }}>
                 <i
                   className="fa fa-power-off"
                   style={{ margin: "auto", paddingRight: "0.8rem" }}
@@ -138,7 +136,7 @@ const MainNavbar = (props) => {
 
           <li className="nav-item d-lg-none d-md-none">
 
-            {/* Changed anchor tag to div tag and added an inclick handler */}
+            {/* Changed anchor tag to div tag and added an inclick handler.*/}
             <div className="nav-link" onClick={SignOutUser} style={{
               fontWeight: 400,
               fontSize: 18,
@@ -146,7 +144,6 @@ const MainNavbar = (props) => {
               marginRight: "1.5rem",
               lineHeight: "1.6",
               color: "#313131",
-
             }}>
               Sign Out</div>
           </li>
