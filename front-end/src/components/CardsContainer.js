@@ -138,7 +138,7 @@ const CardsContainer = (props) => {
                                         return(
                                             <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                                                 {/* {console.log(cards[key][cardList][card].hostUser)} */}
-                                                <Cards 
+                                                <Link to={{pathname: "participanthomepage/quest/"+cards[key][cardList][card].questID}}><Cards 
                                                     imgUrl = "https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
                                                     title = {cards[key][cardList][card].questName}
                                                     host = {cards[key][cardList][card].hostUser}
@@ -146,6 +146,7 @@ const CardsContainer = (props) => {
                                                     date = {cards[key][cardList][card].startDate}
                                                     starsCount = {cards[key][cardList][card].rating}
                                                 />
+                                                </Link>
                                             </div>       
                                         )
                                     })}

@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "./Header";
-import MainNavbar from "./MainNavbar";
 import HeadSubhead from "./HeadSubhead";
 import "../css/questdetails.css";
 
@@ -20,16 +18,14 @@ const QuestDetailsFormat = (props) => {
   }
   return (
     <div>
-      <MainNavbar />
-      <Header heading={props.questname} subheading={props.hostname} />
+     
       <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
-        <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
       </div>
       <div
         style={{
-          marginLeft: "7.5rem",
-          marginRight: "7.5rem",
-          marginTop: "5rem",
+          marginLeft: props.left,
+          marginRight: props.right,
+          marginTop: props.top,
         }}
       >
         <p
