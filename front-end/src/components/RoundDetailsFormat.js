@@ -77,7 +77,7 @@ const RoundDetailsFormat = (props) => {
           <HeadSubhead heading="Allowed Time" subheading={props.allowedtime} />
           <HeadSubhead heading="About" subheading={props.about} />
         </div>
-        <span className="responsive" style={{ float: "right" }}>
+        <span className="responsive" style={{ float: "right", marginBottom:"3rem"}}>
           <Stack button={<Button text="Begin" class="btn3" link="" />} />
         </span>
       </div>
