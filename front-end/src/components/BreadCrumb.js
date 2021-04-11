@@ -10,15 +10,15 @@ const BreadCrumb = (props) => {
                     {props.items.map((item, index) => {
                         if (index === 0) {
                             console.log(item)
-                            return (<Link to={item.to} style={{ color: "white" }}>
+                            return (<Link key={index} to={item.to} style={{ color: "white" }}>
                                 {item.text}
                             </Link>
                             )
                         }
                         else {
                             return (
-                                <Link to={item.to} style={{ color: "white" }}>
-                                    {` > ${item.text}`}
+                                <Link key={index} to={item.to} style={{ color: "white" }}>
+                                    &nbsp;{` > ${item.text}`}
                                 </Link>
                             )
                         }
