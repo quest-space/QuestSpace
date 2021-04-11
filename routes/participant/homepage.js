@@ -19,7 +19,7 @@ const OK_STATUS_CODE = 200;
 let username = 'HassaanAW';
 
 router.post(`/`, async (req, res) => {
-    const [cards, err] = await getParticipantHomepageCards(username);
+    const [cards, err] = await getParticipantHomepageCards(req.body.username);
     if (err) {
         console.log(err);
         sendRes(res, BAQ_REQUEST_STATUS_CODE, err);
