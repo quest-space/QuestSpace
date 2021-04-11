@@ -107,7 +107,10 @@ const attemptRound = async (req, res) => {
       nextQuestion: {},
       expireTime: submission.expireTime,
       expireDateTime: submission.expireTime.toString(),
-      currTime: (new Date(currTime)).toString()
+      currTime: (new Date(currTime)).toString(),
+      score: score,
+      answerStatus: score ? `correct` : `incorrect`,
+      roundScore: submission.roundScore + score
     });
     return;
   } else {
