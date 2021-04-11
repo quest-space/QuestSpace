@@ -36,7 +36,7 @@ const QuestEnrolled = (props) => {
     return(
         <div>
             <MainNavbar />
-            <Header heading={props.questName} subheading={props.hostUser} />
+            <Header heading={props.x.quest.questName} subheading={props.x.quest.hostUser} />
             <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
             
             {/* TABSS */}
@@ -54,13 +54,13 @@ const QuestEnrolled = (props) => {
 
             {(tab == "Details")&&<div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"3.5rem"}}>
                 <QuestDetailsFormat
-                        questname= {props.questName}
-                        hostname={props.hostUser}
-                        hostrating={props.rating}
-                        startingtime={props.startTime}
-                        endingtime= {props.endTime}
-                        type= {props.nature}
-                        about={props.about}
+                        questname= {props.x.quest.questName}
+                        hostname={props.x.quest.hostUser}
+                        hostrating={props.x.quest.rating}
+                        startingtime={props.x.quest.startTime}
+                        endingtime= {props.x.quest.endTime}
+                        type= {props.x.quest.nature}
+                        about={props.x.quest.about}
                         imgsrc={codinguru}
                         left="3rem"
                         right="3rem"
@@ -68,11 +68,10 @@ const QuestEnrolled = (props) => {
             </div>}
 
             {(tab == "Rounds")&&
-                <QuestRounds details = {props}/>
+                <QuestRounds details = {props.x.rounds}/>
             }
             {(tab == "Leaderboard")&&<div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>
                 Not Available
-                <button id="myButton"> Join</button>
             </div>}
         </div>
     )
