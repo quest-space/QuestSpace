@@ -7,6 +7,8 @@ import codinguru from "../img/testing/CodinGuru.png";
 import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import QuestEnrolled from "./QuestEnrolled"
+// import PageFooter from "./PageFooter"
+
 
 
 const Quest = () => {
@@ -87,7 +89,7 @@ const Quest = () => {
 
     return (
         <div>
-            {(response.quest.enrolled == 1) && <div>
+            {(response.quest.enrolled == 0) && <div>
                 <MainNavbar />
                 <Header heading={response.quest.questName} subheading={response.quest.hostUser} />
                 <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
@@ -117,8 +119,10 @@ const Quest = () => {
             </div>
             }
             {
-             (response.quest.enrolled == 0) && <QuestEnrolled x = {response} />
+             (response.quest.enrolled == 1) && <QuestEnrolled x = {response} />
             }
+            {/* <PageFooter /> */}
+
         </div>
     )
 }
