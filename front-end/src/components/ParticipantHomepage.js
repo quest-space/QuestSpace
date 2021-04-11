@@ -4,11 +4,12 @@ import JumbotronWithTabs from "./JumbotronWithTabs";
 import MainNavbar from "./MainNavbar";
 
 const ParticipantHomepage = () => {
+  const [tab, setTab] = React.useState('home')
   return (
     <div>
       <MainNavbar />
-      <JumbotronWithTabs />
-      <CardsContainer tab="My Quests"/>
+      <JumbotronWithTabs setTab={setTab}/>
+      <CardsContainer tab={tab}/>
     </div>
   );
 };

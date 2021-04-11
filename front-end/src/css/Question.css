@@ -1,0 +1,80 @@
+.questionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0px;
+}
+
+.questionBox {
+  width: 100%;
+  padding: 50px;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.1);
+
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+
+  color: #666666;
+}
+
+.questionOption {
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+
+  box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.timer {
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  color: #575757;
+}
+
+.progressBar {
+  background: #e3e3e3;
+  display: inline-block;
+  width: 100%;
+  height: 15px;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.btnBegin {
+  border-radius: 30px;
+  border-color: white;
+  background-color: #3caf96;
+  color: white;
+  width: 200px;
+  padding: 10px;
+
+  font-family: Barlow;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+#top.breadcrumb {
+  text-align: left;
+  margin: 0px 0em;
+  padding: 11px 133px;
+  color: white;
+  
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  height: auto;
+}
