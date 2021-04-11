@@ -83,7 +83,7 @@ router.post(`/:questid/:roundid`, async (req, res) => {
     const find_quest = await Quest.find({ _id: req.params.questid}); // find quest by questid
     const find_round = await Round.find({questName: find_quest[0].questName, roundNum: req.params.roundid}); // find round by roundnum
     const SubmissionData = await Submission.findOne({questName: find_quest[0].questName, roundNum: req.params.roundid,  participantUser: req.body.username});
-    const isAttemptFinished = SubmissionData.isAttemptFinished;
+    const isAttemptFinished = SubmissionData ? SubmissionData.isAttemptFinished : false;
     
     
     if (Helper.getQuestStatus(find_round[0].startTime, find_round[0].endTime, currTime) === "Live") {
