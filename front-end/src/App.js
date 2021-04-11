@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/hosthomepage" component={HostHomepage} />
         <Route path="/round" component={Round} />
         <Route path="/navbar1" component={InitialNavbar} />
-        <Route path="/questdetails" component={QuestDetails} />
+        <Route path="/quest" component={QuestDetails} />
         <Route path="/rounddetails" component={RoundDetails} />
         <Route path="/viewprofile" component={ViewProfile} />
         <Route path="/header" component={Header} />
