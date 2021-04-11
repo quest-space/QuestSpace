@@ -1,7 +1,5 @@
 import React from "react"
 import '../css/common.css'
-import ReactDOM from "react-dom";
-import CardsContainer from "./CardsContainer";
 
 
 const JumbotronWithTabs = (props) => {
@@ -10,7 +8,6 @@ const JumbotronWithTabs = (props) => {
   const [bar2, setBorderBar2] = React.useState('5px solid transparent')
   const [bar3, setBorderBar3] = React.useState('5px solid transparent')
         
-            
 
   const setBar = (x) => {
     if(x !== "myQuests"){
