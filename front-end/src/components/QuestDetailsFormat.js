@@ -2,8 +2,6 @@ import React from "react";
 import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import HeadSubhead from "./HeadSubhead";
-import Button from "./Button";
-import Stack from "./Stack";
 import "../css/questdetails.css";
 
 /*
@@ -90,9 +88,6 @@ const QuestDetailsFormat = (props) => {
           <HeadSubhead heading="Ends" subheading={props.endingtime} />
           <HeadSubhead heading="About" subheading={props.about} />
         </div>
-        <span className="responsive" style={{ float: "right" }}>
-          <Stack button={<Button text="Enroll" class="btn3" link="" />} />
-        </span>
       </div>
     </div>
   );
