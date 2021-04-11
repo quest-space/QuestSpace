@@ -1,5 +1,6 @@
 import React from "react"
 import Cards from "./Cards"
+import {Link} from "react-router-dom"
 
 /* Example call
 <CardsContainer tab="Home"/>
@@ -22,8 +23,10 @@ const CardsContainer = (props) => {
     // const [cards, setCards] = React.useState({})
     const [response, setResponse] = React.useState({"home":{}})
 
-    console.log("props: ",props.tab)
-    // testing api call => success
+    const showError = (errors) => {
+        alert(JSON.stringify(errors))
+    }
+   
     const apiCall = async () => {
         const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/homepage`,{
             method:"POST",
@@ -39,6 +42,14 @@ const CardsContainer = (props) => {
         const responseBody = await resp.json()
         setResponse(responseBody)
         render ='false'
+
+        if (resp.status !== 200) {
+            console.log(`Error. Couldn't fetch data.`)
+            showError(responseBody.errors)
+        } else {
+            console.log(`Fetch data successful`)
+
+        }
     }
     let tab = props.tab
     if (tab === "live" || tab === "upcoming" || tab === "past" || tab === "all"){
@@ -74,7 +85,7 @@ const CardsContainer = (props) => {
                                      return(
                                          <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                                              {/* {console.log(cards[key][cardList][card].hostUser)} */}
-                                             <Cards 
+                                             <Link to={{pathname: "/questdetails", state : cards[key][cardList][card] }}><Cards 
                                                  imgUrl = "https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
                                                  title = {cards[key][cardList][card].questName}
                                                  host = {cards[key][cardList][card].hostUser}
@@ -82,6 +93,7 @@ const CardsContainer = (props) => {
                                                  date = {cards[key][cardList][card].startDate}
                                                  starsCount = {cards[key][cardList][card].rating}
                                              />
+                                             </Link>
                                          </div>       
                                      )
                                  })}
