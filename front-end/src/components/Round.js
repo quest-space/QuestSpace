@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import MainNavbar from "./MainNavbar"
 import Header from "./Header"
 import Question from "./Question"
@@ -16,7 +16,9 @@ const Round = () => {
     const [timeLeft, setTimeLeft] = React.useState(0)
     // const [totalTime, setTotalTime] = React.useState(0)
     const [roundDetails, setRoundDetails] = React.useState({})
+    const [roundFetched, setRoundFetched] = React.useState(false)
     const [question, setQuestion] = React.useState({})
+    const [option, setOption] = React.useState()
 
     const fetchRoundDetails = async () => {
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}`, {
@@ -31,10 +33,9 @@ const Round = () => {
 
         if (response.status !== 200) {
             console.log(`Error in fetching roundDetails.`)
-            console.log(responseBody.errors)
         } else {
             // console.log(`Sign in success.`)
-            setRoundDetails(response.body)
+            setRoundDetails(responseBody)
         }
 
     }
@@ -53,15 +54,12 @@ const Round = () => {
 
         const responseBody = await response.json()
 
-        if (response.status !== 200) {
+        if (response.status !== 201) {
             console.log(`Error in fetching questionDeatils.`)
-            console.log(responseBody.errors)
+            console.log(responseBody)
         } else {
-            // console.log(`Sign in success.`)
-            if(!started) {
-                setStarted(true)
-            }
-            setQuestion(response.body.nextQuestion)
+            console.log(responseBody)
+            setQuestion(responseBody.nextQuestion)
         }
     }
 
@@ -82,9 +80,23 @@ const Round = () => {
         return timeLeft;
     };
 
-    // const options = ["Pubg", "battlefield", "fortnite", "call of duty"]
+    useEffect(() => {
+        if (started) {
+            fetchQuestion(option)
+            console.log("question fetched because option changed")
+        }
+    }, [option])
 
-    if(!roundDetails) {
+    useEffect(() => {
+        if (started) {
+            fetchQuestion()
+            console.log("question fetched because started changed")
+        }
+    }, [started])
+
+
+    if (!roundFetched) {
+        setRoundFetched(true)
         fetchRoundDetails()
         console.log(`Round details fetched.`)
     }
@@ -94,21 +106,31 @@ const Round = () => {
             <MainNavbar />
             <Header />
 
-            {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={`${roundDetails.timer} seconds`} about={roundDetails.description} onClick={fetchQuestion} />}
+            {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={`${roundDetails.timer} seconds`} about={roundDetails.description} onClick={setStarted} />}
 
             {started && <Container className="questionContainer d-none d-md-block" style={{ width: "60%" }}>
 
-                <Question question={question} timer={timeLeft} totalTime={roundDetails.timer} fetchQuestion={fetchQuestion}/>
+                {question.questionNum && <Question question={question} timer={timeLeft} totalTime={roundDetails.timer} setOption={setOption} />}
+
+                {!question.questionNum && <div>
+                    <h1>
+                        Congratulations!!! All questions answered.
+                    </h1>
+                </div>}
 
             </Container>}
 
-            {/* <Container className="questionContainer d-md-none" style={{ width: "100%" }}>
+            {started && <Container className="questionContainer d-md-none" style={{ width: "100%" }}>
 
-                <Question questionNumber="1"
-                    question="Which popular game has released games with title World at War and Black Ops?"
-                    options={options} timer="45" />
+                {question.questionNum && <Question question={question} timer={timeLeft} totalTime={roundDetails.timer} setOption={setOption} />}
 
-            </Container> */}
+                {!question.questionNum && <div>
+                    <h1>
+                        Congratulations!!! All questions answered.
+                    </h1>
+                </div>}
+
+            </Container>}
 
             <PageFooter />
         </React.Fragment>
