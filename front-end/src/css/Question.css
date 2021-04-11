@@ -52,3 +52,16 @@
   border-radius: 20px;
   margin: auto;
 }
+
+.btnBegin {
+  border-radius: 30px;
+  border-color: white;
+  background-color: #3caf96;
+  color: white;
+  width: 200px;
+  padding: 10px;
+
+  font-family: Barlow;
+  font-weight: 300;
+  font-size: 20px;
+}

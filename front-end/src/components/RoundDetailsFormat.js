@@ -22,11 +22,11 @@ about="This is a Rapid Fire Round. In this round, you will have a fixed time in 
 const RoundDetailsFormat = (props) => {
   return (
     <div>
-      <MainNavbar />
-      <Header heading={props.roundname} subheading={props.questname} />
+      {/* <MainNavbar /> */}
+      {/* <Header heading={props.roundname} subheading={props.questname} />
       <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
         <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
-      </div>
+      </div> */}
       <div
         style={{
           marginLeft: "7.5rem",
@@ -77,9 +77,10 @@ const RoundDetailsFormat = (props) => {
           <HeadSubhead heading="Allowed Time" subheading={props.allowedtime} />
           <HeadSubhead heading="About" subheading={props.about} />
         </div>
-        <span className="responsive" style={{ float: "right", marginBottom:"3rem"}}>
-          <Stack button={<Button text="Begin" class="btn3" link="" />} />
-        </span>
+
+        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+          <Button class="btnBegin" text="Begin" onClick={props.onClick} />
+        </div>
       </div>
     </div>
   );
