@@ -3,7 +3,8 @@ import QuestDetailsFormat from "./QuestDetailsFormat";
 import codinguru from "../img/testing/CodinGuru.png";
 import Header from "./Header";
 import MainNavbar from "./MainNavbar";
-import {Link} from "react-router-dom"
+import QuestRounds from "./QuestRounds"
+import Button from "./Button";
 
 
 
@@ -12,13 +13,14 @@ const QuestEnrolled = (props) => {
     const [bar1, setBorderBar1] = React.useState('3px solid #313131')
     const [bar2, setBorderBar2] = React.useState('1px solid #C4C4C4')
     const [bar3, setBorderBar3] = React.useState('1px solid #C4C4C4')
+    const [tab, setTab] = React.useState('Details')
 
     const setBar = (x) => {
+        setTab(x)
         if(x === 'Details'){
           setBorderBar3('1px solid #C4C4C4')
           setBorderBar2('1px solid #C4C4C4')
           setBorderBar1('3px solid #313131')
-          {<Link to={{pathname: "participanthomepage/quest/"}}></Link>}
         }
         else if(x === 'Rounds'){
           setBorderBar1('1px solid #C4C4C4')
@@ -50,7 +52,7 @@ const QuestEnrolled = (props) => {
                 </ul>
             </div>
 
-            <div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"3.5rem"}}>
+            {(tab == "Details")&&<div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"3.5rem"}}>
                 <QuestDetailsFormat
                         questname= {props.questName}
                         hostname={props.hostUser}
@@ -63,7 +65,15 @@ const QuestEnrolled = (props) => {
                         left="3rem"
                         right="3rem"
                         top="3rem"/>
-            </div>
+            </div>}
+
+            {(tab == "Rounds")&&
+                <QuestRounds details = {props}/>
+            }
+            {(tab == "Leaderboard")&&<div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>
+                Not Available
+                <button id="myButton"> Join</button>
+            </div>}
         </div>
     )
 }
