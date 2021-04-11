@@ -6,6 +6,7 @@ const QuestDetails = () => {
   return (
     <div>
       <QuestDetailsFormat
+        questname="CodinGuru3.0"
         hostname="IEEE LUMS"
         hostrating="3"
         startingtime="11:00 am, 21st March 2021"

@@ -1,12 +1,56 @@
 import React from "react"
 import "../css/SignUp.css"
 import "bootstrap"
+import { useHistory } from "react-router-dom"
 
 
 const CreateAccountHost = (props) => {
 
+    const [details, setDetails] = React.useState({
+        username: props.userName,
+        password: props.password,
+        organization: "",
+        phone: "",
+        representativeName: "",
+        representativeDesignation: ""
+    })
+
+    const history = useHistory()
+
     const switchNext = () => {
         props.setNext(false)
+    }
+
+    const updateDetails = (ev, attribute) => {
+        let tempDetails = { ...details }
+        tempDetails[attribute] = ev.target.value
+
+        setDetails(tempDetails)
+    }
+
+    const showError = (errors) => {
+        alert(JSON.stringify(errors))
+    }
+
+    const signUpHost = async () => {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/auth/signup/host`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: "include",
+            body: JSON.stringify(details)
+        })
+
+        const responseBody = await response.json()
+
+        if (response.status !== 201) {
+            showError(responseBody.errors)
+        } else {
+            console.log("Host sign up success")
+            history.push("/hosthomepage")
+        }
+
     }
 
     return (
@@ -26,7 +70,7 @@ const CreateAccountHost = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" />
+                        <input type="text" className="input" placeholder="Enter here" value={details.organization} onChange={(ev) => updateDetails(ev, "organization")} />
                     </div>
                 </div>
                 <div className="formRow">
@@ -36,7 +80,7 @@ const CreateAccountHost = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" />
+                        <input type="text" className="input" placeholder="Enter here" value={details.representativeName} onChange={(ev) => updateDetails(ev, "representativeName")} />
                     </div>
                 </div>
                 <div className="formRow">
@@ -46,7 +90,7 @@ const CreateAccountHost = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" />
+                        <input type="text" className="input" placeholder="Enter here" value={details.representativeDesignation} onChange={(ev) => updateDetails(ev, "representativeDesignation")} />
                     </div>
                 </div>
 
@@ -57,7 +101,7 @@ const CreateAccountHost = (props) => {
                 </div>
                 <div className="formRow">
                     <div className="formCol">
-                        <input type="password" className="input" placeholder="Enter here" />
+                        <input type="text" className="input" placeholder="Enter here" value={details.phone} onChange={(ev) => updateDetails(ev, "phone")} />
                     </div>
                 </div>
             </form>
@@ -68,7 +112,7 @@ const CreateAccountHost = (props) => {
                     &nbsp;&nbsp;Back
                 </button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <button className="btnSignUp">
+                <button className="btnSignUp" onClick={signUpHost}>
                     Sign Up
                 </button>
             </div>

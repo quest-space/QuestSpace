@@ -9,6 +9,10 @@ import ParticipantHomepage from "./components/ParticipantHomepage";
 import Header from "./components/Header";
 import InitialNavbar from "./components/InitialNavbar";
 import QuestDetails from "./components/QuestDetails";
+import HostHomepage from "./components/HostHomepage";
+import Round from "./components/Round";
+import RoundDetails from "./components/RoundDetails";
+import ViewProfile from "./components/ViewProfile";
 
 const App = () => {
   return (
@@ -17,8 +21,12 @@ const App = () => {
         <Route path="/signup" component={SignUpPage} />
         <Route path="/signin" component={SignInPage} />
         <Route path="/participanthomepage" component={ParticipantHomepage} />
+        <Route path="/hosthomepage" component={HostHomepage} />
+        <Route path="/round" component={Round} />
         <Route path="/navbar1" component={InitialNavbar} />
         <Route path="/questdetails" component={QuestDetails} />
+        <Route path="/rounddetails" component={RoundDetails} />
+        <Route path="/viewprofile" component={ViewProfile} />
         <Route path="/header" component={Header} />
         <Route exact path="/" component={LandingPage} />
       </Switch>
