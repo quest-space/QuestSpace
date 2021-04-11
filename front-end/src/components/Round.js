@@ -6,9 +6,10 @@ import PageFooter from "./PageFooter"
 import RoundDetailsFormat from "./RoundDetailsFormat"
 import { Container, Row, Col } from "react-bootstrap"
 import { useParams, useHistory } from "react-router-dom"
+import BreadCrumb from "./BreadCrumb"
 
 
-const Round = () => {
+const Round = (props) => {
     const { roundID, questID } = useParams()
 
     const [expireTime, setExpireTime] = React.useState()
@@ -118,7 +119,11 @@ const Round = () => {
     return (
         <React.Fragment>
             <MainNavbar />
-            <Header />
+            <Header heading={`Round ${roundID}: ${roundDetails.roundName}`} subheading={roundDetails.questName} />
+            {/* <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
+                {/* <div id="top" style={{ margin: "0em", padding: "0em" }}>Hello</div> */}
+            {/* </div> */}
+            <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: roundDetails.questName, to: `/participanthomepage/quest/${questID}` }, { text: `Round ${roundID}`, to: `/participanthomepage/quest/${questID}/round/${roundID}` }]} />
 
             {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={`${roundDetails.timer} seconds`} about={roundDetails.description} onClick={setStarted} />}
 
