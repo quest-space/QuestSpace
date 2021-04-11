@@ -5,22 +5,26 @@ const BreadCrumb = (props) => {
     console.log("items are", props.items)
     return (
         <div className="col-md-12" style={{ marginLeft: "0em", padding: "0em" }}>
-            <div id="top">{props.items.map((item, index) => {
-                if (index === 0) {
-                    console.log(item)
-                    return (<Link to={item.to} style={{ color: "white" }}>
-                        {item.text}
-                    </Link>
-                    )
-                }
-                else {
-                    return (
-                        <Link to={item.to} style={{ color: "white" }}>
-                            {` > ${item.text}`}
-                        </Link>
-                    )
-                }
-            })}</div>
+            <div id="top" className="breadcrumb">
+                {/* <div className="breadcrumb"> */}
+                    {props.items.map((item, index) => {
+                        if (index === 0) {
+                            console.log(item)
+                            return (<Link key={index} to={item.to} style={{ color: "white" }}>
+                                {item.text}
+                            </Link>
+                            )
+                        }
+                        else {
+                            return (
+                                <Link key={index} to={item.to} style={{ color: "white" }}>
+                                    &nbsp;{` > ${item.text}`}
+                                </Link>
+                            )
+                        }
+                    })}
+                {/* </div> */}
+            </div>
         </div>
     )
 }
