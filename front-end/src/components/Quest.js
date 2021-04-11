@@ -58,7 +58,7 @@ const Quest = () => {
 
         console.log({questID});
 
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/enroll/${questID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/enroll/${questID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ const Quest = () => {
 
     return (
         <div>
-            {(response.quest.enrolled == 0) && <div>
+            {(response.quest.enrolled == 1) && <div>
                 <MainNavbar />
                 <Header heading={response.quest.questName} subheading={response.quest.hostUser} />
                 <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
@@ -117,7 +117,7 @@ const Quest = () => {
             </div>
             }
             {
-             (response.quest.enrolled == 1) && <QuestEnrolled x = {response} />
+             (response.quest.enrolled == 0) && <QuestEnrolled x = {response} />
             }
         </div>
     )
