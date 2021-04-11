@@ -5,20 +5,24 @@ import Question from "./Question"
 import PageFooter from "./PageFooter"
 import RoundDetailsFormat from "./RoundDetailsFormat"
 import { Container, Row, Col } from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 
 
 const Round = () => {
     const { roundID, questID } = useParams()
 
-    const [started, setStarted] = React.useState(false)
-    // const [expireTime, setExpireTime] = React.useState(0)
+    const [expireTime, setExpireTime] = React.useState()
     const [timeLeft, setTimeLeft] = React.useState(0)
-    // const [totalTime, setTotalTime] = React.useState(0)
+
+    // Working
+    const [started, setStarted] = React.useState(false)
     const [roundDetails, setRoundDetails] = React.useState({})
     const [roundFetched, setRoundFetched] = React.useState(false)
     const [question, setQuestion] = React.useState({})
     const [option, setOption] = React.useState()
+    const [score, setScore] = React.useState(0)
+
+    const history = useHistory()
 
     const fetchRoundDetails = async () => {
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}`, {
@@ -60,25 +64,35 @@ const Round = () => {
         } else {
             console.log(responseBody)
             setQuestion(responseBody.nextQuestion)
+            if (responseBody.message) {
+                setScore(responseBody.roundScore)
+            }
+            if (!expireTime) {
+                setExpireTime(responseBody.expireTime)
+                updateTimeLeft(responseBody.expireTime)
+            }
+            if (responseBody.genericErrMsg) {
+
+            }
         }
     }
 
     const updateTimeLeft = (expireTime) => {
-        // let year = new Date().getFullYear();
-        const difference = expireTime - Date()
-        let timeLeft = {}
+        const difference = Math.floor(((new Date(expireTime)).getTime() - Date.now()) / 1000)
 
-        if (difference > 0) {
-            timeLeft = {
-                // days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60),
-            };
+        if (difference <= 0) {
+            alert("Round time is over. Redirecting back to quest page.")
+            history.push(`/participanthomepage/quest/${questID}`)
         }
 
-        return timeLeft;
+        setTimeLeft(difference)
     };
+
+    useEffect(() => {
+        setTimeout(() => {
+            updateTimeLeft(expireTime)
+        }, 1000);
+    }, [timeLeft])
 
     useEffect(() => {
         if (started) {
@@ -114,7 +128,7 @@ const Round = () => {
 
                 {!question.questionNum && <div>
                     <h1>
-                        Congratulations!!! All questions answered.
+                        Congratulations!!! Your round score is {score}.
                     </h1>
                 </div>}
 
@@ -126,7 +140,7 @@ const Round = () => {
 
                 {!question.questionNum && <div>
                     <h1>
-                        Congratulations!!! All questions answered.
+                        Congratulations!!! Your round score is {score}.
                     </h1>
                 </div>}
 
