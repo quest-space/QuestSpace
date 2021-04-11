@@ -21,6 +21,39 @@ const QuestDetails = (props) => {
     return strTime + ', ' + date.toDateString();
   }
 
+  const showError = (errors) => {
+    alert(JSON.stringify(errors))
+  }
+
+  const requestQuest = async (id) => {
+   
+    const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: "include",
+        body: JSON.stringify({
+            username: 'userName',
+            password: 'password',
+        }),
+    })
+
+    console.log("response is",response)
+
+    const responseBody = await response.json()
+
+    if (response.status !== 200) {
+        console.log(`Error in enrolment.`)
+        showError(responseBody.errors)
+    } else {
+        console.log(`Successful enrolment.`)
+        // user ? history.push("/participanthomepage") : history.push("/hosthomepage")
+
+    }
+
+}
+
   return (
     <div>
       <QuestDetailsFormat
