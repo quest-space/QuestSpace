@@ -99,7 +99,8 @@ router.get(`/:questid`, async (req, res) => {
         endTime: TimeFormatter.formatAMPM(find_quest[0].endTime),
         organization: organization,
         enrolled: Enrolled,
-        rating: rate
+        rating: rate,
+        nature: find_quest[0].nature
       }
     const to_send = {}
 
