@@ -47,7 +47,7 @@ const check_quest_status = (questdata, currTime) =>{
     }
 }
 
-router.get(`/:questid`, async (req, res) => {
+router.post(`/:questid`, async (req, res) => {
     try{
     const find_quest = await Quest.find({ _id: req.params.questid}); // find quest by quest_id
 
