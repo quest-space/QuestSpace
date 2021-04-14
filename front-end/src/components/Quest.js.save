@@ -14,7 +14,7 @@ import QuestEnrolled from "./QuestEnrolled"
 const Quest = () => {
     const { questID } = useParams()
     const [response, setResponse] = React.useState({"quest":{}})
-    const [render, setRender] = React.useState('true')
+    const [render, setRender] = React.useState(true)
 
     const showError = (errors) => {
         alert(JSON.stringify(errors))
@@ -34,10 +34,9 @@ const Quest = () => {
             }),
         })
 
-        // console.log("response is",response)
+        )
 
         const responseBody = await response.json()
-        console.log('responsee', responseBody)
         setResponse(responseBody)
 
         if (response.status !== 200) {
@@ -49,8 +48,8 @@ const Quest = () => {
     
     }
 
-    if(render === 'true'){
-        setRender('false')
+    if(render){
+        setRender(false)
         requestQuest()
     }
 

@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 /* Example call
 <CardsContainer tab="Home"/>
 */
-let render = 'true'
+
 // let cards = {}
 
 const headings = {
@@ -22,6 +22,8 @@ const CardsContainer = (props) => {
 
     // const [cards, setCards] = React.useState({})
     const [response, setResponse] = React.useState({"home":{}})
+    
+    const [render, setRender] = React.useState(false);
 
     const showError = (errors) => {
         alert(JSON.stringify(errors))
@@ -41,7 +43,7 @@ const CardsContainer = (props) => {
         })
         const responseBody = await resp.json()
         setResponse(responseBody)
-        render ='false'
+        
 
         if (resp.status !== 200) {
             console.log(`Error. Couldn't fetch data.`)
@@ -57,7 +59,8 @@ const CardsContainer = (props) => {
     }
     let cards = response[tab]
     console.log(cards)
-    if(render == 'true'){
+    if(!render){
+        setRender(true)
         apiCall()
     }
 
@@ -85,7 +88,7 @@ const CardsContainer = (props) => {
                                      return(
                                          <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                                              {/* {console.log(cards[key][cardList][card].hostUser)} */}
-                                             <Link to={{pathname: "participanthomepage/quest/"+cards[key][cardList][card].questID}}><Cards 
+                                             <Link to={{pathname: "/participanthomepage/quest/"+cards[key][cardList][card].questID}}><Cards 
                                                  imgUrl = "https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
                                                  title = {cards[key][cardList][card].questName}
                                                  host = {cards[key][cardList][card].hostUser}
