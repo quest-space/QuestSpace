@@ -33,9 +33,9 @@ const QuestRounds = (props) => {
                             <p className="text-muted" style={{fontWeight: "normal",fontSize: "14px", marginBottom:"0rem", textAlign:"right"}}>{props.details[info].statusMsg1}</p>
                             <p className="text-muted" style={{fontWeight: "normal",fontSize: "14px", marginBottom:"0rem", textAlign:"right"}}>{props.details[info].statusMsg2}</p>
 
-                            {(props.details[info].btnMsg === 'Attempt')&&<Link to={{pathname: "participanthomepage/quest/"+props.id+"/round/"+props.details[info].roundNum}}><button id="myButton" style={{backgroundColor: changeColor[color]}}> {props.details[info].btnMsg}</button></Link>}
+                            {(props.details[info].btnColor === 'green')&&<Link to={{pathname: "/participanthomepage/quest/"+props.id+"/round/"+props.details[info].roundNum}}><button id="myButton" style={{backgroundColor: changeColor[color]}}> {props.details[info].btnMsg}</button></Link>}
 
-                            {(props.details[info].btnMsg !== 'Attempt')&&<button id="myButton" style={{backgroundColor: changeColor[color]}}> {props.details[info].btnMsg}</button>}
+                            {(props.details[info].btnColor !== 'green')&&<button id="myButton" style={{backgroundColor: changeColor[color]}}> {props.details[info].btnMsg}</button>}
                             {/* {()=>toRound(color,props.details[info].roundNum)}style={{backgroundColor: changeColor[color]}}  */}
                                 
                     </div>

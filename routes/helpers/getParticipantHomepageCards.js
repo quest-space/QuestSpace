@@ -80,13 +80,15 @@ const getParticipantHomepageCards = async (username) => {
       // fetch list of all quests in which participant registered
       const participantParticipations = await Participation.find({ participantUser: username }).sort({ createdAt: 'desc' }).exec();
 
-      const allQuests = await parseQuests(await Quest.find({}).sort({ createdAt: 'desc' }).exec(), currTime);
+      let allQuests = await parseQuests(await Quest.find({}).sort({ createdAt: 'desc' }).exec(), currTime);
 
       const participantQuests = [];
       
       participantParticipations.forEach((participation) => {
         participantQuests.push(allQuests.find((quest) => quest.questName === participation.questName));
       });
+
+      allQuests = allQuests.filter(quest => participantQuests.find(partQuest => partQuest.questName === quest.questName) || (quest.nature === `public` && getQuestStatus(quest.startTime, quest.endTime, currTime) === `Upcoming`));
 
       return [{
         home: getHomeCards(participantQuests, allQuests, currTime),
