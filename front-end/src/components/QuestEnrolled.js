@@ -69,7 +69,7 @@ const QuestEnrolled = (props) => {
             </div>}
 
             {(tab == "Rounds")&&
-                <QuestRounds details = {props.x.rounds} id = {props.x.quest.questID}/>
+                (props.x.rounds ? <QuestRounds details = {props.x.rounds} id = {props.x.quest.questID}/> : <div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>Not Available</div>)
             }
             {(tab == "Leaderboard")&&<div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>
                 Not Available
