@@ -8,9 +8,14 @@ const MainNavbar = (props) => {
 
   const [disp, setDisplay] = React.useState('none')
 
-  const turnOnDisplay = (ev) => {
+  const flipDisplay = (ev) => {
     ev.preventDefault()
-    setDisplay('inline-block')
+    if(disp == 'none'){
+      setDisplay('inline-block')
+    }
+    else
+    setDisplay('none')
+    
   }
 
 
@@ -56,7 +61,7 @@ const MainNavbar = (props) => {
         <ul className="navbar-nav ml-auto">
           <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2" type="search" placeholder="Search" style={{ display: disp }} />
-            <button onClick={turnOnDisplay} style={{ marginRight: "1.9rem", backgroundColor: "#ffffff", border: "none" }}><i className="fas fa-search"></i></button>
+            <button onClick={flipDisplay} style={{ marginRight: "1.9rem", backgroundColor: "#ffffff", border: "none" }}><i className="fas fa-search"></i></button>
           </form>
 
           <li className="nav-item">
