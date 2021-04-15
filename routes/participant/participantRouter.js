@@ -8,6 +8,7 @@ router.use(`/profile`, require(`./participant-profile`));
 
 router.use(`/quest`, require(`./validateQuestRequestor`));
 router.use(`/quest`, require(`./quest-details`));
+router.use(`/leaderboard`, require(`./leaderboard`));
 
   // nature: private -> requestor must be enrolled
   // nature: public -> requestor must be enrolled if it is a live or past quest

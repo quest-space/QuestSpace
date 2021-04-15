@@ -15,9 +15,8 @@ router.use(`/auth`, require(`./authentication/signUpInAPIs`));
 // As an alternative, use this:
 router.use(require(`./authentication/defaultAuthentication`));
 
-
+// Turn off Default Auth for Host to work
 router.use(`/participant`, require(`./participant/participantRouter`));
-
 router.use(`/host`, require(`./host/hostRouter`));
 
 // router.use(`/participant/homepage/home`, require(`./homepage-home`));

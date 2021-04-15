@@ -19,8 +19,9 @@ const { sendRes } = require(`../helpers/sendRes`);
 
 router.post(`/:questid`, async (req, res) => {
     try{
+        console.log(req.params.questid)
         const questData = await Quest.findOne({_id: req.params.questid}); 
-        //console.log(questData)
+        console.log(questData)
         const is_enrolled = await Participation.findOne({participantUser: req.body.username, questName: questData.questName})
         
         if (is_enrolled === null){
