@@ -45,7 +45,7 @@ const MainNavbar = (props) => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a className="navbar-brand" href="#"><img src={questspacelogo} height="44" style={{ position: 'absolute', top: '13' }} />
+        <a className="d-none d-sm-none d-md-none d-lg-block navbar-brand" href="#"><img src={questspacelogo} height="44" style={{ position: 'absolute', top: '13' }} />
           <span
             style={{
               fontWeight: 400,
@@ -77,8 +77,8 @@ const MainNavbar = (props) => {
             }}>
               Home</Link>
           </li>
-          <li className="nav-item dropdown d-none d-md-none d-sm-none d-lg-block">
-            <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{
+          <li className="navHover nav-item dropdown d-none d-md-none d-sm-none d-lg-block">
+            <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{
               fontWeight: 400,
               fontSize: 18,
               fontFamily: "Barlow",
@@ -88,19 +88,19 @@ const MainNavbar = (props) => {
             }}>
               Quests
             </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style={{ border: "none" }}>
-              <a className="dropdown-item" href="#">All Quests</a>
-              <a className="dropdown-item" href="#">My Quests</a>
+            <div className="hoverable dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style={{ border: "none",boxShadow:"none" }}>
+              <button className="dropdown-item" style= {{paddingBottom:"0.5rem",paddingTop:"0.5rem"}} onClick={()=> {props.setTab('all')}}>All Quests</button>
+              <button className="dropdown-item" style= {{paddingBottom:"0.5rem",paddingTop:"0.5rem"}} onClick={()=> {props.setTab('allQuests')}}>My Quests</button>
               {/* <a class="dropdown-item" href="#">Something else here</a> */}
             </div>
           </li>
-          <li className="nav-item dropdown d-none d-sm-none d-md-none d-lg-block">
+          <li className="navHover nav-item dropdown d-none d-sm-none d-md-none d-lg-block">
             <a className="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ marginRight: "5.9rem", paddingTop: "0em", paddingBottom: "0em" }}>
               <div className="circle">
                 <span className="initials">MS</span>
               </div>
             </a>
-            <div className="dropdown-menu" style={{ border: "none", textAlign: "center", paddingBottom: "0" }}>
+            <div className="hoverable dropdown-menu" style={{ border: "none", textAlign: "center", paddingBottom: "0", boxShadow:"none" }}>
               <div className="dropdown-item" >
                 <div className="circle1">
                   <span className="initials1">MS</span>
@@ -120,7 +120,7 @@ const MainNavbar = (props) => {
               <div className="dropdown-item" onClick={SignOutUser} style={{ backgroundColor: "#EDEBEB", borderRadius: "0.25em", cursor: "pointer" }}>
                 <i
                   className="fa fa-power-off"
-                  style={{ margin: "auto", paddingRight: "0.8rem" }}
+                  style={{ margin: "auto", paddingRight: "0.8rem", paddingBottom:"0.6rem",paddingTop:"0.6rem" }}
                 ></i>
                 Sign Out
               </div>
@@ -132,7 +132,7 @@ const MainNavbar = (props) => {
               fontWeight: 400,
               fontSize: 18,
               fontFamily: "Barlow",
-              marginRight: "1.5rem",
+              // marginRight: "1.5rem",
               lineHeight: "1.6",
               color: "#313131",
 
@@ -147,7 +147,7 @@ const MainNavbar = (props) => {
               fontWeight: 400,
               fontSize: 18,
               fontFamily: "Barlow",
-              marginRight: "1.5rem",
+              // marginRight: "1.5rem",
               lineHeight: "1.6",
               color: "#313131",
             }}>
