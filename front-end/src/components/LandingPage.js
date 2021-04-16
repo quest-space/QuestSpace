@@ -26,13 +26,13 @@ const LandingPage = () => {
                         </div>
                         <div className="divider">
                         </div>
-                        <Stack class="col1" title="We give space to everyone!" text="The perfect place to show your intellect" img={false} button={<Button text="Join our space" class="btn1" link="#join" />} />
+                        <Stack class="col1" title="We give space to everyone!" text="The perfect place to show your intellect" img={false} button={<Button text="Join our space" class="btn1" href="#join" />} />
 
                     </MDBCol>
                     <MDBCol md="8" style={{ backgroundImage: `url(${One})`, backgroundRepeat: "no-repeat", paddingBottom: "820px" }}>
                         <div style={{ textAlign: "right", paddingTop: "20px", paddingRight: "50px" }}>
                             <div style={{ display: "inline", paddingRight: "30px" }}>
-                                <Button text="About Us" class="btn2" link="#about" />
+                                <Button text="About Us" class="btn2" href="#about" />
                             </div>
                             <div style={{ display: "inline" }}>
                                 <Button text="Sign In" class="btn2" link="/signin" />

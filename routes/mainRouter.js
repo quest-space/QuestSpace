@@ -4,7 +4,7 @@ const router = Router();
 // routes API requests to different files
 router.use(`/auth`, require(`./authentication/signUpInAPIs`));
 // Filters authenticated users and refreshes their authentication:
-// router.use(require(`./authentication/authenticateUser`));
+router.use(require(`./authentication/authenticateUser`));
 // An authenticated user is who
 // 1. routes at /api/participant or /api/host
 // 2. has a token in cookie
@@ -13,7 +13,7 @@ router.use(`/auth`, require(`./authentication/signUpInAPIs`));
 //    host, it is routing to /api/host
 
 // As an alternative, use this:
-router.use(require(`./authentication/defaultAuthentication`));
+// router.use(require(`./authentication/defaultAuthentication`));
 
 // Turn off Default Auth for Host to work
 router.use(`/participant`, require(`./participant/participantRouter`));

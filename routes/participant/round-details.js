@@ -94,6 +94,8 @@ router.post(`/:questid/:roundid`, async (req, res) => {
           endTime: Helper.formatAMPM(find_round[0].endTime),
           timer: find_round[0].timer,
           description: find_round[0].description,
+          roundName: find_round[0].roundName,
+          questName: find_round[0].questName,
           isAttemptFinished: isAttemptFinished
       }
 
