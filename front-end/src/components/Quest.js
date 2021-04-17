@@ -1,12 +1,11 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import Button from "./Button";
-import Stack from "./Stack";
 import QuestDetailsFormat from "./QuestDetailsFormat";
 import codinguru from "../img/testing/CodinGuru.png";
 import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import QuestEnrolled from "./QuestEnrolled"
+import BreadCrumb from "./BreadCrumb"
 // import PageFooter from "./PageFooter"
 
 
@@ -93,7 +92,8 @@ const Quest = () => {
             {(response.quest.enrolled === 0) && <div>
                 <MainNavbar />
                 <Header heading={response.quest.questName} subheading={response.quest.hostUser} />
-                <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
+                {/* <div id="top" style={{ margin: "0em", padding: "0em" }}></div> */}
+                <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: response.quest.questName, to: `/participanthomepage/quest/${response.quest.questID}` }]} />
                 <QuestDetailsFormat
                     questname= {response.quest.questName}
                     hostname={response.quest.hostUser}
@@ -103,19 +103,17 @@ const Quest = () => {
                     type= {response.quest.nature}
                     about={response.quest.about}
                     imgsrc={codinguru}
-                    left="7.5rem"
-                    right="7.5rem"
+                    left="9%"
+                    right="9%"
                     top="5rem"
                 />
                 {/* brought this outside to implement flow of data on redirect */}
-                <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"10rem"}}>  
-                    <Stack button=
-                    // talha's work
-                        { <button className="btn3" onClick={() => getEnrolled()}>
+                <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"9%"}}>  
+                
+                        { <button className="btnBegin" onClick={() => getEnrolled()}>
                             Enroll
                         </button> }
-                    // -----
-                    />
+
                 </span>
             </div>
             }

@@ -5,7 +5,8 @@ import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import QuestRounds from "./QuestRounds"
 import PageFooter from "./PageFooter"
-import Button from "./Button";
+import BreadCrumb from "./BreadCrumb"
+
 
 
 
@@ -38,7 +39,9 @@ const QuestEnrolled = (props) => {
         <div>
             <MainNavbar />
             <Header heading={props.x.quest.questName} subheading={props.x.quest.hostUser} />
-            <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
+            {/* <div id="top" style={{ margin: "0em", padding: "0em" }}></div> */}
+            <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: props.x.quest.questName, to: `/participanthomepage/quest/${props.x.quest.questID}` }]} />
+
             
             {/* TABSS */}
             <div className="col-md-12" style={{margin:'0em', padding:'0em'}}>

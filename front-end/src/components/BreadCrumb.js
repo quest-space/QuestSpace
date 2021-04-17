@@ -5,7 +5,7 @@ const BreadCrumb = (props) => {
     console.log("items are", props.items)
     return (
         <div className="col-md-12" style={{ marginLeft: "0em", padding: "0em" }}>
-            <div id="top" className="breadcrumb">
+            <div id="top" style={{paddingLeft: "9%" }}className="breadcrumb">
                 {/* <div className="breadcrumb"> */}
                     {props.items.map((item, index) => {
                         if (index === 0) {
