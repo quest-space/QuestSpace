@@ -1,9 +1,19 @@
 import React from "react";
 import RoundDetailsFormat from "./RoundDetailsFormat";
+import Header from "./Header";
+import MainNavbar from "./MainNavbar";
 
 const RoundDetails = () => {
   return (
     <div>
+      <MainNavbar />
+      <Header
+        heading="Round 1: Programming Contest"
+        subheading="CodinGuru3.0"
+      />
+      <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
+        <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
+      </div>
       <RoundDetailsFormat
         roundname="Round 1: Programming Contest" /*Can use string concatenation here*/
         questname="CodinGuru3.0"
