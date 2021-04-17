@@ -92,7 +92,6 @@ const Quest = () => {
             {(response.quest.enrolled === 0) && <div>
                 <MainNavbar />
                 <Header heading={response.quest.questName} subheading={response.quest.hostUser} />
-                {/* <div id="top" style={{ margin: "0em", padding: "0em" }}></div> */}
                 <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: response.quest.questName, to: `/participanthomepage/quest/${response.quest.questID}` }]} />
                 <QuestDetailsFormat
                     questname= {response.quest.questName}
@@ -103,9 +102,9 @@ const Quest = () => {
                     type= {response.quest.nature}
                     about={response.quest.about}
                     imgsrc={codinguru}
-                    left="9%"
-                    right="9%"
-                    top="5rem"
+                    left="8.6%"
+                    right="8.6%"
+                    top="5.5rem"
                 />
                 {/* brought this outside to implement flow of data on redirect */}
                 <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"9%"}}>  
