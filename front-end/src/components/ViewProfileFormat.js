@@ -18,14 +18,14 @@ const ViewProfileFormat = (props) => {
             "linear-gradient(209.34deg, rgba(71, 111, 143, 0) 17.99%, #335875 177.27%), #1F394E",
         }}
       >
-        <div style={{ marginLeft: "6em", marginRight: "6em" }}>
+        <div style={{ marginLeft: "9%", marginRight: "6em" }}>
           <h1
             className="display-4"
             style={{
               fontWeight: "400",
               fontSize: "40px",
               color: "#ffffff",
-              marginLeft: "0.6em",
+              //marginLeft: "0em",
               wordWrap: "break-word",
             }}
           >
@@ -38,8 +38,8 @@ const ViewProfileFormat = (props) => {
       </div>
       <div
         style={{
-          marginLeft: "7.5rem",
-          marginRight: "7.5rem",
+          marginLeft: "9%",
+          marginRight: "9%",
           marginTop: "5rem",
         }}
       >
@@ -49,7 +49,7 @@ const ViewProfileFormat = (props) => {
             fontWeight: "400",
             fontSize: "32px",
             color: "#313131",
-            marginLeft: "0.4rem",
+            marginLeft: "0rem",
             wordWrap: "break-word",
           }}
         >
@@ -63,7 +63,7 @@ const ViewProfileFormat = (props) => {
             fontWeight: "400",
             fontSize: "20px",
             color: "#46B7A1",
-            marginLeft: "0.4rem",
+            marginLeft: "0rem",
             wordWrap: "break-word",
           }}
         >

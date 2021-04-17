@@ -21,12 +21,12 @@ about="This is a Rapid Fire Round. In this round, you will have a fixed time in 
 
 const RoundDetailsFormat = (props) => {
   return (
-    <div style={{marginBottom: "80px"}}>
-      {/* <MainNavbar /> */}
-      {/* <Header heading={props.roundname} subheading={props.questname} />
+    <div style={{ marginBottom: "80px" }}>
+      <MainNavbar />
+      <Header heading={props.roundname} subheading={props.questname} />
       <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
         <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
-      </div> */}
+      </div>
       <div
         style={{
           marginLeft: "9%",
@@ -147,8 +147,13 @@ const RoundDetailsFormat = (props) => {
           </div>
         </p>
 
-
-        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
           <button className="btnBegin" onClick={() => props.onClick(true)}>
             Begin

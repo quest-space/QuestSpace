@@ -36,7 +36,7 @@ const Header = (props) => {
           </h1>
         </div>
         {/* prev version: style={{ marginLeft: "7rem", marginRight: "7rem" }} */}
-        <div>    
+        <div>
           <h2
             className="display-4"
             style={{
