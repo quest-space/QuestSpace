@@ -40,7 +40,7 @@ const MainNavbar = (props) => {
 
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light" style={{ paddingLeft: "7rem", boxShadow: "0px 4px 15px -2px rgba(0, 0, 0, 0.2)" }}>
+    <nav className="navbar navbar-expand-lg navbar-light" style={{boxShadow: "0px 4px 15px -2px rgba(0, 0, 0, 0.2)" , paddingLeft:"7.5rem", paddingRight:"7.5rem"}}>
       <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -95,7 +95,7 @@ const MainNavbar = (props) => {
             </div>
           </li>
           <li className="navHover nav-item dropdown d-none d-sm-none d-md-none d-lg-block">
-            <a className="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ marginRight: "5.9rem", paddingTop: "0em", paddingBottom: "0em" }}>
+            <a className="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ paddingTop: "0em", paddingBottom: "0em" }}>
               <div className="circle">
                 <span className="initials">MS</span>
               </div>

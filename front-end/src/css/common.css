@@ -61,7 +61,7 @@
 
 .parent,
 .kid {
-  display: block;
+  display: inline-block;
   padding: 0 0;
   line-height: 45px;
 }
