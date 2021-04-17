@@ -6,6 +6,7 @@ const Rating = require(`../../models/ratings`);
 const Participation = require(`../../models/participation`);
 const Round = require(`../../models/rounds`);
 const TimeFormatter = require(`../helpers/helperFunctions`);
+const { makeLeaderboard } = require(`../helpers/leaderboard_helper`);
 
 const router = Router();
 
@@ -147,10 +148,16 @@ router.get(`/:questid`, async (req, res) => {
                 console.log(err)
             }   
         })
-        
+
+        const ret_val = await makeLeaderboard(req.params.questid, 0, "participant", req.body.username);
+      
         to_send["status"] = "quest_and_round_details"; // status of quest
         to_send["quest"] = quest_details; // details of quest
         to_send["rounds"] = rounds; // details of round
+        to_send["leaderboard"] = ret_val; // leaderboard
+        if(ret_val.full.length === 0){
+            to_send["leaderboard"] = null;
+        }
         sendRes(res, OK_STATUS_CODE, to_send);
         return;
       }

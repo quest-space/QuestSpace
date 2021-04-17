@@ -113,7 +113,7 @@ const makeLeaderboard = async (QuestID, RoundNum, userType, username) => {
 
             const leaderboard = await parseQuest(aggregate_score); // collected aggregated round data 
             
-            to_send['leaderboard'] = leaderboard; // add to to_send object
+            to_send['full'] = leaderboard; // add to to_send object
             
             if(userType === "participant") // send individual information as well
             {
@@ -133,7 +133,7 @@ const makeLeaderboard = async (QuestID, RoundNum, userType, username) => {
             const roundData = await Submission.find({ questName: questName, roundNum: RoundNum}, { participantUser: 1, roundScore: 1 }).sort({"roundScore":-1}).exec();
             const leaderboard = await parseRound(roundData); // collected round data        
             
-            to_send['leaderboard'] = leaderboard; // add to to_send object
+            to_send['full'] = leaderboard; // add to to_send object
             
             if(userType === "participant") // send individual information as well
             {
