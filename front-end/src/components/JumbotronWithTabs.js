@@ -32,14 +32,14 @@ const JumbotronWithTabs = (props) => {
 
   return(
     <div>
-      <div id='fancy' className="jumbotron jumbotron-fluid" style={{marginBottom:'0em' ,background: "linear-gradient(209.34deg, rgba(71, 111, 143, 0) 17.99%, #335875 177.27%), #1F394E"}}>
-        <div className="container" style={{marginLeft:'0em'}}>
-          <h1 className="display-4" style={{fontWeight:"400", fontSize:"40px", color:"#ffffff", marginLeft:'0em',paddingLeft: "7.5rem",paddingRight:"7.5rem"}}>QuestSpace</h1>
+      <div id='fancy' className="jumbotron jumbotron-fluid" style={{marginBottom:'0em',paddingLeft: "9%" ,background: "linear-gradient(209.34deg, rgba(71, 111, 143, 0) 17.99%, #335875 177.27%), #1F394E"}}>
+        <div className="container" style={{margin:'0em',padding: "0rem"}}>
+          <h1 className="display-4" style={{fontWeight:"400", fontSize:"40px", color:"#ffffff", margin:'0em'}}>QuestSpace</h1>
         </div>
       </div>
       {/* TABS ON DESKTOP*/}
       <div className="col-md-12 d-none d-sm-none d-md-none d-lg-block" style={{margin:'0em', padding:'0em', backgroundColor:'#46b7a1'}}>
-        <ul id="top" style={{margin:'0em', padding:'0em', paddingLeft: "7.5rem", paddingRight:"7.5rem"}}>
+        <ul id="top" style={{margin:'0em', padding:'0em', paddingLeft: "9%", paddingRight:"9%"}}>
           <button className="parent" onClick = {()=>setBar("home")} style={{borderBottom: bar1, width: '33.33%'}}>Home</button>
           <li className = "subnav" style={{width:"33.33%"}}>
             <button className="parent"  onClick = {()=>setBar("myQuests")} style={{borderBottom: bar2, width: '100%'}} >My Quests<i className="fa fa-caret-down"></i></button>
