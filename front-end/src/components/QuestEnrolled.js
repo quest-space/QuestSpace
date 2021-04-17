@@ -41,19 +41,28 @@ const QuestEnrolled = (props) => {
             <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
             
             {/* TABSS */}
-            <div className="col-md-12 d-none d-sm-none d-md-none d-lg-block" style={{margin:'0em', padding:'0em'}}>
+            <div className="col-md-12" style={{margin:'0em', padding:'0em'}}>
                 <ul id="top" style={{
-                    margin:'0em',
-                    padding:'0em',
                     backgroundColor:"#ffffff",
-                    marginTop:"5em"}}>
-                <li><button className="plain one" onClick = {()=>setBar("Details")} style={{borderBottom: bar1, width: '22rem'}}>Details</button></li>
-                <li><button className="plain two" onClick = {()=>setBar("Rounds")} style={{borderBottom: bar2, width: '22rem'}} >Rounds</button></li>
-                <li><button className="plain three" onClick = {()=>setBar("Leaderboard")} style={{borderBottom: bar3, width: '22rem'}}>Leaderboard</button></li>
+                    margin:'0em', 
+                    padding:'0em', 
+                    paddingLeft: "9%", 
+                    paddingRight:"9%",
+                    paddingTop:'5.5rem'}}>
+                <button className="plain one" onClick = {()=>setBar("Details")} style={{borderBottom: bar1, width: '33.33%'}}>Details</button>
+                <button className="plain two" onClick = {()=>setBar("Rounds")} style={{borderBottom: bar2, width: '33.33%'}} >Rounds</button>
+                <button className="plain three" onClick = {()=>setBar("Leaderboard")} style={{borderBottom: bar3, width: '33.33%'}}>Leaderboard</button>
                 </ul>
             </div>
 
-            {(tab == "Details")&&<div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"3.5rem"}}>
+            {(tab == "Details")&&<div style={{
+              border: "1px solid #C4C4C4", 
+              boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
+              marginLeft: "9%", 
+              marginRight:"9%", 
+              marginBottom:"5.5rem",
+              marginTop:"3rem",
+              paddingBottom:"3rem"}}>
                 <QuestDetailsFormat
                         questname= {props.x.quest.questName}
                         hostname={props.x.quest.hostUser}
@@ -69,10 +78,32 @@ const QuestEnrolled = (props) => {
             </div>}
 
             {(tab == "Rounds")&&
-                (props.x.rounds ? <QuestRounds details = {props.x.rounds} id = {props.x.quest.questID}/> : <div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>Not Available</div>)
-            }
-            {(tab == "Leaderboard")&&<div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>
-                Not Available
+              ((props.x.rounds.length === 0) && 
+              <div style={{
+                border: "1px solid #C4C4C4", 
+                boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
+                marginLeft: "9%", 
+                marginRight:"9%", 
+                marginBottom:"5.5rem",
+                marginTop:"3rem",
+                padding:"2rem"}}>
+                  <i class="fas fa-exclamation-circle"></i> Not Available
+              </div>)}
+            
+            {(tab == "Rounds")&&
+              (props.x.rounds.length > 0) && <QuestRounds details = {props.x.rounds} id = {props.x.quest.questID}/>}
+                
+                {/* // (props.x.rounds ? <QuestRounds details = {props.x.rounds} id = {props.x.quest.questID}/> : <div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>Not Available</div>) */}
+            
+            {(tab == "Leaderboard")&&<div style={{
+              border: "1px solid #C4C4C4", 
+              boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
+              marginLeft: "9%", 
+              marginRight:"9%", 
+              marginBottom:"5.5rem",
+              marginTop:"3rem",
+              padding:"2rem"}}>
+                <i class="fas fa-exclamation-circle"></i> Not Available
             </div>}
             <PageFooter />
         </div>

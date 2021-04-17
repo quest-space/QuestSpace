@@ -15,7 +15,10 @@ const headings = {
     "live" : "Live Quests",
     "upcoming": "Upcoming Quests",
     "past" : "Past Quests",
-    "all" : "All Quests"
+    "all" : "All Quests",
+    "popular" : "Popular Quests",
+    "My Quests" : "all",
+    "Popular Quests" : "popular"
 }
 
 const CardsContainer = (props) => {
@@ -53,6 +56,11 @@ const CardsContainer = (props) => {
 
         }
     }
+
+    const viewAll = (label) => {
+        props.setTab(label)
+    }
+
     let tab = props.tab
     if (tab === "live" || tab === "upcoming" || tab === "past" || tab === "all"){
         tab = "myQuests"
@@ -67,19 +75,24 @@ const CardsContainer = (props) => {
     return(
         <div>
             { (props.tab === "home" || props.tab === "allQuests") &&
-                 <div className="container" id="cc" style={{marginTop:'0rem'}}>
+                 <div className="container" id="cc" style={{marginTop:'0rem', paddingBottom:"5.5rem"}}>
                  {Object.keys(cards).map((key, i) => {
                      return(    
                          
                          <div>
-                             <div style={{
-                                 paddingLeft:'1.5rem', 
-                                 paddingTop:'5.5rem', 
-                                 fontStyle: 'normal',
-                                 fontWeight: 'normal',
-                                 fontSize: '32px'}}>
-                                 {headings[key]}
-                             </div>
+                                    <div style={{
+                                        paddingLeft:'1.5rem', 
+                                        paddingTop:'5.5rem', 
+                                        fontStyle: 'normal',
+                                        fontWeight: 'normal',
+                                        fontSize: '32px',
+                                        display:"block"}}>
+                                        {headings[key]}
+                                        { props.tab === "home" && <button onClick={()=>{viewAll(headings[headings[key]])}} className="viewall text-muted">
+                                        View all
+                                        </button>}
+                                    </div>
+                                    
                              {
                              Object.keys(cards[key]).map((cardList, j)=>{
                                  return(
