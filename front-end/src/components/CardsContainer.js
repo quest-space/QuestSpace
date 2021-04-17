@@ -88,13 +88,13 @@ const CardsContainer = (props) => {
                                         fontSize: '32px',
                                         display:"block"}}>
                                         {headings[key]}
-                                        { props.tab === "home" && <button onClick={()=>{viewAll(headings[headings[key]])}} className="viewall text-muted">
+                                        { props.tab === "home" && cards[key].length > 0 && <button onClick={()=>{viewAll(headings[headings[key]])}} className="viewall text-muted">
                                         View all
                                         </button>}
                                     </div>
                                     
-                             {
-                             Object.keys(cards[key]).map((cardList, j)=>{
+                             {cards[key].length > 0 && <div>
+                             {Object.keys(cards[key]).map((cardList, j)=>{
                                  return(
                                  <div className="row" style={{padding:'1.5rem'}}>
                                  {Object.keys(cards[key][cardList]).map((card, k)=>{
@@ -116,8 +116,19 @@ const CardsContainer = (props) => {
                                  
                                  </div>
                              
-                             )})
+                             )})}
+                             </div>
                              }
+                             {cards[key].length === 0 && 
+                                <div style={{
+                                    border: "1px solid #C4C4C4", 
+                                    boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
+                                    // marginBottom:"5.5rem",
+                                    margin:"1.5rem",
+                                    padding:"2rem"}}>
+                                        <i class="fas fa-exclamation-circle"></i> Not Available
+                                    </div>
+                            }
                              
                          </div>
  
@@ -130,11 +141,12 @@ const CardsContainer = (props) => {
             }
             {
                 (props.tab === "live" || props.tab === "past" || props.tab === "upcoming" || props.tab === "all") && 
-                <div className="container" id="cc" style={{marginTop:'0rem'}}>
+                <div className="container" id="cc" style={{marginTop:'0rem', paddingBottom:"5.5rem"}}>
                      {Object.keys(cards).map((key, i) => {
                         return( 
                             <div>
-                                {key === (props.tab+"Quests") && 
+                                            
+                                {key === (props.tab+"Quests") &&
                                 <div style={{
                                     paddingLeft:'1.5rem', 
                                     paddingTop:'5.5rem', 
@@ -144,7 +156,7 @@ const CardsContainer = (props) => {
                                     {"My "+headings[props.tab]}
                                 </div>
                                }
-                               {key === (props.tab+"Quests") && 
+                               {key === (props.tab+"Quests") && cards[key].length > 0 &&
                                <div>
                                 {
                                 Object.keys(cards[key]).map((cardList, j)=>{
@@ -172,6 +184,17 @@ const CardsContainer = (props) => {
                                 )})
                                 }
                                 </div>}
+
+                                {key === (props.tab+"Quests") && cards[key].length === 0 && 
+                                    <div style={{
+                                        border: "1px solid #C4C4C4", 
+                                        boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
+                                        // marginBottom:"5.5rem",
+                                        margin:"1.5rem",
+                                        padding:"2rem"}}>
+                                          <i class="fas fa-exclamation-circle"></i> Not Available
+                                      </div>
+                                }
 
                             </div>
 

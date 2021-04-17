@@ -29,9 +29,9 @@ const RoundDetailsFormat = (props) => {
       </div> */}
       <div
         style={{
-          marginLeft: "7.5rem",
-          marginRight: "7.5rem",
-          marginTop: "5rem",
+          marginLeft: "9%",
+          marginRight: "9%",
+          marginTop: "5.5rem",
         }}
       >
         <p
@@ -40,7 +40,7 @@ const RoundDetailsFormat = (props) => {
             fontWeight: "400",
             fontSize: "32px",
             color: "#313131",
-            marginLeft: "0.4rem",
+            marginLeft: "0rem",
             wordWrap: "break-word",
           }}
         >
@@ -54,7 +54,7 @@ const RoundDetailsFormat = (props) => {
             fontWeight: "400",
             fontSize: "20px",
             color: "#46B7A1",
-            marginLeft: "0.4rem",
+            marginLeft: "0rem",
             wordWrap: "break-word",
           }}
         >
@@ -72,11 +72,81 @@ const RoundDetailsFormat = (props) => {
           </div>
         </p>
 
-        <div>
-          <HeadSubhead heading="Ends" subheading={props.endingtime} />
-          <HeadSubhead heading="Allowed Time" subheading={props.allowedtime} />
-          <HeadSubhead heading="About" subheading={props.about} />
-        </div>
+        <p
+          className="display-4"
+          style={{
+            paddingTop: "1.5rem",
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#46B7A1",
+            marginLeft: "0rem",
+            wordWrap: "break-word",
+          }}
+        >
+          Ends
+          <div
+            className="display-4"
+            style={{
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "#313131",
+              wordWrap: "break-word",
+            }}
+          >
+            {props.endingtime}
+          </div>
+        </p>
+
+        <p
+          className="display-4"
+          style={{
+            paddingTop: "1.5rem",
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#46B7A1",
+            marginLeft: "0rem",
+            wordWrap: "break-word",
+          }}
+        >
+          Allowed Time
+          <div
+            className="display-4"
+            style={{
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "#313131",
+              wordWrap: "break-word",
+            }}
+          >
+            {props.allowedtime}
+          </div>
+        </p>
+
+        <p
+          className="display-4"
+          style={{
+            paddingTop: "1.5rem",
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#46B7A1",
+            marginLeft: "0rem",
+            wordWrap: "break-word",
+          }}
+        >
+          About
+          <div
+            className="display-4"
+            style={{
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "#313131",
+              wordWrap: "break-word",
+            }}
+          >
+            {props.about}
+          </div>
+        </p>
+
 
         <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
