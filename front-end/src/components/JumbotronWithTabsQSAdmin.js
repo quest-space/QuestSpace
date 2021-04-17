@@ -1,46 +1,35 @@
 import React from "react";
 import "../css/common.css";
 
-const JumbotronWithTabs = (props) => {
+const JumbotronWithTabsQSAdmin = (props) => {
   const [bar1, setBorderBar1] = React.useState("5px solid #ffffff");
   const [bar2, setBorderBar2] = React.useState("5px solid transparent");
   const [bar3, setBorderBar3] = React.useState("5px solid transparent");
   const [bar4, setBorderBar4] = React.useState("5px solid transparent");
-  const [bar5, setBorderBar5] = React.useState("5px solid transparent");
 
   const setBar = (x) => {
     props.setTab(x);
 
-    if (x === "all") {
-      setBorderBar3("5px solid transparent");
-      setBorderBar2("5px solid transparent");
-      setBorderBar5("5px solid transparent");
-      setBorderBar4("5px solid transparent");
+    if (x === "Pending") {
       setBorderBar1("5px solid #ffffff");
-    } else if (x == "live") {
+      setBorderBar2("5px solid transparent");
+      setBorderBar3("5px solid transparent");
+      setBorderBar4("5px solid transparent");
+    } else if (x == "Accepted") {
       setBorderBar1("5px solid transparent");
       setBorderBar3("5px solid transparent");
       setBorderBar2("5px solid #ffffff");
       setBorderBar4("5px solid transparent");
-      setBorderBar5("5px solid transparent");
-    } else if (x == "upcoming") {
+    } else if (x == "Rejected") {
       setBorderBar1("5px solid transparent");
       setBorderBar2("5px solid transparent");
       setBorderBar3("5px solid #ffffff");
       setBorderBar4("5px solid transparent");
-      setBorderBar5("5px solid transparent");
-    } else if (x == "past") {
+    } else if (x == "All") {
       setBorderBar1("5px solid transparent");
       setBorderBar2("5px solid transparent");
       setBorderBar4("5px solid #ffffff");
       setBorderBar3("5px solid transparent");
-      setBorderBar5("5px solid transparent");
-    } else {
-      setBorderBar1("5px solid transparent");
-      setBorderBar3("5px solid transparent");
-      setBorderBar4("5px solid transparent");
-      setBorderBar2("5px solid transparent");
-      setBorderBar5("5px solid #ffffff");
     }
   };
 
@@ -66,7 +55,7 @@ const JumbotronWithTabs = (props) => {
               margin: "0em",
             }}
           >
-            Quests
+            Quest Creation Requests
           </h1>
         </div>
       </div>
@@ -86,38 +75,31 @@ const JumbotronWithTabs = (props) => {
         >
           <button
             className="parent"
-            onClick={() => setBar("all")}
-            style={{ borderBottom: bar1, width: "20%" }}
-          >
-            All
-          </button>
-          <button
-            className="parent"
-            onClick={() => setBar("live")}
-            style={{ borderBottom: bar2, width: "20%" }}
-          >
-            Live
-          </button>
-          <button
-            className="parent"
-            onClick={() => setBar("upcoming")}
-            style={{ borderBottom: bar3, width: "20%" }}
-          >
-            Upcoming
-          </button>
-          <button
-            className="parent"
-            onClick={() => setBar("past")}
-            style={{ borderBottom: bar4, width: "20%" }}
-          >
-            Past
-          </button>
-          <button
-            className="parent"
-            onClick={() => setBar("pending")}
-            style={{ borderBottom: bar5, width: "20%" }}
+            onClick={() => setBar("Pending")}
+            style={{ borderBottom: bar1, width: "25%" }}
           >
             Pending
+          </button>
+          <button
+            className="parent"
+            onClick={() => setBar("Accepted")}
+            style={{ borderBottom: bar2, width: "25%" }}
+          >
+            Accepted
+          </button>
+          <button
+            className="parent"
+            onClick={() => setBar("Rejected")}
+            style={{ borderBottom: bar3, width: "25%" }}
+          >
+            Rejected
+          </button>
+          <button
+            className="parent"
+            onClick={() => setBar("All")}
+            style={{ borderBottom: bar4, width: "25%" }}
+          >
+            All
           </button>
         </ul>
       </div>
@@ -130,7 +112,7 @@ const JumbotronWithTabs = (props) => {
           data-toggle="dropdown"
           style={{ textAlign: "center", width: "100%" }}
         >
-          Browse Quests
+          Browse Requests
         </button>
         <div
           className="dropdown-menu"
@@ -145,33 +127,27 @@ const JumbotronWithTabs = (props) => {
         >
           <button
             className="dropdown-item dropKid"
-            onClick={() => setBar("all")}
-          >
-            All
-          </button>
-          <button
-            className="dropdown-item dropKid"
-            onClick={() => setBar("live")}
-          >
-            Live
-          </button>
-          <button
-            className="dropdown-item dropKid"
-            onClick={() => setBar("upcoming")}
-          >
-            Upcoming
-          </button>
-          <button
-            className="dropdown-item dropKid"
-            onClick={() => setBar("past")}
-          >
-            Past
-          </button>
-          <button
-            className="dropdown-item dropKid"
-            onClick={() => setBar("pending")}
+            onClick={() => setBar("Pending")}
           >
             Pending
+          </button>
+          <button
+            className="dropdown-item dropKid"
+            onClick={() => setBar("Accepted")}
+          >
+            Accepted
+          </button>
+          <button
+            className="dropdown-item dropKid"
+            onClick={() => setBar("Rejected")}
+          >
+            Rejected
+          </button>
+          <button
+            className="dropdown-item dropKid"
+            onClick={() => setBar("All")}
+          >
+            All
           </button>
         </div>
       </div>
@@ -179,4 +155,4 @@ const JumbotronWithTabs = (props) => {
   );
 };
 
-export default JumbotronWithTabs;
+export default JumbotronWithTabsQSAdmin;
