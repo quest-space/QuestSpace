@@ -40,14 +40,17 @@ const MainNavbar = (props) => {
           </span></a>
 
         <ul className="navbar-nav ml-auto">
-          <form className="form-inline my-2 my-lg-0">
+
+          {/* No search in HOST */}
+
+          {/* <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2" type="search" placeholder="Search" style={{ display: disp }} />
             <button onClick={flipDisplay} style={{ marginRight: "1.9rem", backgroundColor: "#ffffff", border: "none" }}><i className="fas fa-search"></i></button>
-          </form>
+          </form> */}
 
           <li className="nav-item">
             {/* changed to Link */}
-            <Link to="/participanthomepage" className="nav-link" style={{
+            <Link to="/hosthomepage" className="nav-link" style={{
               fontWeight: 400,
               fontSize: 18,
               fontFamily: "Barlow",
@@ -71,11 +74,15 @@ const MainNavbar = (props) => {
             </a>
             <div className="hoverable dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style={{ border: "none",boxShadow:"none" }}>
               <button className="dropdown-item" style= {{paddingBottom:"0.5rem",paddingTop:"0.5rem"}} onClick={()=> {props.setTab('all')}}>All Quests</button>
-              <button className="dropdown-item" style= {{paddingBottom:"0.5rem",paddingTop:"0.5rem"}} onClick={()=> {props.setTab('allQuests')}}>My Quests</button>
+              <button className="dropdown-item" style= {{paddingBottom:"0.5rem",paddingTop:"0.5rem"}} onClick={()=> {props.setTab('live')}}>Live Quests</button>
+              <button className="dropdown-item" style= {{paddingBottom:"0.5rem",paddingTop:"0.5rem"}} onClick={()=> {props.setTab('upcoming')}}>Upcoming Quests</button>
+              <button className="dropdown-item" style= {{paddingBottom:"0.5rem",paddingTop:"0.5rem"}} onClick={()=> {props.setTab('past')}}>Past Quests</button>
+              <button className="dropdown-item" style= {{paddingBottom:"0.5rem",paddingTop:"0.5rem"}} onClick={()=> {props.setTab('pending')}}>Pending Quests</button>
               {/* <a class="dropdown-item" href="#">Something else here</a> */}
             </div>
           </li>
           <ProfileAndMobileView/>
+
         </ul>
       </div>
     </nav>
