@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/common.css";
 
+
 /* Use this way
 <Header heading="CodinGuru3.0" subheading="IEEE LUMS" />
 */
@@ -24,8 +25,9 @@ const Header = (props) => {
             className="display-4"
             style={{
               fontWeight: "400",
-              fontSize: "42px",
+              fontSize: "40px",
               color: "#ffffff",
+              margin:'0em',
               // marginLeft: "0.4em",
               wordWrap: "break-word",
             }}
@@ -41,6 +43,7 @@ const Header = (props) => {
               fontWeight: "300",
               fontSize: "22px",
               color: "#ffffff",
+              margin:'0em',
               // marginLeft: "0.9em",
               wordWrap: "break-word",
             }}

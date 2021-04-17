@@ -42,7 +42,7 @@ const QuestDetailsFormat = (props) => {
         </p>
 
         <img
-          className="image responsive resp2"
+          className="image responsive resp2 d-none d-sm-none d-md-block d-lg-block"
           src={props.imgsrc}
           style={{ float: "right" }}
         />

@@ -56,12 +56,12 @@ const JumbotronWithTabs = (props) => {
         </ul>
       </div>
       {/* TABS ON MOBILE */}
-      <div className="navHover dropdown d-lg-none d-md-block" style={{boxSizing:"content-box", width:"100%"}}>
-      <button className="parent dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
-      style={{margin:"0", textAlign:"center", width:"100%"}}>
+      <div className="dropdown d-lg-none d-md-block">
+      <button className="parent dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      style={{ textAlign:"center", width:"100%"}}>
         Browse Quests
       </button>
-      <div className="hoverable dropdown-menu" aria-labelledby="dropdownMenuButton" style={{boxSizing:"content-box", width:"100%", margin:"0", padding:"0", borderWidth:"0", boxShadow:"none"}}>
+      <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ width:"100%", margin:"0", padding:"0", borderWidth:"0", boxShadow:"none"}}>
         <button className="dropdown-item dropKid" onClick = {()=>setBar("allQuests")} >All Quests</button>
         <button className="dropdown-item dropKid" onClick = {()=>setBar("live")} >All my Live Quests</button>
         <button className="dropdown-item dropKid" onClick = {()=>setBar("past")}>All my Past Quests</button>
