@@ -64,7 +64,7 @@ const InitialNavbar = (props) => {
                   fontSize: 18,
                   fontFamily: "Barlow",
                   color: "#313131",
-                  // marginRight: "1.5rem",
+                  marginLeft: "1.5rem",
                 }}
               >
                 About us
@@ -79,7 +79,7 @@ const InitialNavbar = (props) => {
                   fontSize: 18,
                   fontFamily: "Barlow",
                   color: "#313131",
-                  // marginRight: "5.9rem",
+                  marginLeft: "1.5rem",
                 }}
               >
                 {props.sign}

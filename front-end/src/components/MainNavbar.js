@@ -127,7 +127,7 @@ const MainNavbar = (props) => {
             </div>
           </li>
           {/* SIGN OUT AND VIEW PROFILE FOR MOBILE VERSION */}
-          <li className="nav-item d-lg-none d-md-none">
+          <li className="nav-item d-lg-none">
             <a className="nav-link" href="#" style={{
               fontWeight: 400,
               fontSize: 18,
@@ -140,7 +140,7 @@ const MainNavbar = (props) => {
               View Profile</a>
           </li>
 
-          <li className="nav-item d-lg-none d-md-none">
+          <li className="nav-item d-lg-none">
 
             {/* Changed anchor tag to div tag and added an inclick handler.*/}
             <div className="nav-link" onClick={SignOutUser} style={{
