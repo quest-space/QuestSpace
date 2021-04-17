@@ -11,7 +11,7 @@ const ParticipantHomepage = () => {
     <div>
       <MainNavbar setTab={setTab} />
       <JumbotronWithTabs setTab={setTab} />
-      <CardsContainer tab={tab}/>
+      <CardsContainer setTab={setTab} tab={tab}/>
       <PageFooter />
     </div>
   );

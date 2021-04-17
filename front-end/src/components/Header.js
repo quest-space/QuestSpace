@@ -15,30 +15,33 @@ const Header = (props) => {
           background:
             "linear-gradient(209.34deg, rgba(71, 111, 143, 0) 17.99%, #335875 177.27%), #1F394E",
           marginBottom: "0em",
+          paddingLeft: "9%",
         }}
       >
-        <div style={{ marginLeft: "7rem", marginRight: "7rem" }}>
+        {/* prev version: style={{ marginLeft: "7rem", marginRight: "7rem" }} */}
+        <div>
           <h1
             className="display-4"
             style={{
               fontWeight: "400",
               fontSize: "42px",
               color: "#ffffff",
-              marginLeft: "0.4em",
+              // marginLeft: "0.4em",
               wordWrap: "break-word",
             }}
           >
             {props.heading}
           </h1>
         </div>
-        <div style={{ marginLeft: "7rem", marginRight: "7rem" }}>
+        {/* prev version: style={{ marginLeft: "7rem", marginRight: "7rem" }} */}
+        <div>    
           <h2
             className="display-4"
             style={{
               fontWeight: "300",
               fontSize: "22px",
               color: "#ffffff",
-              marginLeft: "0.9em",
+              // marginLeft: "0.9em",
               wordWrap: "break-word",
             }}
           >

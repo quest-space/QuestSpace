@@ -18,7 +18,7 @@ const InitialNavbar = (props) => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light" style={{paddingLeft: "7rem", boxShadow: "0px 4px 15px -2px rgba(0, 0, 0, 0.2)"}}>
+      <nav className="navbar navbar-expand-lg navbar-light" style={{paddingLeft: "7rem", boxShadow: "0px 4px 15px -2px rgba(0, 0, 0, 0.2)",paddingLeft:"9%", paddingRight:"9%"}}>
         <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -42,7 +42,7 @@ const InitialNavbar = (props) => {
                 fontSize: 18,
                 fontFamily: "Barlow",
                 color: "#313131",
-                marginRight: "1.5rem",
+                // marginRight: "1.5rem",
               }}>
                 About us</a>
             </li>
@@ -52,7 +52,7 @@ const InitialNavbar = (props) => {
                 fontSize: 18,
                 fontFamily: "Barlow",
                 color: "#313131",
-                marginRight: "5.9rem",
+                // marginRight: "5.9rem",
               }}>
                 {props.sign}</Link>
             </li>
