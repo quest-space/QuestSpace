@@ -42,6 +42,11 @@ const questSchema = new Schema({
     },
     logo: {
         type: Buffer
+    },
+    status: {
+        type: String,
+        enum: ['accepted', 'rejected', 'pending'],
+        default: 'pending'
     }
 }, // Schema completed 
 {timestamps: true} // Add timestamp property
