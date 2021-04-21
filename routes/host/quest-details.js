@@ -20,7 +20,8 @@ const DEFAULT_RATING = 3;
 const { handleErrorsFromDB, getConciseDate } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
 
-// router.use(`/`, require(`./round-details`));
+router.use(`/addround`, require(`./addround`));
+router.use(`/deleteround`, require(`./deleteround`));
 
 const currTime = Date.now();
 
