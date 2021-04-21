@@ -95,10 +95,16 @@ div.rightCol {
   background: #f9f9f9;
   width: 100%;
   border: none;
-  border-bottom: solid;
   border-color: #203a50;
-  border-width: 1px;
+  border-bottom: 1px solid;
+  padding: 0px;
   font-size: 12px;
+}
+
+.input:focus {
+  border-color: #203a50;
+  border: 1px solid;
+  border-radius: 2px;
 }
 
 .formLabel {
