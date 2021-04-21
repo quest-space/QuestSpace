@@ -120,9 +120,7 @@ const Round = (props) => {
         <React.Fragment>
             <MainNavbar />
             <Header heading={`Round ${roundID}: ${roundDetails.roundName}`} subheading={roundDetails.questName} />
-            {/* <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
-                {/* <div id="top" style={{ margin: "0em", padding: "0em" }}>Hello</div> */}
-            {/* </div> */}
+
             <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: roundDetails.questName, to: `/participanthomepage/quest/${questID}` }, { text: `Round ${roundID}`, to: `/participanthomepage/quest/${questID}/round/${roundID}` }]} />
 
             {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={`${roundDetails.timer} seconds`} about={roundDetails.description} onClick={setStarted} />}
