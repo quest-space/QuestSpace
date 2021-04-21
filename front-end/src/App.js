@@ -13,6 +13,7 @@ import RoundDetails from "./components/RoundDetails";
 import Quest from "./components/Quest";
 import QuestEnrolled from "./components/QuestEnrolled";
 import QSAdminHomepage from "./components/QSAdminHomepage";
+import QSAdminSignIn from "./components/QSAdminSignIn";
 
 const App = () => {
   return (
@@ -20,13 +21,14 @@ const App = () => {
       <Switch>
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/signin" component={SignInPage} />
+        <Route exact path="/qsadminsignin" component={QSAdminSignIn} />
+        <Route exact path="/qsadminhomepage" component={QSAdminHomepage} />
         <Route
           exact
           path="/participanthomepage"
           component={ParticipantHomepage}
         />
         <Route exact path="/hosthomepage" component={HostHomepage} />
-        <Route exact path="/qsadminhomepage" component={QSAdminHomepage} />
         <Route exact path="/round" component={Round} />
         <Route exact path="/qa" component={QuestEnrolled} />
         <Route exact path="/rounddetails" component={RoundDetails} />
