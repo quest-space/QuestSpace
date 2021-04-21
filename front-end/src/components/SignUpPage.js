@@ -6,11 +6,12 @@ import CreateAccount from "./CreateAccount"
 import CardLeft from "./CardLeft"
 import CardRight from "./CardRight"
 import InitialNavbar from "./InitialNavbar"
+import backgroundImg from "../img/signup/background.png"
 
 const SignUpPage = () => {
     return (
-        <React.Fragment>
-            <InitialNavbar sign="Sign In"/>
+        <div className="signUpBack" style={{ backgroundImage: `url(${backgroundImg})` }}>
+            <InitialNavbar sign="Sign In" />
             <Container className="signUpContainer d-none d-md-block" style={{ border: "none" }}>
                 <Row >
                     <Col md="6" className="leftCol" >
@@ -29,7 +30,7 @@ const SignUpPage = () => {
                 </Row>
             </Container>
             <PageFooter />
-        </React.Fragment>
+        </div>
     )
 }
 

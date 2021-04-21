@@ -1,3 +1,19 @@
+@media only screen and (min-width: 400px) {
+  .signUpBack {
+    background-position-y: 200px;
+    background-repeat: no-repeat;
+    background-size: 100% 58%;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .signUpBack {
+    background-position-y: 200px;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+}
+
 .signUpContainer {
   padding-bottom: 90px;
 }
@@ -59,6 +75,7 @@ div.rightCol {
   z-index: 0;
   background: #f9f9f9;
   padding: 0px;
+  margin: 0px;
 
   position: absolute;
   bottom: 0px;
