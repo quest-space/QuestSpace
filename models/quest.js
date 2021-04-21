@@ -47,6 +47,10 @@ const questSchema = new Schema({
         type: String,
         enum: ['accepted', 'rejected', 'pending'],
         default: 'pending'
+    },
+    numRounds: {
+        type: Number,
+        default: 0
     }
 }, // Schema completed 
 {timestamps: true} // Add timestamp property
