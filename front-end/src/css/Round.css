@@ -6,7 +6,15 @@
   padding: 100px 0px;
 }
 
+.questionContainer.container {
+  width: 60%;
+  min-height: 300px;
+}
+
 .questionBox {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
   width: 100%;
   padding: 50px;
   border: 1px solid #c4c4c4;
@@ -21,9 +29,21 @@
   color: #666666;
 }
 
-.questionOption {
+@media only screen and (max-width: 600px) {
+  .questionBox {
+    padding: 50px 20px;
+    font-size: 16px;
+  }
+
+  .questionContainer.container {
+    width: 100%;
+  }
+}
+
+.questionOptionLong {
   border: 1px solid #c4c4c4;
   box-sizing: border-box;
+  width: 100%;
 
   box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -31,8 +51,31 @@
   margin-top: 15px;
 }
 
-.timer {
-  padding-bottom: 20px;
+.questionOptionShort {
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  width: 49%;
+
+  box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.questionImg {
+  width: 70%;
+  margin: 15px 15%;
+  flex-grow: 1;
+}
+
+.questionImg {
+  width: 70%;
+  margin: 15px 15%;
+  flex-grow: 1;
+}
+
+.progressBar {
+  padding-bottom: 15px;
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -44,7 +87,7 @@
   color: #575757;
 }
 
-.progressBar {
+.timer {
   background: #e3e3e3;
   display: inline-block;
   width: 100%;
@@ -64,14 +107,37 @@
   font-family: Barlow;
   font-weight: 300;
   font-size: 20px;
+  margin-top: 10px;
+}
+
+.questionModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+}
+.questionModal .back {
+  width: 200px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #top.breadcrumb {
   text-align: left;
-  margin: 0px 0em;
-  padding: 11px 133px;
+  /* margin: 0px 0em; */
+  /* padding: 11px 133px; */
   color: white;
-  
+
   font-family: Barlow;
   font-style: normal;
   font-weight: 500;

@@ -1,17 +1,17 @@
 import React, { useEffect } from "react"
-import "../css/Question.css"
+// import "../css/Question.css"
 
 
-const QuestionOption = (props) => {
+const McqOption = (props) => {
 
     const [color, setColor] = React.useState("white")
 
     useEffect(() => {
         setColor("white")
-    })
+    }, [props.option])
 
     return (
-        <div className="questionOption" style={{ backgroundColor: color }} onClick={() => {
+        <div className={props.mcqOptionType} style={{ backgroundColor: color }} onClick={() => {
             setColor("#415F78")
             props.setOption(props.option)
         }
@@ -21,4 +21,4 @@ const QuestionOption = (props) => {
     )
 }
 
-export default QuestionOption
+export default McqOption

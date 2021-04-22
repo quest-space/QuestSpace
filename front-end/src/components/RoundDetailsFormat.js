@@ -54,18 +54,19 @@ const RoundDetailsFormat = (props) => {
           }}
         >
           Starts
-          <div
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "#313131",
-              wordWrap: "break-word",
-            }}
-          >
-            {props.startingtime}
-          </div>
         </p>
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {props.startingtime}
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -79,18 +80,19 @@ const RoundDetailsFormat = (props) => {
           }}
         >
           Ends
-          <div
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "#313131",
-              wordWrap: "break-word",
-            }}
-          >
-            {props.endingtime}
-          </div>
         </p>
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {props.endingtime}
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -104,18 +106,19 @@ const RoundDetailsFormat = (props) => {
           }}
         >
           Allowed Time
-          <div
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "#313131",
-              wordWrap: "break-word",
-            }}
-          >
-            {props.allowedtime}
-          </div>
         </p>
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {props.allowedtime}
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -129,18 +132,19 @@ const RoundDetailsFormat = (props) => {
           }}
         >
           About
-          <div
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "#313131",
-              wordWrap: "break-word",
-            }}
-          >
-            {props.about}
-          </div>
         </p>
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {props.about}
+        </div>
+        {/* </p> */}
 
         <div
           style={{
@@ -155,7 +159,7 @@ const RoundDetailsFormat = (props) => {
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
