@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import HostHomepage from "./components/HostHomepage";
 import Round from "./components/Round";
 import RoundDetails from "./components/RoundDetails";
+import QuestDetails from "./components/QuestDetails";
 import Quest from "./components/Quest";
 import QuestEnrolled from "./components/QuestEnrolled";
 import QSAdminHomepage from "./components/QSAdminHomepage";
@@ -32,6 +33,7 @@ const App = () => {
         <Route exact path="/round" component={Round} />
         <Route exact path="/qa" component={QuestEnrolled} />
         <Route exact path="/rounddetails" component={RoundDetails} />
+        <Route exact path="/questdetails" component={QuestDetails} />
         <Route exact path="/header" component={Header} />
         <Route
           exact
