@@ -37,8 +37,7 @@ const Round = () => {
             alert(JSON.stringify(responseBody), "Returning back to quest page")
             history.replace(`/participanthomepage/quest/${questID}`)
         } else {
-            // console.log(`Sign in success.`)
-            responseBody["roundType"] = `RapidFire`
+            responseBody["roundType"] = `Quiz`
             setRoundDetails(responseBody)
         }
 
@@ -49,7 +48,8 @@ const Round = () => {
             if (roundDetails.roundType === `RapidFire`) {
                 setRoundType(<RapidFireRound timer={roundDetails.timer} />)
             } else if (roundDetails.roundType === `Quiz`) {
-                setRoundType(<QuizRound />
+                const totalTime = (new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()
+                setRoundType(<QuizRound timer={300} /> //change it to value gotten from API
                 )
             } else if (roundDetails.roundType === `Submission`) {
                 setRoundType(<SubmissionRound />

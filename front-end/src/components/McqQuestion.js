@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useEffect } from "react"
 // import "../css/Question.css"
 import McqOption from "./McqOption"
 
 const McqQuestion = (props) => {
+
+    const [selectedOption, setSelectedOption] = React.useState(props.option)
 
     const secondsToString = (seconds) => {
         const hr = Math.floor(seconds / 60 / 60);
@@ -10,6 +12,10 @@ const McqQuestion = (props) => {
         const sec = seconds % 60;
         return `${hr ? `${hr}h ` : ``}${min ? `${min}m ` : ``}${sec}s`
     }
+
+    useEffect(() => {
+        props.rapidFire && props.setOption(selectedOption)
+    }, [selectedOption])
 
     return (
         <React.Fragment>
@@ -35,10 +41,22 @@ const McqQuestion = (props) => {
                 {/* Image if applicable */}
                 {props.question.imageURL && <img className="questionImg" src={props.question.imageURL} />}
 
-                {/* Quesrion Options */}
+                {/* Question Options */}
                 {props.question.options.map((option, index) => {
-                    return <McqOption mcqOptionType={props.question.imageURL ? "questionOptionShort" : "questionOptionLong"} questionNumber={index + 1} option={option} key={index} setOption={props.setOption} />
+                    return <McqOption mcqOptionType={props.question.imageURL ? "questionOptionShort" : "questionOptionLong"} questionNumber={index + 1} option={option} key={index} setOption={props.setOption} color={selectedOption === option ? "#415F78" : "white"} setSelectedOption={setSelectedOption} />
                 })}
+
+                {/* Next Button in case of Quiz (rapidFire ==== false) */}
+                {
+                    !props.rapidFire && <div className="nextButtonRound">
+                        <div>
+                            Next&nbsp;
+                            <i className="fas fa-chevron-circle-right" onClick={() => {
+                                props.setOption(selectedOption)
+                            }} style={{ cursor: "pointer" }}></i>
+                        </div>
+                    </div>
+                }
 
             </div>
         </React.Fragment>
