@@ -120,5 +120,6 @@ dist
 test.js
 dump.js
 testDB.js
+testdb.js
 img-uploads/
 img-uploading/img-uploads/
