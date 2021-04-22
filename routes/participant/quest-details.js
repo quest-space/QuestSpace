@@ -95,6 +95,7 @@ router.post(`/:questid`, async (req, res) => {
     const quest_details = {
         questID: find_quest[0]._id,
         questName: find_quest[0].questName,
+        hostUser:  hostDatasForQuest[0].username,
         description: find_quest[0].description,
         about: find_quest[0].about,
         startTime: TimeFormatter.formatAMPM(find_quest[0].startTime),

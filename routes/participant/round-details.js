@@ -93,6 +93,7 @@ router.post(`/:questid/:roundid`, async (req, res) => {
           startTime: Helper.formatAMPM(find_round[0].startTime),
           endTime: Helper.formatAMPM(find_round[0].endTime),
           timer: find_round[0].timer,
+          hostUser: find_quest[0].hostUser,
           description: find_round[0].description,
           roundName: find_round[0].roundName,
           questName: find_round[0].questName,
