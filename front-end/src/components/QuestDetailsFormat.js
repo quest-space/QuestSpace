@@ -17,10 +17,11 @@ const QuestDetailsFormat = (props) => {
     empty.push(0);
   }
   return (
-    <div>
-     
-      <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
-      </div>
+    <div style={{ marginBottom: "80px" }}>
+      <div
+        className="col-md-12"
+        style={{ margin: "0em", padding: "0em" }}
+      ></div>
       <div
         style={{
           marginLeft: props.left,
@@ -34,7 +35,7 @@ const QuestDetailsFormat = (props) => {
             fontWeight: "400",
             fontSize: "32px",
             color: "#313131",
-            marginLeft: "0.4rem",
+            marginLeft: "0rem",
             wordWrap: "break-word",
           }}
         >
@@ -54,7 +55,7 @@ const QuestDetailsFormat = (props) => {
             fontWeight: "400",
             fontSize: "20px",
             color: "#46B7A1",
-            marginLeft: "0.4rem",
+            marginLeft: "0rem",
             wordWrap: "break-word",
           }}
         >
@@ -83,6 +84,19 @@ const QuestDetailsFormat = (props) => {
           <HeadSubhead heading="Starts" subheading={props.startingtime} />
           <HeadSubhead heading="Ends" subheading={props.endingtime} />
           <HeadSubhead heading="About" subheading={props.about} />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            paddingTop: "2rem",
+          }}
+        >
+          {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
+          <button className="btnBegin" onClick={() => props.onClick(true)}>
+            Enroll
+          </button>
         </div>
       </div>
     </div>
