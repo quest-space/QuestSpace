@@ -91,7 +91,9 @@ router.post(`/:questid/:roundid`, async (req, res) => {
       const find_round = await Round.find({questName: find_quest[0].questName, roundNum: req.params.roundid})
       const round_details = {
           startTime: Helper.formatAMPM(find_round[0].startTime),
+          startTimeRaw: find_round[0].startTime,
           endTime: Helper.formatAMPM(find_round[0].endTime),
+          endTimeRaw: find_round[0].endTime,
           timer: find_round[0].timer,
           hostUser: find_quest[0].hostUser,
           description: find_round[0].description,
