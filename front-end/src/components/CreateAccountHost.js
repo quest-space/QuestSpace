@@ -56,52 +56,52 @@ const CreateAccountHost = (props) => {
     return (
         <div className="createAccount">
             <div className="header">
-                <div className="title">
+                <div className="titleSignUp">
                     Create a{`\n`}Host Account
                 </div>
 
             </div>
 
-            <form className="form">
+            <form className="formSignUp">
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Organization Name</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Organization Name</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" value={details.organization} onChange={(ev) => updateDetails(ev, "organization")} />
+                    <div className="formColSignUp">
+                        <input type="text" className="inputSignUp" placeholder="Enter here" value={details.organization} onChange={(ev) => updateDetails(ev, "organization")} />
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Representative Name</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Representative Name</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" value={details.representativeName} onChange={(ev) => updateDetails(ev, "representativeName")} />
+                    <div className="formColSignUp">
+                        <input type="text" className="inputSignUp" placeholder="Enter here" value={details.representativeName} onChange={(ev) => updateDetails(ev, "representativeName")} />
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Representative Designation</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Representative Designation</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" value={details.representativeDesignation} onChange={(ev) => updateDetails(ev, "representativeDesignation")} />
+                    <div className="formColSignUp">
+                        <input type="text" className="inputSignUp" placeholder="Enter here" value={details.representativeDesignation} onChange={(ev) => updateDetails(ev, "representativeDesignation")} />
                     </div>
                 </div>
 
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Contact #</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Contact #</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" value={details.phone} onChange={(ev) => updateDetails(ev, "phone")} />
+                    <div className="formColSignUp">
+                        <input type="text" className="inputSignUp" placeholder="Enter here" value={details.phone} onChange={(ev) => updateDetails(ev, "phone")} />
                     </div>
                 </div>
             </form>

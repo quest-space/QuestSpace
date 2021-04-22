@@ -96,19 +96,19 @@ div.rightCol {
   transform: translateY(-50%);
 }
 
-.form {
+.formSignUp {
   font-family: Barlow;
   font-style: normal;
   font-weight: normal;
   margin: auto;
 }
 
-.formCol .formLabel {
+.formColSignUp .formLabelSignUp {
   padding-top: 10px;
   margin-bottom: 0px;
 }
 
-.input {
+.inputSignUp {
   background: #f9f9f9;
   width: 100%;
   border: none;
@@ -118,19 +118,19 @@ div.rightCol {
   font-size: 12px;
 }
 
-.input:focus {
+.inputSignUp:focus {
   border-color: #203a50;
   border: 1px solid;
   border-radius: 2px;
 }
 
-.formLabel {
+.formLabelSignUp {
   font-size: 16px;
   padding-bottom: 0px;
   color: #313131;
 }
 
-.title {
+.titleSignUp {
   white-space: pre-line;
   text-align: center;
   color: #313131;
@@ -139,7 +139,7 @@ div.rightCol {
   font-weight: 400;
 }
 
-.titleCaption {
+.titleCaptionSignUp {
   text-align: center;
   color: #575757;
   font-family: Barlow;
@@ -150,10 +150,10 @@ div.rightCol {
   padding-top: 0.4rem; /*Added*/
 }
 
-.nav-pills {
+/* .nav-pills {
   padding-top: 15px;
   padding-bottom: 5px;
-}
+} */
 
 .nav-pills {
   padding-top: 20px;
@@ -188,7 +188,7 @@ div.rightCol {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 }
 
-.btnNext {
+.btnNextSignUp {
   font-family: Barlow;
   /* font-size: 10px; */
   color: #ffffff;
