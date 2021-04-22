@@ -15,6 +15,7 @@ import Quest from "./components/Quest";
 import QuestEnrolled from "./components/QuestEnrolled";
 import QSAdminHomepage from "./components/QSAdminHomepage";
 import QSAdminSignIn from "./components/QSAdminSignIn";
+import Search from "./components/Search";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const App = () => {
           path="/participanthomepage/quest/:questID/"
           component={Quest}
         />
+        <Route exact path="/searchresults" component={Search} />
         <Route exact path="/" component={LandingPage} />
       </Switch>
     </Router>

@@ -35,7 +35,7 @@ const JumbotronWithTabs = (props) => {
     <div>
       <div id='fancy' className="jumbotron jumbotron-fluid" style={{marginBottom:'0em',paddingLeft: "9%" ,background: "linear-gradient(209.34deg, rgba(71, 111, 143, 0) 17.99%, #335875 177.27%), #1F394E"}}>
         <div className="container" style={{margin:'0em',padding: "0rem"}}>
-          <h1 className="display-4" style={{fontWeight:"400", fontSize:"40px", color:"#ffffff", margin:'0em'}}>QuestSpace</h1>
+          <h1 className="display-4" style={{fontWeight:"400", fontSize:"40px", color:"#ffffff", margin:'0em'}}>QuestSpace</h1><br/>
         </div>
       </div>
       {/* TABS ON DESKTOP*/}

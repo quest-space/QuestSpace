@@ -1,13 +1,17 @@
 import React from "react";
 import questspacelogo from "./../logos/questspacelogo.png";
-import { useHistory, history , Link } from "react-router-dom";
+import { useHistory, history , Link, useLocation } from "react-router-dom";
 import ProfileAndMobileView from "./ProfileAndMobileView";
 import "../css/NavBar.css";
 
 
 const MainNavbar = (props) => {
 
+  const location = useLocation();
   const [disp, setDisplay] = React.useState('none')
+  const [placeholder, setPlaceholder] = React.useState('Search')
+  const history = useHistory()
+
 
   const flipDisplay = (ev) => {
     ev.preventDefault()
@@ -16,7 +20,17 @@ const MainNavbar = (props) => {
     }
     else
     setDisplay('none')
+    if (placeholder !== "Search"){
+      history.push({pathname:`/searchresults`, state:placeholder})
+      if(location.pathname == "/searchresults"){
+        props.setRender(false)
+      }
+    }
     
+  }
+
+  const setInput = (ev) => {
+    setPlaceholder(ev.target.value)
   }
 
 
@@ -41,7 +55,7 @@ const MainNavbar = (props) => {
 
         <ul className="navbar-nav ml-auto">
           <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" style={{ display: disp }} />
+            <input className="form-control mr-sm-2" type="search" onChange={setInput} placeholder={placeholder} style={{ display: disp }} />
             <button onClick={flipDisplay} style={{ marginRight: "1.9rem", backgroundColor: "#ffffff", border: "none" }}><i className="fas fa-search"></i></button>
           </form>
 
