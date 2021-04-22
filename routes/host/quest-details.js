@@ -22,6 +22,9 @@ const { sendRes } = require(`../helpers/sendRes`);
 
 router.use(`/addround`, require(`./addround`));
 router.use(`/deleteround`, require(`./deleteround`));
+router.use(`/addquestion`, require(`./addquestion`));
+router.use(`/deletequestion`, require(`./deletequestion`));
+
 
 const currTime = Date.now();
 

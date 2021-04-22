@@ -55,6 +55,10 @@ const roundSchema = new Schema({
     totalMarks: {
         type: Number,
     },
+    numQuestions: {
+        type: Number,
+        default: 0
+    },
     Image: {
         type: Buffer
     }
