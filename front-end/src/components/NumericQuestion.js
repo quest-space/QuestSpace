@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
-import McqOption from "./McqOption"
 
-const McqQuestion = (props) => {
+const NumericQuestion = (props) => {
 
     const [selectedOption, setSelectedOption] = React.useState(props.option)
 
@@ -11,10 +10,6 @@ const McqQuestion = (props) => {
         const sec = seconds % 60;
         return `${hr ? `${hr}h ` : ``}${min ? `${min}m ` : ``}${sec}s`
     }
-
-    useEffect(() => {
-        props.rapidFire && props.setOption(selectedOption)
-    }, [selectedOption])
 
     return (
         <React.Fragment>
@@ -30,7 +25,7 @@ const McqQuestion = (props) => {
 
                 {/* textual representation of time remaining */}
                 <div style={{ whiteSpace: "nowrap" }}>
-                    &nbsp;{props.rapidFire ? `${props.timer}s` : secondsToString(props.timer)}
+                    &nbsp;{secondsToString(props.timer)}
                 </div>
             </div>
 
@@ -41,11 +36,19 @@ const McqQuestion = (props) => {
                 {props.question.imageURL && <img className="questionImg" src={props.question.imageURL} />}
 
                 {/* Question Options */}
-                {props.question.options.map((option, index) => {
-                    return <McqOption mcqOptionType={props.question.imageURL ? "questionOptionShort" : "questionOptionLong"} questionNumber={index + 1} option={option} key={index} setOption={props.setOption} color={selectedOption === option ? "#415F78" : "white"} setSelectedOption={setSelectedOption} />
-                })}
+                <div style={{ width: "100%", display: "flex" }}>
+                    <div style={{ verticalAlign: "center", margin: "auto 10px auto 0px" }}>
+                        Write your answer in the given box.
+                    </div>
 
-                {/* Next Button in case of Quiz (rapidFire ==== false) */}
+                    <input className="questionNumeric" onChange={(ev) => {
+                        setSelectedOption(ev.target.value)
+                    }}>
+                    </input>
+                </div>
+
+
+                {/* Next Button */}
                 {
                     !props.rapidFire && <div className="nextButtonRound">
                         <div>
@@ -63,4 +66,4 @@ const McqQuestion = (props) => {
     )
 }
 
-export default McqQuestion
+export default NumericQuestion

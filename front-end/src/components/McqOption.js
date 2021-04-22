@@ -4,16 +4,9 @@ import React, { useEffect } from "react"
 
 const McqOption = (props) => {
 
-    const [color, setColor] = React.useState("white")
-
-    useEffect(() => {
-        setColor("white")
-    }, [props.option])
-
     return (
-        <div className={props.mcqOptionType} style={{ backgroundColor: color }} onClick={() => {
-            setColor("#415F78")
-            props.setOption(props.option)
+        <div className={props.mcqOptionType} style={{ backgroundColor: props.color, color: props.color === "white" ? "#666666" : "white" }} onClick={() => {
+            props.setSelectedOption(props.option)
         }
         }>
             {props.questionNumber})&nbsp; {props.option}

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import McqQuestion from "./McqQuestion"
-import { Container, Row, Col } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import { useParams, useHistory } from "react-router-dom"
 import QuestionModal from "./QuestionModal"
 
@@ -11,7 +11,6 @@ const RapidFireRound = (props) => {
 
     const [expireTime, setExpireTime] = React.useState()
     const [timeLeft, setTimeLeft] = React.useState(`${props.timer}`)
-    // const [ended, setEnded] = React.useState(false)
     const [question, setQuestion] = React.useState({})
     const [option, setOption] = React.useState()
     const [score, setScore] = React.useState()
@@ -99,7 +98,7 @@ const RapidFireRound = (props) => {
 
             </Container>}
 
-            <QuestionModal trigger={show} onClose={onClose} text={modalText} score={score}/>
+            <QuestionModal trigger={show} onClose={onClose} text={modalText} score={score} />
 
         </React.Fragment >
     )
