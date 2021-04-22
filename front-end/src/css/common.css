@@ -22,7 +22,7 @@
   /* width: 16.3125em; */
 }
 
-.viewall{
+.viewall {
   border: none;
   text-decoration: underline;
   font-size: 18px;
@@ -118,30 +118,28 @@
   background-position: right !important;
 }
 
-
 /***********/
 #header {
   background-size: cover !important;
   background-position: right !important;
 }
 
-
 /*Responsive tabs*/
-.dropKid{
+.dropKid {
   /* box-sizing: content-box !important; */
-  background-color: #46B7A1 !important;
+  background-color: #46b7a1 !important;
   /* border-top:0.01px solid #ffffff !important; */
-  font-size: 16px !important; 
-  color:#ffffff !important;
+  font-size: 16px !important;
+  color: #ffffff !important;
   /* width: 100% !important; */
   padding: 0.5rem 1.5rem !important;
   /* box-shadow: black !important; */
 }
-.dropKid:hover{
+.dropKid:hover {
   background-color: #5ec7b2 !important;
 }
 
-.plain{
+.plain {
   border: none;
   padding: 0;
   margin: 0;
@@ -151,24 +149,24 @@
   background-color: #ffffff !important;
 }
 
-.one{
-  border-top : 1px solid #C4C4C4;
-  border-left: 1px solid #C4C4C4;
+.one {
+  border-top: 1px solid #c4c4c4;
+  border-left: 1px solid #c4c4c4;
   border-radius: 30px 0px 0px 0px;
 }
 
-.two{
-  border-top : 1px solid #C4C4C4;
+.two {
+  border-top: 1px solid #c4c4c4;
   border-radius: 0px 0px 0px 0px;
 }
 
-.three{
-  border-top : 1px solid #C4C4C4;
-  border-right: 1px solid #C4C4C4;
+.three {
+  border-top: 1px solid #c4c4c4;
+  border-right: 1px solid #c4c4c4;
   border-radius: 0px 30px 0px 0px;
 }
 
-#myButton{
+#myButton {
   font-family: Barlow;
   color: #ffffff;
   background: #415f78;
@@ -186,18 +184,18 @@
 
 /*****nav bar*/
 /* ul.nav li.dropdown:hover ul.dropdown-menu{  */
-.navHover:hover .hoverable{
-  display: block; 
+.navHover:hover .hoverable {
+  display: block;
 }
 
-.myBox{
-  border: 1px solid #C4C4C4; 
+.myBox {
+  border: 1px solid #c4c4c4;
   box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.1);
-  margin-left: 9%; 
-  margin-right: 9%; 
+  margin-left: 9%;
+  margin-right: 9%;
   margin-top: 0.4rem;
-  padding-bottom: 1rem; 
-  padding-Left: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
   padding-top: 1rem;
   padding-right: 1rem;
 }

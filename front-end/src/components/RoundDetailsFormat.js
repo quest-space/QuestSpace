@@ -151,6 +151,7 @@ const RoundDetailsFormat = (props) => {
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "center",
+            paddingTop: "2rem",
           }}
         >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
