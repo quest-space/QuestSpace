@@ -18,7 +18,7 @@ const headings = {
     "all" : "All Quests",
     "popular" : "Popular Quests",
     "My Quests" : "all",
-    "Popular Quests" : "popular"
+    "Popular Quests" : "popular",
 }
 
 const CardsContainer = (props) => {

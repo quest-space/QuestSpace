@@ -13,8 +13,8 @@ const Header = (props) => {
         id="header"
         className="jumbotron jumbotron-fluid"
         style={{
-          background:
-            "linear-gradient(209.34deg, rgba(71, 111, 143, 0) 17.99%, #335875 177.27%), #1F394E",
+          background: "#1F394E",
+            // "linear-gradient(209.34deg, rgba(71, 111, 143, 0) 17.99%, #335875 177.27%), #1F394E",
           marginBottom: "0em",
           paddingLeft: "9%",
         }}
