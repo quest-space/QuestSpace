@@ -117,7 +117,7 @@ const Quest = () => {
             </div>
             }
             {
-             (response.quest.enrolled === 1) && <QuestEnrolled x = {response} />
+             (response.quest.enrolled === 1)  && <QuestEnrolled x = {response} />
             }
             {/* <PageFooter /> */}
 

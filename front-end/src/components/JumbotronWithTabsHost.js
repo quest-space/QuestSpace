@@ -17,19 +17,19 @@ const JumbotronWithTabs = (props) => {
       setBorderBar5("5px solid transparent");
       setBorderBar4("5px solid transparent");
       setBorderBar1("5px solid #ffffff");
-    } else if (x == "live") {
+    } else if (x === "live") {
       setBorderBar1("5px solid transparent");
       setBorderBar3("5px solid transparent");
       setBorderBar2("5px solid #ffffff");
       setBorderBar4("5px solid transparent");
       setBorderBar5("5px solid transparent");
-    } else if (x == "upcoming") {
+    } else if (x === "upcoming") {
       setBorderBar1("5px solid transparent");
       setBorderBar2("5px solid transparent");
       setBorderBar3("5px solid #ffffff");
       setBorderBar4("5px solid transparent");
       setBorderBar5("5px solid transparent");
-    } else if (x == "past") {
+    } else if (x === "past") {
       setBorderBar1("5px solid transparent");
       setBorderBar2("5px solid transparent");
       setBorderBar4("5px solid #ffffff");

@@ -79,7 +79,7 @@ const CardsContainer = (props) => {
                  {Object.keys(cards).map((key, i) => {
                      return(    
                          
-                         <div>
+                         <div key = {i}>
                                     <div style={{
                                         paddingLeft:'1.5rem', 
                                         paddingTop:'5.5rem', 
@@ -96,10 +96,10 @@ const CardsContainer = (props) => {
                              {cards[key].length > 0 && <div>
                              {Object.keys(cards[key]).map((cardList, j)=>{
                                  return(
-                                 <div className="row" style={{padding:'1.5rem'}}>
+                                 <div key = {j} className="row" style={{padding:'1.5rem'}}>
                                  {Object.keys(cards[key][cardList]).map((card, k)=>{
                                      return(
-                                         <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                                         <div key = {k} className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                                              {/* {console.log(cards[key][cardList][card].hostUser)} */}
                                              <Link to={{pathname: "/participanthomepage/quest/"+cards[key][cardList][card].questID}}><Cards 
                                                  imgUrl = "https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
@@ -144,7 +144,7 @@ const CardsContainer = (props) => {
                 <div className="container" id="cc" style={{marginTop:'0rem', paddingBottom:"5.5rem"}}>
                      {Object.keys(cards).map((key, i) => {
                         return( 
-                            <div>
+                            <div key = {i}>
                                             
                                 {key === (props.tab+"Quests") &&
                                 <div style={{
@@ -161,10 +161,10 @@ const CardsContainer = (props) => {
                                 {
                                 Object.keys(cards[key]).map((cardList, j)=>{
                                     return(
-                                    <div className="row" style={{padding:'1.5rem'}}>
+                                    <div key={j} className="row" style={{padding:'1.5rem'}}>
                                     {Object.keys(cards[key][cardList]).map((card, k)=>{
                                         return(
-                                            <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                                            <div key={k} className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                                                 {/* {console.log(cards[key][cardList][card].hostUser)} */}
                                                 <Link to={{pathname: "participanthomepage/quest/"+cards[key][cardList][card].questID}}><Cards 
                                                     imgUrl = "https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
