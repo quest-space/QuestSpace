@@ -18,7 +18,7 @@ const JumbotronWithTabs = (props) => {
       setBorderBar2('5px solid transparent')
       setBorderBar1('5px solid #ffffff')
     }
-    else if(x == 'allQuests'){
+    else if(x === 'allQuests'){
       setBorderBar1('5px solid transparent')
       setBorderBar2('5px solid transparent')
       setBorderBar3('5px solid #ffffff')
