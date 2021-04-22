@@ -56,7 +56,7 @@ const SignInCard = () => {
     return (
         <div className="createAccount">
             <div className="header">
-                <div className="title">
+                <div className="titleSignUp">
                     Sign In
                 </div>
             </div>
@@ -70,40 +70,40 @@ const SignInCard = () => {
                 </button>
             </nav>
 
-            <form className="form">
+            <form className="formSignUp">
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Username</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Username</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" onChange={(ev) => updateState(ev, setUserName)} />
+                    <div className="formColSignUp">
+                        <input type="text" className="inputSignUp" placeholder="Enter here" onChange={(ev) => updateState(ev, setUserName)} />
                     </div>
                 </div>
 
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Password</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Password</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="password" className="input" placeholder="Enter here" onChange={(ev) => updateState(ev, setPassword)} />
+                    <div className="formColSignUp">
+                        <input type="password" className="inputSignUp" placeholder="Enter here" onChange={(ev) => updateState(ev, setPassword)} />
                     </div>
                 </div>
             </form>
 
             <div style={{ paddingTop: "20px", textAlign: "center" }}>
-                <button className="btnNext" onClick={signInUser}>
+                <button className="btnNextSignUp" onClick={signInUser}>
                     Sign In
                 </button>
             </div>
 
 
-            <div className="titleCaption" style={{ paddingTop: "10px" }}>
+            <div className="titleCaptionSignUp" style={{ paddingTop: "10px" }}>
                 Not registered?&nbsp;
-                <Link className="titleCaption" style={{ textDecorationLine: "underline" }} to="/signup">
+                <Link className="titleCaptionSignUp" style={{ textDecorationLine: "underline" }} to="/signup">
                     Sign Up
                 </Link>
             </div>

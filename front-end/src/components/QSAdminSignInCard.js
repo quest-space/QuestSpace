@@ -64,17 +64,17 @@ const QSAdminSignInCard = () => {
       }}
     >
       <div className="header">
-        <div className="title">Admin Sign In</div>
+        <div className="titleSignUp">Admin Sign In</div>
       </div>
 
-      <form className="form">
+      <form className="formSignUp">
         <div className="formRow">
-          <div className="formCol">
-            <label className="formLabel">Username</label>
+          <div className="formColSignUp">
+            <label className="formLabelSignUp">Username</label>
           </div>
         </div>
         <div className="formRow" style={{ paddingBottom: "5px" }}>
-          <div className="formCol">
+          <div className="formColSignUp">
             <input
               type="text"
               className="input"
@@ -85,12 +85,12 @@ const QSAdminSignInCard = () => {
         </div>
 
         <div className="formRow">
-          <div className="formCol">
-            <label className="formLabel">Password</label>
+          <div className="formColSignUp">
+            <label className="formLabelSignUp">Password</label>
           </div>
         </div>
         <div className="formRow">
-          <div className="formCol">
+          <div className="formColSignUp">
             <input
               type="password"
               className="input"
@@ -108,7 +108,7 @@ const QSAdminSignInCard = () => {
           textAlign: "center",
         }}
       >
-        <button className="btnNext" onClick={signInUser}>
+        <button className="btnNextSignUp" onClick={signInUser}>
           Sign In
         </button>
       </div>
