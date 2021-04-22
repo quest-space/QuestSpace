@@ -94,7 +94,7 @@ const RoundDetailsFormat = (props) => {
         </div>
         {/* </p> */}
 
-        <p
+        {props.allowedtime && <p
           className="display-4"
           style={{
             paddingTop: "1.5rem",
@@ -106,8 +106,8 @@ const RoundDetailsFormat = (props) => {
           }}
         >
           Allowed Time
-        </p>
-        <div
+        </p>}
+        {props.allowedtime && <div
           className="display-4"
           style={{
             fontWeight: "400",
@@ -117,7 +117,7 @@ const RoundDetailsFormat = (props) => {
           }}
         >
           {props.allowedtime}
-        </div>
+        </div>}
         {/* </p> */}
 
         <p
