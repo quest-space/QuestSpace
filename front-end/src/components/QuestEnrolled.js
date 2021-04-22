@@ -111,26 +111,46 @@ const QuestEnrolled = (props) => {
           />
         </div>
       )}
+      
+      {props.x.status == "quest_and_round_details" &&
+      <div>
+        {tab == "Rounds" && props.x.rounds.length === 0 && (
+          <div
+            style={{
+              border: "1px solid #C4C4C4",
+              boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
+              marginLeft: "9%",
+              marginRight: "9%",
+              marginBottom: "5.5rem",
+              marginTop: "3rem",
+              padding: "2rem",
+            }}
+          >
+            <i class="fas fa-exclamation-circle"></i> Not Available
+          </div>
+        )}
 
-      {tab == "Rounds" && props.x.rounds.length === 0 && (
+        {tab == "Rounds" && props.x.rounds.length > 0 && (
+          <QuestRounds details={props.x.rounds} id={props.x.quest.questID} />
+        )}
+      </div>}
+
+      {
+        props.x.status == "quest_details" && tab == "Rounds" &&
         <div
-          style={{
-            border: "1px solid #C4C4C4",
-            boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
-            marginLeft: "9%",
-            marginRight: "9%",
-            marginBottom: "5.5rem",
-            marginTop: "3rem",
-            padding: "2rem",
-          }}
-        >
-          <i class="fas fa-exclamation-circle"></i> Not Available
-        </div>
-      )}
-
-      {tab == "Rounds" && props.x.rounds.length > 0 && (
-        <QuestRounds details={props.x.rounds} id={props.x.quest.questID} />
-      )}
+            style={{
+              border: "1px solid #C4C4C4",
+              boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
+              marginLeft: "9%",
+              marginRight: "9%",
+              marginBottom: "5.5rem",
+              marginTop: "3rem",
+              padding: "2rem",
+            }}
+          >
+            <i class="fas fa-exclamation-circle"></i> Not Available
+          </div>
+      }
 
       {/* // (props.x.rounds ? <QuestRounds details = {props.x.rounds} id = {props.x.quest.questID}/> : <div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>Not Available</div>) */}
 
