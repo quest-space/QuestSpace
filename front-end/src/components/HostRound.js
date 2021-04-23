@@ -5,13 +5,16 @@ import PageFooter from "./PageFooter"
 import Header from "./Header"
 import BreadCrumb from "./BreadCrumb"
 import Tabs from "./Tabs"
+import HostRoundDetails from "./HostRoundDetails"
+import HostRapidFire from "./HostRapidFire"
+import "../css/HostRound.css"
 
 const HostRound = () => {
 
     const { roundID, questID } = useParams()
     const history = useHistory()
 
-    const [tab, setTab] = React.useState("Details");
+    const [tab, setTab] = React.useState("Round Details");
     const [roundFetched, setRoundFetched] = React.useState(false)
     const [roundDetails, setRoundDetails] = React.useState({})
 
@@ -31,7 +34,8 @@ const HostRound = () => {
             alert(JSON.stringify(responseBody), "Returning back to quest page")
             // history.replace(`/hosthomepage/quest/${questID}`)
         } else {
-            responseBody["roundType"] = `Submission`
+            responseBody["roundType"] = `RapidFire`
+            responseBody["imageURL"] = "/q2.png"
             setRoundDetails(responseBody)
         }
 
@@ -49,9 +53,14 @@ const HostRound = () => {
             <Header heading={`Round ${roundID}: ${roundDetails.roundName}`} subheading={roundDetails.roundType} />
             <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: roundDetails.questName, to: `/participanthomepage/quest/${questID}` }, { text: `Round ${roundID}`, to: `/participanthomepage/quest/${questID}/round/${roundID}` }]} />
 
-            {tab} {roundDetails.roundType}
+            {/* {tab} {roundDetails.roundType} */}
 
             <Tabs setTab={setTab} roundType={roundDetails.roundType} />
+
+            {tab === `Round Details` && <HostRoundDetails roundDetails={roundDetails} left="3rem" right="3rem" top="3rem" />}
+
+            {/* {roundDetails.roundType === `RapidFire` && <HostRapidFire />} */}
+            <HostRapidFire />
 
             <PageFooter />
         </React.Fragment>
