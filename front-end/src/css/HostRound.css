@@ -13,3 +13,47 @@
   font-size: 18px;
   cursor: pointer;
 }
+
+.questionTemplate {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.questionArea {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-top: 5px;
+  flex-grow: 1;
+}
+
+.questionArea textarea {
+  border: none;
+  border-bottom: solid 1px #575757;
+  overflow: hidden;
+  width: 100%;
+  resize: vertical;
+}
+
+.questionNum {
+  color: #313131;
+  font-weight: 500;
+  font-size: 24pt;
+  width: auto;
+  height: auto;
+  /* align-items: flex-start;
+    justify-content: flex-start;
+    text-align: start; */
+}
+
+.questionHeading {
+  color: #46b7a1;
+  font-size: 16pt;
+}
+
+.questionText {
+  color: #313131;
+  font-size: 12pt;
+  width: 100%;
+}
