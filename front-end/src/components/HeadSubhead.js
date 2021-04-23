@@ -16,6 +16,22 @@ const HeadSubhead = (props) => {
         }}
       >
         {props.heading}
+
+        {props.editable === 1 && (
+          <div
+            className="display-4"
+            style={{
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "#313131",
+              marginLeft: "0rem",
+              wordWrap: "break-word",
+            }}
+          >
+            {props.heading}
+          </div>
+        )}
+
         <div
           className="display-4"
           style={{

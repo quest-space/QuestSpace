@@ -37,7 +37,7 @@ const Round = () => {
             alert(JSON.stringify(responseBody), "Returning back to quest page")
             history.replace(`/participanthomepage/quest/${questID}`)
         } else {
-            responseBody["roundType"] = `Quiz`
+            responseBody["roundType"] = `Submission`
             setRoundDetails(responseBody)
         }
 
@@ -52,7 +52,8 @@ const Round = () => {
                 setRoundType(<QuizRound timer={300} /> //change it to value gotten from API
                 )
             } else if (roundDetails.roundType === `Submission`) {
-                setRoundType(<SubmissionRound />
+                const totalTime = (new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()
+                setRoundType(<SubmissionRound endTime={roundDetails.endTime}/> //change it to value gotten from API
                 )
             }
             console.log(`roundType set to render ${roundDetails.roundType} round questions`)
