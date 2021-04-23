@@ -4,15 +4,14 @@ import "../css/Details.css";
 import { Link, useHistory } from "react-router-dom";
 
 // To Be Completed
-const EditProfile = (props) => {
-  const [user, setUser] = React.useState(true);
-  const [FirstName, setFirstName] = React.useState();
-  const [LastName, setLastName] = React.useState();
+const EditProfileHost = (props) => {
   const [Password, setPassword] = React.useState();
-  const [DateofBirth, setDateofBirth] = React.useState();
   const [Institution, setInstitution] = React.useState();
   const [response1, setResponse1] = React.useState({});
   const [userString, setuserString] = React.useState("");
+  const [Phone, setPhone] = React.useState("");
+  const [RepName, setRepName] = React.useState("");
+  const [RepDesignation, setRepDesignation] = React.useState("");
 
   const history = useHistory();
 
@@ -21,24 +20,8 @@ const EditProfile = (props) => {
   };
 
   const ProfileAPI = async () => {
-    const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({}),
-      }
-    );
-
-    const checkRespBody = await checkResp.json();
-    console.log("response type", checkRespBody.type);
-    setuserString(checkRespBody.type);
-
     const response1 = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/${userString}/profile`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/profile`,
       {
         method: "POST",
         headers: {
@@ -66,16 +49,26 @@ const EditProfile = (props) => {
     }
   };
 
+  console.log("Here");
   ProfileAPI();
 
   const updateState = (ev, stateUpdateFn) => {
     stateUpdateFn(ev.target.value);
   };
 
+  let full = [];
+  let empty = [];
+  for (let i = 0; i < parseInt(response1.rating); i++) {
+    full.push(1);
+  }
+  for (let i = 0; i < 5 - parseInt(response1.rating); i++) {
+    empty.push(0);
+  }
+
   const EditDets = async () => {
     console.log("starting");
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/profile/edit`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/profile/edit`,
       {
         method: "POST",
         headers: {
@@ -83,12 +76,11 @@ const EditProfile = (props) => {
         },
         credentials: "include",
         body: JSON.stringify({
-          firstname: FirstName,
-          lastname: LastName,
-          fullname: response1.fullname,
-          dateofbirth: DateofBirth,
-          organization: Institution,
           password: Password,
+          phone: Phone,
+          representativeName: RepName,
+          representativeDesignation: RepDesignation,
+          organization: Institution,
         }),
       }
     );
@@ -137,7 +129,7 @@ const EditProfile = (props) => {
               wordWrap: "break-word",
             }}
           >
-            {response1.fullname}
+            {response1.username}
           </h1>
         </div>
       </div>
@@ -192,6 +184,36 @@ const EditProfile = (props) => {
         <p
           className="display-4"
           style={{
+            //paddingTop: "1.5rem",
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#46B7A1",
+            marginLeft: "0rem",
+            wordWrap: "break-word",
+          }}
+        >
+          Rating
+          <div
+            className="display-4"
+            style={{
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "#313131",
+              wordWrap: "break-word",
+            }}
+          >
+            {full.map((a, index) => {
+              return <i key={index} className="fa fa-star"></i>;
+            })}
+            {empty.map((a, index) => {
+              return <i key={index} className="far fa-star"></i>;
+            })}
+          </div>
+        </p>
+
+        <p
+          className="display-4"
+          style={{
             paddingTop: "0.5rem",
             fontWeight: "400",
             fontSize: "20px",
@@ -200,7 +222,7 @@ const EditProfile = (props) => {
             wordWrap: "break-word",
           }}
         >
-          First Name
+          Representative Name
           <div
             style={{
               paddingTop: "0.5rem",
@@ -210,8 +232,8 @@ const EditProfile = (props) => {
               type="text"
               className="inputdetail"
               //placeholder="1"
-              placeholder={response1.firstname}
-              onChange={(ev) => updateState(ev, setFirstName)}
+              placeholder={response1.representativeName}
+              onChange={(ev) => updateState(ev, setRepName)}
             />
           </div>
         </p>
@@ -227,7 +249,7 @@ const EditProfile = (props) => {
             wordWrap: "break-word",
           }}
         >
-          Last Name
+          Representative Designation
           <div
             style={{
               paddingTop: "0.2rem",
@@ -237,8 +259,8 @@ const EditProfile = (props) => {
               type="text"
               className="inputdetail"
               //placeholder="1"
-              placeholder={response1.lastname}
-              onChange={(ev) => updateState(ev, setLastName)}
+              placeholder={response1.representativeDesignation}
+              onChange={(ev) => updateState(ev, setRepDesignation)}
             />
           </div>
         </p>
@@ -254,7 +276,7 @@ const EditProfile = (props) => {
             wordWrap: "break-word",
           }}
         >
-          Date of Birth
+          Phone
           <div
             style={{
               paddingTop: "0.2rem",
@@ -264,8 +286,8 @@ const EditProfile = (props) => {
               type="date"
               className="inputdetail"
               //placeholder="1"
-              placeholder={response1.dateofbirth}
-              onChange={(ev) => updateState(ev, setDateofBirth)}
+              placeholder={response1.phone}
+              onChange={(ev) => updateState(ev, setPhone)}
             />
           </div>
         </p>
@@ -332,16 +354,18 @@ const EditProfile = (props) => {
           }}
         >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
-          <button className="btnCancel" onClick={() => Cancel()}>
+          <button className="btnCancel" onClick={Cancel}>
             Cancel <i class="fa fa-times"></i>
           </button>
-          <button className="btnBegin" onClick={() => EditDets()}>
-            Update <i class="fa fa-check"></i>
-          </button>
+          <span style={{ paddingBottom: "0.5rem" }}>
+            <button className="btnBegin" onClick={EditDets}>
+              Update <i class="fa fa-check"></i>
+            </button>
+          </span>
         </div>
       </div>
     </div>
   );
 };
 
-export default EditProfile;
+export default EditProfileHost;
