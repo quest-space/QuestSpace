@@ -7,10 +7,11 @@ const formatAMPM = (date) => {
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? '0'+ minutes : minutes;
   const strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime + ', ' + date.toDateString() + ' PK Time';
+  return strTime + ', ' + date.toDateString() + ` (PKST)`;
 }
 
 const getConciseDate = (date) => {
+  date = new Date(date.getTime() + (5 * 60 * 60 * 1000));
   let hours = date.getHours();
   let minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'pm' : 'am';
@@ -18,7 +19,7 @@ const getConciseDate = (date) => {
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? '0'+ minutes : minutes;
   const strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime + ', ' + date.toDateString().split(` `).slice(1,3).join(` `);
+  return strTime + ', ' + date.toDateString().split(` `).slice(1,3).join(` `) + ` (PKST)`;
 }
 
 const getQuestStatus = (startTime, endTime, currTime) => {
