@@ -100,7 +100,7 @@ const SubmissionRound = (props) => {
         })
 
         if (response.status === 200) {
-            setModalText("Your file has been submitted.") 
+            setModalText("Your file has been submitted.")
             setShow(true)
         } else {
             alert("Your file could not be submitted. Kindly resubmit.")
@@ -129,7 +129,7 @@ const SubmissionRound = (props) => {
 
                     {/* Submission Stuff */}
                     <form onSubmit={formSubmit}>
-                        <input id="uploadFile" type="file" accept=".png,.jpg,.jpeg" />
+                        <input name="submittedFile" id="uploadFile" type="file" />
                         <input className="submitBtn" type='submit' />
                     </form>
                 </div>
