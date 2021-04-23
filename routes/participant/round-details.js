@@ -78,7 +78,7 @@ router.post(`/:questid/:roundid/leaderboard`, async (req, res) => {
   
 });
 
-const upload = multer({ dest: `../../../qs-uploaded-files/` });
+const upload = multer({ dest: __dirname + `../../../qs-uploaded-files/` });
 router.post(`/:questid/:roundid/submit`, upload.single(`submittedFile`), async (req, res) => {
   if (!req.file) {
     sendRes(res, BAQ_REQUEST_STATUS_CODE, {
