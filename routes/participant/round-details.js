@@ -19,6 +19,7 @@ const { sendRes } = require(`../helpers/sendRes`);
 const Helper = require(`../helpers/helperFunctions`);
 const { findOne } = require("../../models/participant");
 const { attemptRound } = require(`./attemptRound`);
+const { makeLeaderboard } = require(`../helpers/leaderboard_helper`);
 
 let username = 'HassaanAW';
 const currTime = Date.now();
@@ -51,11 +52,6 @@ router.use(`/:questid/:roundid`, async (req, res, next) => {
           errors: {},
           genericErrMsg: `Round hasn't started yet`
         });
-      } else if (roundStatus === `Past`) {
-        sendRes(res, FORBIDDEN_STATUS_CODE, {
-          errors: {},
-          genericErrMsg: `Round has expired!`
-        });
       } else {
         next();
         return;
@@ -67,7 +63,17 @@ router.use(`/:questid/:roundid`, async (req, res, next) => {
 // makes sure round exists
 // makes sure round is live
 
-
+router.post(`/:questid/:roundid/leaderboard`, async (req, res) => {
+  
+  try{
+        const ret_val = await makeLeaderboard(req.params.questid, req.params.roundid, "participant", req.body.username);
+        sendRes(res, OK_STATUS_CODE, ret_val );
+    }
+    catch(err){
+        sendRes(res, BAQ_REQUEST_STATUS_CODE, err );
+    }
+  
+});
 
 router.post(`/:questid/:roundid/attempt`, async (req, res) => {
   attemptRound(req, res);
