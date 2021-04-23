@@ -13,7 +13,7 @@ const RapidFireRound = (props) => {
     const [timeLeft, setTimeLeft] = React.useState(`${props.timer}`)
     const [question, setQuestion] = React.useState({})
     const [option, setOption] = React.useState()
-    const [score, setScore] = React.useState()
+    const [score, setScore] = React.useState(0)
 
     const [show, setShow] = React.useState(false)
     const [modalText, setModalText] = React.useState("")
@@ -47,7 +47,7 @@ const RapidFireRound = (props) => {
                 setModalText("Congratulations!!! You have completed the round.")
                 setShow(true)
             } else {
-                responseBody.nextQuestion["imageURL"] = "/q1.png"
+                // responseBody.nextQuestion["imageURL"] = "/q1.png"
                 setQuestion(responseBody.nextQuestion)
                 setScore(responseBody.roundScore)
             }

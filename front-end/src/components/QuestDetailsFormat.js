@@ -60,24 +60,25 @@ const QuestDetailsFormat = (props) => {
           }}
         >
           Host
-          <div
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "#313131",
-              wordWrap: "break-word",
-            }}
-          >
-            {props.hostname}
-          </div>
-          {full.map((a, index) => {
-            return <i key={index} className="fa fa-star"></i>;
-          })}
-          {empty.map((a, index) => {
-            return <i key={index} className="far fa-star"></i>;
-          })}
         </p>
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {props.hostname}
+        </div>
+        {full.map((a, index) => {
+          return <i key={index} className="fa fa-star"></i>;
+        })}
+        {empty.map((a, index) => {
+          return <i key={index} className="far fa-star"></i>;
+        })}
+        {/* </p> */}
 
         <div>
           <HeadSubhead heading="Type" subheading={props.type} />

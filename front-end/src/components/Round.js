@@ -18,11 +18,11 @@ const Round = () => {
     const [roundFetched, setRoundFetched] = React.useState(false)
     const [roundDetails, setRoundDetails] = React.useState({})
     const [started, setStarted] = React.useState(false)
-    const [roundType, setRoundType] = React.useState() // change it back to empty
+    const [roundType, setRoundType] = React.useState()
 
 
     const fetchRoundDetails = async () => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -37,7 +37,6 @@ const Round = () => {
             alert(JSON.stringify(responseBody), "Returning back to quest page")
             history.replace(`/participanthomepage/quest/${questID}`)
         } else {
-            responseBody["roundType"] = `Submission`
             setRoundDetails(responseBody)
         }
 
@@ -45,15 +44,15 @@ const Round = () => {
 
     useEffect(() => {
         if (started) {
-            if (roundDetails.roundType === `RapidFire`) {
+            if (roundDetails.roundType === `Rapid Fire`) {
                 setRoundType(<RapidFireRound timer={roundDetails.timer} />)
             } else if (roundDetails.roundType === `Quiz`) {
-                const totalTime = (new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()
-                setRoundType(<QuizRound timer={300} /> //change it to value gotten from API
+                const totalTime = ((new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()) / 1000
+                setRoundType(<QuizRound timer={totalTime} />
                 )
             } else if (roundDetails.roundType === `Submission`) {
-                const totalTime = (new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()
-                setRoundType(<SubmissionRound endTime={roundDetails.endTime} /> //change it to value gotten from API
+                const totalTime = ((new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()) / 1000
+                setRoundType(<SubmissionRound endTime={roundDetails.endTime} />
                 )
             }
             console.log(`roundType set to render ${roundDetails.roundType} round questions`)
@@ -75,14 +74,16 @@ const Round = () => {
 
             <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: roundDetails.questName, to: `/participanthomepage/quest/${questID}` }, { text: `Round ${roundID}`, to: `/participanthomepage/quest/${questID}/round/${roundID}` }]} />
 
-            {/* Round Details when round not started by participant */}
-            {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={roundDetails.timer && `${roundDetails.timer} seconds`} about={roundDetails.description} onClick={setStarted} />}
+            <div className="roundArea">
+                {/* Round Details when round not started by participant */}
+                {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={roundDetails.timer && `${roundDetails.timer} seconds`} about={roundDetails.description} onClick={setStarted} />}
 
-            {/* Specific round type component once round has been started by participant */}
-            {/* change it to started */}
-            {started && roundType
+                {/* Specific round type component once round has been started by participant */}
+                {/* change it to started */}
+                {started && roundType
 
-            }
+                }
+            </div>
 
 
             <PageFooter />
