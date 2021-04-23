@@ -39,10 +39,10 @@ const Quest = () => {
         setResponse(responseBody)
 
         if (response.status !== 200) {
-            console.log(`Error in enrolment.`)
+            console.log(`Error fetching.`)
             showError(responseBody.errors)
         } else {
-            console.log(`Successful enrolment.`)
+            console.log(`Successful fetching.`)
         }
     
     }
