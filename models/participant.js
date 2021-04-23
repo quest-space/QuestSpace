@@ -21,6 +21,10 @@ const participantSchema = new Schema({
     required: [true, 'Password is required'], 
     minlength: [7, 'Password should be atleast 7 characters long'] 
   },
+  passwordlength: {
+    type: Number,
+    required: [true, 'Password length is required']
+  },
   firstname: {
     type: String,
     required: [true, 'First name is required'],
@@ -44,6 +48,7 @@ const participantSchema = new Schema({
 
 // fire a function before doc saved to db
 participantSchema.pre('save', async function(next) {
+  this.passwordlength = this.password.length;
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   next();
