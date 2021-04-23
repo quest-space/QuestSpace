@@ -48,7 +48,6 @@ const participantSchema = new Schema({
 
 // fire a function before doc saved to db
 participantSchema.pre('save', async function(next) {
-  this.passwordlength = this.password.length;
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   next();

@@ -17,7 +17,7 @@ const BAQ_REQUEST_STATUS_CODE = 400;
 router.post(`/signup/participant`, async (req, res) => {
   const { username, password, firstname, lastname, dateofbirth, organization } = req.body;
   try {
-    const participant = await Participant.create({ username, password, firstname, lastname, dateofbirth, organization });
+    const participant = await Participant.create({ username, password, passwordlength: password.length, firstname, lastname, dateofbirth, organization });
     const token = createToken(participant._id, participant.username, `participant`);
     res.cookie('qsUser', token, { httpOnly: true, maxAge: maxAge * 1000 });
     sendRes(res, CREATED_STATUS_CODE, {}) // req succeeded and led to a resource creation
@@ -30,7 +30,7 @@ router.post(`/signup/participant`, async (req, res) => {
 router.post(`/signup/host`, async (req, res) => {
   const { username, password, organization, phone, representativeName, representativeDesignation } = req.body;
   try {
-    const host = await Host.create({ username, password, organization, phone, representativeName, representativeDesignation });
+    const host = await Host.create({ username, password, passwordlength: password.length, organization, phone, representativeName, representativeDesignation });
     const token = createToken(host._id, host.username, `host`);
     res.cookie('qsUser', token, { httpOnly: true, maxAge: maxAge * 1000 });
     sendRes(res, CREATED_STATUS_CODE, {}) // req succeeded and led to a resource creation
