@@ -70,10 +70,7 @@ router.use(`/:questid/:roundid`, async (req, res, next) => {
 
 
 router.post(`/:questid/:roundid/attempt`, async (req, res) => {
-  // sendRes(res, OK_STATUS_CODE, {a: "hello"});
-
   attemptRound(req, res);
-  
 });
 
 router.post(`/:questid/:roundid`, async (req, res) => {
@@ -99,7 +96,8 @@ router.post(`/:questid/:roundid`, async (req, res) => {
           description: find_round[0].description,
           roundName: find_round[0].roundName,
           questName: find_round[0].questName,
-          isAttemptFinished: isAttemptFinished
+          isAttemptFinished: isAttemptFinished,
+          roundType: find_round[0].roundType
       }
 
       sendRes(res, OK_STATUS_CODE, round_details);

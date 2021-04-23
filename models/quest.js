@@ -43,7 +43,7 @@ const questSchema = new Schema({
     },
     logoURL: {
         type: String,
-        default: `${getImgUploadURL()}default-img.png`
+        required: [true, 'Logo is required']  
     },
     status: {
         type: String,

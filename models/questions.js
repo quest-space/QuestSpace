@@ -39,10 +39,10 @@ const questionSchema = new Schema({
         type: Schema.Types.Mixed,
         required: [true, 'Correct answer is required']
     },
-    Image: {
-        type: Buffer
+    imageURL: {
+        type: String,
+        default: ""
     }
-
 });
 
 //Export function to create "questionSchema" model class

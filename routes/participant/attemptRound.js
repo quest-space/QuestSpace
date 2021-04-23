@@ -114,12 +114,16 @@ const attemptRound = async (req, res) => {
     });
     return;
   } else {
+    const nextQuestion = {
+      questionNum: questionToSend.questionNum,
+      statement: questionToSend.statement,
+      options: questionToSend.options
+    };
+    if (questionToSend.imageURL !== "") {
+      nextQuestion[imageURL] = questionToSend.imageURL;
+    }
     sendRes(res, CREATED_STATUS_CODE, {
-      nextQuestion: {
-        questionNum: questionToSend.questionNum,
-        statement: questionToSend.statement,
-        options: questionToSend.options
-      }, 
+      nextQuestion, 
       expireTime: submission.expireTime,
       expireDateTime: submission.expireTime.toString(),
       currTime: (new Date(currTime)).toString(),
