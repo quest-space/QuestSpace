@@ -44,10 +44,46 @@
   border-color: #203a50;
   border-width: 1px;
   font-size: 20px;
+  overflow-wrap: break-word;
+}
+
+.longinputdetail {
+  background: white;
+  width: 100%;
+  border: none;
+  border-bottom: solid;
+  border-color: #203a50;
+  border-width: 1px;
+  font-size: 20px;
+  overflow-wrap: break-word;
+}
+/*
+input[value="0000-00-00"]::-webkit-datetime-edit {
+  color: transparent;
+}
+*/
+
+::-webkit-file-upload-button {
+  border-radius: 8px;
+  border-color: #313131;
+  background-color: white;
+  color: #313131;
+  width: 8rem;
+  padding: 0.2rem;
+
+  font-family: Barlow;
+  font-weight: 300;
+  font-size: 20px;
 }
 
 .formLabel1 {
   font-size: 16px;
   padding-bottom: 0px;
   color: #313131;
+}
+
+.inputdetail [type="text"] {
+  word-wrap: break-word;
+  word-break: break-all;
+  height: 80px;
 }
