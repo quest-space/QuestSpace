@@ -1,6 +1,5 @@
 import React from "react";
 import QuestDetailsFormat from "./QuestDetailsFormat";
-import codinguru from "../img/testing/CodinGuru.png";
 import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import QuestRounds from "./QuestRounds";
@@ -105,7 +104,7 @@ const QuestEnrolled = (props) => {
             endingtime={props.x.quest.endTime}
             type={props.x.quest.nature}
             about={props.x.quest.about}
-            imgsrc={codinguru}
+            imgsrc={props.x.quest.logoURL}
             left="3rem"
             right="3rem"
             top="3rem"

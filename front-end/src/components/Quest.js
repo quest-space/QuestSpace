@@ -1,7 +1,6 @@
 import React from "react"
 import { useParams } from "react-router-dom"
 import QuestDetailsFormat from "./QuestDetailsFormat";
-import codinguru from "../img/testing/CodinGuru.png";
 import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import QuestEnrolled from "./QuestEnrolled"
@@ -101,7 +100,7 @@ const Quest = () => {
                     endingtime= {response.quest.endTime}
                     type= {response.quest.nature}
                     about={response.quest.about}
-                    imgsrc={codinguru}
+                    imgsrc={response.quest.logoURL}
                     left="9%"
                     right="9%"
                     top="5.5rem"
