@@ -12,20 +12,21 @@ import Cards from "./Cards"
 const Search = () => {
 
     const location = useLocation();
-    const [response, setResponse] = React.useState({"searchResults":[]})
+    const [response, setResponse] = React.useState({"quests":[]})
     const [render, setRender] = React.useState(false);
     const [tab, setTab] = React.useState('home')
     // const [searchflag, setSearchflag] = React.useState('home')
 
-    const apiCall = async (searchWord) => {
-        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/search`,{
+    const apiCall = async () => {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/popular-quests`,{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json'
             },
             credentials:"include",
             body: JSON.stringify({
-                key : searchWord
+                username: "HassaanAW",
+                password: "hassaan123",
             }),
         })
         const responseBody = await resp.json()
@@ -34,8 +35,7 @@ const Search = () => {
     
         if (resp.status !== 200) {
             console.log(`Error. Couldn't fetch data.`)
-            setResponse({"searchResults":[]})
-            // showError(responseBody.errors)
+            setResponse({"quests":[]})
         } else {
             console.log(`Fetch data successful`)
         }
@@ -43,18 +43,18 @@ const Search = () => {
 
     if(!render){
         setRender(true)
-        apiCall(location.state)
+        apiCall()
     }
 
     return (
         <div>
         <MainNavbar setTab={setTab} setRender={setRender}/>
-        <Header heading="Quests" subheading="Search" />
+        <Header heading="Popular Quests" subheading="In terms of Participations" />
         <BreadCrumb
             items={[
             { text: "Home", to: "/participanthomepage" },
             {
-                text: "Search Results",
+                text: "Popular Quests",
                 to: `/participanthomepage`,
             },
             ]}
@@ -72,7 +72,7 @@ const Search = () => {
                                         fontWeight: 'normal',
                                         fontSize: '32px',
                                         display:"block"}}>
-                                        {"Search Results for '" + location.state + "'"}
+                                        {"Popular Quests"}
                                     </div>
                                     
                             {response[key].length > 0 && <div>
@@ -108,7 +108,7 @@ const Search = () => {
                                     // marginBottom:"5.5rem",
                                     margin:"1.5rem",
                                     padding:"2rem"}}>
-                                        <i class="fas fa-exclamation-circle"></i> No match Found!
+                                        <i class="fas fa-exclamation-circle"></i> Not Available
                                     </div>
                             }
                             
