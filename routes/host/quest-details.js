@@ -8,6 +8,7 @@ const Round = require(`../../models/rounds`);
 const Submission = require(`../../models/submission`);
 const TimeFormatter = require(`../helpers/helperFunctions`);
 const { makeLeaderboard } = require(`../helpers/leaderboard_helper`);
+const Question = require(`../../models/questions`);
 
 const router = Router();
 
@@ -19,12 +20,6 @@ const DEFAULT_RATING = 3;
 
 const { handleErrorsFromDB, getConciseDate } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
-
-router.use(`/addround`, require(`./addround`));
-router.use(`/deleteround`, require(`./deleteround`));
-router.use(`/addquestion`, require(`./addquestion`));
-router.use(`/deletequestion`, require(`./deletequestion`));
-
 
 const currTime = Date.now();
 
@@ -81,6 +76,130 @@ catch(err){
 }
 })
 
+// Add participant
+router.post(`/:questid/addparticipant`, async (req, res) => {
+    try{
+        // Get participant name from body
+        // Check if participant exists in Participant Collection -> only then add to quest. QuestName needed to add
+        const participant = await Participant.findOne({username: req.body.username})
+        if(participant === null){
+            const error_msg = {
+                error: "Participant not found"
+            }
+            sendRes(res, BAQ_REQUEST_STATUS_CODE, error_msg);
+        }
+        else{
+            // Participant exists
+            const quest_detail = await Quest.findOne({_id: req.params.questid})
+            const added = await Participation.updateOne({questName: quest_detail.questName, participantUser: participant.username}, 
+                {$set: {questName: quest_detail.questName, participantUser: req.body.username}},
+                {upsert: true})
+            sendRes(res, OK_STATUS_CODE, added);
+        }
+       
+    }
+    catch(err)
+    {
+        console.log(err)
+        sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err) );
+    }
+});
+
+//
+router.post(`/:questid/removeparticipant`, async (req, res) => {
+    try{
+        // Get participant name from body
+        // Check if participant exists in Participant Collection -> only then add to quest. QuestName needed to add
+        const participant = await Participant.findOne({username: req.body.username});
+        if(participant === null){
+            const error_msg = {
+                error: "Participant not found"
+            }
+            sendRes(res, BAQ_REQUEST_STATUS_CODE, error_msg);
+        }
+        else{
+            // Participant exists
+            // Check if participant is already enrolled
+            const quest_detail = await Quest.findOne({_id: req.params.questid});
+
+            const is_enrolled = await Participation.findOne({questName: quest_detail.questName, participantUser: participant.username});
+            if(is_enrolled === null){
+                const error_msg = {
+                    error: "Participant is not enrolled"
+                }
+                sendRes(res, BAQ_REQUEST_STATUS_CODE, error_msg);
+            }
+            else{
+                // participant is enrolled. Now remove
+                const removed = await Participation.deleteOne({questName: quest_detail.questName, participantUser: req.body.username});
+                sendRes(res, OK_STATUS_CODE, removed);
+            }
+        }
+       
+    }
+    catch(err)
+    {
+        console.log(err)
+        sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err) );
+    }
+});
+
+
+// Add a round
+router.post(`/:questid/addround`, async (req, res) => {
+    try{
+        const quest_detail = await Quest.findOne({_id: req.params.questid})
+        const numrounds = quest_detail.numRounds
+        
+        const round = await Round.updateOne({questName: quest_detail.questName, roundNum: numrounds + 1}, {$set: {  roundName: req.body.roundName,  
+            roundNum: numrounds+1, roundType: req.body.roundType, description: req.body.description, 
+            startTime: req.body.startTime, endTime: req.body.endTime, timer: req.body.timer, eachMarks: req.body.eachMarks, totalMarks: req.body.totalMarks}},
+            {upsert: true})
+        sendRes(res, OK_STATUS_CODE, round);
+        // Update numRound in quest         
+        const quest_update = await Quest.updateOne({_id: req.params.questid}, {$set: {numRounds: numrounds + 1}})
+        // auto increment round number completed here
+    }
+    catch(err)
+    {
+        console.log(err)
+        sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err) );
+    }
+});
+
+// Delete a round
+router.post(`/:questid/:roundid/deleteround`, async (req, res) => {
+    try{
+        const quest_detail = await Quest.findOne({_id: req.params.questid})
+        const numrounds = quest_detail.numRounds
+               
+        const round_delete = await Round.deleteOne({questName: quest_detail.questName, roundNum: req.params.roundid})
+        const question = await Question.deleteMany({questName: quest_detail.questName, roundNum: req.params.roundid})
+        
+        // Updation begins here
+        if(req.params.roundid < numrounds){
+            // logic of updating all subsequent round
+            const i = parseInt(req.params.roundid)+1;
+            var j;
+            for(j= i; j <= numrounds; j++){
+                var round_update = await Round.updateOne({questName: quest_detail.questName, roundNum: j}, {$set: {roundNum: j-1 } });
+                var question_update = await Question.updateMany({questName: quest_detail.questName, roundNum: j},{$set: {roundNum: j-1 } });
+            }
+            // Subsequent rounds and their questions updated. 
+        }
+        sendRes(res, OK_STATUS_CODE, round_delete);
+       
+        // Update numRound in quest         
+        const quest_update = await Quest.updateOne({_id: req.params.questid}, {$set: {numRounds: numrounds - 1}})
+        // auto decrement roundNum completed here
+    }
+    catch(err)
+    {
+        console.log(err)
+        sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err) );
+    }
+});
+
 router.post(`/:questid`, async (req, res) => {
     try{
     const find_quest = await Quest.find({ _id: req.params.questid}); // find quest by quest_id
@@ -134,76 +253,6 @@ router.post(`/:questid`, async (req, res) => {
 
       else if( (check_quest_status(find_quest, currTime) == "Live") || (check_quest_status(find_quest, currTime) == "Past") ){
         
-        // Send Round Details as well 
-        // const RoundData = await Round.find({"questName": find_quest[0].questName}).exec();
-
-        // const submissionDatas = await Promise.all(RoundData.map((round) => (
-        //     Submission.findOne({questName: find_quest[0].questName, roundNum: round.roundNum,  participantUser: req.body.username}).exec()
-        // )));
-
-        // const rounds = RoundData.map((val, i) =>{
-        //     try{
-
-        //         const details = {
-        //             questName: val.questName,
-        //             roundName: val.roundName,
-        //             roundNum: val.roundNum,
-        //             roundType: val.roundType,
-        //             description: val.description,
-        //             startTime: TimeFormatter.formatAMPM(val.startTime),
-        //             endTime: TimeFormatter.formatAMPM(val.endTime)
-        //         }
-        //         if(val.roundType === "Rapid Fire"){
-        //             details["timer"] = val.timer,
-        //             details["eachMarks"] = val.eachMarks
-        //         }
-        //         else if(val.roundType === "Quiz"){
-        //             details["eachMarks"] = val.eachMarks
-        //         }
-        //         else if(val.roundType === "Submission"){
-        //             details["totalMarks"] = val.totalMarks,
-        //             details["Image"] = val.Image,
-        //             details["Code"] = val.Code
-        //         }
-        //         const status = check_quest_status([val], currTime)
-        //             details["status"] = status; // status of round
-
-        //         if (status === `Live`) {
-        //             details[`btnMsg`] = `Attempt`;
-        //             details[`btnColor`] = `green`;
-        //             details[`isBtnClickable`] = true;
-        //             details[`statusMsg1`] = `Live`;
-        //             details[`statusMsg2`] = `Ends ${getConciseDate(val.endTime)}`;
-        //         }
-        //         if (submissionDatas[i] && (submissionDatas[i].isAttemptFinished || submissionDatas[i].expireTime.getTime() < Date.now())) {
-        //             details[`btnMsg`] = `Attempted`;
-        //             details[`btnColor`] = `grey`;
-        //             details[`isBtnClickable`] = false;
-        //             details[`statusMsg1`] = `Attempted`;
-        //             details[`statusMsg2`] = `Results at ${getConciseDate(val.endTime)}`;
-        //         }
-        //         if (status === `Past`) {
-        //             details[`btnMsg`] = `Leaderboard`;
-        //             details[`btnColor`] = `blue`;
-        //             details[`isBtnClickable`] = true;
-        //             details[`statusMsg1`] = `Finished`;
-        //             details[`statusMsg2`] = `Results available`;
-        //         }
-        //         if (status === `Upcoming`) {
-        //             details[`btnMsg`] = `Attempt`;
-        //             details[`btnColor`] = `grey`;
-        //             details[`isBtnClickable`] = false;
-        //             details[`statusMsg1`] = `Not Started`;
-        //             details[`statusMsg2`] = `Starts ${getConciseDate(val.startTime)}`;
-        //         }
-
-        //         return details;
-        //     }
-        //     catch (err){
-        //         console.log(err)
-        //     }   
-        // })
-
         const ret_val = await makeLeaderboard(req.params.questid, 0, "host", "");
       
         to_send["status"] = check_quest_status(find_quest, currTime); // status of quest
@@ -238,5 +287,7 @@ router.post(`/:questid`, async (req, res) => {
     }
     
 });
+
+router.use(`/`, require(`./round-details`));
 
 module.exports = router;
