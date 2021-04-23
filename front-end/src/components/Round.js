@@ -22,7 +22,7 @@ const Round = () => {
 
 
     const fetchRoundDetails = async () => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ const Round = () => {
                 )
             } else if (roundDetails.roundType === `Submission`) {
                 const totalTime = (new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()
-                setRoundType(<SubmissionRound endTime={roundDetails.endTime}/> //change it to value gotten from API
+                setRoundType(<SubmissionRound endTime={roundDetails.endTime} /> //change it to value gotten from API
                 )
             }
             console.log(`roundType set to render ${roundDetails.roundType} round questions`)
