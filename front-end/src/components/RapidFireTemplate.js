@@ -1,4 +1,5 @@
 import React from "react"
+import McqTemplate from "./McqTemplate"
 
 const RapidFireTemplate = (props) => {
 
@@ -18,7 +19,7 @@ const RapidFireTemplate = (props) => {
                     Question Statement:
                 </div>
                 <div className="questionText">
-                    <textarea rows="1" onInput={(ev) => { ev.target.style.height = ''; ev.target.style.height = ev.target.scrollHeight + 'px' }}>
+                    <textarea rows="1" placeholder="Enter here" onInput={(ev) => { ev.target.style.height = ''; ev.target.style.height = ev.target.scrollHeight + 'px' }}>
                     </textarea>
                 </div>
 
@@ -31,6 +32,8 @@ const RapidFireTemplate = (props) => {
                     </input>
                 </div>
 
+                {/* MCQ options */}
+                <McqTemplate setQuestion={setQuestion}/>
 
             </div>
 
