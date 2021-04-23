@@ -27,14 +27,14 @@ const QuestionModal = (props) => {
                     <i className="fa fa-check-circle" aria-hidden="true" style={{ color: "#46B7A1", fontSize: "60px", paddingBottom: "20px" }}></i>
 
                     {/* Text */}
-                    <p style={{textAlign: "center"}}>
+                    <p style={{ textAlign: "center" }}>
                         {props.text}
                     </p>
 
                     {/* Score */}
-                    <p>
+                    {props.score && <p>
                         Your score is {props.score}
-                    </p>
+                    </p>}
                 </div>
             </div> : ``}
         </React.Fragment>
