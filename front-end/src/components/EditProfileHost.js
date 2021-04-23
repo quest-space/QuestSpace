@@ -68,7 +68,7 @@ const EditProfileHost = (props) => {
   const EditDets = async () => {
     console.log("starting");
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/profile/edit`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/profile/edit`,
       {
         method: "POST",
         headers: {

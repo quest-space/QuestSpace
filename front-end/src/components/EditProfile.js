@@ -21,9 +21,8 @@ const EditProfile = (props) => {
   };
 
   const ProfileAPI = async () => {
-<<<<<<< HEAD
     const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/who-am-i`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
       {
         method: "POST",
         headers: {
@@ -39,11 +38,7 @@ const EditProfile = (props) => {
     setuserString(checkRespBody.type);
 
     const response1 = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/profile`,
-=======
-    const response1 = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/profile`,
->>>>>>> 42ae4280014508faf212b3499c42d515fb944247
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/${userString}/profile`,
       {
         method: "POST",
         headers: {
@@ -80,7 +75,7 @@ const EditProfile = (props) => {
   const EditDets = async () => {
     console.log("starting");
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/profile/edit`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/profile/edit`,
       {
         method: "POST",
         headers: {
