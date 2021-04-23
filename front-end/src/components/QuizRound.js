@@ -52,8 +52,11 @@ const QuizRound = (props) => {
             setShow(true)
         } else {
             responseBody.nextQuestion["imageURL"] = "/q1.png"
-            setQuestion(responseBody.nextQuestion)
-            setScore(responseBody.roundScore)
+
+            if (!show) {
+                setQuestion(responseBody.nextQuestion)
+                setScore(responseBody.roundScore)
+            }
         }
 
         // }
@@ -70,6 +73,7 @@ const QuizRound = (props) => {
             if (!show) {
                 setModalText("Timer has expired.")
                 setShow(true)
+                fetchQuestion(option)
             }
         } else {
             setTimeLeft(difference)
@@ -86,7 +90,7 @@ const QuizRound = (props) => {
 
     useEffect(() => {
         fetchQuestion(option)
-        console.log("question fetched because option changed",option)
+        console.log("question fetched because option changed", option)
     }, [option])
 
     const onClose = () => {
