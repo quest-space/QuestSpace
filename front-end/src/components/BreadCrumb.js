@@ -7,7 +7,7 @@ const BreadCrumb = (props) => {
         <div className="col-md-12" style={{ marginLeft: "0em", padding: "0em" }}>
             <div id="top" style={{ paddingLeft: "9%" }} className="breadcrumb">
                 {/* <div className="breadcrumb"> */}
-                {props.items.map((item, index) => {
+                {props.items && props.items.map((item, index) => {
                     if (index === 0) {
                         // console.log(item)
                         return (<Link key={index} to={item.to} style={{ color: "white" }}>
