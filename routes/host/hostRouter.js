@@ -3,6 +3,7 @@ const router = Router();
 
 router.use(`/signout`, require(`../authentication/signOutAPI`));
 // router.use(`/leaderboard`, require(`./leaderboard`));
+router.use(`/homepage`, require(`./homepage`))
 router.use(`/profile`, require(`./host-profile`));
 router.use(`/search`, require(`../helpers/search`));
 router.use(`/create-update`, require(`./createQuest`));
