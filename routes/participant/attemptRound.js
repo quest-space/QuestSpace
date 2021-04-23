@@ -118,7 +118,8 @@ const attemptRapidFire = async (req, res) => {
     const nextQuestion = {
       questionNum: questionToSend.questionNum,
       statement: questionToSend.statement,
-      options: questionToSend.options
+      options: questionToSend.options,
+      questionNum: questionToSend.questionNum
     };
     // add imageURL if there is any
     if (questionToSend.imageURL !== "") {
@@ -223,7 +224,8 @@ const attemptQuiz = async (req, res) => {
     const nextQuestion = {
       questionNum: questionToSend.questionNum,
       statement: questionToSend.statement,
-      options: questionToSend.options
+      options: questionToSend.options,
+      questionNum: questionToSend.questionNum
     };
     // if it is a Quiz and is Numeric, make it equal to empty array (just in case)
     if (req.body.roundData.roundType === `Quiz` && questionToSend.questionType === `Numeric`) {
@@ -273,7 +275,8 @@ const attemptSubmissionBased = async (req, res) => {
   const questionToSend = await Question.findOne({ questName: req.body.questData.questName, roundNum: req.body.roundData.roundNum, questionNum: 1 });
   // by default make it for MCQ with no imageURL
   const nextQuestion = {
-    statement: questionToSend.statement
+    statement: questionToSend.statement,
+    questionNum: questionToSend.questionNum
   };
   // add imageURL if there is any
   if (questionToSend.imageURL !== "") {
