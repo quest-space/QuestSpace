@@ -1,0 +1,15 @@
+.mainBox {
+  margin-bottom: 5.5rem;
+  margin-top: 3rem;
+}
+
+.addBox {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6c6c6c;
+  font-weight: 200;
+  font-size: 18px;
+  cursor: pointer;
+}

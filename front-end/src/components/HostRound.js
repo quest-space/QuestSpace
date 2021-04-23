@@ -6,6 +6,8 @@ import Header from "./Header"
 import BreadCrumb from "./BreadCrumb"
 import Tabs from "./Tabs"
 import HostRoundDetails from "./HostRoundDetails"
+import HostRapidFire from "./HostRapidFire"
+import "../css/HostRound.css"
 
 const HostRound = () => {
 
@@ -56,6 +58,9 @@ const HostRound = () => {
             <Tabs setTab={setTab} roundType={roundDetails.roundType} />
 
             {tab === `Round Details` && <HostRoundDetails roundDetails={roundDetails} left="3rem" right="3rem" top="3rem" />}
+
+            {/* {roundDetails.roundType === `RapidFire` && <HostRapidFire />} */}
+            <HostRapidFire />
 
             <PageFooter />
         </React.Fragment>
