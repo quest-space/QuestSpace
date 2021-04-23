@@ -17,6 +17,7 @@ const HostRound = () => {
     const [tab, setTab] = React.useState("Round Details");
     const [roundFetched, setRoundFetched] = React.useState(false)
     const [roundDetails, setRoundDetails] = React.useState({})
+    const [questions, setQuestions] = React.useState([])
 
     const fetchRoundDetails = async () => {
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}`, {
@@ -59,8 +60,8 @@ const HostRound = () => {
 
             {tab === `Round Details` && <HostRoundDetails roundDetails={roundDetails} left="3rem" right="3rem" top="3rem" />}
 
-            {/* {roundDetails.roundType === `RapidFire` && <HostRapidFire />} */}
-            <HostRapidFire />
+            {/* && roundDetails.roundType === `RapidFire` */}
+            {tab === `Questions`  && <HostRapidFire questions={questions} setQuestions={setQuestions} />}
 
             <PageFooter />
         </React.Fragment>
