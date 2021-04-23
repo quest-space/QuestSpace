@@ -34,6 +34,7 @@ const questionSchema = new Schema({
     },
     options: {
         type: [Schema.Types.Mixed], // could be both Number of String
+        default: []
     },
     answer: {
         type: Schema.Types.Mixed,
