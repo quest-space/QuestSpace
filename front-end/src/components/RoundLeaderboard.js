@@ -42,10 +42,10 @@ const RoundLeaderboard = () => {
         }
     }
 
-    // if(!render){
-    //     setRender(true)
-    //     apiCall()
-    // }
+    if(!render){
+        setRender(true)
+        apiCall()
+    }
 
     return (
         <div>
