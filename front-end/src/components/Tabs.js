@@ -11,12 +11,12 @@ const Tabs = (props) => {
 
     const setBar = (x) => {
         props.setTab(x)
-        if (x === "Details") {
+        if (x === "Round Details") {
             setBorderBar3("1px solid #C4C4C4")
             setBorderBar2("1px solid #C4C4C4")
             setBorderBar1("3px solid #313131")
             setBorderBar4("1px solid #C4C4C4")
-        } else if (x === "Rounds") {
+        } else if (x === "Questions") {
             setBorderBar1("1px solid #C4C4C4")
             setBorderBar3("1px solid #C4C4C4")
             setBorderBar2("3px solid #313131")
@@ -49,17 +49,17 @@ const Tabs = (props) => {
             >
                 <button
                     className="plain one"
-                    onClick={() => setBar("Details")}
+                    onClick={() => setBar("Round Details")}
                     style={{ borderBottom: bar1, width: props.roundType === `Submission` ? "25%" : "33.33%" }}
                 >
-                    Details
+                    Round Details
                 </button>
                 <button
                     className="plain two"
-                    onClick={() => setBar("Rounds")}
+                    onClick={() => setBar("Questions")}
                     style={{ borderBottom: bar2, width: props.roundType === `Submission` ? "25%" : "33.33%" }}
                 >
-                    Rounds
+                    Questions
                 </button>
                 {props.roundType === `Submission` && <button
                     className="plain two"
