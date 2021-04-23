@@ -102,17 +102,16 @@ const Quest = () => {
                     type= {response.quest.nature}
                     about={response.quest.about}
                     imgsrc={codinguru}
-                    left="8.6%"
-                    right="8.6%"
+                    left="9%"
+                    right="9%"
                     top="5.5rem"
-                    buttonShow="1"
                 />
                 {/* brought this outside to implement flow of data on redirect */}
                 <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"9%"}}>  
                 
-                        { <button className="btnBegin" onClick={() => getEnrolled()}>
-                            Enroll
-                        </button> }
+                    { <button className="btnBegin" onClick={() => getEnrolled()}>
+                        Enroll
+                    </button> }
 
                 </span>
             </div>

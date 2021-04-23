@@ -93,11 +93,11 @@ const QuestDetailsFormat = (props) => {
             paddingTop: "2rem",
           }}
         >
-          {props.buttonShow === "1" &&
+          {/* {props.buttonShow === "1" &&
             <button className="btnBegin" onClick={() => props.onClick(true)}>
               Enroll
             </button>
-          }
+          } */}
         </div>
       </div>
     </div>

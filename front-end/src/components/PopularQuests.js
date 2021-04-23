@@ -9,7 +9,7 @@ import Cards from "./Cards"
 
 
 
-const Search = () => {
+const PopularQuests = () => {
 
     const location = useLocation();
     const [response, setResponse] = React.useState({"quests":[]})
@@ -55,7 +55,7 @@ const Search = () => {
             { text: "Home", to: "/participanthomepage" },
             {
                 text: "Popular Quests",
-                to: `/participanthomepage`,
+                to: `/popularquests`,
             },
             ]}
         />
@@ -126,4 +126,4 @@ const Search = () => {
 }
 
 
-export default Search
+export default PopularQuests
