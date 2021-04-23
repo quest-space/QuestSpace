@@ -22,7 +22,7 @@ const EditProfile = (props) => {
 
   const ProfileAPI = async () => {
     const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/check`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
       {
         method: "POST",
         headers: {
@@ -34,11 +34,11 @@ const EditProfile = (props) => {
     );
 
     const checkRespBody = await checkResp.json();
-    console.log("response", checkRespBody);
+    console.log("response type", checkRespBody.type);
     setuserString(checkRespBody.type);
 
     const response1 = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/profile/edit`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/${userString}/profile`,
       {
         method: "POST",
         headers: {
@@ -66,6 +66,7 @@ const EditProfile = (props) => {
     }
   };
 
+  console.log("Here");
   ProfileAPI();
 
   const updateState = (ev, stateUpdateFn) => {
@@ -73,8 +74,9 @@ const EditProfile = (props) => {
   };
 
   const EditDets = async () => {
+    console.log("starting");
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/edit`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/profile/edit`,
       {
         method: "POST",
         headers: {
@@ -109,7 +111,7 @@ const EditProfile = (props) => {
   };
 
   let hidden_password = "";
-  for (let i = 0; i < response1.password.length; i++) {
+  for (let i = 0; i < response1.passwordlength; i++) {
     hidden_password = hidden_password.concat("*");
   }
 

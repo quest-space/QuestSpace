@@ -11,7 +11,7 @@ const ViewProfile = () => {
 
   const ProfileAPI = async () => {
     const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/check`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
       {
         method: "POST",
         headers: {
@@ -25,6 +25,7 @@ const ViewProfile = () => {
     const checkRespBody = await checkResp.json();
     console.log("response", checkRespBody);
     setuserString(checkRespBody.type);
+    console.log("Userstring: ", userString);
 
     const response = await fetch(
       `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/${userString}/profile`,
@@ -66,8 +67,8 @@ const ViewProfile = () => {
         lastname={response.lastname}
         dob={response.dateofbirth}
         institution={response.organization}
-        password={response.password}
-
+        passwordlength={10}
+        //passwordlength={response.passwordlength}
         /*
         username="Hassaan1234"
         firstname="Hassaan"
