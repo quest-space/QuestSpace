@@ -1,3 +1,19 @@
+@media only screen and (min-width: 400px) {
+  .signUpBack {
+    background-position-y: 200px;
+    background-repeat: no-repeat;
+    background-size: 100% 58%;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .signUpBack {
+    background-position-y: 200px;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+}
+
 .signUpContainer {
   padding-bottom: 90px;
 }
@@ -59,6 +75,7 @@ div.rightCol {
   z-index: 0;
   background: #f9f9f9;
   padding: 0px;
+  margin: 0px;
 
   position: absolute;
   bottom: 0px;
@@ -79,35 +96,53 @@ div.rightCol {
   transform: translateY(-50%);
 }
 
-.form {
+.formSignUp {
   font-family: Barlow;
   font-style: normal;
   font-weight: normal;
   margin: auto;
 }
 
-.formCol .formLabel {
+.formColSignUp .formLabelSignUp {
   padding-top: 10px;
   margin-bottom: 0px;
 }
 
-.input {
+.inputSignUp {
   background: #f9f9f9;
   width: 100%;
   border: none;
-  border-bottom: solid;
   border-color: #203a50;
-  border-width: 1px;
+  border-bottom: 1px solid;
+  padding: 0px;
   font-size: 12px;
 }
 
-.formLabel {
+.inputSignUp:focus {
+  border-color: #203a50;
+  border: 1px solid;
+  border-radius: 2px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #f9f9f9 inset;
+}
+
+.formLabelSignUp {
   font-size: 16px;
   padding-bottom: 0px;
   color: #313131;
 }
 
-.title {
+.titleSignUp {
   white-space: pre-line;
   text-align: center;
   color: #313131;
@@ -116,7 +151,7 @@ div.rightCol {
   font-weight: 400;
 }
 
-.titleCaption {
+.titleCaptionSignUp {
   text-align: center;
   color: #575757;
   font-family: Barlow;
@@ -127,10 +162,10 @@ div.rightCol {
   padding-top: 0.4rem; /*Added*/
 }
 
-.nav-pills {
+/* .nav-pills {
   padding-top: 15px;
   padding-bottom: 5px;
-}
+} */
 
 .nav-pills {
   padding-top: 20px;
@@ -165,7 +200,7 @@ div.rightCol {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 }
 
-.btnNext {
+.btnNextSignUp {
   font-family: Barlow;
   /* font-size: 10px; */
   color: #ffffff;

@@ -12,9 +12,9 @@ const PageFooter = () => {
             QuestSpace
           </MDBCol>
           <MDBCol md="4" className="footerMid">
-            <a href="https://www.linkedin.com/in/junaidharoonsiddiqui">
+            {/* <a href="https://www.linkedin.com/in/junaidharoonsiddiqui">
               <img src={linkedinLogo} style={{ paddingRight: "10px" }}></img>
-            </a>
+            </a> */}
             <a href="https://github.com/quest-space">
               <img src={githubLogo} style={{ paddingLeft: "10px" }}></img>
             </a>

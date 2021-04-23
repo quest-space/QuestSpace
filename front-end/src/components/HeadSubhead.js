@@ -1,5 +1,4 @@
 import React from "react";
-import CardsContainer from "./CardsContainer";
 
 /*Colored Heading, Grey Subheading. Used Multiple Times in Quest and Round Pages*/
 const HeadSubhead = (props) => {
@@ -12,11 +11,13 @@ const HeadSubhead = (props) => {
           fontWeight: "400",
           fontSize: "20px",
           color: "#46B7A1",
-          marginLeft: "0.4rem",
+          marginLeft: "0rem",
           wordWrap: "break-word",
         }}
       >
         {props.heading}
+      </p>
+      {props.editable === 1 && (
         <div
           className="display-4"
           style={{
@@ -27,10 +28,24 @@ const HeadSubhead = (props) => {
             wordWrap: "break-word",
           }}
         >
-          {props.subheading}
+          {props.heading}
         </div>
-      </p>
-    </div>
+      )}
+
+      <div
+        className="display-4"
+        style={{
+          fontWeight: "400",
+          fontSize: "20px",
+          color: "#313131",
+          marginLeft: "0rem",
+          wordWrap: "break-word",
+        }}
+      >
+        {props.subheading}
+      </div>
+      {/* </p> */}
+    </div >
   );
 };
 

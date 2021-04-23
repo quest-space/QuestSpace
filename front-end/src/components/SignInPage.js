@@ -2,17 +2,17 @@ import React from "react"
 import PageFooter from "./PageFooter"
 import { Container, Row, Col } from "react-bootstrap"
 import "../css/SignUp.css"
-import CreateAccount from "./CreateAccount"
 import CardLeft from "./CardLeft"
 import CardRight from "./CardRight"
 import InitialNavbar from "./InitialNavbar"
 import SignInCard from "./SignInCard"
+import backgroundImg from "../img/signup/background.png"
 
 
 const SignInPage = () => {
     return (
-        <React.Fragment>
-            <InitialNavbar sign="Sign Up"/>
+        <div className="signUpBack" style={{ backgroundImage: `url(${backgroundImg})` }}>
+            <InitialNavbar sign="Sign Up" />
             <Container className="signUpContainer d-none d-md-block" style={{ border: "none" }}>
                 <Row >
                     <Col md="6" className="leftCol" >
@@ -31,7 +31,7 @@ const SignInPage = () => {
                 </Row>
             </Container>
             <PageFooter />
-        </React.Fragment>
+        </div>
     )
 }
 

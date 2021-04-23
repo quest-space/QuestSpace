@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "./Header";
-import MainNavbar from "./MainNavbar";
-import HeadSubhead from "./HeadSubhead";
-import Button from "./Button";
-import Stack from "./Stack";
+// import Header from "./Header";
+// import MainNavbar from "./MainNavbar";
+// import HeadSubhead from "./HeadSubhead";
+// import Button from "./Button";
+// import Stack from "./Stack";
 import "../css/questdetails.css";
 
 /*
@@ -21,17 +21,12 @@ about="This is a Rapid Fire Round. In this round, you will have a fixed time in 
 
 const RoundDetailsFormat = (props) => {
   return (
-    <div style={{marginBottom: "80px"}}>
-      {/* <MainNavbar /> */}
-      {/* <Header heading={props.roundname} subheading={props.questname} />
-      <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
-        <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
-      </div> */}
+    <div style={{ marginBottom: "80px" }}>
       <div
         style={{
-          marginLeft: "7.5rem",
-          marginRight: "7.5rem",
-          marginTop: "5rem",
+          marginLeft: "9%",
+          marginRight: "9%",
+          marginTop: "5.5rem",
         }}
       >
         <p
@@ -40,7 +35,7 @@ const RoundDetailsFormat = (props) => {
             fontWeight: "400",
             fontSize: "32px",
             color: "#313131",
-            marginLeft: "0.4rem",
+            marginLeft: "0rem",
             wordWrap: "break-word",
           }}
         >
@@ -54,38 +49,118 @@ const RoundDetailsFormat = (props) => {
             fontWeight: "400",
             fontSize: "20px",
             color: "#46B7A1",
-            marginLeft: "0.4rem",
+            marginLeft: "0rem",
             wordWrap: "break-word",
           }}
         >
           Starts
-          <div
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "#313131",
-              wordWrap: "break-word",
-            }}
-          >
-            {props.startingtime}
-          </div>
         </p>
-
-        <div>
-          <HeadSubhead heading="Ends" subheading={props.endingtime} />
-          <HeadSubhead heading="Allowed Time" subheading={props.allowedtime} />
-          <HeadSubhead heading="About" subheading={props.about} />
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {props.startingtime}
         </div>
+        {/* </p> */}
 
-        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+        <p
+          className="display-4"
+          style={{
+            paddingTop: "1.5rem",
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#46B7A1",
+            marginLeft: "0rem",
+            wordWrap: "break-word",
+          }}
+        >
+          Ends
+        </p>
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {props.endingtime}
+        </div>
+        {/* </p> */}
+
+        {props.allowedtime && <p
+          className="display-4"
+          style={{
+            paddingTop: "1.5rem",
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#46B7A1",
+            marginLeft: "0rem",
+            wordWrap: "break-word",
+          }}
+        >
+          Allowed Time
+        </p>}
+        {props.allowedtime && <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {props.allowedtime}
+        </div>}
+        {/* </p> */}
+
+        <p
+          className="display-4"
+          style={{
+            paddingTop: "1.5rem",
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#46B7A1",
+            marginLeft: "0rem",
+            wordWrap: "break-word",
+          }}
+        >
+          Description and Guidelines
+        </p>
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {props.about}
+        </div>
+        {/* </p> */}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            paddingTop: "2rem",
+          }}
+        >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
           <button className="btnBegin" onClick={() => props.onClick(true)}>
             Begin
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

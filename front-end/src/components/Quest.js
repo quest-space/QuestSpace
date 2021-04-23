@@ -1,12 +1,10 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import Button from "./Button";
-import Stack from "./Stack";
 import QuestDetailsFormat from "./QuestDetailsFormat";
-import codinguru from "../img/testing/CodinGuru.png";
 import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import QuestEnrolled from "./QuestEnrolled"
+import BreadCrumb from "./BreadCrumb"
 // import PageFooter from "./PageFooter"
 
 
@@ -22,7 +20,7 @@ const Quest = () => {
     
     const requestQuest = async () => {
     
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -93,7 +91,7 @@ const Quest = () => {
             {(response.quest.enrolled === 0) && <div>
                 <MainNavbar />
                 <Header heading={response.quest.questName} subheading={response.quest.hostUser} />
-                <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
+                <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: response.quest.questName, to: `/participanthomepage/quest/${response.quest.questID}` }]} />
                 <QuestDetailsFormat
                     questname= {response.quest.questName}
                     hostname={response.quest.hostUser}
@@ -102,25 +100,23 @@ const Quest = () => {
                     endingtime= {response.quest.endTime}
                     type= {response.quest.nature}
                     about={response.quest.about}
-                    imgsrc={codinguru}
-                    left="7.5rem"
-                    right="7.5rem"
-                    top="5rem"
+                    imgsrc={response.quest.logoURL}
+                    left="9%"
+                    right="9%"
+                    top="5.5rem"
                 />
                 {/* brought this outside to implement flow of data on redirect */}
-                <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"10rem"}}>  
-                    <Stack button=
-                    // talha's work
-                        { <button className="btn3" onClick={() => getEnrolled()}>
-                            Enroll
-                        </button> }
-                    // -----
-                    />
+                <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"9%"}}>  
+                
+                    { <button className="btnBegin" onClick={() => getEnrolled()}>
+                        Enroll
+                    </button> }
+
                 </span>
             </div>
             }
             {
-             (response.quest.enrolled === 1) && <QuestEnrolled x = {response} />
+             (response.quest.enrolled === 1)  && <QuestEnrolled x = {response} />
             }
             {/* <PageFooter /> */}
 

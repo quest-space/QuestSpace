@@ -1,0 +1,122 @@
+/*Sign In Box*/
+
+@media only screen and (min-width: 400px) {
+  .QSbg {
+    background-position-y: 200px;
+    background-repeat: no-repeat;
+    background-size: 100% 58%;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .QSbg {
+    background-position-y: 200px;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+}
+
+.signinBox {
+  padding-left: 40px;
+  padding-right: 40px;
+  margin: auto;
+  width: 300px;
+
+  background: #f9f9f9;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.cardCent {
+  box-shadow: 5px 10px rgba(238, 230, 230, 0);
+}
+
+/*Form*/
+
+.form {
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: normal;
+  padding-bottom: 5px;
+  margin: auto;
+}
+
+.formCol .formLabel {
+  padding-top: 10px;
+  margin-bottom: 0px;
+}
+
+.input {
+  background: #f9f9f9;
+  width: 100%;
+  border: none;
+  border-bottom: solid;
+  border-color: #203a50;
+  border-width: 1px;
+  font-size: 12px;
+  padding-bottom: 0px;
+}
+
+.formLabel {
+  font-size: 15px;
+  padding-bottom: 0px;
+  color: #313131;
+}
+
+.title {
+  white-space: pre-line;
+  text-align: center;
+  color: #313131;
+  font-family: Barlow;
+  font-size: 30px;
+  font-weight: 400;
+  padding-top: 15px;
+  padding-bottom: 8px;
+}
+
+.titleCaption {
+  text-align: center;
+  color: #575757;
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: normal;
+  /* font-size: 10px; */
+  font-size: 12px;
+  padding-top: 0.4rem; /*Added*/
+}
+
+.btnNext {
+  font-family: Barlow;
+  /* font-size: 10px; */
+  color: #ffffff;
+  background: #415f78;
+  font-size: 15px;
+  border: none;
+  border-radius: 30px;
+  width: 50%;
+  margin: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/*Images*/
+
+.logoimg {
+  position: absolute;
+  top: 15%;
+}
+
+#bgimg {
+  background-image: url("../img/signup/background.png");
+  background-position-y: 8rem;
+  background-position-x: -8rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+/*background-position: center;*/

@@ -56,52 +56,52 @@ const CreateAccountParticipant = (props) => {
     return (
         <div className="createAccount">
             <div className="header">
-                <div className="title">
+                <div className="titleSignUp">
                     Create a{`\n`}Participant Account
                 </div>
 
             </div>
 
-            <form className="form">
+            <form className="formSignUp">
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">First Name</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">First Name</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" value={details.firstname} onChange={(ev) => updateDetails(ev, "firstname")} />
+                    <div className="formColSignUp">
+                        <input type="text" className="inputSignUp" placeholder="Enter here" value={details.firstname} onChange={(ev) => updateDetails(ev, "firstname")} />
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Last Name</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Last Name</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" value={details.lastname} onChange={(ev) => updateDetails(ev, "lastname")} />
+                    <div className="formColSignUp">
+                        <input type="text" className="inputSignUp" placeholder="Enter here" value={details.lastname} onChange={(ev) => updateDetails(ev, "lastname")} />
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Date of Birth</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Date of Birth</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="date" className="input" placeholder="Enter here" value={details.dateofbirth} onChange={(ev) => updateDetails(ev, "dateofbirth")} />
+                    <div className="formColSignUp">
+                        <input type="date" className="inputSignUp" placeholder="Enter here" value={details.dateofbirth} onChange={(ev) => updateDetails(ev, "dateofbirth")} />
                     </div>
                 </div>
 
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Institution</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Institution</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" value={details.organization} onChange={(ev) => updateDetails(ev, "organization")} />
+                    <div className="formColSignUp">
+                        <input type="text" className="inputSignUp" placeholder="Enter here" value={details.organization} onChange={(ev) => updateDetails(ev, "organization")} />
                     </div>
                 </div>
             </form>
