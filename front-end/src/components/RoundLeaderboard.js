@@ -67,7 +67,7 @@ const RoundLeaderboard = () => {
 
         <div style={{
             paddingLeft:'9%', 
-            paddingTop:'3rem', 
+            paddingTop:'4.5rem', 
             fontStyle: 'normal',
             fontWeight: 'normal',
             fontSize: '32px',
