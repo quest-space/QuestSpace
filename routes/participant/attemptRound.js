@@ -247,54 +247,15 @@ const attemptQuiz = async (req, res) => {
   }
 }
 
-const attemptSubmissionBased = (req, res) => {
-  // check karo submission of this round, agar hai tou phir 
-  let submission = await Submission.findOne({ questName: req.body.questData.questName, roundNum: req.body.roundData.roundNum, participantUser: req.body.username });
-
-  const currTime = Date.now();
-
-  if (submission) {
-    sendRes(res, BAQ_REQUEST_STATUS_CODE, {
-      errors: {},
-      genericErrMsg: `You have already attempted`
-    });
-    return;
-  }
-
-  if (currTime > req.body.roundData.endTime.getTime()) {
-    sendRes(res, BAQ_REQUEST_STATUS_CODE, {
-      errors: {},
-      genericErrMsg: `Round has expired!`
-    });
-    return;
-  }
-
-  // send sawal back
-  const questionToSend = await Question.findOne({ questName: req.body.questData.questName, roundNum: req.body.roundData.roundNum, questionNum: 1 });
-  // by default make it for MCQ with no imageURL
-  const nextQuestion = {
-    statement: questionToSend.statement
-  };
-  // add imageURL if there is any
-  if (questionToSend.imageURL !== "") {
-    nextQuestion[`imageURL`] = questionToSend.imageURL;
-  }
-  sendRes(res, CREATED_STATUS_CODE, {
-    nextQuestion, 
-    expireTime: req.body.roundData.endTime,
-    totalMarks: req.body.roundData.totalMarks,
-    roundType: req.body.roundData.roundType
-  });
-  return;
-}
-
 const attemptRound = async (req, res) => {
   if (req.body.roundData.roundType === `Rapid Fire`) {
     attemptRapidFire(req, res);
   } else if (req.body.roundData.roundType === `Quiz`) {
     attemptQuiz(req, res);
   } else {
-    attemptSubmissionBased(req, res);
+    sendRes(res, 422, {
+      error: "shouldnt have reached here"
+    })
   }
 }
 
