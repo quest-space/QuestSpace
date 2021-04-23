@@ -36,6 +36,21 @@
   resize: vertical;
 }
 
+.questionArea input[type="file"]::file-selector-button {
+  background: #ffffff;
+  border: 1px solid #666666;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 0px 10px;
+  outline: none;
+  color: #666666;
+  margin-top: 5px;
+}
+
+.mcqTemplate {
+  margin-top: 10px;
+}
+
 .questionNum {
   color: #313131;
   font-weight: 500;

@@ -1,5 +1,6 @@
 import React from "react";
 import ViewProfileFormat from "./ViewProfileFormat";
+import ViewProfileFormatHost from "./ViewProfileFormatHost";
 
 const ViewProfile = () => {
   const [response, setResponse] = React.useState({});
@@ -11,7 +12,7 @@ const ViewProfile = () => {
 
   const ProfileAPI = async () => {
     const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/who-am-i`,
       {
         method: "POST",
         headers: {
@@ -28,7 +29,7 @@ const ViewProfile = () => {
     console.log("Userstring: ", userString);
 
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/${userString}/profile`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/profile`,
       {
         method: "POST",
         headers: {
@@ -60,16 +61,17 @@ const ViewProfile = () => {
 
   return (
     <div>
-      <ViewProfileFormat
-        username={response.username}
-        firstname={response.firstname}
-        fullname={response.fullname}
-        lastname={response.lastname}
-        dob={response.dateofbirth}
-        institution={response.organization}
-        passwordlength={10}
-        //passwordlength={response.passwordlength}
-        /*
+      {userString === "participant" && (
+        <ViewProfileFormat
+          username={response.username}
+          firstname={response.firstname}
+          fullname={response.fullname}
+          lastname={response.lastname}
+          dob={response.dateofbirth}
+          institution={response.organization}
+          passwordlength={10}
+          //passwordlength={response.passwordlength}
+          /*
         username="Hassaan1234"
         firstname="Hassaan"
         fullname="Hassaan Ahmed Waqar"
@@ -78,7 +80,31 @@ const ViewProfile = () => {
         institution="Lahore Grammar School"
         password="123456"
         */
-      />
+        />
+      )}
+
+      {userString === "host" && (
+        <ViewProfileFormatHost
+          username={response.username}
+          repdesignation={response.representativeDesignation}
+          repname={response.representativeName}
+          phone={response.phone}
+          rating={response.rating}
+          institution={response.organization}
+          passwordlength={response.passwordlength}
+          passwordlength={10}
+
+          /*
+          username={"IEEE LUMS"}
+          repdesignation={"Member"}
+          repname={"Hareem Raza"}
+          phone={3004155276}
+          rating={4}
+          institution={"LUMS"}
+          passwordlength={10}
+          */
+        />
+      )}
     </div>
   );
 };
