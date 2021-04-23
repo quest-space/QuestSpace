@@ -110,15 +110,22 @@ const attemptRound = async (req, res) => {
       currTime: (new Date(currTime)).toString(),
       score: score,
       answerStatus: score ? `correct` : `incorrect`,
-      roundScore: submission.roundScore + score
+      roundScore: submission.roundScore + score,
+      roundType: req.body.roundData.roundType
     });
     return;
   } else {
+    // by default make it for MCQ with no URL
     const nextQuestion = {
       questionNum: questionToSend.questionNum,
       statement: questionToSend.statement,
       options: questionToSend.options
     };
+    // if it is a Quiz and is Numeric, make it equal to empty array (just in case)
+    if (req.body.roundData.roundType === `Quiz` && questionToSend.questionType === `Numeric`) {
+      nextQuestion[`options`] = [];
+    }
+    // add imageURL if there is any
     if (questionToSend.imageURL !== "") {
       nextQuestion[`imageURL`] = questionToSend.imageURL;
     }
@@ -129,7 +136,8 @@ const attemptRound = async (req, res) => {
       currTime: (new Date(currTime)).toString(),
       score: score,
       answerStatus: score ? `correct` : `incorrect`,
-      roundScore: submission.roundScore + score
+      roundScore: submission.roundScore + score,
+      roundType: req.body.roundData.roundType
     });
     return;
   }
