@@ -63,6 +63,21 @@ input[value="0000-00-00"]::-webkit-datetime-edit {
 }
 */
 
+::placeholder {
+  /* Firefox, Chrome, Opera */
+  color: #313131;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #313131;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #313131;
+}
+
 ::-webkit-file-upload-button {
   border-radius: 8px;
   border-color: #313131;
