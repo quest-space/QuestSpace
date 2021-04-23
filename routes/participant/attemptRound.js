@@ -120,7 +120,7 @@ const attemptRound = async (req, res) => {
       options: questionToSend.options
     };
     if (questionToSend.imageURL !== "") {
-      nextQuestion[imageURL] = questionToSend.imageURL;
+      nextQuestion[`imageURL`] = questionToSend.imageURL;
     }
     sendRes(res, CREATED_STATUS_CODE, {
       nextQuestion, 
