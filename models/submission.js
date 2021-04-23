@@ -29,19 +29,18 @@ const submissionSchema = new Schema({
         type: Number
     },
     beginTime: {
-        type: Date,
-        required: [true, `beginTime is required`]
+        type: Date
     },
     expireTime: {
-        type: Date,
-        required: [true, `expireTime is required`]
+        type: Date
     },
     isAttemptFinished: {
         type: Boolean,
-        default: false,
-        required: [true, `isAttemptFinished is required`]
+        default: false
     },
-    file: Buffer
+    fileURL: {
+        type: String
+    }
 
 });
 

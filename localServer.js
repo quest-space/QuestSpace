@@ -24,6 +24,7 @@ app.use(cors({ origin: true, credentials: true }));
 //   next();
 // });
 
+app.use(`/uploaded-file`, express.static("../qs-uploaded-files"));
 app.use(`/uploaded-img`, express.static("../qs-uploaded-images"));
 
 app.use(require('./front-end/front-end-routes'));

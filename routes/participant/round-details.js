@@ -1,4 +1,5 @@
 const { Router } = require (`express`);
+const multer = require('multer');
 const Participant = require(`../../models/participant`);
 const Quest = require(`../../models/quest`);
 const Host = require(`../../models/host`);
@@ -13,8 +14,10 @@ const router = Router();
 const FORBIDDEN_STATUS_CODE = 403;
 const BAQ_REQUEST_STATUS_CODE = 400;
 const OK_STATUS_CODE = 200;
+const CREATED_STATUS_CODE = 201;
 
 const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
+const { getFileUploadURL } = require(`../helpers/imgUploadHelper`)
 const { sendRes } = require(`../helpers/sendRes`);
 const Helper = require(`../helpers/helperFunctions`);
 const { findOne } = require("../../models/participant");
@@ -73,6 +76,35 @@ router.post(`/:questid/:roundid/leaderboard`, async (req, res) => {
         sendRes(res, BAQ_REQUEST_STATUS_CODE, err );
     }
   
+});
+
+const upload = multer({ dest: `../../../qs-uploaded-files/` });
+router.post(`/:questid/:roundid/submit`, upload.single(`submittedFile`), async (req, res) => {
+  if (req.file) {
+    sendRes(res, BAQ_REQUEST_STATUS_CODE, {
+      error: `File not given`
+    });
+    return;
+  }
+  try {
+    await Submission.create({
+      questName: req.body.questData.questName,
+      roundNum: req.body.roundData.roundNum,
+      participantUser: req.body.username,
+      roundScore: 0,
+      numOfQsSent: 1,
+      answeredTill: 0,
+      fileURL: `${getFileUploadURL()}${req.file.filename}`,
+      beginTime: new Date(Date.now())
+    })
+    sendRes(res, CREATED_STATUS_CODE, {
+      status: `submitted successfully`
+    })
+  } catch (err) {
+    sendRes(res, BAQ_REQUEST_STATUS_CODE, {
+      error: err
+    });
+  }
 });
 
 router.post(`/:questid/:roundid/attempt`, async (req, res) => {
