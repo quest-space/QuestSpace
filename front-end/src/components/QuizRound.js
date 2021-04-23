@@ -15,51 +15,50 @@ const QuizRound = (props) => {
     const [timeLeft, setTimeLeft] = React.useState(`${props.timer}`)
     const [question, setQuestion] = React.useState({})
     const [option, setOption] = React.useState()
-    const [score, setScore] = React.useState()
+    const [score, setScore] = React.useState(0)
 
     const [show, setShow] = React.useState(false)
     const [modalText, setModalText] = React.useState("")
 
     const fetchQuestion = async (answer) => {
-        // const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}/attempt`, {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         answer: answer
-        //     }),
-        //     credentials: "include",
-        // })
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}/attempt`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                answer: answer
+            }),
+            credentials: "include",
+        })
 
-        // const responseBody = await response.json()
+        const responseBody = await response.json()
 
-        // if (response.status !== 201) {
-        //     console.log(`Error in fetching questionDeatils.`)
-        //     alert(JSON.stringify(responseBody))
-        //     onClose()
-        // } else {
-        // only set expireTime if not set previously "1945", "1947", "1948", "None of the above"
-        const responseBody = { "nextQuestion": { "questionNum": 1, "statement": "When did Pakistan come into being?", "options": ["1945", "1947", "1948", "None of the above"] }, "expireTime": "2021-04-22T19:26:39.839Z", "expireDateTime": "Thu Apr 22 2021 19:26:39 GMT+0000 (Coordinated Universal Time)", "currTime": "Thu Apr 22 2021 19:25:04 GMT+0000 (Coordinated Universal Time)", "score": 0, "answerStatus": "incorrect", "roundScore": 0 }
-
-        if (!expireTime) {
-            setExpireTime(responseBody.expireTime)
-            updateTimeLeft(responseBody.expireTime)
-        }
-        if (responseBody.message === "questions exhausted") {
-            setScore(responseBody.roundScore)
-            setModalText("Congratulations!!! You have completed the round.")
-            setShow(true)
+        if (response.status !== 201) {
+            console.log(`Error in fetching questionDeatils.`)
+            alert(JSON.stringify(responseBody))
+            onClose()
         } else {
-            responseBody.nextQuestion["imageURL"] = "/q1.png"
-
-            if (!show) {
-                setQuestion(responseBody.nextQuestion)
-                setScore(responseBody.roundScore)
+            // const responseBody = { "nextQuestion": { "questionNum": 1, "statement": "When did Pakistan come into being?", "options": ["1945", "1947", "1948", "None of the above"] }, "expireTime": "2021-04-22T19:26:39.839Z", "expireDateTime": "Thu Apr 22 2021 19:26:39 GMT+0000 (Coordinated Universal Time)", "currTime": "Thu Apr 22 2021 19:25:04 GMT+0000 (Coordinated Universal Time)", "score": 0, "answerStatus": "incorrect", "roundScore": 0 }
+            // only set expireTime if not set previously
+            if (!expireTime) {
+                setExpireTime(responseBody.expireTime)
+                updateTimeLeft(responseBody.expireTime)
             }
-        }
+            if (responseBody.message === "questions exhausted") {
+                setScore(responseBody.roundScore)
+                setModalText("Congratulations!!! You have completed the round.")
+                setShow(true)
+            } else {
+                // responseBody.nextQuestion["imageURL"] = "/q1.png"
 
-        // }
+                if (!show) {
+                    setQuestion(responseBody.nextQuestion)
+                    setScore(responseBody.roundScore)
+                }
+            }
+
+        }
     }
 
     const updateTimeLeft = (expireTime) => {
@@ -94,8 +93,8 @@ const QuizRound = (props) => {
     }, [option])
 
     const onClose = () => {
-        console.log("rerouting") // uncomment it at the end
-        // history.replace(`/participanthomepage/quest/${questID}`)
+        // console.log("rerouting") // uncomment it at the end
+        history.replace(`/participanthomepage/quest/${questID}`)
     }
 
     return (

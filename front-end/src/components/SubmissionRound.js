@@ -16,42 +16,31 @@ const SubmissionRound = (props) => {
     const [modalText, setModalText] = React.useState("")
 
     const fetchQuestion = async (answer) => {
-        // const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}/attempt`, {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         answer: answer
-        //     }),
-        //     credentials: "include",
-        // })
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}/attempt`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                answer: answer
+            }),
+            credentials: "include",
+        })
 
-        // const responseBody = await response.json()
+        const responseBody = await response.json()
 
-        // if (response.status !== 201) {
-        //     console.log(`Error in fetching questionDeatils.`)
-        //     alert(JSON.stringify(responseBody))
-        //     onClose()
-        // } else {
-        const responseBody = { "nextQuestion": { "questionNum": 1, "statement": "When did Pakistan come into being?", "options": ["1945", "1947", "1948", "None of the above"] }, "expireTime": "2021-04-23T19:26:39.839Z", "expireDateTime": "Thu Apr 22 2021 19:26:39 GMT+0000 (Coordinated Universal Time)", "currTime": "Thu Apr 22 2021 19:25:04 GMT+0000 (Coordinated Universal Time)", "score": 0, "answerStatus": "incorrect", "roundScore": 0 }
+        if (response.status !== 201) {
+            console.log(`Error in fetching questionDeatils.`)
+            alert(JSON.stringify(responseBody))
+            onClose()
+        } else {
+            // const responseBody = { "nextQuestion": { "questionNum": 1, "statement": "When did Pakistan come into being?", "options": ["1945", "1947", "1948", "None of the above"] }, "expireTime": "2021-04-23T19:26:39.839Z", "expireDateTime": "Thu Apr 22 2021 19:26:39 GMT+0000 (Coordinated Universal Time)", "currTime": "Thu Apr 22 2021 19:25:04 GMT+0000 (Coordinated Universal Time)", "score": 0, "answerStatus": "incorrect", "roundScore": 0 }
 
-        // set expireTime
-        // console.log("expire received is",responseBody)
-        setExpireTime(responseBody.expireTime)
-        updateTimeLeft(responseBody.expireTime)
-
-        // if (responseBody.message === "questions exhausted") {
-        //     // setScore(responseBody.roundScore)
-        //     setModalText("Congratulations!!! You have completed the round.")
-        //     setShow(true)
-        // } else {
-        responseBody.nextQuestion["imageURL"] = "/q1.png"
-        setQuestion(responseBody.nextQuestion)
-        // setScore(responseBody.roundScore)
-        // }
-
-        // }
+            // set expireTime
+            setExpireTime(responseBody.expireTime)
+            updateTimeLeft(responseBody.expireTime)
+            setQuestion(responseBody.nextQuestion)
+        }
     }
 
     const updateTimeLeft = (expireTime) => {
@@ -84,7 +73,7 @@ const SubmissionRound = (props) => {
     }, [])
 
     const onClose = () => {
-        // history.replace(`/participanthomepage/quest/${questID}`)
+        history.replace(`/participanthomepage/quest/${questID}`)
     }
 
     const formSubmit = async (ev) => {
@@ -93,13 +82,14 @@ const SubmissionRound = (props) => {
 
         const formData = new FormData(ev.target)
 
-        const response = await fetch("http://localhost:3335/api-img", {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${questID}/${roundID}/submit`, {
             method: "POST",
             header: { 'Content-Type': 'multipart/form-data' },
-            body: formData
+            body: formData,
+            credentials: "include",
         })
 
-        if (response.status === 200) {
+        if (response.status === 201) {
             setModalText("Your file has been submitted.")
             setShow(true)
         } else {
