@@ -42,6 +42,7 @@ const parseQuest = (quests) =>
         description: key.description,
         startTime: key.startTime,
         endTime: key.endTime,
+        logoURL: key.logoURL,
         startDate: key.startTime.toDateString(),
         endDate: key.endTime.toDateString(),
         status: key.status,

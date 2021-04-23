@@ -2,6 +2,7 @@
 
 //Require Mongoose
 const mongoose = require('mongoose');
+const { getImgUploadURL } = require('../routes/helpers/imgUploadHelper');
 
 //Define a schema
 const Schema = mongoose.Schema;
@@ -40,8 +41,9 @@ const questSchema = new Schema({
         type: Date, 
         required: [true, 'End time has not been specified']  
     },
-    logo: {
-        type: Buffer
+    logoURL: {
+        type: String,
+        default: `${getImgUploadURL()}default-img.png`
     },
     status: {
         type: String,
