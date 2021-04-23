@@ -6,6 +6,7 @@ import MainNavbar from "./MainNavbar";
 import QuestRounds from "./QuestRounds";
 import PageFooter from "./PageFooter";
 import BreadCrumb from "./BreadCrumb";
+import Leaderboard from "./Leaderboard"
 
 const QuestEnrolled = (props) => {
   const [bar1, setBorderBar1] = React.useState("3px solid #313131");
@@ -108,6 +109,7 @@ const QuestEnrolled = (props) => {
             left="3rem"
             right="3rem"
             top="3rem"
+            buttonShow="0"
           />
         </div>
       )}
@@ -154,21 +156,59 @@ const QuestEnrolled = (props) => {
 
       {/* // (props.x.rounds ? <QuestRounds details = {props.x.rounds} id = {props.x.quest.questID}/> : <div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", paddingTop:"1rem", paddingLeft:"1rem"}}>Not Available</div>) */}
 
-      {tab == "Leaderboard" && (
-        <div
-          style={{
-            border: "1px solid #C4C4C4",
-            boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
-            marginLeft: "9%",
-            marginRight: "9%",
-            marginBottom: "5.5rem",
-            marginTop: "3rem",
-            padding: "2rem",
-          }}
-        >
-          <i class="fas fa-exclamation-circle"></i> Not Available
-        </div>
-      )}
+      {props.x.status == "quest_and_round_details" &&
+      <div>
+        {/* Leaderboard Available */}
+        {tab == "Leaderboard" && props.x.leaderboard !== null && (
+          <div>
+
+          <div className="slimBox" style={{fontSize:"20px", marginTop: "3rem", paddingTop:"1rem", paddingBottom:"1rem"}}> 
+            <div style={{display:"inline"}}>
+              {"My Rank: " + props.x.leaderboard.individual.ranking}
+            </div>
+            <div style={{ float:"right"}}>
+              {"My Score: " + props.x.leaderboard.individual.roundScore}
+            </div>
+          </div>
+            <Leaderboard board = {props.x.leaderboard.full}/>
+          </div>
+        )}
+
+
+        {/* /* Leaderboard not Available  */}
+        {tab == "Leaderboard" && props.x.leaderboard === null && (
+          <div
+            style={{
+              border: "1px solid #C4C4C4",
+              boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
+              marginLeft: "9%",
+              marginRight: "9%",
+              marginBottom: "5.5rem",
+              marginTop: "3rem",
+              padding: "2rem",
+            }}
+          >
+            <i class="fas fa-exclamation-circle"></i> Not Available
+          </div>
+        )}
+      </div>}
+
+      {tab == "Leaderboard" && props.x.status == "quest_details" && (
+          <div
+            style={{
+              border: "1px solid #C4C4C4",
+              boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
+              marginLeft: "9%",
+              marginRight: "9%",
+              marginBottom: "5.5rem",
+              marginTop: "3rem",
+              padding: "2rem",
+            }}
+          >
+            <i class="fas fa-exclamation-circle"></i> Not Available
+          </div>
+        )}
+      
       <PageFooter />
     </div>
   );

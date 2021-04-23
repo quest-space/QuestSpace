@@ -105,6 +105,7 @@ const Quest = () => {
                     left="8.6%"
                     right="8.6%"
                     top="5.5rem"
+                    buttonShow="1"
                 />
                 {/* brought this outside to implement flow of data on redirect */}
                 <span className="responsive" style={{ float: "right", marginBottom:"3rem", marginRight:"9%"}}>  
