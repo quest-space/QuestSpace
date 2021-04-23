@@ -1,5 +1,5 @@
 const { Router } = require (`express`);
-const Participant = require(`../../models/participant`);
+const Host = require(`../../models/host`);
 const bcrypt = require('bcrypt');
 
 const router = Router();
@@ -23,8 +23,8 @@ router.post(`/submit`, async (req, res) => {
         const salt = await bcrypt.genSalt();
         const hashed = await bcrypt.hash(password, salt);
 
-        const editable = await Participant.updateOne({username: req.body.username}, {$set: {  password: hashed,  
-            firstname: req.body.firstname, lastname: req.body.lastname, dateofbirth: req.body.dateofbirth, organization: req.body.organization}}, {upsert: true})
+        const editable = await Host.updateOne({username: req.body.username}, {$set: {  password: hashed, phone: req.body.phone, representativeName: req.body.representativeName,
+            representativeDesignation: req.body.representativeDesignation,organization: req.body.organization}}, {upsert: true})
 
         sendRes(res, OK_STATUS_CODE, editable);
     }
@@ -35,14 +35,14 @@ router.post(`/submit`, async (req, res) => {
 
 router.post(`/edit`, async (req, res) => {
     try{
-        const userData = await Participant.findOne({username: req.body.username}); 
+        const userData = await Host.findOne({username: req.body.username}); 
         const to_send = {
             username: userData.username,
             password: userData.password,
-            fullname:  userData.firstname + ' ' + userData.lastname,
-            firstname: userData.firstname,
-            lastname: userData.lastname,
-            dateofbirth: shortDate(userData.dateofbirth),
+            phone: userData.phone,
+            representativeName: userData.representativeName,
+            representativeDesignation: userData.representativeDesignation,
+            rating: userData.rating,
             organization: userData.organization
         }
         sendRes(res, OK_STATUS_CODE, to_send);
@@ -55,14 +55,14 @@ router.post(`/edit`, async (req, res) => {
 
 router.post(`/`, async (req, res) => {
     try{
-        const userData = await Participant.findOne({username: req.body.username}); 
+        const userData = await Host.findOne({username: req.body.username}); 
         const to_send = {
             username: userData.username,
             password: userData.password,
-            fullname:  userData.firstname + ' ' + userData.lastname,
-            firstname: userData.firstname,
-            lastname: userData.lastname,
-            dateofbirth: shortDate(userData.dateofbirth),
+            phone: userData.phone,
+            representativeName: userData.representativeName,
+            representativeDesignation: userData.representativeDesignation,
+            rating: userData.rating,
             organization: userData.organization
         }
         sendRes(res, OK_STATUS_CODE, to_send);
