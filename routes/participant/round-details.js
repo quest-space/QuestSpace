@@ -97,7 +97,8 @@ router.post(`/:questid/:roundid`, async (req, res) => {
           roundName: find_round[0].roundName,
           questName: find_round[0].questName,
           isAttemptFinished: isAttemptFinished,
-          roundType: find_round[0].roundType
+          roundType: find_round[0].roundType,
+          logoURL: find_quest[0].logoURL
       }
 
       sendRes(res, OK_STATUS_CODE, round_details);

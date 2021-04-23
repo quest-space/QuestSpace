@@ -103,7 +103,8 @@ router.post(`/:questid`, async (req, res) => {
         organization: organization,
         enrolled: Enrolled,
         rating: rate,
-        nature: find_quest[0].nature
+        nature: find_quest[0].nature,
+        logoURL: find_quest[0].logoURL
       }
     const to_send = {}
 
