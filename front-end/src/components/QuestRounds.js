@@ -30,7 +30,7 @@ const QuestRounds = (props) => {
             {Object.keys(props.details).map((info, j)=>{                   
                 const color = props.details[info].btnColor
                 return(
-                        <div className="myBox">   
+                        <div key={j} className="myBox">   
 
                                 {(props.details[info].btnColor !== 'green')&&<button id="myButton" style={{backgroundColor: changeColor[color], float:"right", marginTop:"1rem"}}> {props.details[info].btnMsg}</button>}
                                 {(props.details[info].btnColor === 'green')&&<Link to={{pathname: "/participanthomepage/quest/"+props.id+"/round/"+props.details[info].roundNum}}><button id="myButton" style={{backgroundColor: changeColor[color], float:"right", marginTop:"1rem"}}> {props.details[info].btnMsg}</button></Link>}
