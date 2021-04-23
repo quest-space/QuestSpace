@@ -18,7 +18,9 @@ import QSAdminSignIn from "./components/QSAdminSignIn";
 import Search from "./components/Search";
 import PopularQuests from "./components/PopularQuests";
 import RoundLeaderboard from "./components/RoundLeaderboard";
-import HostRound from "./components/HostRound"
+import HostRound from "./components/HostRound";
+import ViewProfile from "./components/ViewProfile";
+import EditProfile from "./components/EditProfile";
 
 const App = () => {
   return (
@@ -39,6 +41,8 @@ const App = () => {
         <Route exact path="/rounddetails" component={RoundDetails} />
         <Route exact path="/questdetails" component={QuestDetails} />
         <Route exact path="/header" component={Header} />
+        <Route exact path="/viewprofile" component={ViewProfile} />
+        <Route exact path="/editprofile" component={EditProfile} />
         <Route
           exact
           path="/participanthomepage/quest/:questID/round/:roundID"
@@ -56,7 +60,11 @@ const App = () => {
         />
         <Route exact path="/searchresults" component={Search} />
         <Route exact path="/popularquests" component={PopularQuests} />
-        <Route exact path="/participanthomepage/quest/:questID/round/:roundID/leaderboard" component={RoundLeaderboard} />
+        <Route
+          exact
+          path="/participanthomepage/quest/:questID/round/:roundID/leaderboard"
+          component={RoundLeaderboard}
+        />
         <Route exact path="/" component={LandingPage} />
       </Switch>
     </Router>

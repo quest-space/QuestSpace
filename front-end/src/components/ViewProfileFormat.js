@@ -9,7 +9,7 @@ import "../css/questdetails.css";
 
 const ViewProfileFormat = (props) => {
   let hidden_password = "";
-  for (let i = 0; i < props.password.length; i++) {
+  for (let i = 0; i < props.passwordlength; i++) {
     hidden_password = hidden_password.concat("*");
   }
 
@@ -18,7 +18,7 @@ const ViewProfileFormat = (props) => {
   const history = useHistory();
 
   const editProfile = () => {
-    history.push("/editprofile");
+    history.replace("/editprofile");
   };
 
   return (
