@@ -17,6 +17,7 @@ import QSAdminHomepage from "./components/QSAdminHomepage";
 import QSAdminSignIn from "./components/QSAdminSignIn";
 import Search from "./components/Search";
 import PopularQuests from "./components/PopularQuests";
+import HostRound from "./components/HostRound"
 
 const App = () => {
   return (
@@ -46,6 +47,11 @@ const App = () => {
           exact
           path="/participanthomepage/quest/:questID/"
           component={Quest}
+        />
+        <Route
+          exact
+          path="/hosthomepage/quest/:questID/round/:roundID"
+          component={HostRound}
         />
         <Route exact path="/searchresults" component={Search} />
         <Route exact path="/popularquests" component={PopularQuests} />
