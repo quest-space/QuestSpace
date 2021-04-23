@@ -85,20 +85,20 @@ const QuestDetailsFormat = (props) => {
           <HeadSubhead heading="Ends" subheading={props.endingtime} />
           <HeadSubhead heading="About" subheading={props.about} />
         </div>
-        <div
+        {/* <div
           style={{
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "center",
             paddingTop: "2rem",
-          }}
-        >
+          }} */}
+        
           {/* {props.buttonShow === "1" &&
             <button className="btnBegin" onClick={() => props.onClick(true)}>
               Enroll
             </button>
           } */}
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );

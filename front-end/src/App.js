@@ -12,6 +12,7 @@ import Round from "./components/Round";
 import RoundDetails from "./components/RoundDetails";
 import QuestDetails from "./components/QuestDetails";
 import Quest from "./components/Quest";
+import QuestHost from "./components/QuestHost";
 import QuestEnrolled from "./components/QuestEnrolled";
 import QSAdminHomepage from "./components/QSAdminHomepage";
 import QSAdminSignIn from "./components/QSAdminSignIn";
@@ -57,6 +58,11 @@ const App = () => {
           exact
           path="/hosthomepage/quest/:questID/round/:roundID"
           component={HostRound}
+        />
+        <Route
+          exact
+          path="/hosthomepage/quest/:questID"
+          component={QuestHost}
         />
         <Route exact path="/searchresults" component={Search} />
         <Route exact path="/popularquests" component={PopularQuests} />
