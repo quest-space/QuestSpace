@@ -9,7 +9,7 @@ import Cards from "./Cards"
 
 
 
-const Search = () => {
+const PopularQuests = () => {
 
     const location = useLocation();
     const [response, setResponse] = React.useState({"quests":[]})
@@ -55,7 +55,7 @@ const Search = () => {
             { text: "Home", to: "/participanthomepage" },
             {
                 text: "Popular Quests",
-                to: `/participanthomepage`,
+                to: `/popularquests`,
             },
             ]}
         />
@@ -84,7 +84,7 @@ const Search = () => {
                                         <div key = {k} className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                                             {/* {console.log(response[key][cardList][card].hostUser)} */}
                                             <Link to={{pathname: "/participanthomepage/quest/"+response[key][cardList][card].questID}}><Cards 
-                                                imgUrl = "https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
+                                                imgUrl = {response[key][cardList][card].logoURL}
                                                 title = {response[key][cardList][card].questName}
                                                 host = {response[key][cardList][card].hostUser}
                                                 description = {response[key][cardList][card].description}  //should be truncated at the backend
@@ -126,4 +126,4 @@ const Search = () => {
 }
 
 
-export default Search
+export default PopularQuests

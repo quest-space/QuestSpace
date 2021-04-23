@@ -1,6 +1,5 @@
 import React from "react";
 import QuestDetailsFormat from "./QuestDetailsFormat";
-import codinguru from "../img/testing/CodinGuru.png";
 import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import QuestRounds from "./QuestRounds";
@@ -105,11 +104,10 @@ const QuestEnrolled = (props) => {
             endingtime={props.x.quest.endTime}
             type={props.x.quest.nature}
             about={props.x.quest.about}
-            imgsrc={codinguru}
+            imgsrc={props.x.quest.logoURL}
             left="3rem"
             right="3rem"
             top="3rem"
-            buttonShow="0"
           />
         </div>
       )}
@@ -133,7 +131,7 @@ const QuestEnrolled = (props) => {
         )}
 
         {tab == "Rounds" && props.x.rounds.length > 0 && (
-          <QuestRounds details={props.x.rounds} id={props.x.quest.questID} />
+          <QuestRounds details={props.x.rounds} id={props.x.quest.questID} name={props.x.quest.questName} admin={props.x.quest.hostUser} />
         )}
       </div>}
 

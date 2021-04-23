@@ -17,6 +17,7 @@ import QSAdminHomepage from "./components/QSAdminHomepage";
 import QSAdminSignIn from "./components/QSAdminSignIn";
 import Search from "./components/Search";
 import PopularQuests from "./components/PopularQuests";
+import RoundLeaderboard from "./components/RoundLeaderboard";
 import HostRound from "./components/HostRound"
 
 const App = () => {
@@ -55,6 +56,7 @@ const App = () => {
         />
         <Route exact path="/searchresults" component={Search} />
         <Route exact path="/popularquests" component={PopularQuests} />
+        <Route exact path="/participanthomepage/quest/:questID/round/:roundID/leaderboard" component={RoundLeaderboard} />
         <Route exact path="/" component={LandingPage} />
       </Switch>
     </Router>
