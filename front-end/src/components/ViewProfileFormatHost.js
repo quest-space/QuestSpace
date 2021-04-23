@@ -3,11 +3,19 @@ import MainNavbar from "./MainNavbar";
 import HeadSubhead from "./HeadSubhead";
 import BreadCrumb from "./BreadCrumb";
 import { useHistory } from "react-router-dom";
-import EditProfile from "./EditProfile";
 
 import "../css/questdetails.css";
 
-const ViewProfileFormat = (props) => {
+const ViewProfileFormatHost = (props) => {
+  let full = [];
+  let empty = [];
+  for (let i = 0; i < parseInt(props.rating); i++) {
+    full.push(1);
+  }
+  for (let i = 0; i < 5 - parseInt(props.rating); i++) {
+    empty.push(0);
+  }
+
   let hidden_password = "";
   for (let i = 0; i < props.passwordlength; i++) {
     hidden_password = hidden_password.concat("*");
@@ -18,7 +26,7 @@ const ViewProfileFormat = (props) => {
   const history = useHistory();
 
   const editProfile = () => {
-    history.push("/editprofile");
+    history.push("/editprofilehost");
   };
 
   return (
@@ -44,7 +52,7 @@ const ViewProfileFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            {props.fullname}
+            {props.username}
           </h1>
         </div>
       </div>
@@ -94,10 +102,46 @@ const ViewProfileFormat = (props) => {
           </div>
         </p>
 
+        <p
+          className="display-4"
+          style={{
+            //paddingTop: "1.5rem",
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#46B7A1",
+            marginLeft: "0rem",
+            wordWrap: "break-word",
+          }}
+        >
+          Rating
+          <div
+            className="display-4"
+            style={{
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "#313131",
+              wordWrap: "break-word",
+            }}
+          >
+            {full.map((a, index) => {
+              return <i key={index} className="fa fa-star"></i>;
+            })}
+            {empty.map((a, index) => {
+              return <i key={index} className="far fa-star"></i>;
+            })}
+          </div>
+        </p>
+
         <div>
-          <HeadSubhead heading="First Name" subheading={props.firstname} />
-          <HeadSubhead heading="Last Name" subheading={props.lastname} />
-          <HeadSubhead heading="Date of Birth" subheading={props.dob} />
+          <HeadSubhead
+            heading="Representative Name"
+            subheading={props.repname}
+          />
+          <HeadSubhead
+            heading="Representative Designation"
+            subheading={props.repdesignation}
+          />
+          <HeadSubhead heading="Phone" subheading={props.phone} />
           <HeadSubhead heading="Institution" subheading={props.institution} />
           <HeadSubhead heading="Password" subheading={hidden_password} />
         </div>
@@ -110,7 +154,7 @@ const ViewProfileFormat = (props) => {
           }}
         >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
-          <button className="btnBegin" onClick={editProfile}>
+          <button className="btnBegin" onClick={() => editProfile()}>
             Edit <i class="fa fa-pencil"></i>
           </button>
         </div>
@@ -119,4 +163,4 @@ const ViewProfileFormat = (props) => {
   );
 };
 
-export default ViewProfileFormat;
+export default ViewProfileFormatHost;
