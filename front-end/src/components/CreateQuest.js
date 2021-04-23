@@ -5,9 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import Header from "./Header";
 import BreadCrumb from "./BreadCrumb";
 
-// To Be Completed
 const CreateQuest = (props) => {
-  const [user, setUser] = React.useState(true);
   const [QuestName, setQuestName] = React.useState();
   const [About, setAbout] = React.useState();
   const [Description, setDescription] = React.useState();
@@ -17,7 +15,7 @@ const CreateQuest = (props) => {
 
   const Create = async () => {
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/create-update`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/create-update`,
       {
         method: "POST",
         headers: {
@@ -35,9 +33,10 @@ const CreateQuest = (props) => {
       }
     );
 
+    console.log(response.status);
     const responseBody = await response.json();
 
-    if (response.status !== 201) {
+    if (response.status !== 200) {
       showError(responseBody.errors);
     } else {
       console.log("Quest  Created Successfully!");
@@ -64,9 +63,7 @@ const CreateQuest = (props) => {
           { text: "Home", to: "/hosthomepage" },
           {
             text: "Create New Quest",
-            //text: props.x.quest.questName,
-            // Abhi ke liye, will fix it with APIs
-            to: `/createquest`,
+            to: `/hosthomepage/createquest`,
           },
         ]}
       />
@@ -138,7 +135,6 @@ const CreateQuest = (props) => {
               type="text"
               className="inputdetail"
               placeholder="Enter quest type"
-              //placeholder={response1.lastname}
               onChange={(ev) => updateState(ev, setType)}
             />
           </div>
@@ -165,7 +161,6 @@ const CreateQuest = (props) => {
               type="datetime-local"
               className="inputdetail"
               placeholder="Enter Start Time"
-              //placeholder={response1.dateofbirth}
               onChange={(ev) => updateState(ev, setStartTime)}
             />
           </div>
@@ -222,7 +217,7 @@ const CreateQuest = (props) => {
               className="longinputdetail"
               placeholder="Enter a short description of your quest"
               //placeholder={response1.organization}
-              onChange={(ev) => updateState(ev, setAbout)}
+              onChange={(ev) => updateState(ev, setDescription)}
             />
           </div>
         </p>
@@ -249,7 +244,7 @@ const CreateQuest = (props) => {
               className="longinputdetail"
               placeholder="Enter complete description of your quest"
               //placeholder={response1.organization}
-              onChange={(ev) => updateState(ev, setDescription)}
+              onChange={(ev) => updateState(ev, setAbout)}
             />
           </div>
         </p>
@@ -289,12 +284,6 @@ const CreateQuest = (props) => {
             paddingTop: "2rem",
           }}
         >
-          {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
-          {/*
-              <button className="btnCancel" onClick={Cancel}>
-            Cancel <i class="fa fa-times"></i>
-          </button>
-          */}
           <button className="btnBegin" onClick={Create}>
             Request
           </button>
