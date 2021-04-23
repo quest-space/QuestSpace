@@ -12,6 +12,7 @@ import Round from "./components/Round";
 import RoundDetails from "./components/RoundDetails";
 import QuestDetails from "./components/QuestDetails";
 import Quest from "./components/Quest";
+import QuestHost from "./components/QuestHost";
 import QuestEnrolled from "./components/QuestEnrolled";
 import QSAdminHomepage from "./components/QSAdminHomepage";
 import QSAdminSignIn from "./components/QSAdminSignIn";
@@ -21,6 +22,7 @@ import RoundLeaderboard from "./components/RoundLeaderboard";
 import HostRound from "./components/HostRound";
 import ViewProfile from "./components/ViewProfile";
 import EditProfile from "./components/EditProfile";
+import CreateQuest from "./components/CreateQuest";
 
 const App = () => {
   return (
@@ -43,6 +45,7 @@ const App = () => {
         <Route exact path="/header" component={Header} />
         <Route exact path="/viewprofile" component={ViewProfile} />
         <Route exact path="/editprofile" component={EditProfile} />
+        <Route exact path="/hosthomepage/createquest" component={CreateQuest} />
         <Route
           exact
           path="/participanthomepage/quest/:questID/round/:roundID"
@@ -57,6 +60,11 @@ const App = () => {
           exact
           path="/hosthomepage/quest/:questID/round/:roundID"
           component={HostRound}
+        />
+        <Route
+          exact
+          path="/hosthomepage/quest/:questID"
+          component={QuestHost}
         />
         <Route exact path="/searchresults" component={Search} />
         <Route exact path="/popularquests" component={PopularQuests} />
