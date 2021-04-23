@@ -40,6 +40,9 @@ const submissionSchema = new Schema({
     },
     fileURL: {
         type: String
+    },
+    fileName: {
+        type: String
     }
 
 });

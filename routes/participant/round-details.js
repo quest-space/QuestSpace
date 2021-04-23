@@ -94,6 +94,7 @@ router.post(`/:questid/:roundid/submit`, upload.single(`submittedFile`), async (
       roundNum: roundData.roundNum,
       participantUser: req.username,
       fileURL: `${getFileUploadURL()}${req.file.filename}`,
+      fileName: req.file.originalname,
       beginTime: new Date(Date.now()),
       expireTime: roundData.endTime,
       isAttemptFinished: true
