@@ -131,7 +131,7 @@ const RoundDetailsFormat = (props) => {
             wordWrap: "break-word",
           }}
         >
-          About
+          Description and Guidelines
         </p>
         <div
           className="display-4"
