@@ -9,7 +9,7 @@ router.use(`/profile`, require(`./participant-profile`));
 router.use(`/enroll`, require(`./participant-enroll`));
 router.use(`/quest`, require(`./validateQuestRequestor`));
 router.use(`/quest`, require(`./quest-details`));
-router.use(`/leaderboard`, require(`./leaderboard`));
+// router.use(`/leaderboard`, require(`./leaderboard`));
 router.use(`/search`, require(`../helpers/search`));
 router.use(`/popular-quests`, require(`./popularQuests`));
 
