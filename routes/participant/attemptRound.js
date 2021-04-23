@@ -90,7 +90,7 @@ const attemptRound = async (req, res) => {
       return;
     } else {
       questionForWhichAnsWasReceieved = nextQuestion;
-      score = req.body.answer === questionForWhichAnsWasReceieved.answer ? req.body.roundData.eachMarks : 0;
+      score = req.body.answer == questionForWhichAnsWasReceieved.answer ? req.body.roundData.eachMarks : 0;
       questionsAnswered++;
       questionToSend = nextnextQuestion;
     }
