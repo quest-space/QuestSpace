@@ -5,7 +5,9 @@ const Tabs = (props) => {
     const [bar2, setBorderBar2] = React.useState("1px solid #C4C4C4")
     const [bar3, setBorderBar3] = React.useState("1px solid #C4C4C4")
     const [bar4, setBorderBar4] = React.useState("1px solid #C4C4C4")
-    const [width] = React.useState(props.submission ? "25%" : "33.33%")
+    // const [width] = React.useState()
+
+    // console.log("width", width, props.roundType)
 
     const setBar = (x) => {
         props.setTab(x)
@@ -48,28 +50,28 @@ const Tabs = (props) => {
                 <button
                     className="plain one"
                     onClick={() => setBar("Details")}
-                    style={{ borderBottom: bar1, width: width }}
+                    style={{ borderBottom: bar1, width: props.roundType === `Submission` ? "25%" : "33.33%" }}
                 >
                     Details
                 </button>
                 <button
                     className="plain two"
                     onClick={() => setBar("Rounds")}
-                    style={{ borderBottom: bar2, width: width }}
+                    style={{ borderBottom: bar2, width: props.roundType === `Submission` ? "25%" : "33.33%" }}
                 >
                     Rounds
                 </button>
-                {props.submission && <button
+                {props.roundType === `Submission` && <button
                     className="plain two"
                     onClick={() => setBar("Submissions")}
-                    style={{ borderBottom: bar3, width: width }}
+                    style={{ borderBottom: bar3, width: props.roundType === `Submission` ? "25%" : "33.33%" }}
                 >
                     Submissions
                 </button>}
                 <button
                     className="plain three"
                     onClick={() => setBar("Leaderboard")}
-                    style={{ borderBottom: bar4, width: width }}
+                    style={{ borderBottom: bar4, width: props.roundType === `Submission` ? "25%" : "33.33%" }}
                 >
                     Leaderboard
                 </button>
