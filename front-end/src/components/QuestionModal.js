@@ -32,9 +32,11 @@ const QuestionModal = (props) => {
                     </p>
 
                     {/* Score */}
-                    {props.score && <p>
+                    {/* {props.score &&  */}
+                    <p>
                         Your score is {props.score}
-                    </p>}
+                    </p>
+                    {/* } */}
                 </div>
             </div> : ``}
         </React.Fragment>

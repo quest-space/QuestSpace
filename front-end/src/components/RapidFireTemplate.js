@@ -27,8 +27,8 @@ const RapidFireTemplate = (props) => {
                     Uploaded Image:
                 </div>
                 <div className="questionText">
-                    <textarea>
-                    </textarea>
+                    <input type="file">
+                    </input>
                 </div>
 
 

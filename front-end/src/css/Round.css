@@ -1,3 +1,7 @@
+.roundArea {
+  min-height: 300px;
+}
+
 .questionContainer {
   display: flex;
   flex-direction: column;
@@ -8,7 +12,7 @@
 
 .questionContainer.container {
   width: 60%;
-  min-height: 300px;
+  /* min-height: 300px; */
 }
 
 .questionBox {

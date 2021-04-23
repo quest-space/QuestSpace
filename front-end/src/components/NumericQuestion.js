@@ -30,13 +30,13 @@ const NumericQuestion = (props) => {
             </div>
 
             <div className="questionBox" >
-                Q{props.question.questionNumber}) {props.question.statement}
+                Q{props.question.questionNum}) {props.question.statement}
 
                 {/* Image if applicable */}
                 {props.question.imageURL && <img className="questionImg" src={props.question.imageURL} />}
 
                 {/* Question Options */}
-                <div style={{ width: "100%", display: "flex" }}>
+                <div style={{ width: "100%", display: "flex", paddingTop: "10px" }}>
                     <div style={{ verticalAlign: "center", margin: "auto 10px auto 0px" }}>
                         Write your answer in the given box.
                     </div>

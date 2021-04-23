@@ -35,7 +35,7 @@ const McqQuestion = (props) => {
             </div>
 
             <div className="questionBox" >
-                Q{props.question.questionNumber}) {props.question.statement}
+                Q{props.question.questionNum}) {props.question.statement}
 
                 {/* Image if applicable */}
                 {props.question.imageURL && <img className="questionImg" src={props.question.imageURL} />}
