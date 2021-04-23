@@ -210,3 +210,15 @@
   padding-right: 3rem;
   font-weight: 300;
 }
+
+
+.cross1{
+  float:right;
+  width: 3rem;
+  background-color: #FFFFFF;
+  border: none; 
+}
+
+.dashedBox1{
+  border: 2px dashed #c4c4c4;
+}

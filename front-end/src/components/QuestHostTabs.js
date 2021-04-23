@@ -89,7 +89,7 @@ const QuestHostTabs = (props) => {
             }
 
             {
-                tab == "Rounds" && <HostRoundsList/>
+                tab == "Rounds" && <HostRoundsList response = {props.response}/>
             }
 
             {
