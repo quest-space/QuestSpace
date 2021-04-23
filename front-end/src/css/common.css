@@ -219,6 +219,15 @@
   border: none; 
 }
 
+
+.tick1{
+  float:right;
+  width: 3rem;
+  color: #46B7A1;
+  background-color: #FFFFFF;
+  border: none; 
+}
+
 .dashedBox1{
   border: 2px dashed #c4c4c4;
 }
