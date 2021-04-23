@@ -20,11 +20,12 @@ const { sendRes } = require(`../helpers/sendRes`);
 router.post(`/submit`, async (req, res) => {
     try{
         const password = req.body.password;
+        const passwordlength = password.length;
         const salt = await bcrypt.genSalt();
         const hashed = await bcrypt.hash(password, salt);
 
         const editable = await Host.updateOne({username: req.body.username}, {$set: {  password: hashed, phone: req.body.phone, representativeName: req.body.representativeName,
-            representativeDesignation: req.body.representativeDesignation,organization: req.body.organization}}, {upsert: true})
+            representativeDesignation: req.body.representativeDesignation,organization: req.body.organization, passwordlength: passwordlength}}, {upsert: true})
 
         sendRes(res, OK_STATUS_CODE, editable);
     }
@@ -43,7 +44,8 @@ router.post(`/edit`, async (req, res) => {
             representativeName: userData.representativeName,
             representativeDesignation: userData.representativeDesignation,
             rating: userData.rating,
-            organization: userData.organization
+            organization: userData.organization,
+            passwordlength: userData.passwordlength
         }
         sendRes(res, OK_STATUS_CODE, to_send);
     }
@@ -63,7 +65,8 @@ router.post(`/`, async (req, res) => {
             representativeName: userData.representativeName,
             representativeDesignation: userData.representativeDesignation,
             rating: userData.rating,
-            organization: userData.organization
+            organization: userData.organization,
+            passwordlength: userData.passwordlength
         }
         sendRes(res, OK_STATUS_CODE, to_send);
     }
