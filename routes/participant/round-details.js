@@ -78,7 +78,7 @@ router.post(`/:questid/:roundid/leaderboard`, async (req, res) => {
   
 });
 
-const upload = multer({ dest: __dirname + `../../../qs-uploaded-files/` });
+const upload = multer({ dest: __dirname + `../../../../qs-uploaded-files/` });
 router.post(`/:questid/:roundid/submit`, upload.single(`submittedFile`), async (req, res) => {
   if (!req.file) {
     sendRes(res, BAQ_REQUEST_STATUS_CODE, {
@@ -94,7 +94,8 @@ router.post(`/:questid/:roundid/submit`, upload.single(`submittedFile`), async (
       roundNum: roundData.roundNum,
       participantUser: req.username,
       fileURL: `${getFileUploadURL()}${req.file.filename}`,
-      beginTime: new Date(Date.now())
+      beginTime: new Date(Date.now()),
+      expireTime: roundData.endTime
     })
     sendRes(res, CREATED_STATUS_CODE, {
       status: `submitted successfully`
