@@ -1,6 +1,6 @@
 import React from "react"
 import Cards from "./Cards"
-import {Link} from "react-router-dom"
+import {Link, useHistory} from "react-router-dom"
 
 /* Example call
 <CardsContainer tab="Home"/>
@@ -18,15 +18,15 @@ const headings = {
     "all" : "All Quests",
     "popular" : "Popular Quests",
     "My Quests" : "all",
-    "Popular Quests" : "popular"
+    "Popular Quests" : "popular",
 }
 
 const CardsContainer = (props) => {
 
     // const [cards, setCards] = React.useState({})
     const [response, setResponse] = React.useState({"home":{}})
-    
     const [render, setRender] = React.useState(false);
+    const history = useHistory()
 
     const showError = (errors) => {
         alert(JSON.stringify(errors))
@@ -58,7 +58,12 @@ const CardsContainer = (props) => {
     }
 
     const viewAll = (label) => {
-        props.setTab(label)
+        if(label == "popular"){
+            history.push({pathname:`/popularquests`})
+        }
+        else{
+            props.setTab(label)
+        }
     }
 
     let tab = props.tab
