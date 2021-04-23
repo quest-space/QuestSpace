@@ -67,7 +67,7 @@ const JumbotronWithTabs = (props) => {
             }}
           >
             Quests
-          </h1>
+          </h1><br/>
         </div>
       </div>
       {/* TABS ON DESKTOP*/}

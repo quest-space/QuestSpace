@@ -4,14 +4,13 @@ import MainNavbar from "./MainNavbar";
 import PageFooter from "./PageFooter"
 import BreadCrumb from "./BreadCrumb";
 import {useLocation, useParams } from "react-router-dom";
-
-
+import Leaderboard from "./Leaderboard"
 
 
 const RoundLeaderboard = () => {
 
     const location = useLocation();
-    const [response, setResponse] = React.useState({})
+    const [response, setResponse] = React.useState({"individual":{}, "full":[]})
     const [render, setRender] = React.useState(false);
     const [tab, setTab] = React.useState('home')
     const { roundID, questID } = useParams()
@@ -74,6 +73,17 @@ const RoundLeaderboard = () => {
             display:"block"}}>
             {`Round ${roundID}: Leaderboard`}
         </div>
+
+        <div className="slimBox" style={{fontSize:"20px", marginTop: "3rem", paddingTop:"1rem", paddingBottom:"1rem"}}> 
+            <div style={{display:"inline"}}>
+              {"My Rank: " + response.individual.ranking}
+            </div>
+            <div style={{ float:"right"}}>
+              {"My Score: " + response.individual.roundScore}
+            </div>
+          </div>
+        <Leaderboard board = {response.full}/>
+
 
         <PageFooter />
         </div>
