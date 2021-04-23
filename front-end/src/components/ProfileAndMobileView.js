@@ -9,7 +9,7 @@ const ProfileAndMobileView = () => {
     const SignOutUser = async () => {
         const userString = history.location.pathname.includes("participant") ? "participant" : "host"
         console.log("user string is", userString)
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/signout`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/${userString}/signout`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
