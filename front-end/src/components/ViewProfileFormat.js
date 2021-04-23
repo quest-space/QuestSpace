@@ -1,13 +1,28 @@
 import React from "react";
 import MainNavbar from "./MainNavbar";
 import HeadSubhead from "./HeadSubhead";
-import Button from "./Button";
-import Stack from "./Stack";
+import BreadCrumb from "./BreadCrumb";
+import { useHistory } from "react-router-dom";
+import EditProfile from "./EditProfile";
+
 import "../css/questdetails.css";
 
 const ViewProfileFormat = (props) => {
+  let hidden_password = "";
+  for (let i = 0; i < props.password.length; i++) {
+    hidden_password = hidden_password.concat("*");
+  }
+
+  console.log(hidden_password);
+
+  const history = useHistory();
+
+  const editProfile = () => {
+    history.push("/editprofile");
+  };
+
   return (
-    <div>
+    <div style={{ marginBottom: "80px" }}>
       <MainNavbar />
       <div
         id="fancy"
@@ -18,7 +33,7 @@ const ViewProfileFormat = (props) => {
             "linear-gradient(209.34deg, rgba(71, 111, 143, 0) 17.99%, #335875 177.27%), #1F394E",
         }}
       >
-        <div style={{ marginLeft: "9%", marginRight: "6em" }}>
+        <div style={{ marginLeft: "9%", marginRight: "9%" }}>
           <h1
             className="display-4"
             style={{
@@ -33,9 +48,7 @@ const ViewProfileFormat = (props) => {
           </h1>
         </div>
       </div>
-      <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
-        <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
-      </div>
+      <BreadCrumb items={[{ text: "My Profile", to: "/viewprofile" }]} />
       <div
         style={{
           marginLeft: "9%",
@@ -86,11 +99,21 @@ const ViewProfileFormat = (props) => {
           <HeadSubhead heading="Last Name" subheading={props.lastname} />
           <HeadSubhead heading="Date of Birth" subheading={props.dob} />
           <HeadSubhead heading="Institution" subheading={props.institution} />
-          <HeadSubhead heading="Password" subheading="*********" />
+          <HeadSubhead heading="Password" subheading={hidden_password} />
         </div>
-        <span className="responsive" style={{ float: "right" }}>
-          <Stack button={<Button text="Edit" class="btn3" link="" />} />
-        </span>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            paddingTop: "2rem",
+          }}
+        >
+          {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
+          <button className="btnBegin" onClick={editProfile}>
+            Edit <i class="fa fa-pencil"></i>
+          </button>
+        </div>
       </div>
     </div>
   );
