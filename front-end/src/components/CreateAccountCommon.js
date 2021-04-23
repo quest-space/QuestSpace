@@ -20,13 +20,13 @@ const CreateAccountCommon = (props) => {
     return (
         <div className="createAccount">
             <div className="header">
-                <div className="title">
+                <div className="titleSignUp">
                     Create an Account
                 </div>
 
-                <div className="titleCaption">
+                <div className="titleCaptionSignUp">
                     Already have one?&nbsp;
-                    <Link className="titleCaption" style={{ textDecorationLine: "underline" }} to="/signin">
+                    <Link className="titleCaptionSignUp" style={{ textDecorationLine: "underline" }} to="/signin">
                         Sign In
                     </Link>
                 </div>
@@ -42,32 +42,32 @@ const CreateAccountCommon = (props) => {
                 </button>
             </nav>
 
-            <form className="form">
+            <form className="formSignUp">
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Username</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Username</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="text" className="input" placeholder="Enter here" value={props.userName} onChange={(ev) => updateState(ev, props.setUserName)} />
+                    <div className="formColSignUp">
+                        <input type="text" className="inputSignUp" placeholder="Enter here" value={props.userName} onChange={(ev) => updateState(ev, props.setUserName)} />
                     </div>
                 </div>
 
                 <div className="formRow">
-                    <div className="formCol">
-                        <label className="formLabel">Password</label>
+                    <div className="formColSignUp">
+                        <label className="formLabelSignUp">Password</label>
                     </div>
                 </div>
                 <div className="formRow">
-                    <div className="formCol">
-                        <input type="password" className="input" placeholder="Enter here" value={props.password} onChange={(ev) => updateState(ev, props.setPassword)} />
+                    <div className="formColSignUp">
+                        <input type="password" className="inputSignUp" placeholder="Enter here" value={props.password} onChange={(ev) => updateState(ev, props.setPassword)} />
                     </div>
                 </div>
             </form>
 
             <div style={{ paddingTop: "20px", textAlign: "center" }}>
-                <button className="btnNext" onClick={switchNext}>
+                <button className="btnNextSignUp" onClick={switchNext}>
                     Next&nbsp;&nbsp;
                     <i className="fa fa-angle-right" aria-hidden="true"></i>
                 </button>

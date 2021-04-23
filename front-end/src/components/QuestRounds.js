@@ -10,35 +10,46 @@ const changeColor = {
 const QuestRounds = (props) => {
 
     const history = useHistory()
-    // const toRound = (color, roundID)=>{
+    const left = {
+        fontWeight: "normal",
+        fontSize: "14px",
+        marginBottom:"0rem",
+        display:"inline-block",
+    }
 
-    //     if(color === 'green'){
-    //         console.log("participanthomepage/quest/"+props.id+"/round/"+roundID)
-    //         history.push("participanthomepage/quest/"+props.id+"/round/"+roundID)
-    //     }
+    const right = {
+        fontWeight: "normal",
+        fontSize: "14px",
+        marginBottom:"0rem", 
+        float:"right",
+        display:"inline-block"
+    }
+    
+    const roundLeaderboard = (color, link) => {
+        if (color === "blue"){
+            history.push({pathname:link+"/leaderboard", heading:props.name, subheading:props.admin})
+        }
+    }
 
-    // }
     console.log(props.details)
     return (
-        <div>
-            {Object.keys(props.details).map((info, j)=>{
-                            
+        <div style={{marginTop:"3rem", marginBottom:"5.5rem"}}>
+            {Object.keys(props.details).map((info, j)=>{                   
                 const color = props.details[info].btnColor
                 return(
-                    <div style={{border: "1px solid #C4C4C4", boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", margin:"7.5rem", marginTop:"0.2rem", paddingBottom:"1rem", marginBottom:"0.2rem", paddingLeft:"1rem", paddingTop:"1rem", paddingRight:"1rem"}}>    
+                        <div key={j} className="myBox">   
+
+                            {(props.details[info].btnColor !== 'green')&&<button id="myButton" onClick={()=>{roundLeaderboard(props.details[info].btnColor, "/participanthomepage/quest/"+props.id+"/round/"+props.details[info].roundNum)}} style={{backgroundColor: changeColor[color], float:"right", marginTop:"1rem"}}> {props.details[info].btnMsg}</button>}
+                            {(props.details[info].btnColor === 'green')&&<Link to={{pathname: "/participanthomepage/quest/"+props.id+"/round/"+props.details[info].roundNum}}><button id="myButton" style={{backgroundColor: changeColor[color], float:"right", marginTop:"1rem"}}> {props.details[info].btnMsg}</button></Link>}
                             <p  style={{fontWeight: "600",fontSize: "22px", marginBottom:"0rem"}}>{"Round "+props.details[info].roundNum+": "+props.details[info].roundName}</p>
                             <p style={{fontWeight: "normal", fontSize: "18px", marginBottom:"0.5rem"}}>{props.details[info].roundType}</p>
-                            <p className="text-muted" style={{fontWeight: "normal",fontSize: "14px", marginBottom:"0rem"}}>{"Starts: "+props.details[info].startTime}</p>
-                            <p className="text-muted" style={{fontWeight: "normal",fontSize: "14px", marginBottom:"0rem"}}>{"Ends: "+props.details[info].endTime}</p>
-                            <p className="text-muted" style={{fontWeight: "normal",fontSize: "14px", marginBottom:"0rem", textAlign:"right"}}>{props.details[info].statusMsg1}</p>
-                            <p className="text-muted" style={{fontWeight: "normal",fontSize: "14px", marginBottom:"0rem", textAlign:"right"}}>{props.details[info].statusMsg2}</p>
-
-                            {(props.details[info].btnColor === 'green')&&<Link to={{pathname: "/participanthomepage/quest/"+props.id+"/round/"+props.details[info].roundNum}}><button id="myButton" style={{backgroundColor: changeColor[color]}}> {props.details[info].btnMsg}</button></Link>}
-
-                            {(props.details[info].btnColor !== 'green')&&<button id="myButton" style={{backgroundColor: changeColor[color]}}> {props.details[info].btnMsg}</button>}
-                            {/* {()=>toRound(color,props.details[info].roundNum)}style={{backgroundColor: changeColor[color]}}  */}
-                                
-                    </div>
+                            <p className="text-muted" style={left}>{"Starts: "+props.details[info].startTime}</p>
+                            <p className="text-muted" style={right}>{props.details[info].statusMsg1}</p>
+                            <div>
+                            <p className="text-muted" style={left}>{"Ends: "+props.details[info].endTime}</p>
+                            <p className="text-muted" style={right}>{props.details[info].statusMsg2}</p>
+                            </div>
+                        </div>
                 )
             })}
         </div>

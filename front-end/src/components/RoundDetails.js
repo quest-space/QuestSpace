@@ -1,9 +1,35 @@
 import React from "react";
 import RoundDetailsFormat from "./RoundDetailsFormat";
+import Header from "./Header";
+import MainNavbar from "./MainNavbar";
+import BreadCrumb from "./BreadCrumb";
 
 const RoundDetails = () => {
   return (
     <div>
+      <MainNavbar />
+      <Header
+        heading="Round 1: Programming Contest"
+        subheading="CodinGuru3.0"
+      />
+      <BreadCrumb
+        // This will be fixed
+        items={[
+          { text: "Home", to: "/participanthomepage" },
+          {
+            text: "CodinGuru3.0",
+            //text: props.x.quest.questName,
+            // Abhi ke liye, will fix it with APIs
+            to: `/questdetails`,
+          },
+          {
+            text: "Round 1: Programming Competition",
+            //text: props.x.quest.roundName,
+            // Abhi ke liye, will fix it with APIs
+            to: `/rounddetails`,
+          },
+        ]}
+      />
       <RoundDetailsFormat
         roundname="Round 1: Programming Contest" /*Can use string concatenation here*/
         questname="CodinGuru3.0"

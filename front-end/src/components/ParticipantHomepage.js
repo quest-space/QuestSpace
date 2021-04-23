@@ -9,9 +9,9 @@ const ParticipantHomepage = () => {
   const [tab, setTab] = React.useState('home')
   return (
     <div>
-      <MainNavbar />
-      <JumbotronWithTabs setTab={setTab}/>
-      <CardsContainer tab={tab}/>
+      <MainNavbar setTab={setTab} />
+      <JumbotronWithTabs setTab={setTab} />
+      <CardsContainer setTab={setTab} tab={tab}/>
       <PageFooter />
     </div>
   );
