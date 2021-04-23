@@ -62,12 +62,10 @@ const SubmissionRound = (props) => {
 
         if (difference < 0) {
             if (!show) {
-                console.log("show is", show, "expire time is", expireTime)
-                setModalText("Timer has expired.")
+                setModalText("Round time has ended.")
                 setShow(true)
             }
         } else {
-            // console.log("diff",difference)
             setTimeLeft(difference)
         }
 
@@ -94,6 +92,19 @@ const SubmissionRound = (props) => {
         ev.preventDefault()
 
         const formData = new FormData(ev.target)
+
+        const response = await fetch("http://localhost:3335/api-img", {
+            method: "POST",
+            header: { 'Content-Type': 'multipart/form-data' },
+            body: formData
+        })
+
+        if (response.status === 200) {
+            setModalText("Your file has been submitted.") 
+            setShow(true)
+        } else {
+            alert("Your file could not be submitted. Kindly resubmit.")
+        }
     }
 
     return (
