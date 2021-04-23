@@ -16,6 +16,9 @@ const setGenericVars = (req, decodedToken) => {
   req.body.id = decodedToken.id;
   req.body.username = decodedToken.username;
   req.body.userType = decodedToken.type;
+  req.id = decodedToken.id;
+  req.username = decodedToken.username;
+  req.userType = decodedToken.type;
 }
 
 // filter out authentic users

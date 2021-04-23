@@ -80,7 +80,7 @@ router.post(`/:questid/:roundid/leaderboard`, async (req, res) => {
 
 const upload = multer({ dest: `../../../qs-uploaded-files/` });
 router.post(`/:questid/:roundid/submit`, upload.single(`submittedFile`), async (req, res) => {
-  if (!req.file || !req.body.username) {
+  if (!req.file) {
     sendRes(res, BAQ_REQUEST_STATUS_CODE, {
       error: `File not given`
     });
@@ -92,7 +92,7 @@ router.post(`/:questid/:roundid/submit`, upload.single(`submittedFile`), async (
     await Submission.create({
       questName: questData.questName,
       roundNum: roundData.roundNum,
-      participantUser: req.body.username,
+      participantUser: req.username,
       fileURL: `${getFileUploadURL()}${req.file.filename}`,
       beginTime: new Date(Date.now())
     })
