@@ -1,4 +1,5 @@
 const formatAMPM = (date) => {
+  date = new Date(date.getTime() + (5 * 60 * 60 * 1000));
   let hours = date.getHours();
   let minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'pm' : 'am';
@@ -6,7 +7,7 @@ const formatAMPM = (date) => {
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? '0'+ minutes : minutes;
   const strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime + ', ' + date.toDateString();
+  return strTime + ', ' + date.toDateString() + ' PK Time';
 }
 
 const getConciseDate = (date) => {
