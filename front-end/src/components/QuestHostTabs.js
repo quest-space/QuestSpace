@@ -93,7 +93,7 @@ const QuestHostTabs = (props) => {
             }
 
             {
-                tab == "Participant" && props.response.participants !== null && <HostParticipantList/>
+                tab == "Participant" && props.response.participants !== null && <HostParticipantList response = {props.response}/>
             }
 
             {
@@ -109,11 +109,11 @@ const QuestHostTabs = (props) => {
                     marginLeft:"9%",
                     marginRight:"9%",
                     padding:"2rem"}}>
-                    <i class="fas fa-exclamation-circle"></i> Not Available
+                    <i class="fas fa-exclamation-circle"></i> No Rounds Added!
                 </div>
             }
             {
-                tab == "Participant" && props.response.editable === false && props.response.rounds === null &&
+                tab == "Participant" && props.response.editable === false && props.response.participants === null &&
                 <div style={{
                     border: "1px solid #C4C4C4", 
                     boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
@@ -122,7 +122,7 @@ const QuestHostTabs = (props) => {
                     marginLeft:"9%",
                     marginRight:"9%",
                     padding:"2rem"}}>
-                    <i class="fas fa-exclamation-circle"></i> Not Available
+                    <i class="fas fa-exclamation-circle"></i> No Participants found!
                 </div>
             }
             <PageFooter/>
