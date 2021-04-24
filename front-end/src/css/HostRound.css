@@ -1,6 +1,7 @@
 .mainBox {
   margin-bottom: 5.5rem;
   margin-top: 3rem;
+  /* min-height: 100px; */
 }
 
 .addBox {
@@ -24,7 +25,7 @@
 .questionArea {
   display: flex;
   flex-direction: column;
-  padding: 20px 10px 16px 10px;
+  padding: 20px 10px 20px 10px;
   flex-grow: 1;
 }
 
@@ -60,11 +61,15 @@
   width: 100%;
 }
 
+.questionText img {
+  width: 200px;
+}
+
 .questionNum {
   color: #313131;
   font-weight: 500;
   font-size: 24pt;
-  width: auto;
+  width: 50px;
   height: auto;
   padding-top: 16px;
   padding-bottom: 16px;

@@ -21,11 +21,26 @@ const HostRapidFire = (props) => {
     }, [newQuestion])
 
     return (
+        // <React.Fragment>
         <div className="mainBox">
-            <RapidFireQuestion />
-            {showAddBox && <AddBox onClick={() => setShowAddBox(false)} />}
-            {!showAddBox && <RapidFireTemplate questionNum={props.questions.length + 1} setNewQuestion={setNewQuestion} setShowAddBox={setShowAddBox} />}
+
+            {/* Score box */}
+            <div className="myBox">
+                Score for each question:&nbsp;{props.eachMark}
+            </div>
+
+            {/* Already added questions */}
+            {props.questions.map((question, index) => {
+                return (
+                    <RapidFireQuestion key={index} question={question} removable={props.editable} />
+                )
+            })}
+
+            {/* Add question option */}
+            {props.editable && showAddBox && <AddBox onClick={() => setShowAddBox(false)} />}
+            {props.editable && !showAddBox && <RapidFireTemplate questionNum={props.questions.length + 1} setNewQuestion={setNewQuestion} setShowAddBox={setShowAddBox} />}
         </div>
+        // </React.Fragment>
     )
 
 }
