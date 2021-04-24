@@ -11,7 +11,7 @@ import QuestHostTabs from "./QuestHostTabs"
 const QuestHost = () => {
     const { questID } = useParams()
     const [response, setResponse] = React.useState({"quest":{}})
-    const [render, setRender] = React.useState('true')
+    const [render, setRender] = React.useState(true)
 
     const showError = (errors) => {
         alert(JSON.stringify(errors))
@@ -44,8 +44,8 @@ const QuestHost = () => {
     
     }
 
-    if(render === 'true'){
-        setRender('false')
+    if(render === true){
+        setRender(false)
         requestQuest()
     }
 
@@ -60,7 +60,7 @@ const QuestHost = () => {
                 
             </div>
             }
-            <QuestHostTabs response = {response}/>
+            <QuestHostTabs response = {response} setRender={setRender}/>
             {/* <PageFooter /> */}
 
         </div>
