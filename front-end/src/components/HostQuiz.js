@@ -1,10 +1,11 @@
 import React, { useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import AddBox from "./AddBox"
-import HostRapidFireTemplate from "./HostRapidFireTemplate"
+import HostQuizTemplate from "./HostQuizTemplate"
 import HostRapidFireQuestion from "./HostRapidFireQuestion"
+import HostNumericQuestion from "./HostNumericQuestion"
 
-const HostRapidFire = (props) => {
+const HostQuiz = (props) => {
 
     const { roundID, questID } = useParams()
 
@@ -83,13 +84,13 @@ const HostRapidFire = (props) => {
 
             {/* Add question option */}
             {props.roundInfo.editable && showAddBox && <AddBox onClick={() => setShowAddBox(false)} />}
-            {props.roundInfo.editable && !showAddBox && <HostRapidFireTemplate questionNum={props.roundInfo.questions ? props.roundInfo.questions.length + 1 : 1} addQuestion={addQuestion} cancelQuestion={cancelQuestion}
+            {/* {props.roundInfo.editable && !showAddBox && <HostRapidFireTemplate questionNum={props.roundInfo.questions ? props.roundInfo.questions.length + 1 : 1} addQuestion={addQuestion} cancelQuestion={cancelQuestion}
             // setNewQuestion={setNewQuestion} setShowAddBox={setShowAddBox} 
-            />}
+            />} */}
         </div>
         // </React.Fragment>
     )
 
 }
 
-export default HostRapidFire
+export default HostQuiz

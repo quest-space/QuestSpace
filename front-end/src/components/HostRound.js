@@ -7,6 +7,7 @@ import BreadCrumb from "./BreadCrumb"
 import Tabs from "./Tabs"
 import HostRoundDetails from "./HostRoundDetails"
 import HostRapidFire from "./HostRapidFire"
+import HostQuiz from "./HostQuiz"
 import "../css/HostRound.css"
 
 const HostRound = () => {
@@ -61,6 +62,9 @@ const HostRound = () => {
             {/* <div className="mainBox"> */}
             {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Rapid Fire`) && <HostRapidFire roundInfo={roundInfo} setroundInfo={setroundInfo} />}
             {/* </div> */}
+
+            {/* View QUestions in case of quiz round */}
+            {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Quiz`) && <HostQuiz roundInfo={roundInfo} setroundInfo={setroundInfo} />}
 
             <PageFooter />
         </React.Fragment>

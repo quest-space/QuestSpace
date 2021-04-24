@@ -1,6 +1,6 @@
 import React from "react"
 
-const RapidFireQuestion = (props) => {
+const HostRapidFireQuestion = (props) => {
 
     return (
         <div className="myBox questionTemplate">
@@ -79,4 +79,4 @@ const RapidFireQuestion = (props) => {
     )
 }
 
-export default RapidFireQuestion
+export default HostRapidFireQuestion
