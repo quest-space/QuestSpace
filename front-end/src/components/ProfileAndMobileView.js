@@ -27,12 +27,7 @@ const ProfileAndMobileView = (props) => {
     history.push("/signin");
   };
 
-  let initials = "";
-  if (props.username) {
-    initials = props.username.substring(0, 1);
-  } else {
-    initials = "U";
-  }
+  let initials = props.username.substring(0, 1);
 
   console.log(initials);
 
