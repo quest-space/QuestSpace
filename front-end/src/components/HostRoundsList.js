@@ -1,9 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 
 const HostRoundsList = (props) => {
 
     const { questID } = useParams()
+    const history = useHistory()
 
     const [displayForm, setDisplayForm] = React.useState(false)
     const [timeForm, setTimeForm] = React.useState(false)
@@ -42,6 +43,10 @@ const HostRoundsList = (props) => {
 
     const descrip=(ev)=>{
         setDescription(ev.target.value)
+    }
+
+    const goToRound=(num)=>{
+        history.push({pathname: `/hosthomepage/quest/${questID}/round/${num}`})
     }
 
     const addQuest = async () => {
@@ -119,10 +124,10 @@ const HostRoundsList = (props) => {
             {props.response.rounds !==null && Object.keys(props.response.rounds).map((info, j)=>{                   
                 const color = props.response.rounds[info].btnColor
                 return(
-                        <div key={j} className="myBox c" style={{paddingRight:"0rem", borderRadius:"0rem"}}>   
+                        <div key={j} className="myBox c" onClick={()=>{goToRound(props.response.rounds[info].roundNum)}} style={{paddingRight:"0rem", borderRadius:"0rem"}}>   
 
-                            <button class="cross1" onClick={()=> {deleteQuest(props.response.rounds[info].roundNum)}}> <i class="fas fa-times"></i></button>
-                            <p  style={{fontWeight: "600",fontSize: "22px", marginBottom:"0rem", display:"inline-block"}}>{"Round "+props.response.rounds[info].roundNum+": "+props.response.rounds[info].roundName}</p>
+                            {props.response.editable == true && <button class="cross1" onClick={()=> {deleteQuest(props.response.rounds[info].roundNum)}}> <span className="material-icons" style={{ fontSize: "28px", color:"#EB5757" }}> close </span> </button>}
+                            <p  style={{fontWeight: "500",fontSize: "22px", marginBottom:"0rem", display:"inline-block", color:"rgb(49, 49, 49)"}}>{"Round "+props.response.rounds[info].roundNum+": "+props.response.rounds[info].roundName}</p>
                             <p style={{fontWeight: "normal", fontSize: "18px", marginBottom:"0.5rem"}}>{props.response.rounds[info].roundType}</p>
                             <p className="text-muted" style={left}>{"Starts: "+props.response.rounds[info].startTime}</p>
                             <div>
@@ -134,8 +139,8 @@ const HostRoundsList = (props) => {
 
             {
                 displayForm === true && <div className="myBox" style={{paddingRight:"0rem"}}>
-                    <button class="tick1" onClick={()=> {addQuest()}}> <i class="fas fa-check"></i></button>
-                    <button class="cross1" onClick={()=> {setDisplayForm(false)}}> <i class="fas fa-times"></i></button>
+                    <button class="tick1" onClick={()=> {addQuest()}}> <span className="material-icons" style={{ fontSize: "28px", color:"#238839" }}> done </span></button>
+                    <button class="cross1" onClick={()=> {setDisplayForm(false)}}> <span className="material-icons" style={{ fontSize: "28px", color:"#EB5757" }}> close </span> </button>
                     
                     <p  style={{fontWeight: "600",fontSize: "22px", marginBottom:"0rem", display:"inline-block"}}>Add Round</p>
                     <tr>
@@ -286,10 +291,10 @@ const HostRoundsList = (props) => {
                         </p>
                 </div>
             }
-
+            {props.response.editable == true &&
             <div className="myBox dashedBox1">
-                <button style={{width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={()=> {setDisplayForm(true)}}><i class="fas fa-plus"></i> </button>
-            </div>
+                <button style={{width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={()=> {setDisplayForm(true)}}><span className="material-icons" style={{fontSize: "20pt; color: rgb(108, 108, 108)"}}>add</span> </button>
+            </div>}
 
         </div>
     )
