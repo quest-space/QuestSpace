@@ -2,17 +2,17 @@ import React from "react";
 import MainNavbar from "./MainNavbar";
 import "../css/Details.css";
 import { Link, useHistory } from "react-router-dom";
+import { First } from "react-bootstrap/esm/PageItem";
 
 // To Be Completed
-const EditProfile = (props) => {
-  const [user, setUser] = React.useState(true);
-  const [FirstName, setFirstName] = React.useState();
-  const [LastName, setLastName] = React.useState();
-  const [Password, setPassword] = React.useState();
-  const [DateofBirth, setDateofBirth] = React.useState();
-  const [Institution, setInstitution] = React.useState();
+const EditProfile = () => {
   const [response1, setResponse1] = React.useState({});
-  const [userString, setuserString] = React.useState("");
+  const [Password, setPassword] = React.useState("");
+  const [FirstName, setFirstName] = React.useState("");
+  const [LastName, setLastName] = React.useState("");
+  const [DateofBirth, setDateofBirth] = React.useState("");
+  const [Institution, setInstitution] = React.useState("");
+  const [render, setRender] = React.useState(false);
 
   const history = useHistory();
 
@@ -21,8 +21,8 @@ const EditProfile = (props) => {
   };
 
   const ProfileAPI = async () => {
-    const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
+    const response = await fetch(
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/profile`,
       {
         method: "POST",
         headers: {
@@ -33,40 +33,30 @@ const EditProfile = (props) => {
       }
     );
 
-    const checkRespBody = await checkResp.json();
-    console.log("response type", checkRespBody.type);
-    setuserString(checkRespBody.type);
+    console.log("response is", response);
 
-    const response1 = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/${userString}/profile`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          username: "Hassaan",
-          password: "hassaan123",
-        }),
-      }
-    );
-
-    console.log("response is", response1);
-
-    const responseBody = await response1.json();
+    const responseBody = await response.json();
     console.log("response", responseBody);
     setResponse1(responseBody);
+    setDateofBirth(responseBody.dateofbirth);
+    //setDateofBirth(responseBody.formatteddateofbirth);
+    setFirstName(responseBody.firstname);
+    setLastName(responseBody.lastname);
+    setInstitution(responseBody.organization);
+    setPassword(responseBody.password);
 
-    if (response1.status !== 200) {
-      console.log(`Error in enrolment.`);
+    if (response.status !== 200) {
+      console.log(`Error in profile view.`);
       showError(responseBody.errors);
     } else {
       console.log(`Profile Viewed.`);
     }
   };
 
-  ProfileAPI();
+  if (!render) {
+    setRender(true);
+    ProfileAPI();
+  }
 
   const updateState = (ev, stateUpdateFn) => {
     stateUpdateFn(ev.target.value);
@@ -75,7 +65,7 @@ const EditProfile = (props) => {
   const EditDets = async () => {
     console.log("starting");
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/profile/edit`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/profile/submit`,
       {
         method: "POST",
         headers: {
@@ -203,14 +193,13 @@ const EditProfile = (props) => {
           First Name
           <div
             style={{
-              paddingTop: "0.5rem",
+              paddingTop: "0.2rem",
             }}
           >
             <input
               type="text"
               className="inputdetail"
-              //placeholder="1"
-              placeholder={response1.firstname}
+              value={FirstName}
               onChange={(ev) => updateState(ev, setFirstName)}
             />
           </div>
@@ -237,7 +226,8 @@ const EditProfile = (props) => {
               type="text"
               className="inputdetail"
               //placeholder="1"
-              placeholder={response1.lastname}
+              //placeholder={response1.lastname}
+              value={LastName}
               onChange={(ev) => updateState(ev, setLastName)}
             />
           </div>
@@ -263,8 +253,8 @@ const EditProfile = (props) => {
             <input
               type="date"
               className="inputdetail"
-              //placeholder="1"
-              placeholder={response1.dateofbirth}
+              value={"2020-10-02"}
+              value={DateofBirth}
               onChange={(ev) => updateState(ev, setDateofBirth)}
             />
           </div>
@@ -290,8 +280,8 @@ const EditProfile = (props) => {
             <input
               type="text"
               className="inputdetail"
-              placeholder="1"
-              placeholder={response1.organization}
+              //placeholder="1"
+              value={Institution}
               onChange={(ev) => updateState(ev, setInstitution)}
             />
           </div>
@@ -317,6 +307,7 @@ const EditProfile = (props) => {
             <input
               type="password"
               className="inputdetail"
+              minLength="7"
               placeholder={hidden_password}
               onChange={(ev) => updateState(ev, setPassword)}
             />
@@ -335,9 +326,11 @@ const EditProfile = (props) => {
           <button className="btnCancel" onClick={() => Cancel()}>
             Cancel <i class="fa fa-times"></i>
           </button>
-          <button className="btnBegin" onClick={() => EditDets()}>
-            Update <i class="fa fa-check"></i>
-          </button>
+          <span style={{ marginBottom: "0.5rem" }}>
+            <button className="btnBegin" onClick={() => EditDets()}>
+              Update <i class="fa fa-check"></i>
+            </button>
+          </span>
         </div>
       </div>
     </div>
