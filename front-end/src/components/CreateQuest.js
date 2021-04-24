@@ -15,13 +15,17 @@ const CreateQuest = (props) => {
   const [logo, setLogo] = React.useState();
 
   const Create = async () => {
-    const formData = new FormData(ev.target);
+    const formData = new FormData();
     formData.append(`questName`, QuestName);
     formData.append(`nature`, Type);
     formData.append(`description`, Description);
     formData.append(`about`, About);
     formData.append(`startTime`, StartTime);
     formData.append(`endTime`, EndTime);
+    if (!logo) {
+      alert(`Please upload a logo`);
+      return;
+    }
     formData.append(`logo`, logo);
 
     const response = await fetch(
@@ -274,7 +278,7 @@ const CreateQuest = (props) => {
               accept="image/png, image/jpeg"
               //className="inputdetail"
               //placeholder={hidden_password}
-              //onChange={(ev) => updateState(ev,)}
+              onChange={(ev) => updateState(ev, setLogo)}
             />
           </div>
         </p>
