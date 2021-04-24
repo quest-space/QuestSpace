@@ -33,7 +33,7 @@ const HostRoundDetails = (props) => {
                 >
                     <img
                         className="image responsive resp2 d-none d-sm-none d-md-block d-lg-block"
-                        src={props.roundDetails.imageURL}
+                        src={props.roundDetails && props.roundDetails.logoURL}
                         style={{ float: "right" }}
                     />
 
@@ -59,15 +59,15 @@ const HostRoundDetails = (props) => {
                             wordWrap: "break-word",
                         }}
                     >
-                        {props.roundDetails.roundName}
+                        {props.roundDetails && props.roundDetails.roundName}
                     </div>
                     {/* </p> */}
 
                     <div>
-                        <HeadSubhead heading="Type" subheading={props.roundDetails.roundType} />
-                        <HeadSubhead heading="Starts" subheading={props.roundDetails.startTime} />
-                        <HeadSubhead heading="Ends" subheading={props.roundDetails.endTime} />
-                        <HeadSubhead heading="Description and Guidelines" subheading={props.roundDetails.description} />
+                        <HeadSubhead heading="Type" subheading={props.roundDetails && props.roundDetails.roundType} />
+                        <HeadSubhead heading="Starts" subheading={props.roundDetails && props.roundDetails.startTime} />
+                        <HeadSubhead heading="Ends" subheading={props.roundDetails && props.roundDetails.endTime} />
+                        <HeadSubhead heading="Description and Guidelines" subheading={props.roundDetails && props.roundDetails.description} />
                     </div>
                     <div
                         style={{

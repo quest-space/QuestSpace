@@ -2,17 +2,14 @@ import React from "react"
 
 const RapidFireQuestion = (props) => {
 
-    const num = 1
-    const statement = "question statement"
-    const options = ["hello testnn option", 2, 4]
-    const answer = 4
+    console.log("iamge url is", props.question.imageURL)
 
     return (
         <div className="myBox questionTemplate">
 
             {/* Question Number */}
             <div className="questionNum">
-                Q{num}
+                Q{props.question.questionNum}
             </div>
 
             {/* Question Section */}
@@ -23,8 +20,19 @@ const RapidFireQuestion = (props) => {
                     Question Statement:
                 </div>
                 <div className="questionText">
-                    {statement}
+                    {props.question.statement}
                 </div>
+
+                {/* Uploaded Image if present */}
+                {props.question.imageURL && <div>
+                    <div className="questionHeading">
+                        Uploaded Image:
+                    </div>
+                    <div className="questionText">
+                        <img src={props.question.imageURL}>
+                        </img>
+                    </div>
+                </div>}
 
                 {/* MCQ options */}
                 <div className="mcqTemplate">
@@ -35,13 +43,13 @@ const RapidFireQuestion = (props) => {
 
                     <div className="questionText">
                         {/* Print already added options */}
-                        {options.map((option, index) => {
+                        {props.question.options.map((option, index) => {
                             return (
                                 <div className="mcqOption" key={index}>
 
                                     {/* Radio Circle */}
                                     <span className="material-icons icon">
-                                        radio_button_{answer === option ? `checked` : `unchecked`}
+                                        radio_button_{props.question.answer === option ? `checked` : `unchecked`}
                                     </span>
 
                                     {/* option text */}
@@ -57,14 +65,17 @@ const RapidFireQuestion = (props) => {
 
             </div>
 
-            {/* Right Sidepanel */}
-            <div className="sidePanel">
-                <div className="sidePanel" style={{ height: "100%", color: "#EB5757" }}>
-                    <span className="material-icons" style={{ fontSize: "28px" }}>
-                        close
-                    </span>
+            {/* Right Sidepanel only if question is removable */}
+            {
+                props.removable &&
+                <div>
+                    <div className="sidePanel" style={{ height: "100%", color: "#EB5757" }}>
+                        <span className="material-icons" style={{ fontSize: "28px" }}>
+                            close
+                        </span>
+                    </div>
                 </div>
-            </div>
+            }
 
         </div >
     )
