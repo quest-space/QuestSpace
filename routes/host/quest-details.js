@@ -233,6 +233,7 @@ router.post(`/:questid`, async (req, res) => {
       if(check_quest_status(find_quest, currTime) == "Upcoming"){ 
         // Only send quest details
         to_send["status"] = "Upcoming"; // will determine which tabs to show
+        to_send["editable"] = true;
         to_send["quest"] = quest_details;
         if(formatted_rounds.length === 0){
             to_send["rounds"] = null;
@@ -256,6 +257,7 @@ router.post(`/:questid`, async (req, res) => {
         const ret_val = await makeLeaderboard(req.params.questid, 0, "host", "");
       
         to_send["status"] = check_quest_status(find_quest, currTime); // status of quest
+        to_send["editable"] = false;
         to_send["quest"] = quest_details; // details of quest
         // round data
         if(formatted_rounds.length === 0){
