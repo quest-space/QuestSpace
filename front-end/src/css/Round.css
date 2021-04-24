@@ -71,6 +71,7 @@
   padding: 0px 10px;
   outline: none;
   color: #666666;
+  cursor: pointer;
 }
 
 .questionBox input[type="file"] {
