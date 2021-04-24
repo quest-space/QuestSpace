@@ -5,6 +5,10 @@ const RapidFireTemplate = (props) => {
 
     const [question, setQuestion] = React.useState({})
 
+    // const addQuestion = () => {
+    //     props.setNewQuestion()
+    // }
+
     return (
         <div className="myBox questionTemplate">
             {/* Question Number */}
@@ -33,7 +37,7 @@ const RapidFireTemplate = (props) => {
                 </div>
 
                 {/* MCQ options */}
-                <McqTemplate setQuestion={setQuestion}/>
+                <McqTemplate setQuestion={setQuestion} />
 
             </div>
 
