@@ -1,9 +1,11 @@
 import React from "react"
-import McqTemplate from "./McqTemplate"
+import HostMcqTemplate from "./HostMcqTemplate"
+import HostNumericTemplate from "./HostNumericTemplate"
 
-const RapidFireTemplate = (props) => {
+const HostQuizTemplate = (props) => {
 
-    const [question, setQuestion] = React.useState({})
+    // By default, the new qestion is mcq
+    const [question, setQuestion] = React.useState({ questionType: "MCQ" })
 
     const setStatement = (ev) => {
         const temp = { ...question }
@@ -15,6 +17,22 @@ const RapidFireTemplate = (props) => {
         const temp = { ...question }
         temp.options = options
         temp.answer = answer
+        setQuestion(temp)
+    }
+
+    const setNumeric = (answer) => {
+        const temp = { ...question }
+        temp.options = []
+        temp.answer = parseFloat(answer)
+        setQuestion(temp)
+    }
+
+    const setAnswerType = (ev) => {
+        const temp = { ...question }
+        if (ev.target.value === `Multiple Choice`)
+            temp.questionType = `MCQ`
+        else if (ev.target.value === `Numeric Response`)
+            temp.questionType = `Numeric`
         setQuestion(temp)
     }
 
@@ -46,8 +64,25 @@ const RapidFireTemplate = (props) => {
                     </input>
                 </div>
 
-                {/* MCQ options */}
-                <McqTemplate setMCQ={setMCQ} />
+                {/* Answer Type */}
+                <div className="questionHeading">
+                    Answer Type:
+                </div>
+                <div className="questionText">
+                    <select defaultValue="Multiple Choice" onChange={(ev) => setAnswerType(ev)}>
+                        <option>
+                            Multiple Choice
+                        </option>
+                        <option>
+                            Numeric Response
+                        </option>
+                    </select>
+                </div>
+
+                {/* MCQ options or Numeric Response*/}
+                {question.questionType === `MCQ` && <HostMcqTemplate setMCQ={setMCQ} />}
+                {question.questionType === `Numeric` && <HostNumericTemplate setNumeric={setNumeric} />}
+
             </div>
 
             {/* Right Sidepanel */}
@@ -68,4 +103,4 @@ const RapidFireTemplate = (props) => {
     )
 }
 
-export default RapidFireTemplate
+export default HostQuizTemplate

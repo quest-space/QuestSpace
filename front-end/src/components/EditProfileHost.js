@@ -1,7 +1,8 @@
 import React from "react";
 import MainNavbar from "./MainNavbar";
 import "../css/Details.css";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import BreadCrumb from "./BreadCrumb";
 
 const EditProfileHost = (props) => {
   const [response1, setResponse1] = React.useState({
@@ -158,9 +159,12 @@ const EditProfileHost = (props) => {
           </h1>
         </div>
       </div>
-      <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
-        <div id="top" style={{ margin: "0em", padding: "0em" }}></div>
-      </div>
+      <BreadCrumb
+        items={[
+          { text: "My Profile", to: "/viewprofile" },
+          { text: "Edit Profile", to: "/hosteditprofile" },
+        ]}
+      />
       <div
         style={{
           marginLeft: "9%",
