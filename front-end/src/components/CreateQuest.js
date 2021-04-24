@@ -12,24 +12,27 @@ const CreateQuest = (props) => {
   const [Type, setType] = React.useState();
   const [StartTime, setStartTime] = React.useState();
   const [EndTime, setEndTime] = React.useState();
+  const [logo, setLogo] = React.useState();
 
   const Create = async () => {
+    const formData = new FormData(ev.target);
+    formData.append(`questName`, QuestName);
+    formData.append(`nature`, Type);
+    formData.append(`description`, Description);
+    formData.append(`about`, About);
+    formData.append(`startTime`, StartTime);
+    formData.append(`endTime`, EndTime);
+    formData.append(`logo`, logo);
+
     const response = await fetch(
       `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/create-update`,
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
         credentials: "include",
-        body: JSON.stringify({
-          questName: QuestName,
-          nature: Type,
-          description: Description,
-          about: About,
-          startTime: StartTime,
-          endTime: EndTime,
-        }),
+        body: formData
       }
     );
 
