@@ -24,13 +24,14 @@ const questionSchema = new Schema({
     },
     questionType: {
         type: String,
+        enum: ['MCQ', 'Numeric', 'None'],
+        default: 'None',
         required: [true, 'Question type is required'],
-        enum: ['MCQ', 'Numeric']
     },
     statement: {
         type: String,
         required: [true, 'Question statement is required'],
-        maxlength: 200
+        maxlength: [200, 'Max length 200 characters allowe']
     },
     options: {
         type: [Schema.Types.Mixed], // could be both Number of String
@@ -38,6 +39,7 @@ const questionSchema = new Schema({
     },
     answer: {
         type: Schema.Types.Mixed,
+        default: true,
         required: [true, 'Correct answer is required']
     },
     imageURL: {

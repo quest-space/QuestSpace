@@ -38,7 +38,6 @@ const { sendRes } = require(`../helpers/sendRes`);
 
 router.post(`/submit`, async (req, res) => {
     try{
-
         const profile = await Participant.findOne({username: req.body.username});
         const prevpassword = profile.password;
 
@@ -50,7 +49,7 @@ router.post(`/submit`, async (req, res) => {
 
             const editable = await Participant.updateOne({username: req.body.username}, {$set: {  password: hashed,  
             firstname: req.body.firstname, lastname: req.body.lastname, dateofbirth: req.body.dateofbirth, organization: req.body.organization, passwordlength: passwordlength}}, 
-            {upsert: true})
+            {upsert: true, runValidators: true})
             sendRes(res, OK_STATUS_CODE, editable);
         }
         else{
@@ -59,7 +58,7 @@ router.post(`/submit`, async (req, res) => {
 
             const editable = await Participant.updateOne({username: req.body.username}, {$set: {  password: hashed,  
             firstname: req.body.firstname, lastname: req.body.lastname, dateofbirth: req.body.dateofbirth, organization: req.body.organization, passwordlength: passwordlength}}, 
-            {upsert: true})
+            {upsert: true, runValidators: true})
             sendRes(res, OK_STATUS_CODE, editable);
         }
 

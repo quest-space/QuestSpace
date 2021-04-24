@@ -93,7 +93,7 @@ router.post(`/:questid/addparticipant`, async (req, res) => {
             const quest_detail = await Quest.findOne({_id: req.params.questid})
             const added = await Participation.updateOne({questName: quest_detail.questName, participantUser: participant.username}, 
                 {$set: {questName: quest_detail.questName, participantUser: req.body.username}},
-                {upsert: true})
+                {upsert: true, runValidators: true})
             sendRes(res, OK_STATUS_CODE, added);
         }
        
@@ -154,7 +154,7 @@ router.post(`/:questid/addround`, async (req, res) => {
         const round = await Round.updateOne({questName: quest_detail.questName, roundNum: numrounds + 1}, {$set: {  roundName: req.body.roundName,  
             roundNum: numrounds+1, roundType: req.body.roundType, description: req.body.description, 
             startTime: req.body.startTime, endTime: req.body.endTime, timer: req.body.timer, eachMarks: req.body.eachMarks, totalMarks: req.body.totalMarks}},
-            {upsert: true})
+            {upsert: true, runValidators: true})
         sendRes(res, OK_STATUS_CODE, round);
         // Update numRound in quest         
         const quest_update = await Quest.updateOne({_id: req.params.questid}, {$set: {numRounds: numrounds + 1}})

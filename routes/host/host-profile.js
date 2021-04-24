@@ -29,7 +29,7 @@ router.post(`/submit`, async (req, res) => {
             const hashed = await bcrypt.hash(password, salt);
 
             const editable = await Host.updateOne({username: req.body.username}, {$set: {  password: hashed, phone: req.body.phone, representativeName: req.body.representativeName,
-            representativeDesignation: req.body.representativeDesignation,organization: req.body.organization, passwordlength: passwordlength}}, {upsert: true})
+            representativeDesignation: req.body.representativeDesignation,organization: req.body.organization, passwordlength: passwordlength}}, {upsert: true, runValidators: true})
             sendRes(res, OK_STATUS_CODE, editable);
         }
         else{
@@ -37,7 +37,7 @@ router.post(`/submit`, async (req, res) => {
             const passwordlength = profile.passwordlength;
 
             const editable = await Host.updateOne({username: req.body.username}, {$set: {  password: hashed, phone: req.body.phone, representativeName: req.body.representativeName,
-            representativeDesignation: req.body.representativeDesignation,organization: req.body.organization, passwordlength: passwordlength}}, {upsert: true})
+            representativeDesignation: req.body.representativeDesignation,organization: req.body.organization, passwordlength: passwordlength}}, {upsert: true, runValidators: true})
             sendRes(res, OK_STATUS_CODE, editable);
         }
         

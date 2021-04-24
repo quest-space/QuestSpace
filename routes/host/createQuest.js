@@ -14,7 +14,7 @@ router.post(`/`, async (req, res) => {
         // update a quest. If it does not exit, create a new one.
         const quest = await Quest.updateOne({questName:req.body.questName}, {$set: { hostUser: req.body.username,  
             nature: req.body.nature, description: req.body.description, about: req.body.about, 
-            startTime: req.body.startTime, endTime: req.body.endTime }}, {upsert: true})
+            startTime: req.body.startTime, endTime: req.body.endTime }}, {upsert: true, runValidators: true})
         sendRes(res, OK_STATUS_CODE, quest );
     }
     catch(err){

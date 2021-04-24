@@ -45,7 +45,8 @@ const roundSchema = new Schema({
     timer: {
         type: Number,
         min: 30,
-        max: 300
+        max: 300,
+        default: 30 
     },
     // Parts per question for rapid fire and quiz-based round and for submission as well now.
     eachMarks: {

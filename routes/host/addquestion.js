@@ -44,7 +44,7 @@ router.post(`/:questid/:roundid`, async (req, res) => {
         const question = await Question.updateOne({questName: quest_detail.questName, roundNum: req.params.roundid, questionNum: question_number + 1},
              {$set: {questName: quest_detail.questName, roundNum: req.params.roundid, roundName: req.body.roundName, questionNum: question_number + 1, 
             questionType: req.body.questionType, statement: req.body.statement, options: req.body.options, answer: req.body.answer}},
-            {upsert: true})
+            {upsert: true, runValidators: true})
         sendRes(res, OK_STATUS_CODE, question);
         // Update numQuestions in round         
         const round_update = await Round.updateOne({questName: quest_detail.questName, roundNum: req.params.roundid }, {$set: {numQuestions: question_number + 1}})

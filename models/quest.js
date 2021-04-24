@@ -26,7 +26,7 @@ const questSchema = new Schema({
     description: {
         type: String,
         required: [true, 'Description has not been provided'],
-        maxlength: [50, 'Exceeded limit of 50 characters']
+        maxlength: [35, 'Exceeded limit of 35 characters']
     },
     about: {
         type: String,
@@ -43,7 +43,7 @@ const questSchema = new Schema({
     },
     logoURL: {
         type: String,
-        required: [true, 'Logo is required']  
+        // required: [true, 'Logo is required']  
     },
     status: {
         type: String,

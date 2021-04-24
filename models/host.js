@@ -20,7 +20,8 @@ const hostSchema = new Schema({
   },
   passwordlength: {
     type: Number,
-    required: [true, 'Password length is required']
+    required: [true, 'Password length is required'],
+    min: [7, 'Password should be atleast 7 characters long']
   },
   organization: {
     type: String ,
