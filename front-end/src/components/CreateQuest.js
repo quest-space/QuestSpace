@@ -12,24 +12,31 @@ const CreateQuest = (props) => {
   const [Type, setType] = React.useState();
   const [StartTime, setStartTime] = React.useState();
   const [EndTime, setEndTime] = React.useState();
+  const [logo, setLogo] = React.useState();
 
   const Create = async () => {
+    const formData = new FormData();
+    formData.append(`questName`, QuestName);
+    formData.append(`nature`, Type);
+    formData.append(`description`, Description);
+    formData.append(`about`, About);
+    formData.append(`startTime`, StartTime);
+    formData.append(`endTime`, EndTime);
+    if (!logo) {
+      alert(`Please upload a logo`);
+      return;
+    }
+    formData.append(`logo`, logo);
+
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/create-update`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/create-update`,
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
         credentials: "include",
-        body: JSON.stringify({
-          questName: QuestName,
-          nature: Type,
-          description: Description,
-          about: About,
-          startTime: StartTime,
-          endTime: EndTime,
-        }),
+        body: formData
       }
     );
 
@@ -271,7 +278,7 @@ const CreateQuest = (props) => {
               accept="image/png, image/jpeg"
               //className="inputdetail"
               //placeholder={hidden_password}
-              //onChange={(ev) => updateState(ev,)}
+              onChange={(ev) => updateState(ev, setLogo)}
             />
           </div>
         </p>
