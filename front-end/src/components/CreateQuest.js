@@ -29,7 +29,7 @@ const CreateQuest = (props) => {
     formData.append(`logo`, logo);
 
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/create-update`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/create-update`,
       {
         method: "POST",
         headers: {
