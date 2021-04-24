@@ -34,6 +34,7 @@
   overflow: hidden;
   width: 100%;
   resize: vertical;
+  padding: 0px;
 }
 
 .questionArea input[type="file"]::file-selector-button {
@@ -47,21 +48,6 @@
   margin-top: 5px;
 }
 
-.mcqTemplate {
-  margin-top: 10px;
-}
-
-.questionNum {
-  color: #313131;
-  font-weight: 500;
-  font-size: 24pt;
-  width: auto;
-  height: auto;
-  /* align-items: flex-start;
-    justify-content: flex-start;
-    text-align: start; */
-}
-
 .questionHeading {
   color: #46b7a1;
   font-size: 16pt;
@@ -71,4 +57,39 @@
   color: #313131;
   font-size: 12pt;
   width: 100%;
+}
+
+.questionNum {
+  color: #313131;
+  font-weight: 500;
+  font-size: 24pt;
+  width: auto;
+  height: auto;
+}
+
+.mcqTemplate {
+  margin-top: 10px;
+}
+
+.mcqOption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mcqOption textarea {
+  border: none;
+  border-bottom: solid 1px #575757;
+  overflow: hidden;
+  width: 250px;
+  resize: vertical;
+  margin-left: 20px;
+  margin-right: 10px;
+  padding: 0px;
+}
+
+.icon {
+  font-size: 14pt;
+  cursor: pointer;
+  /* padding-top: 5px; */
 }

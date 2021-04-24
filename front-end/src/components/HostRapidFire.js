@@ -7,9 +7,9 @@ const HostRapidFire = (props) => {
     const [newQuestion, setNewQuestion] = React.useState({})
     const [showAddBox, setShowAddBox] = React.useState(true)
 
-    const addQuestion = (question) => {
-        props.setQuestions([...props.questions, question])
-    }
+    // const addQuestion = (question) => {
+    //     props.setQuestions([...props.questions, question])
+    // }
 
     useEffect(() => {
         if (newQuestion.questionBody) {
@@ -22,7 +22,7 @@ const HostRapidFire = (props) => {
     return (
         <div className="mainBox">
             {showAddBox && <AddBox onClick={() => setShowAddBox(false)} />}
-            {!showAddBox && <RapidFireTemplate questionNum={props.questions.length + 1} />}
+            {!showAddBox && <RapidFireTemplate questionNum={props.questions.length + 1} setNewQuestion={setNewQuestion} setShowAddBox={setShowAddBox} />}
         </div>
     )
 
