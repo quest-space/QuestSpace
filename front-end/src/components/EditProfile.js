@@ -2,7 +2,6 @@ import React from "react";
 import MainNavbar from "./MainNavbar";
 import "../css/Details.css";
 import { Link, useHistory } from "react-router-dom";
-import { First } from "react-bootstrap/esm/PageItem";
 
 // To Be Completed
 const EditProfile = () => {
