@@ -7,11 +7,12 @@ const HostRoundsList = (props) => {
 
     const [displayForm, setDisplayForm] = React.useState(false)
     const [timeForm, setTimeForm] = React.useState(false)
-    const [name, setname] = React.useState(false)
-    const [startTime, setstartTime] = React.useState(false)
-    const [endTime, setendTime] = React.useState(false)
-    const [type, settype] = React.useState(false)
-    const [lim, setlim] = React.useState(false)
+    const [name, setname] = React.useState("")
+    const [startTime, setstartTime] = React.useState("")
+    const [endTime, setendTime] = React.useState("")
+    const [type, settype] = React.useState("Quiz")
+    const [lim, setlim] = React.useState(30)
+    const [description, setDescription] = React.useState("")
 
     const setName=(ev)=>{
         setname(ev.target.value)
@@ -39,6 +40,10 @@ const HostRoundsList = (props) => {
         setlim(ev.target.value)
     }
 
+    const descrip=(ev)=>{
+        setDescription(ev.target.value)
+    }
+
     const addQuest = async () => {
     
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/addround`, {
@@ -52,17 +57,20 @@ const HostRoundsList = (props) => {
                 "startTime": startTime,
                 "endTime": endTime,
                 "roundType": type,
-                "timer": lim
+                "timer": lim,
+                "description":description,
+                "eachMarks": 1,
             }),
            
         })
-        console.log({
-            "roundName": name,
-            "startTime": startTime,
-            "endTime": endTime,
-            "roundType": type,
-            "timer": lim
-        })
+
+        console.log({"roundName": name,
+        "startTime": startTime,
+        "endTime": endTime,
+        "roundType": type,
+        "timer": lim,
+        "description":description,
+        "eachMarks": 1,})
 
         if (response.status !== 200) {
             console.log(`Error fetching.`)
@@ -74,9 +82,9 @@ const HostRoundsList = (props) => {
     
     }
 
-    const deleteQuest = async () => {
+    const deleteQuest = async (num) => {
     
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/deleteround`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${num}/deleteround`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -90,10 +98,11 @@ const HostRoundsList = (props) => {
 
         const responseBody = await response.json()
 
-        if (responseBody.status !== 200) {
+        if (response.status !== 200) {
             console.log(`Error fetching.`)
         } else {
             console.log(`Successful fetching.`)
+            props.setRender(true)
         }
     
     }
@@ -107,12 +116,12 @@ const HostRoundsList = (props) => {
 
     return (
         <div style={{marginTop:"3rem", marginBottom:"5.5rem"}}>
-            {Object.keys(props.response.rounds).map((info, j)=>{                   
+            {props.response.rounds !==null && Object.keys(props.response.rounds).map((info, j)=>{                   
                 const color = props.response.rounds[info].btnColor
                 return(
-                        <div key={j} className="myBox" style={{paddingRight:"0rem"}}>   
+                        <div key={j} className="myBox c" style={{paddingRight:"0rem", borderRadius:"0rem"}}>   
 
-                            <button class="cross1" onClick={()=> {deleteQuest()}}> <i class="fas fa-times"></i></button>
+                            <button class="cross1" onClick={()=> {deleteQuest(props.response.rounds[info].roundNum)}}> <i class="fas fa-times"></i></button>
                             <p  style={{fontWeight: "600",fontSize: "22px", marginBottom:"0rem", display:"inline-block"}}>{"Round "+props.response.rounds[info].roundNum+": "+props.response.rounds[info].roundName}</p>
                             <p style={{fontWeight: "normal", fontSize: "18px", marginBottom:"0.5rem"}}>{props.response.rounds[info].roundType}</p>
                             <p className="text-muted" style={left}>{"Starts: "+props.response.rounds[info].startTime}</p>
@@ -271,6 +280,7 @@ const HostRoundsList = (props) => {
                         type="text"
                         className="longinputdetail"
                         placeholder="Enter a description of your Round"
+                        onChange={descrip}
                         style={{fontSize:"18px",paddingTop: "0.5rem",display:"block", width:"95%"}}
                         />
                         </p>
