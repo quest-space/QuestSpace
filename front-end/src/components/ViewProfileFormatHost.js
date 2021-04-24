@@ -102,7 +102,7 @@ const ViewProfileFormatHost = (props) => {
           </div>
         </p>
 
-        <p
+        <div
           className="display-4"
           style={{
             //paddingTop: "1.5rem",
@@ -114,15 +114,7 @@ const ViewProfileFormatHost = (props) => {
           }}
         >
           Rating
-          <div
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "#313131",
-              wordWrap: "break-word",
-            }}
-          >
+          <div>
             {full.map((a, index) => {
               return <i key={index} className="fa fa-star"></i>;
             })}
@@ -130,7 +122,7 @@ const ViewProfileFormatHost = (props) => {
               return <i key={index} className="far fa-star"></i>;
             })}
           </div>
-        </p>
+        </div>
 
         <div>
           <HeadSubhead
@@ -155,7 +147,7 @@ const ViewProfileFormatHost = (props) => {
         >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
           <button className="btnBegin" onClick={() => editProfile()}>
-            Edit <i class="fa fa-pencil"></i>
+            Edit <i class="fa fa-edit"></i>
           </button>
         </div>
       </div>

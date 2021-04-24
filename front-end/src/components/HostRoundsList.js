@@ -1,17 +1,19 @@
 import React from "react";
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 
 const HostRoundsList = (props) => {
 
     const { questID } = useParams()
+    const history = useHistory()
 
     const [displayForm, setDisplayForm] = React.useState(false)
     const [timeForm, setTimeForm] = React.useState(false)
-    const [name, setname] = React.useState(false)
-    const [startTime, setstartTime] = React.useState(false)
-    const [endTime, setendTime] = React.useState(false)
-    const [type, settype] = React.useState(false)
-    const [lim, setlim] = React.useState(false)
+    const [name, setname] = React.useState("")
+    const [startTime, setstartTime] = React.useState("")
+    const [endTime, setendTime] = React.useState("")
+    const [type, settype] = React.useState("Quiz")
+    const [lim, setlim] = React.useState(30)
+    const [description, setDescription] = React.useState("")
 
     const setName=(ev)=>{
         setname(ev.target.value)
@@ -39,6 +41,14 @@ const HostRoundsList = (props) => {
         setlim(ev.target.value)
     }
 
+    const descrip=(ev)=>{
+        setDescription(ev.target.value)
+    }
+
+    const goToRound=(num)=>{
+        history.push({pathname: `/hosthomepage/quest/${questID}/round/${num}`})
+    }
+
     const addQuest = async () => {
     
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/addround`, {
@@ -52,17 +62,20 @@ const HostRoundsList = (props) => {
                 "startTime": startTime,
                 "endTime": endTime,
                 "roundType": type,
-                "timer": lim
+                "timer": lim,
+                "description":description,
+                "eachMarks": 1,
             }),
            
         })
-        console.log({
-            "roundName": name,
-            "startTime": startTime,
-            "endTime": endTime,
-            "roundType": type,
-            "timer": lim
-        })
+
+        console.log({"roundName": name,
+        "startTime": startTime,
+        "endTime": endTime,
+        "roundType": type,
+        "timer": lim,
+        "description":description,
+        "eachMarks": 1,})
 
         if (response.status !== 200) {
             console.log(`Error fetching.`)
@@ -74,9 +87,9 @@ const HostRoundsList = (props) => {
     
     }
 
-    const deleteQuest = async () => {
+    const deleteQuest = async (num) => {
     
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/deleteround`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${num}/deleteround`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -90,10 +103,11 @@ const HostRoundsList = (props) => {
 
         const responseBody = await response.json()
 
-        if (responseBody.status !== 200) {
+        if (response.status !== 200) {
             console.log(`Error fetching.`)
         } else {
             console.log(`Successful fetching.`)
+            props.setRender(true)
         }
     
     }
@@ -107,13 +121,13 @@ const HostRoundsList = (props) => {
 
     return (
         <div style={{marginTop:"3rem", marginBottom:"5.5rem"}}>
-            {Object.keys(props.response.rounds).map((info, j)=>{                   
+            {props.response.rounds !==null && Object.keys(props.response.rounds).map((info, j)=>{                   
                 const color = props.response.rounds[info].btnColor
                 return(
-                        <div key={j} className="myBox" style={{paddingRight:"0rem"}}>   
+                        <div key={j} className="myBox c" onClick={()=>{goToRound(props.response.rounds[info].roundNum)}} style={{paddingRight:"0rem", borderRadius:"0rem"}}>   
 
-                            <button class="cross1" onClick={()=> {deleteQuest()}}> <i class="fas fa-times"></i></button>
-                            <p  style={{fontWeight: "600",fontSize: "22px", marginBottom:"0rem", display:"inline-block"}}>{"Round "+props.response.rounds[info].roundNum+": "+props.response.rounds[info].roundName}</p>
+                            {props.response.editable == true && <button class="cross1" onClick={()=> {deleteQuest(props.response.rounds[info].roundNum)}}> <span className="material-icons" style={{ fontSize: "28px", color:"#EB5757" }}> close </span> </button>}
+                            <p  style={{fontWeight: "500",fontSize: "22px", marginBottom:"0rem", display:"inline-block", color:"rgb(49, 49, 49)"}}>{"Round "+props.response.rounds[info].roundNum+": "+props.response.rounds[info].roundName}</p>
                             <p style={{fontWeight: "normal", fontSize: "18px", marginBottom:"0.5rem"}}>{props.response.rounds[info].roundType}</p>
                             <p className="text-muted" style={left}>{"Starts: "+props.response.rounds[info].startTime}</p>
                             <div>
@@ -125,8 +139,8 @@ const HostRoundsList = (props) => {
 
             {
                 displayForm === true && <div className="myBox" style={{paddingRight:"0rem"}}>
-                    <button class="tick1" onClick={()=> {addQuest()}}> <i class="fas fa-check"></i></button>
-                    <button class="cross1" onClick={()=> {setDisplayForm(false)}}> <i class="fas fa-times"></i></button>
+                    <button class="tick1" onClick={()=> {addQuest()}}> <span className="material-icons" style={{ fontSize: "28px", color:"#238839" }}> done </span></button>
+                    <button class="cross1" onClick={()=> {setDisplayForm(false)}}> <span className="material-icons" style={{ fontSize: "28px", color:"#EB5757" }}> close </span> </button>
                     
                     <p  style={{fontWeight: "600",fontSize: "22px", marginBottom:"0rem", display:"inline-block"}}>Add Round</p>
                     <tr>
@@ -271,15 +285,16 @@ const HostRoundsList = (props) => {
                         type="text"
                         className="longinputdetail"
                         placeholder="Enter a description of your Round"
+                        onChange={descrip}
                         style={{fontSize:"18px",paddingTop: "0.5rem",display:"block", width:"95%"}}
                         />
                         </p>
                 </div>
             }
-
+            {props.response.editable == true &&
             <div className="myBox dashedBox1">
-                <button style={{width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={()=> {setDisplayForm(true)}}><i class="fas fa-plus"></i> </button>
-            </div>
+                <button style={{width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={()=> {setDisplayForm(true)}}><span className="material-icons" style={{fontSize: "20pt; color: rgb(108, 108, 108)"}}>add</span> </button>
+            </div>}
 
         </div>
     )
