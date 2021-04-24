@@ -93,13 +93,13 @@ const QuestHostTabs = (props) => {
             }
 
             {
-                tab == "Participant" && <HostParticipantList/>
+                tab == "Participant" && props.response.participants !== null && <HostParticipantList/>
             }
 
             {
-                tab == "Leaderboard" && <HostLeaderboardList/>
+                tab == "Leaderboard" && props.response.leaderboard !== null && <HostLeaderboardList/>
             }
-
+            <PageFooter/>
         </div>
     )
 
