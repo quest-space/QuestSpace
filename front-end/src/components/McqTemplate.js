@@ -1,9 +1,9 @@
-import React from "react"
+import React, { useEffect } from "react"
 
 const McqTemplate = (props) => {
 
-    const [options, setOptions] = React.useState([])
-    const [answer, setAnswer] = React.useState("")
+    const [options, setOptions] = React.useState(["", ""])
+    const [answerIndex, setAnswerIndex] = React.useState(0)
 
     const AddOption = () => {
         if (options.length < 6)
@@ -17,13 +17,19 @@ const McqTemplate = (props) => {
     }
 
     const DiscardOption = (index) => {
-        if (options[index] === answer) {
-            setAnswer("")
+        if (options.length > 2) {
+            if (answerIndex === index) {
+                setAnswerIndex(0)
+            }
+            const temp = [...options]
+            temp.splice(index, 1)
+            setOptions(temp)
         }
-        const temp = [...options]
-        temp.splice(index, 1)
-        setOptions(temp)
     }
+
+    useEffect(() => {
+        props.setMCQ(options, options[answerIndex])
+    }, [options, answerIndex])
 
     return (
         <div className="mcqTemplate">
@@ -35,12 +41,12 @@ const McqTemplate = (props) => {
             <div className="questionText">
                 {/* Print already added options */}
                 {options.map((option, index) => {
-                    return (<Mcq key={index} index={index} option={option} checked={answer && answer === option ? `checked` : `unchecked`} UpdateOption={UpdateOption} DiscardOption={DiscardOption} setAnswer={setAnswer} />)
+                    return (<Mcq key={index} index={index} option={option} checked={answerIndex === index ? `checked` : `unchecked`} UpdateOption={UpdateOption} DiscardOption={DiscardOption} setAnswerIndex={setAnswerIndex} />)
                 })}
 
                 {/* Icon to add options */}
-                < div onClick={AddOption} >
-                    <span className="material-icons icon">
+                < div>
+                    <span className="material-icons icon" onClick={AddOption} >
                         add_circle_outline
                     </span>
                 </div >
@@ -57,16 +63,12 @@ const Mcq = (props) => {
         <div className="mcqOption">
 
             {/* Radio Circle */}
-            <span className="material-icons icon" onClick={() => { props.setAnswer(props.option) }}>
+            <span className="material-icons icon" onClick={() => { props.setAnswerIndex(props.index) }}>
                 radio_button_{props.checked}
             </span>
 
             {/* textarea */}
-            <textarea rows="1" placeholder="Enter here" onInput={(ev) => { ev.target.style.height = ''; ev.target.style.height = ev.target.scrollHeight + 'px' }} onChange={(ev) => {
-                props.UpdateOption(props.index, ev.target.value)
-                if (props.checked === `checked`)
-                    props.setAnswer(ev.target.value)
-            }} value={props.option}>
+            <textarea rows="1" placeholder="Enter here" onInput={(ev) => { ev.target.style.height = ''; ev.target.style.height = ev.target.scrollHeight + 'px' }} onChange={(ev) => props.UpdateOption(props.index, ev.target.value)} value={props.option}>
             </textarea>
 
             {/* Cross to discard option */}

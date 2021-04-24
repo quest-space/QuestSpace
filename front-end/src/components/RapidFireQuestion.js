@@ -2,8 +2,6 @@ import React from "react"
 
 const RapidFireQuestion = (props) => {
 
-    console.log("iamge url is", props.question.imageURL)
-
     return (
         <div className="myBox questionTemplate">
 
@@ -69,7 +67,7 @@ const RapidFireQuestion = (props) => {
             {
                 props.removable &&
                 <div>
-                    <div className="sidePanel" style={{ height: "100%", color: "#EB5757" }}>
+                    <div className="sidePanel" style={{ height: "100%", color: "#EB5757" }} onClick={() => props.deleteQuestion(props.question.questionNum)}>
                         <span className="material-icons" style={{ fontSize: "28px" }}>
                             close
                         </span>
