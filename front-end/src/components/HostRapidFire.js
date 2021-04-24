@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import AddBox from "./AddBox"
 import HostRapidFireTemplate from "./HostRapidFireTemplate"
-import HostRapidFireQuestion from "./HostRapidFireQuestion"
+import HostMcqQuestion from "./HostMcqQuestion"
 
 const HostRapidFire = (props) => {
 
@@ -55,8 +55,6 @@ const HostRapidFire = (props) => {
         } else {
             const temp = { ...props.roundInfo }
             temp.questions = responseBody.questions
-            console.log("before", props.roundInfo)
-            console.log("after", temp)
             props.setroundInfo(temp)
         }
     }
@@ -77,14 +75,13 @@ const HostRapidFire = (props) => {
             {/* Already added questions */}
             {props.roundInfo.questions && props.roundInfo.questions.map((question, index) => {
                 return (
-                    <HostRapidFireQuestion key={index} question={question} removable={props.roundInfo.editable} deleteQuestion={deleteQuestion} />
+                    <HostMcqQuestion key={index} question={question} removable={props.roundInfo.editable} deleteQuestion={deleteQuestion} />
                 )
             })}
 
             {/* Add question option */}
             {props.roundInfo.editable && showAddBox && <AddBox onClick={() => setShowAddBox(false)} />}
             {props.roundInfo.editable && !showAddBox && <HostRapidFireTemplate questionNum={props.roundInfo.questions ? props.roundInfo.questions.length + 1 : 1} addQuestion={addQuestion} cancelQuestion={cancelQuestion}
-            // setNewQuestion={setNewQuestion} setShowAddBox={setShowAddBox} 
             />}
         </div>
         // </React.Fragment>
