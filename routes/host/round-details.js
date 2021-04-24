@@ -141,7 +141,7 @@
                             fileURL: val.fileURL,
                             questName: val.questName,
                             roundNum: val.roundNum,
-                            score: null
+                            score: val.roundScore
                     })
                     )
                     if(formatted_submission.length == 0){
@@ -195,6 +195,33 @@
             const quest_detail = await Quest.findOne({_id: req.params.questid});
             const round = await Round.updateOne({questName: quest_detail.questName, roundNum: req.params.roundid}, {$set: {eachMarks: eachMark} })
             sendRes(res, OK_STATUS_CODE, round);
+        }
+        catch(err)
+        {
+            console.log(err)
+            sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err) );
+        }
+    });
+
+    router.post(`/:questid/:roundid/grade`, async (req, res) => {
+        try{
+             /*
+            Update in the Submission Collection
+            Need questname, roundnum, participantUser and Score
+            Structure:
+            [{},{},{}]
+            */
+
+            const quest_detail = await Quest.findOne({_id: req.params.questid});
+            const quest_name = quest_detail.questName;
+        
+            const marksheet = req.body.marks;
+
+            marksheet.map( async (val, index) => {
+                const each = await Submission.updateOne({questName: quest_name, roundNum: req.params.roundid, participantUser: val.username},{$set: {roundScore: val.score}}) 
+            });
+
+            sendRes(res, OK_STATUS_CODE, marksheet);
         }
         catch(err)
         {

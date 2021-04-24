@@ -20,7 +20,8 @@ const submissionSchema = new Schema({
         required: [true, 'Participant name is required']
     },
     roundScore: {
-        type: Number
+        type: Number,
+        default: 0
     },
     numOfQsSent: {
         type: Number
