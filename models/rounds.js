@@ -47,9 +47,10 @@ const roundSchema = new Schema({
         min: 30,
         max: 300
     },
-    // Parts per question for rapid fire and quiz-based round
+    // Parts per question for rapid fire and quiz-based round and for submission as well now.
     eachMarks: {
         type: Number, 
+        default: 1
     },
     // Marks for submission-based round only
     totalMarks: {

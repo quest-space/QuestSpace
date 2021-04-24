@@ -19,16 +19,32 @@ const { sendRes } = require(`../helpers/sendRes`);
 
 router.post(`/submit`, async (req, res) => {
     try{
-        const password = req.body.password;
-        const passwordlength = password.length;
-        const salt = await bcrypt.genSalt();
-        const hashed = await bcrypt.hash(password, salt);
 
-        const editable = await Participant.updateOne({username: req.body.username}, {$set: {  password: hashed,  
+        const profile = await Participant.findOne({username: req.body.username});
+        const prevpassword = profile.password;
+
+        if(prevpassword!= req.body.password){
+            const password = req.body.password;
+            const passwordlength = password.length;
+            const salt = await bcrypt.genSalt();
+            const hashed = await bcrypt.hash(password, salt);
+
+            const editable = await Participant.updateOne({username: req.body.username}, {$set: {  password: hashed,  
             firstname: req.body.firstname, lastname: req.body.lastname, dateofbirth: req.body.dateofbirth, organization: req.body.organization, passwordlength: passwordlength}}, 
             {upsert: true})
+            sendRes(res, OK_STATUS_CODE, editable);
+        }
+        else{
+            const hashed = prevpassword;
+            const passwordlength = profile.passwordlength;
 
-        sendRes(res, OK_STATUS_CODE, editable);
+            const editable = await Participant.updateOne({username: req.body.username}, {$set: {  password: hashed,  
+            firstname: req.body.firstname, lastname: req.body.lastname, dateofbirth: req.body.dateofbirth, organization: req.body.organization, passwordlength: passwordlength}}, 
+            {upsert: true})
+            sendRes(res, OK_STATUS_CODE, editable);
+        }
+
+        
     }
     catch(err){
         sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err));
