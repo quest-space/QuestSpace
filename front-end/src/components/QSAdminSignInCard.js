@@ -21,7 +21,7 @@ const QSAdminSignInCard = () => {
   const signInUser = async () => {
     const userString = "QSAdmin";
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/auth/signin/${userString}`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/auth/signin/${userString}`,
       {
         method: "POST",
         headers: {
