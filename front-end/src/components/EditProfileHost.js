@@ -307,7 +307,7 @@ const EditProfileHost = (props) => {
             <input
               type="text"
               className="inputdetail"
-              value={response1.phone}
+              value={Phone}
               onChange={(ev) => updateState(ev, setPhone)}
             />
           </div>
@@ -333,7 +333,7 @@ const EditProfileHost = (props) => {
             <input
               type="text"
               className="inputdetail"
-              value={response1.organization}
+              value={Institution}
               onChange={(ev) => updateState(ev, setInstitution)}
             />
           </div>
