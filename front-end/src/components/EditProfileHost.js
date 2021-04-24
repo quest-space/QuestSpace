@@ -3,24 +3,37 @@ import MainNavbar from "./MainNavbar";
 import "../css/Details.css";
 import { Link, useHistory } from "react-router-dom";
 
-// To Be Completed
 const EditProfileHost = (props) => {
-  const [Password, setPassword] = React.useState();
-  const [Institution, setInstitution] = React.useState();
-  const [response1, setResponse1] = React.useState({});
-  const [userString, setuserString] = React.useState("");
+  const [response1, setResponse1] = React.useState({
+    representativeDesignation: "",
+    representativeName: "",
+    password: "",
+    phone: "",
+    organization: "",
+  });
+  const history = useHistory();
+  const [render, setRender] = React.useState(false);
+
+  const [Password, setPassword] = React.useState("");
+  const [Institution, setInstitution] = React.useState("");
   const [Phone, setPhone] = React.useState("");
   const [RepName, setRepName] = React.useState("");
   const [RepDesignation, setRepDesignation] = React.useState("");
-
-  const history = useHistory();
+  const [HiddenPassword, setHiddenPassword] = React.useState("");
 
   const showError = (errors) => {
     alert(JSON.stringify(errors));
   };
 
+  const makepw = (num) => {
+    let hidden_password = "";
+    for (let i = 0; i < num; i++) {
+      hidden_password = hidden_password.concat("*");
+    }
+    return hidden_password;
+  };
   const ProfileAPI = async () => {
-    const response1 = await fetch(
+    const response = await fetch(
       `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/profile`,
       {
         method: "POST",
@@ -28,32 +41,47 @@ const EditProfileHost = (props) => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({
-          username: "Hassaan",
-          password: "hassaan123",
-        }),
+        body: JSON.stringify({}),
       }
     );
 
-    console.log("response is", response1);
+    console.log("response is", response);
 
-    const responseBody = await response1.json();
+    const responseBody = await response.json();
     console.log("response", responseBody);
     setResponse1(responseBody);
+    setRepName(responseBody.representativeName);
+    setRepDesignation(responseBody.representativeDesignation);
+    setPassword(responseBody.password);
+    setPhone(responseBody.phone);
+    setInstitution(responseBody.organization);
 
-    if (response1.status !== 200) {
-      console.log(`Error in enrolment.`);
+    let hidden_password = "";
+    for (let i = 0; i < responseBody.passwordlength; i++) {
+      hidden_password = hidden_password.concat("*");
+    }
+    setHiddenPassword(hidden_password);
+
+    if (response.status !== 200) {
+      console.log(`Error in profile view.`);
       showError(responseBody.errors);
     } else {
       console.log(`Profile Viewed.`);
     }
   };
 
-  console.log("Here");
-  ProfileAPI();
+  if (!render) {
+    setRender(true);
+    ProfileAPI();
+  }
 
   const updateState = (ev, stateUpdateFn) => {
     stateUpdateFn(ev.target.value);
+  };
+
+  const updatePW = (ev) => {
+    setPassword(ev.target.value);
+    setHiddenPassword(makepw(Password.length));
   };
 
   let full = [];
@@ -68,7 +96,7 @@ const EditProfileHost = (props) => {
   const EditDets = async () => {
     console.log("starting");
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/profile/edit`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/profile/submit`,
       {
         method: "POST",
         headers: {
@@ -101,10 +129,7 @@ const EditProfileHost = (props) => {
     history.push("/viewprofile");
   };
 
-  let hidden_password = "";
-  for (let i = 0; i < response1.passwordlength; i++) {
-    hidden_password = hidden_password.concat("*");
-  }
+  //setPassword(response1.password);
 
   return (
     <div style={{ marginBottom: "80px" }}>
@@ -184,7 +209,6 @@ const EditProfileHost = (props) => {
         <p
           className="display-4"
           style={{
-            //paddingTop: "1.5rem",
             fontWeight: "400",
             fontSize: "20px",
             color: "#46B7A1",
@@ -231,8 +255,7 @@ const EditProfileHost = (props) => {
             <input
               type="text"
               className="inputdetail"
-              //placeholder="1"
-              placeholder={response1.representativeName}
+              value={RepName}
               onChange={(ev) => updateState(ev, setRepName)}
             />
           </div>
@@ -258,8 +281,7 @@ const EditProfileHost = (props) => {
             <input
               type="text"
               className="inputdetail"
-              //placeholder="1"
-              placeholder={response1.representativeDesignation}
+              value={RepDesignation}
               onChange={(ev) => updateState(ev, setRepDesignation)}
             />
           </div>
@@ -283,10 +305,9 @@ const EditProfileHost = (props) => {
             }}
           >
             <input
-              type="date"
+              type="text"
               className="inputdetail"
-              //placeholder="1"
-              placeholder={response1.phone}
+              value={response1.phone}
               onChange={(ev) => updateState(ev, setPhone)}
             />
           </div>
@@ -312,8 +333,7 @@ const EditProfileHost = (props) => {
             <input
               type="text"
               className="inputdetail"
-              placeholder="1"
-              placeholder={response1.organization}
+              value={response1.organization}
               onChange={(ev) => updateState(ev, setInstitution)}
             />
           </div>
@@ -339,7 +359,7 @@ const EditProfileHost = (props) => {
             <input
               type="password"
               className="inputdetail"
-              placeholder={hidden_password}
+              placeholder={HiddenPassword}
               onChange={(ev) => updateState(ev, setPassword)}
             />
           </div>
@@ -354,11 +374,11 @@ const EditProfileHost = (props) => {
           }}
         >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
-          <button className="btnCancel" onClick={Cancel}>
+          <button className="btnCancel" onClick={() => Cancel()}>
             Cancel <i class="fa fa-times"></i>
           </button>
           <span style={{ paddingBottom: "0.5rem" }}>
-            <button className="btnBegin" onClick={EditDets}>
+            <button className="btnBegin" onClick={() => EditDets()}>
               Update <i class="fa fa-check"></i>
             </button>
           </span>
