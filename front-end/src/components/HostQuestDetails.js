@@ -35,11 +35,11 @@ const HostQuestDetails = (props) => {
             top="3rem"
         />
 
-        <div style={{textAlign:"right"}}>
+        {props.response.editable == true && <div style={{textAlign:"right"}}>
             <button className="btnBegin"  onClick={() => Edit()}>
                 Edit <i class="far fa-edit"></i>
             </button> 
-        </div>
+        </div>}
 
         </div>
         

@@ -7,6 +7,7 @@ import BreadCrumb from "./BreadCrumb"
 import Tabs from "./Tabs"
 import HostRoundDetails from "./HostRoundDetails"
 import HostRapidFire from "./HostRapidFire"
+import HostQuiz from "./HostQuiz"
 import "../css/HostRound.css"
 
 const HostRound = () => {
@@ -17,7 +18,6 @@ const HostRound = () => {
     const [tab, setTab] = React.useState("Round Details");
     const [roundFetched, setRoundFetched] = React.useState(false)
     const [roundInfo, setroundInfo] = React.useState({})
-    // const [questions, setQuestions] = React.useState([])
 
     const fetchRoundDetails = async () => {
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${roundID}`, {
@@ -33,7 +33,7 @@ const HostRound = () => {
         if (response.status !== 200) {
             console.log(`Error in fetching round information.`)
             alert(JSON.stringify(responseBody), "Returning back to quest page")
-            // history.replace(`/hosthomepage/quest/${questID}`) uncomment this later
+            history.replace(`/hosthomepage/quest/${questID}`) //uncomment this later
         } else {
             setroundInfo(responseBody)
         }
@@ -49,7 +49,7 @@ const HostRound = () => {
         <React.Fragment>
             <MainNavbar />
             <Header heading={`Round ${roundID}: ${roundInfo.rounds && roundInfo.rounds.roundName}`} subheading={roundInfo.rounds && roundInfo.rounds.roundType} />
-            <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: roundInfo.rounds && roundInfo.rounds.questName, to: `/participanthomepage/quest/${questID}` }, { text: `Round ${roundID}`, to: `/participanthomepage/quest/${questID}/round/${roundID}` }]} />
+            <BreadCrumb items={[{ text: "Home", to: "/hosthomepage" }, { text: roundInfo.rounds && roundInfo.rounds.questName, to: `/hosthomepage/quest/${questID}` }, { text: `Round ${roundID}`, to: `/hosthomepage/quest/${questID}/round/${roundID}` }]} />
 
             {/* Tabs*/}
             <Tabs setTab={setTab} roundType={roundInfo.rounds && roundInfo.rounds.roundType} />
@@ -61,6 +61,9 @@ const HostRound = () => {
             {/* <div className="mainBox"> */}
             {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Rapid Fire`) && <HostRapidFire roundInfo={roundInfo} setroundInfo={setroundInfo} />}
             {/* </div> */}
+
+            {/* View QUestions in case of quiz round */}
+            {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Quiz`) && <HostQuiz roundInfo={roundInfo} setroundInfo={setroundInfo} />}
 
             <PageFooter />
         </React.Fragment>
