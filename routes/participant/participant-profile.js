@@ -11,7 +11,6 @@ const OK_STATUS_CODE = 200;
 
 const shortDate = (date) => {
     const splitted = date.toDateString().split(' ')
-    console.log(splitted)
     return (splitted[3] + '-' + splitted[1] + '-' + splitted[2]) 
 };
 
