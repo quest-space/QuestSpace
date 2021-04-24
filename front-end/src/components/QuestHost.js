@@ -11,7 +11,7 @@ import QuestHostTabs from "./QuestHostTabs"
 const QuestHost = () => {
     const { questID } = useParams()
     const [response, setResponse] = React.useState({"quest":{}})
-    const [render, setRender] = React.useState('true')
+    const [render, setRender] = React.useState(true)
 
     const showError = (errors) => {
         alert(JSON.stringify(errors))
@@ -19,7 +19,7 @@ const QuestHost = () => {
     
     const requestQuest = async () => {
     
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -44,8 +44,8 @@ const QuestHost = () => {
     
     }
 
-    if(render === 'true'){
-        setRender('false')
+    if(render === true){
+        setRender(false)
         requestQuest()
     }
 
@@ -60,7 +60,7 @@ const QuestHost = () => {
                 
             </div>
             }
-            <QuestHostTabs response = {response}/>
+            <QuestHostTabs response = {response} setRender={setRender}/>
             {/* <PageFooter /> */}
 
         </div>

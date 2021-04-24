@@ -5,6 +5,19 @@ const RapidFireTemplate = (props) => {
 
     const [question, setQuestion] = React.useState({})
 
+    const setStatement = (ev) => {
+        const temp = { ...question }
+        temp.statement = ev.target.value
+        setQuestion(temp)
+    }
+
+    const setMCQ = (options, answer) => {
+        const temp = { ...question }
+        temp.options = options
+        temp.answer = answer
+        setQuestion(temp)
+    }
+
     return (
         <div className="myBox questionTemplate">
             {/* Question Number */}
@@ -12,6 +25,7 @@ const RapidFireTemplate = (props) => {
                 Q{props.questionNum}
             </div>
 
+            {/* Question Section */}
             <div className="questionArea">
 
                 {/* Question Statement */}
@@ -19,7 +33,7 @@ const RapidFireTemplate = (props) => {
                     Question Statement:
                 </div>
                 <div className="questionText">
-                    <textarea rows="1" placeholder="Enter here" onInput={(ev) => { ev.target.style.height = ''; ev.target.style.height = ev.target.scrollHeight + 'px' }}>
+                    <textarea rows="1" placeholder="Enter here" onChange={(ev) => setStatement(ev)} onInput={(ev) => { ev.target.style.height = ''; ev.target.style.height = ev.target.scrollHeight + 'px' }}>
                     </textarea>
                 </div>
 
@@ -33,11 +47,24 @@ const RapidFireTemplate = (props) => {
                 </div>
 
                 {/* MCQ options */}
-                <McqTemplate setQuestion={setQuestion}/>
-
+                <McqTemplate setMCQ={setMCQ} />
             </div>
 
-        </div>
+            {/* Right Sidepanel */}
+            <div className="sidePanel">
+                <div className="sidePanel" style={{ height: "50px", color: "#313131" }} onClick={() => props.cancelQuestion()}>
+                    <span className="material-icons">
+                        undo
+                    </span>
+                </div>
+                <div className="sidePanel" style={{ height: "100%", color: "#238839" }} onClick={() => props.addQuestion(question)}>
+                    <span className="material-icons" style={{ fontSize: "28px" }}>
+                        done
+                    </span>
+                </div>
+            </div>
+
+        </div >
     )
 }
 

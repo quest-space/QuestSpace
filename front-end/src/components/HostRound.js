@@ -16,11 +16,11 @@ const HostRound = () => {
 
     const [tab, setTab] = React.useState("Round Details");
     const [roundFetched, setRoundFetched] = React.useState(false)
-    const [roundDetails, setRoundDetails] = React.useState({})
-    const [questions, setQuestions] = React.useState([])
+    const [roundInfo, setroundInfo] = React.useState({})
+    // const [questions, setQuestions] = React.useState([])
 
     const fetchRoundDetails = async () => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -31,15 +31,12 @@ const HostRound = () => {
         const responseBody = await response.json()
 
         if (response.status !== 200) {
-            console.log(`Error in fetching roundDetails.`)
+            console.log(`Error in fetching round information.`)
             alert(JSON.stringify(responseBody), "Returning back to quest page")
-            // history.replace(`/hosthomepage/quest/${questID}`)
+            // history.replace(`/hosthomepage/quest/${questID}`) uncomment this later
         } else {
-            responseBody["roundType"] = `RapidFire`
-            responseBody["imageURL"] = "/q2.png"
-            setRoundDetails(responseBody)
+            setroundInfo(responseBody)
         }
-
     }
 
     if (!roundFetched) {
@@ -51,17 +48,19 @@ const HostRound = () => {
     return (
         <React.Fragment>
             <MainNavbar />
-            <Header heading={`Round ${roundID}: ${roundDetails.roundName}`} subheading={roundDetails.roundType} />
-            <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: roundDetails.questName, to: `/participanthomepage/quest/${questID}` }, { text: `Round ${roundID}`, to: `/participanthomepage/quest/${questID}/round/${roundID}` }]} />
+            <Header heading={`Round ${roundID}: ${roundInfo.rounds && roundInfo.rounds.roundName}`} subheading={roundInfo.rounds && roundInfo.rounds.roundType} />
+            <BreadCrumb items={[{ text: "Home", to: "/participanthomepage" }, { text: roundInfo.rounds && roundInfo.rounds.questName, to: `/participanthomepage/quest/${questID}` }, { text: `Round ${roundID}`, to: `/participanthomepage/quest/${questID}/round/${roundID}` }]} />
 
-            {/* {tab} {roundDetails.roundType} */}
+            {/* Tabs*/}
+            <Tabs setTab={setTab} roundType={roundInfo.rounds && roundInfo.rounds.roundType} />
 
-            <Tabs setTab={setTab} roundType={roundDetails.roundType} />
+            {/* View Round Details */}
+            {tab === `Round Details` && <HostRoundDetails roundDetails={roundInfo.rounds} left="3rem" right="3rem" top="3rem" />}
 
-            {tab === `Round Details` && <HostRoundDetails roundDetails={roundDetails} left="3rem" right="3rem" top="3rem" />}
-
-            {/* && roundDetails.roundType === `RapidFire` */}
-            {tab === `Questions`  && <HostRapidFire questions={questions} setQuestions={setQuestions} />}
+            {/* View Questions in case of rapid fire round*/}
+            {/* <div className="mainBox"> */}
+            {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Rapid Fire`) && <HostRapidFire roundInfo={roundInfo} setroundInfo={setroundInfo} />}
+            {/* </div> */}
 
             <PageFooter />
         </React.Fragment>

@@ -18,7 +18,7 @@ const Search = () => {
     // const [searchflag, setSearchflag] = React.useState('home')
 
     const apiCall = async (searchWord) => {
-        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/search`,{
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/search`,{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json'

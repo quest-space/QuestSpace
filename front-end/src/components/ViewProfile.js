@@ -5,6 +5,7 @@ import ViewProfileFormatHost from "./ViewProfileFormatHost";
 const ViewProfile = () => {
   const [response, setResponse] = React.useState({});
   const [userString, setuserString] = React.useState("");
+  const [render, setRender] = React.useState(false);
 
   const showError = (errors) => {
     alert(JSON.stringify(errors));
@@ -12,7 +13,7 @@ const ViewProfile = () => {
 
   const ProfileAPI = async () => {
     const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/who-am-i`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
       {
         method: "POST",
         headers: {
@@ -26,10 +27,12 @@ const ViewProfile = () => {
     const checkRespBody = await checkResp.json();
     console.log("response", checkRespBody);
     setuserString(checkRespBody.type);
+    //setuserString("host");
     console.log("Userstring: ", userString);
 
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/profile`,
+      //`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/profile`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/${userString}/profile`,
       {
         method: "POST",
         headers: {
@@ -59,6 +62,10 @@ const ViewProfile = () => {
 
   ProfileAPI();
 
+  if (!render) {
+    setRender(true);
+  }
+
   return (
     <div>
       {userString === "participant" && (
@@ -69,8 +76,7 @@ const ViewProfile = () => {
           lastname={response.lastname}
           dob={response.dateofbirth}
           institution={response.organization}
-          passwordlength={10}
-          //passwordlength={response.passwordlength}
+          passwordlength={response.passwordlength}
           /*
         username="Hassaan1234"
         firstname="Hassaan"
@@ -92,7 +98,7 @@ const ViewProfile = () => {
           rating={response.rating}
           institution={response.organization}
           passwordlength={response.passwordlength}
-          passwordlength={10}
+          //passwordlength={response.passwordlength}
 
           /*
           username={"IEEE LUMS"}

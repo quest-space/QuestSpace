@@ -20,7 +20,7 @@ const Quest = () => {
     
     const requestQuest = async () => {
     
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -39,10 +39,10 @@ const Quest = () => {
         setResponse(responseBody)
 
         if (response.status !== 200) {
-            console.log(`Error in enrolment.`)
+            console.log(`Error fetching.`)
             showError(responseBody.errors)
         } else {
-            console.log(`Successful enrolment.`)
+            console.log(`Successful fetching.`)
         }
     
     }
@@ -59,7 +59,7 @@ const Quest = () => {
 
         console.log({questID});
 
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/enroll/${questID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/enroll/${questID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
