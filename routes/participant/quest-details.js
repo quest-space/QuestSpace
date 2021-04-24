@@ -173,10 +173,10 @@ router.post(`/:questid`, async (req, res) => {
                     details[`statusMsg2`] = `Results available`;
                 }
                 if (status === `Upcoming`) {
-                    details[`btnMsg`] = `Attempt`;
+                    details[`btnMsg`] = `Not started`;
                     details[`btnColor`] = `grey`;
                     details[`isBtnClickable`] = false;
-                    details[`statusMsg1`] = `Not Started`;
+                    details[`statusMsg1`] = `Get ready!`;
                     details[`statusMsg2`] = `Starts ${getConciseDate(val.startTime)}`;
                 }
 
