@@ -42,12 +42,13 @@
   background: #ffffff;
   border: 1px solid #666666;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 0px;
   padding: 0px 10px;
   outline: none;
   color: #666666;
   margin-top: 5px;
   cursor: pointer;
+  width: 110px;
 }
 
 .questionHeading {
@@ -65,6 +66,11 @@
   width: 200px;
 }
 
+.questionText select {
+  text-align-last: center;
+  color: #575757;
+}
+
 .questionNum {
   color: #313131;
   font-weight: 500;
@@ -75,8 +81,9 @@
   padding-bottom: 16px;
 }
 
-.mcqTemplate {
-  margin-top: 10px;
+.mcqTemplate,
+.numericTemplate {
+  margin-top: 0px;
 }
 
 .mcqOption {

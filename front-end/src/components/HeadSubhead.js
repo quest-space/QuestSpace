@@ -4,10 +4,10 @@ import React from "react";
 const HeadSubhead = (props) => {
   return (
     <div>
-      <p
+      <div
         className="display-4"
         style={{
-          paddingTop: "0.5rem",
+          paddingTop: "1rem",
           fontWeight: "400",
           fontSize: "20px",
           color: "#46B7A1",
@@ -16,27 +16,12 @@ const HeadSubhead = (props) => {
         }}
       >
         {props.heading}
-      </p>
-      {props.editable === 1 && (
-        <div
-          className="display-4"
-          style={{
-            fontWeight: "400",
-            fontSize: "20px",
-            color: "#313131",
-            marginLeft: "0rem",
-            wordWrap: "break-word",
-          }}
-        >
-          {props.heading}
-        </div>
-      )}
-
+      </div>
       <div
         className="display-4"
         style={{
           fontWeight: "400",
-          fontSize: "20px",
+          fontSize: "19px",
           color: "#313131",
           marginLeft: "0rem",
           wordWrap: "break-word",
@@ -44,8 +29,7 @@ const HeadSubhead = (props) => {
       >
         {props.subheading}
       </div>
-      {/* </p> */}
-    </div >
+    </div>
   );
 };
 
