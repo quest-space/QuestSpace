@@ -11,7 +11,27 @@ const OK_STATUS_CODE = 200;
 
 const shortDate = (date) => {
     const splitted = date.toDateString().split(' ')
-    return (splitted[2] + '-' + splitted[1] + '-' + splitted[3]) 
+    console.log(splitted)
+    return (splitted[3] + '-' + splitted[1] + '-' + splitted[2]) 
+};
+
+const formattedDate = (date) => {
+    const months = {
+        'Jan' : '01',
+        'Feb' : '02',
+        'Mar' : '03',
+        'Apr' : '04',
+        'May' : '05',
+        'Jun' : '06',
+        'Jul' : '07',
+        'Aug' : '08',
+        'Sep' : '09',
+        'Oct' : '10',
+        'Nov' : '11',
+        'Dec' : '12'
+    }
+    const splitted = date.toDateString().split(' ')
+    return (splitted[3] + '-' + months[splitted[1]] + '-' + splitted[2]) 
 };
 
 const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
@@ -61,6 +81,7 @@ router.post(`/edit`, async (req, res) => {
             firstname: userData.firstname,
             lastname: userData.lastname,
             dateofbirth: shortDate(userData.dateofbirth),
+            formatteddob: formattedDate(userData.dateofbirth),
             organization: userData.organization,
             passwordlength: userData.passwordlength
         }
@@ -82,6 +103,7 @@ router.post(`/`, async (req, res) => {
             firstname: userData.firstname,
             lastname: userData.lastname,
             dateofbirth: shortDate(userData.dateofbirth),
+            formatteddob: formattedDate(userData.dateofbirth),
             organization: userData.organization,
             passwordlength: userData.passwordlength
         }
