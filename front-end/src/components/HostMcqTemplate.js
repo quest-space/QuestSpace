@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-const McqTemplate = (props) => {
+const HostMcqTemplate = (props) => {
 
     const [options, setOptions] = React.useState(["", ""])
     const [answerIndex, setAnswerIndex] = React.useState(0)
@@ -80,4 +80,4 @@ const Mcq = (props) => {
     )
 }
 
-export default McqTemplate
+export default HostMcqTemplate

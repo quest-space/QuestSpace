@@ -1,5 +1,5 @@
 import React from "react"
-import McqTemplate from "./McqTemplate"
+import HostMcqTemplate from "./HostMcqTemplate"
 
 const RapidFireTemplate = (props) => {
 
@@ -47,7 +47,7 @@ const RapidFireTemplate = (props) => {
                 </div>
 
                 {/* MCQ options */}
-                <McqTemplate setMCQ={setMCQ} />
+                <HostMcqTemplate setMCQ={setMCQ} />
             </div>
 
             {/* Right Sidepanel */}
