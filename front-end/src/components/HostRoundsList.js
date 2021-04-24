@@ -6,6 +6,38 @@ const HostRoundsList = (props) => {
     const { questID } = useParams()
 
     const [displayForm, setDisplayForm] = React.useState(false)
+    const [timeForm, setTimeForm] = React.useState(false)
+    const [name, setname] = React.useState(false)
+    const [startTime, setstartTime] = React.useState(false)
+    const [endTime, setendTime] = React.useState(false)
+    const [type, settype] = React.useState(false)
+    const [lim, setlim] = React.useState(false)
+
+    const setName=(ev)=>{
+        setname(ev.target.value)
+    }
+
+    const endDate=(ev)=>{
+        setendTime(ev.target.value)
+    }
+
+    const startDate=(ev)=>{
+        setstartTime(ev.target.value)
+    }
+
+    const setType=(ev)=>{
+        settype(ev.target.value)
+        if (ev.target.value === "Rapid Fire"){
+            setTimeForm(true)
+        }
+        else{
+            setTimeForm(false)
+        }
+    }
+
+    const timeLimit=(ev)=>{
+        setlim(ev.target.value)
+    }
 
     const addQuest = async () => {
     
@@ -16,17 +48,28 @@ const HostRoundsList = (props) => {
             },
             credentials: "include",
             body: JSON.stringify({
-                username: 'HassaanAW',
-                password: 'hassaan123',
+                "roundName": name,
+                "startTime": startTime,
+                "endTime": endTime,
+                "roundType": type,
+                "timer": lim
             }),
+           
+        })
+        console.log({
+            "roundName": name,
+            "startTime": startTime,
+            "endTime": endTime,
+            "roundType": type,
+            "timer": lim
         })
 
-        const responseBody = await response.json()
-
-        if (responseBody.status !== 200) {
+        if (response.status !== 200) {
             console.log(`Error fetching.`)
         } else {
             console.log(`Successful fetching.`)
+            setDisplayForm(false)
+            props.setRender(true)
         }
     
     }
@@ -69,7 +112,7 @@ const HostRoundsList = (props) => {
                 return(
                         <div key={j} className="myBox" style={{paddingRight:"0rem"}}>   
 
-                            <button class="cross1"> <i class="fas fa-times"></i></button>
+                            <button class="cross1" onClick={()=> {deleteQuest()}}> <i class="fas fa-times"></i></button>
                             <p  style={{fontWeight: "600",fontSize: "22px", marginBottom:"0rem", display:"inline-block"}}>{"Round "+props.response.rounds[info].roundNum+": "+props.response.rounds[info].roundName}</p>
                             <p style={{fontWeight: "normal", fontSize: "18px", marginBottom:"0.5rem"}}>{props.response.rounds[info].roundType}</p>
                             <p className="text-muted" style={left}>{"Starts: "+props.response.rounds[info].startTime}</p>
@@ -82,12 +125,11 @@ const HostRoundsList = (props) => {
 
             {
                 displayForm === true && <div className="myBox" style={{paddingRight:"0rem"}}>
-                    <button class="tick1"> <i class="fas fa-check"></i></button>
+                    <button class="tick1" onClick={()=> {addQuest()}}> <i class="fas fa-check"></i></button>
                     <button class="cross1" onClick={()=> {setDisplayForm(false)}}> <i class="fas fa-times"></i></button>
                     
-                    <tr>
-                    
                     <p  style={{fontWeight: "600",fontSize: "22px", marginBottom:"0rem", display:"inline-block"}}>Add Round</p>
+                    <tr>
                     <th style={{display:"block"}}>
                     <p
                         className="display-4"
@@ -106,7 +148,7 @@ const HostRoundsList = (props) => {
                             className="inputdetail responsive"
                             style={{fontSize:"18px",paddingTop: "0.5rem",display:"block"}}
                             placeholder="Enter here"
-                            // onChange={(ev) => updateState(ev, setQuestName)}
+                            onChange={setName}
                             />
                     </p>
                     </th>
@@ -122,7 +164,6 @@ const HostRoundsList = (props) => {
                                 fontSize: "18px",
                                 color: "#46B7A1",
                                 marginLeft: "0rem",
-                                wordWrap: "break-word",
                             }}
                             >
                             Start
@@ -130,8 +171,11 @@ const HostRoundsList = (props) => {
                             type="text"
                             className="inputdetail responsive"
                             style={{fontSize:"18px",paddingTop: "0.5rem",display:"block"}}
-                            placeholder="Enter here"
-                            // onChange={(ev) => updateState(ev, setQuestName)}
+                            type="datetime-local"
+                            placeholder="1"
+                            onfocus="this.type='datetime-local'"
+                            onblur="if(this.value==='')this.type='text'"
+                            onChange={startDate}
                             />
         
                         </p>
@@ -146,7 +190,6 @@ const HostRoundsList = (props) => {
                                 fontSize: "18px",
                                 color: "#46B7A1",
                                 marginLeft: "0rem",
-                                wordWrap: "break-word",
                             }}
                             >
                             End
@@ -154,8 +197,11 @@ const HostRoundsList = (props) => {
                             type="text"
                             className="inputdetail responsive"
                             style={{fontSize:"18px",paddingTop: "0.5rem",display:"block"}}
-                            placeholder="Enter here"
-                            // onChange={(ev) => updateState(ev, setQuestName)}
+                            type="datetime-local"
+                            placeholder="1"
+                            onfocus="this.type='datetime-local'"
+                            onblur="if(this.value==='')this.type='text'"
+                            onChange={endDate}
                             />
         
                         </p>
@@ -173,20 +219,61 @@ const HostRoundsList = (props) => {
                                 fontSize: "18px",
                                 color: "#46B7A1",
                                 marginLeft: "0rem",
-                                wordWrap: "break-word",
                             }}
                             >
                             Type
                     </p>
-                    <select class="form-control" style={{marginLeft:"3rem"}} id="sel1">
-                        <option>Rapid Fire</option>
+                    <select onChange={setType} class="form-control" style={{marginLeft:"3rem"}} id="sel1">
                         <option>Quiz</option>
-                        <option>Submission based</option>
+                        <option>Rapid Fire</option>
+                        <option>Submission</option>
                     </select>
                     </div>
                     </th>
 
+                    {timeForm === true && <th>
+                        <p
+                            className="display-4"
+                            style={{
+                                paddingLeft:"3rem",
+                                fontWeight: "400",
+                                fontSize: "18px",
+                                color: "#46B7A1",
+                                marginLeft: "0rem",
+                            }}
+                            >
+                            Time Limit
+                            <input
+                            type="text"
+                            className="inputdetail responsive"
+                            style={{fontSize:"18px",paddingTop: "0.5rem",display:"block"}}
+                            placeholder="Enter here"
+                            onChange={timeLimit}
+                            />
+        
+                        </p>
+                    </th>}
+
                     </tr>
+
+                    <p
+                        className="display-4"
+                        style={{
+                            paddingTop: "0.5rem",
+                            fontWeight: "400",
+                            fontSize: "18px",
+                            color: "#46B7A1",
+                            marginLeft: "0rem",
+                        }}
+                        >
+                        Description
+                        <input
+                        type="text"
+                        className="longinputdetail"
+                        placeholder="Enter a description of your Round"
+                        style={{fontSize:"18px",paddingTop: "0.5rem",display:"block", width:"95%"}}
+                        />
+                        </p>
                 </div>
             }
 
