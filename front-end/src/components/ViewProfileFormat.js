@@ -3,8 +3,6 @@ import MainNavbar from "./MainNavbar";
 import HeadSubhead from "./HeadSubhead";
 import BreadCrumb from "./BreadCrumb";
 import { useHistory } from "react-router-dom";
-import EditProfile from "./EditProfile";
-
 import "../css/questdetails.css";
 
 const ViewProfileFormat = (props) => {
@@ -13,12 +11,11 @@ const ViewProfileFormat = (props) => {
     hidden_password = hidden_password.concat("*");
   }
 
-  console.log(hidden_password);
-
   const history = useHistory();
 
   const editProfile = () => {
-    history.push("/editprofile");
+    //<EditProfile />;
+    history.push("/participant/editprofile");
   };
 
   return (
