@@ -45,8 +45,8 @@ const App = () => {
         <Route exact path="/questdetails" component={QuestDetails} />
         <Route exact path="/header" component={Header} />
         <Route exact path="/viewprofile" component={ViewProfile} />
-        <Route exact path="participant/editprofile" component={EditProfile} />
-        <Route exact path="host/editprofile" component={EditProfileHost} />
+        <Route exact path="/participanteditprofile" component={EditProfile} />
+        <Route exact path="/hosteditprofile" component={EditProfileHost} />
         <Route exact path="/hosthomepage/createquest" component={CreateQuest} />
         <Route
           exact

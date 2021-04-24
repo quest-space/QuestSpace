@@ -14,8 +14,7 @@ const ViewProfileFormat = (props) => {
   const history = useHistory();
 
   const editProfile = () => {
-    //<EditProfile />;
-    history.push("/participant/editprofile");
+    history.push("/participanteditprofile");
   };
 
   return (
