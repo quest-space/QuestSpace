@@ -65,7 +65,7 @@ const ViewProfileFormat = (props) => {
           View My Profile
         </p>
 
-        <p
+        <div
           className="display-4"
           style={{
             paddingTop: "1.5rem",
@@ -88,15 +88,13 @@ const ViewProfileFormat = (props) => {
           >
             {props.username}
           </div>
-        </p>
-
-        <div>
-          <HeadSubhead heading="First Name" subheading={props.firstname} />
-          <HeadSubhead heading="Last Name" subheading={props.lastname} />
-          <HeadSubhead heading="Date of Birth" subheading={props.dob} />
-          <HeadSubhead heading="Institution" subheading={props.institution} />
-          <HeadSubhead heading="Password" subheading={hidden_password} />
         </div>
+
+        <HeadSubhead heading="First Name" subheading={props.firstname} />
+        <HeadSubhead heading="Last Name" subheading={props.lastname} />
+        <HeadSubhead heading="Date of Birth" subheading={props.dob} />
+        <HeadSubhead heading="Institution" subheading={props.institution} />
+        <HeadSubhead heading="Password" subheading={hidden_password} />
         <div
           style={{
             display: "flex",
@@ -107,7 +105,7 @@ const ViewProfileFormat = (props) => {
         >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
           <button className="btnBegin" onClick={editProfile}>
-            Edit <i class="fa fa-pencil"></i>
+            Edit <i class="fa fa-edit"></i>
           </button>
         </div>
       </div>
