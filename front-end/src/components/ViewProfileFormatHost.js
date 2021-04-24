@@ -26,7 +26,7 @@ const ViewProfileFormatHost = (props) => {
   const history = useHistory();
 
   const editProfile = () => {
-    history.push("/host/editprofile");
+    history.push("/hosteditprofile");
   };
 
   return (
