@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import AddBox from "./AddBox"
 import HostQuizTemplate from "./HostQuizTemplate"
-import HostRapidFireQuestion from "./HostRapidFireQuestion"
+import HostMcqQuestion from "./HostMcqQuestion"
 import HostNumericQuestion from "./HostNumericQuestion"
 
 const HostQuiz = (props) => {
@@ -21,7 +21,7 @@ const HostQuiz = (props) => {
                 ...question,
                 questName: props.roundInfo.rounds.questName,
                 roundName: props.roundInfo.rounds.roundName,
-                questionType: "MCQ",
+                // questionType: "MCQ",
             }),
             credentials: "include",
         })
@@ -56,8 +56,6 @@ const HostQuiz = (props) => {
         } else {
             const temp = { ...props.roundInfo }
             temp.questions = responseBody.questions
-            console.log("before", props.roundInfo)
-            console.log("after", temp)
             props.setroundInfo(temp)
         }
     }
@@ -77,16 +75,20 @@ const HostQuiz = (props) => {
 
             {/* Already added questions */}
             {props.roundInfo.questions && props.roundInfo.questions.map((question, index) => {
-                return (
-                    <HostRapidFireQuestion key={index} question={question} removable={props.roundInfo.editable} deleteQuestion={deleteQuestion} />
-                )
+                if (question.questionType === `MCQ`)
+                    return (
+                        <HostMcqQuestion key={index} question={question} removable={props.roundInfo.editable} deleteQuestion={deleteQuestion} />
+                    )
+                else if (question.questionType === `Numeric`)
+                    return (
+                        <HostNumericQuestion key={index} question={question} removable={props.roundInfo.editable} deleteQuestion={deleteQuestion} />
+                    )
             })}
 
             {/* Add question option */}
             {props.roundInfo.editable && showAddBox && <AddBox onClick={() => setShowAddBox(false)} />}
-            {/* {props.roundInfo.editable && !showAddBox && <HostRapidFireTemplate questionNum={props.roundInfo.questions ? props.roundInfo.questions.length + 1 : 1} addQuestion={addQuestion} cancelQuestion={cancelQuestion}
-            // setNewQuestion={setNewQuestion} setShowAddBox={setShowAddBox} 
-            />} */}
+            {props.roundInfo.editable && !showAddBox && <HostQuizTemplate questionNum={props.roundInfo.questions ? props.roundInfo.questions.length + 1 : 1} addQuestion={addQuestion} cancelQuestion={cancelQuestion}
+            />}
         </div>
         // </React.Fragment>
     )

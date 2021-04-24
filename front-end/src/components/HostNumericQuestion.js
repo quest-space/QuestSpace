@@ -36,26 +36,12 @@ const HostNumericQuestion = (props) => {
                 <div className="mcqTemplate">
 
                     <div className="questionHeading">
-                        Answer Choices:
+                        Correct Answer:
                     </div>
 
                     <div className="questionText">
-                        {/* Print already added options */}
-                        {props.question.options.map((option, index) => {
-                            return (
-                                <div className="mcqOption" key={index}>
-
-                                    {/* Radio Circle */}
-                                    <span className="material-icons icon">
-                                        radio_button_{props.question.answer === option ? `checked` : `unchecked`}
-                                    </span>
-
-                                    {/* option text */}
-                                    {option}
-
-                                </div >
-                            )
-                        })}
+                        {/* Print correct numeric answer */}
+                        {props.question.answer}
 
                     </div>
 
