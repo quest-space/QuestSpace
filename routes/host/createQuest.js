@@ -1,4 +1,5 @@
 const Quest = require(`../../models/quest`);
+const multer = require(`multer`);
 
 const { handleErrorsFromDB, getQuestStatus } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
