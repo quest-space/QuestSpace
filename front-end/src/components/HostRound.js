@@ -31,7 +31,7 @@ const HostRound = () => {
         const responseBody = await response.json()
 
         if (response.status !== 200) {
-            console.log(`Error in fetching roundDetails.`)
+            console.log(`Error in fetching round information.`)
             alert(JSON.stringify(responseBody), "Returning back to quest page")
             // history.replace(`/hosthomepage/quest/${questID}`) uncomment this later
         } else {
@@ -59,7 +59,7 @@ const HostRound = () => {
 
             {/* View Questions in case of rapid fire round*/}
             {/* <div className="mainBox"> */}
-            {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Rapid Fire`) && <HostRapidFire questions={roundInfo.questions} eachMark={roundInfo.rounds.marks} setroundInfo={setroundInfo} editable={roundInfo.editable} />}
+            {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Rapid Fire`) && <HostRapidFire roundInfo={roundInfo} setroundInfo={setroundInfo} />}
             {/* </div> */}
 
             <PageFooter />
