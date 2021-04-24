@@ -302,7 +302,7 @@ const HostRoundsList = (props) => {
                     <button style={{width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={()=> {setDisplayForm(true)}}><span className="material-icons" style={{fontSize: "20pt; color: rgb(108, 108, 108)"}}>add</span> </button>
                 </div>
             }
-            {
+            {/* {
                 props.response.editable === false && props.response.rounds === null &&
                 <div style={{
                     border: "1px solid #C4C4C4", 
@@ -312,9 +312,9 @@ const HostRoundsList = (props) => {
                     marginLeft:"9%",
                     marginRight:"9%",
                     padding:"2rem"}}>
-                    <i class="fas fa-exclamation-circle"></i> Not Available
+                    <i class="fas fa-exclamation-circle"></i> No Rounds Added!
                 </div>
-            }
+            } */}
 
         </div>
     )
