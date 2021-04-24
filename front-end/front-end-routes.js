@@ -15,8 +15,8 @@ router.use("/signup", express.static("front-end/build"));
 router.use("/qsadminsignin", express.static("front-end/build"));
 router.use("/qsadminhomepage", express.static("front-end/build"));
 router.use("/participanthomepage", express.static("front-end/build"));
+router.use("/hosthomepage/createquest", express.static("front-end/build"));
 router.use("/hosthomepage", express.static("front-end/build"));
-// router.use("/navbar2", express.static("front-end/build"));
 
 module.exports = router;
 

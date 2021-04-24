@@ -1,7 +1,7 @@
 import React from "react"
 import HostMcqTemplate from "./HostMcqTemplate"
 
-const RapidFireTemplate = (props) => {
+const HostRapidFireTemplate = (props) => {
 
     const [question, setQuestion] = React.useState({})
 
@@ -68,4 +68,4 @@ const RapidFireTemplate = (props) => {
     )
 }
 
-export default RapidFireTemplate
+export default HostRapidFireTemplate
