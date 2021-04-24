@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import AddBox from "./AddBox"
 import RapidFireTemplate from "./RapidFireTemplate"
+import RapidFireQuestion from "./RapidFireQuestion"
 
 const HostRapidFire = (props) => {
 
@@ -21,6 +22,7 @@ const HostRapidFire = (props) => {
 
     return (
         <div className="mainBox">
+            <RapidFireQuestion />
             {showAddBox && <AddBox onClick={() => setShowAddBox(false)} />}
             {!showAddBox && <RapidFireTemplate questionNum={props.questions.length + 1} setNewQuestion={setNewQuestion} setShowAddBox={setShowAddBox} />}
         </div>

@@ -16,6 +16,7 @@ const RapidFireTemplate = (props) => {
                 Q{props.questionNum}
             </div>
 
+            {/* Question Section */}
             <div className="questionArea">
 
                 {/* Question Statement */}
@@ -38,10 +39,23 @@ const RapidFireTemplate = (props) => {
 
                 {/* MCQ options */}
                 <McqTemplate setQuestion={setQuestion} />
-
             </div>
 
-        </div>
+            {/* Right Sidepanel */}
+            <div className="sidePanel">
+                <div className="sidePanel" style={{ height: "50px", color: "#313131" }}>
+                    <span className="material-icons">
+                        undo
+                    </span>
+                </div>
+                <div className="sidePanel" style={{ height: "100%", color: "#238839" }}>
+                    <span className="material-icons" style={{ fontSize: "28px" }}>
+                        done
+                    </span>
+                </div>
+            </div>
+
+        </div >
     )
 }
 
