@@ -21,7 +21,7 @@ const HostRapidFire = (props) => {
                 ...question,
                 questName: props.roundInfo.rounds.questName,
                 roundName: props.roundInfo.rounds.roundName,
-                questType: "MCQ",
+                questionType: "MCQ",
             }),
             credentials: "include",
         })
@@ -72,7 +72,7 @@ const HostRapidFire = (props) => {
 
             {/* Score box */}
             <div className="myBox">
-                Score for each question:&nbsp;{props.roundInfo.marks}
+                Score for each question:&nbsp;{props.roundInfo.rounds.marks}
             </div>
 
             {/* Already added questions */}
