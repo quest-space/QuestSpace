@@ -19,8 +19,11 @@
 .signinBox {
   padding-left: 40px;
   padding-right: 40px;
+  padding-top: 20px;
+  padding-bottom: 5px;
   margin: auto;
   width: 300px;
+  margin-top: 20px;
 
   background: #f9f9f9;
   position: absolute;
