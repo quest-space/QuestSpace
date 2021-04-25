@@ -2,8 +2,8 @@ const { Router } = require (`express`);
 const Participant = require(`../../models/participant`);
 const Quest = require(`../../models/quest`);
 const Host = require(`../../models/host`);
-const Rating = require(`../../models/ratings`);
 const Participation = require(`../../models/participation`);
+const Rating = require(`../../models/ratings`);
 const Round = require(`../../models/rounds`);
 const Submission = require(`../../models/submission`);
 const TimeFormatter = require(`../helpers/helperFunctions`);
@@ -20,6 +20,37 @@ const DEFAULT_RATING = 3;
 const { handleErrorsFromDB, getConciseDate } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
 
+router.post(`/:questid/rate`, async (req, res) => {
+
+    try {
+        
+        const rating = await Rating.updateOne({ 
+            hostUser: req.body.questData.hostUser,
+            participantUser: req.username
+        },
+        {
+            $set: {
+                hostUser: req.body.questData.hostUser,
+                participantUser: req.username,
+                score: req.body.ratingScore
+            }
+        },
+        {upsert: true, runValidators: true});
+
+        // calculate new rating for the host user:
+        const ratings = await Rating.find({ hostUser: req.body.questData.hostUser }).exec();
+        const newRating = Math.round(ratings.reduce((acc, currRating) => acc + currRating.score, 0)/ratings.length);
+        
+        // update this new rating in the host user:
+        await Host.updateOne({ username: req.body.questData.hostUser }, { $set: {rating: newRating} }).exec();
+
+        sendRes(res, CREATED_STATUS_CODE, {});
+
+    } catch (err) {
+        sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err));
+    }
+
+});
 
 router.use(`/`, require(`./round-details`));
 
@@ -48,6 +79,8 @@ const check_quest_status = (questdata, currTime) =>{
         return "Past"
     }
 }
+
+
 
 router.post(`/:questid`, async (req, res) => {
     try{

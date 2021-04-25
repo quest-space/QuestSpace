@@ -18,8 +18,8 @@ const ratingSchema = new Schema({
     score: {
         type: Number,
         default: 0,
-        min: 0,
-        max: 5,
+        min: [0, 'Rating cannot be less than 0'],
+        max: [5, 'Rating cannot be grater than 5'],
         required: [true, 'Host rating is required']
     }
 });

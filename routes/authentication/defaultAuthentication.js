@@ -15,10 +15,10 @@ router.use((req, res, next) => {
 router.use(`/:type`, (req, res, next) => {
   if (req.params.type === `participant` || req.params.type === `host`) {
     req.body.id = "6070f3b5535b23e65b3d0160";
-    req.body.username = req.params.type === `participant` ? "HassaanAW" : "Admin";
+    req.body.username = req.params.type === `participant` ? "talal" : "Admin";
     req.body.userType = req.params.type;
     req.id = "6070f3b5535b23e65b3d0160";
-    req.username = req.params.type === `participant` ? "HassaanAW" : "Admin";
+    req.username = req.params.type === `participant` ? "talal" : "Admin";
     req.userType = req.params.type;
   } else if (req.params.type === `qs-admin`) {
     req.body.id = "NoAvailableID";
