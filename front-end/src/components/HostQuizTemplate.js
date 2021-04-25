@@ -6,6 +6,7 @@ const HostQuizTemplate = (props) => {
 
     // By default, the new qestion is mcq
     const [question, setQuestion] = React.useState({ questionType: "MCQ" })
+    const [image, setImage] = React.useState()
 
     const setStatement = (ev) => {
         const temp = { ...question }
@@ -60,7 +61,7 @@ const HostQuizTemplate = (props) => {
                     Uploaded Image:
                 </div>
                 <div className="questionText">
-                    <input type="file">
+                    <input type="file" accept="image/png, image/jpeg" onChange={(ev) => setImage(ev.target.files[0])}>
                     </input>
                 </div>
 
@@ -92,7 +93,7 @@ const HostQuizTemplate = (props) => {
                         undo
                     </span>
                 </div>
-                <div className="sidePanel" style={{ height: "100%", color: "#238839" }} onClick={() => props.addQuestion(question)}>
+                <div className="sidePanel" style={{ height: "100%", color: "#238839" }} onClick={() => props.addQuestion(question, image)}>
                     <span className="material-icons" style={{ fontSize: "28px" }}>
                         done
                     </span>
