@@ -11,7 +11,7 @@ const ProfileAndMobileView = (props) => {
       : "host";
     console.log("user string is", userString);
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/signout`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/${userString}/signout`,
       {
         method: "POST",
         headers: {

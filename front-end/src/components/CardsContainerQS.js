@@ -7,37 +7,31 @@ import { Link, useHistory } from "react-router-dom"
 */
 
 const headings = {
-    "Pending": "Pending Quests",
-    "Accepted": "Accepted Quests",
-    "Rejected": "Rejected Quests",
-    "All": "All Quests",
+    "pending": "Pending Quests",
+    "accepted": "Accepted Quests",
+    "rejected": "Rejected Quests",
+    "all": "All Quests",
 }
 
 const CardsContainerQS = (props) => {
 
-    const history = useHistory()
-    const [response, setResponse] = React.useState({ "all": {} })
+    const [response, setResponse] = React.useState({ "pending": {} })
     const [render, setRender] = React.useState(false);
 
     const showError = (errors) => {
         alert(JSON.stringify(errors))
     }
 
-    const apiCall = async () => {
+    const fetchCards = async () => {
         const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest//qs-admin/homepage`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             credentials: "include",
-            // body: JSON.stringify({
-            //     username: "HassaanAW",
-            //     password: "hassaan123",
-            // }),
         })
         const responseBody = await resp.json()
         setResponse(responseBody)
-        console.log(responseBody)
 
         if (resp.status !== 200) {
             console.log(`Error. Couldn't fetch data.`)
@@ -48,23 +42,58 @@ const CardsContainerQS = (props) => {
         }
     }
 
+    const accept = async (qname) => {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest//qs-admin/accept`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: {
+                'questName' : qname
+            },
+            credentials: "include",
+        })
+        const responseBody = await resp.json()
+        console.log(responseBody)
+
+        if (resp.status !== 200) {
+            console.log(`Couldn't accept`)
+        } else {
+            console.log(`Successful`)
+
+        }
+    }
+
+    const reject = async (qname) => {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest//qs-admin/reject`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: {
+                'questName' : qname
+            },
+            credentials: "include",
+        })
+        const responseBody = await resp.json()
+        console.log(responseBody)
+
+        if (resp.status !== 200) {
+            console.log(`Couldn't reject`)
+        } else {
+            console.log(`Successful`)
+
+        }
+    }
+
+    console.log(response)
     if (!render) {
         setRender(true)
-        apiCall()
+        fetchCards()
     }
-
-    let full = []
-    let empty = []
-    for (let i = 0; i < parseInt(props.rating); i++) {
-    full.push(1)
-    }
-    for (let i = 0; i < 5 - parseInt(props.rating); i++) {
-    empty.push(0)
-    } 
-
+    
     return (
         <div>
-            {/* <button className="blueButton1" onClick={() => { toCreate() }}>New Quest<span className="material-icons" style={{ fontSize: "20pt", color: "#FFFFFF", float: "right" }}>add</span></button> */}
             <div className="container" id="cc" style={{ marginTop: '0rem', paddingBottom: "5.5rem" }}>
                 <div style={{
                     paddingLeft: '1.5rem',
@@ -81,20 +110,29 @@ const CardsContainerQS = (props) => {
                         {
 
                             Object.keys(response[props.tab]).map((info, j)=>{                   
-                                // const color = props.details[info].btnColor
+                                
+                                let full = []
+                                let empty = []
+                                for (let i = 0; i < parseInt(response[props.tab][info].rating); i++) {
+                                full.push(1)
+                                }
+                                for (let i = 0; i < 5 - parseInt(response[props.tab][info].rating); i++) {
+                                empty.push(0)
+                                } 
+
                                 return(
-                                    <div style={{marginLeft:"9%", marginRight:"9%"}}>
+                                    <div key = {j} style={{marginLeft:"9%", marginRight:"9%"}}>
                                     <div className="card mb-9" style={{maxWidth: "100%", margin:"auto"}}>
                                     <div className="row no-gutters">
                                       <div className="col-md-2">
-                                        <img src={props.logoURL} className="card-img" alt="..."/>
+                                        <img src={response[props.tab][info].logoURL} style={{objectFit:"contain"}} className="card-img" alt="..."/>
                                       </div>
                                       <div className="col-md-8">
                                         <div className="card-body">
-                                          <h5 className="card-title">{props.questName}</h5>
-                                          {/* <h6 className="card-title text-muted"><i className="fas fa-calendar-alt"></i>{(new Date(props.startTime)).toDateString()} - {(new Date(props.endTime)).toDateString()}</h6> */}
-                                          <h6 className="card-title text-muted" style={{marginBottom:"0rem"}}><i className="fas fa-calendar-alt" style={{marginRight:"0.5rem"}}></i>12 June - 13 May</h6>
-                                          <h6 className="card-title text-muted" style={{marginBottom:"0rem", display:"inline"}}>{"Host: " + props.hostUser}</h6>
+                                          <h5 className="card-title">{response[props.tab][info].questName}</h5>
+                                          <h6 className="card-title text-muted" style={{marginBottom:"0rem"}}><i className="fas fa-calendar-alt" style={{marginRight:"0.5rem"}}></i>{(new Date(response[props.tab][info].startTime)).toDateString()} - {(new Date(response[props.tab][info].endTime)).toDateString()}</h6>
+                                          {/* <h6 className="card-title text-muted" style={{marginBottom:"0rem"}}><i className="fas fa-calendar-alt" style={{marginRight:"0.5rem"}}></i>12 June - 13 May</h6> */}
+                                          <h6 className="card-title text-muted" style={{marginBottom:"0rem", display:"inline"}}>{"Host: " + response[props.tab][info].hostUser}&nbsp;&nbsp;</h6>
                                           {
                                             full.map((a,index) => {
                                               return(
@@ -110,10 +148,9 @@ const CardsContainerQS = (props) => {
                                               )
                                             })
                                           }
-                                          <h6 className="card-title text-muted" style={{marginBottom:"0rem", display:"inline"}}>{" | Quest Type: " + props.nature}</h6>
+                                          <h6 className="card-title text-muted" style={{marginBottom:"0rem", display:"inline"}}>&nbsp;&nbsp;|&nbsp;&nbsp;{"Quest Type: " + response[props.tab][info].nature}</h6>
                             
-                                          <p className="card-text">{props.description}</p>
-                                          {/* <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
+                                          <p className="card-text" style={{marginTop:"0.3rem"}}>{response[props.tab][info].description}</p>
                                         </div>
                                       </div>
                                     </div>
