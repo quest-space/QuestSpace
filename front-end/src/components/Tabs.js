@@ -50,7 +50,7 @@ const Tabs = (props) => {
                 <button
                     className="plain one"
                     onClick={() => setBar("Round Details")}
-                    style={{ borderBottom: bar1, width: props.roundType === `Submission` ? "25%" : "33.33%" }}
+                    style={{ borderBottom: bar1, width: props.roundType === `Submission` ? "25%" : "33.33%", whiteSpace: "nowrap" }}
                 >
                     Round Details
                 </button>
