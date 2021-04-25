@@ -18,7 +18,7 @@ const PopularQuests = () => {
     // const [searchflag, setSearchflag] = React.useState('home')
 
     const apiCall = async () => {
-        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/popular-quests`,{
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/popular-quests`,{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json'
