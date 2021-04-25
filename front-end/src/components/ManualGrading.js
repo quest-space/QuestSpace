@@ -4,9 +4,36 @@ const ManualGrading = (props) => {
 
     console.log(props.roundInfo)
 
+    const [editable, setEditable] = React.useState(false)
+    const [scores, setScores] = React.useState([])
+
+    const updateScores = async () => {
+        // const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}`, {
+        //     method: "POST",
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     credentials: "include",
+        // })
+
+        // const responseBody = await response.json()
+
+        // if (response.status !== 200) {
+        //     console.log(`Error in fetching round information.`)
+        //     alert(JSON.stringify(responseBody) + "Returning back to quest page")
+        //     history.replace(`/hosthomepage/quest/${questID}`) //uncomment this later
+        // } else {
+        //     setroundInfo(responseBody)
+        // }
+    }
+
+    const storeScore = (ev) => {
+
+    }
+
     return (
 
-        <div style={{ marginBottom: "5.5rem", marginTop: "3rem" }}>
+        <div className="manualGrading" style={{ marginBottom: "5.5rem", marginTop: "3rem" }}>
 
             {/* If submissions not availble, show message. */}
             {(!props.roundInfo.submissions || props.roundInfo.submissions.length === 0) && <div style={{
@@ -22,8 +49,37 @@ const ManualGrading = (props) => {
 
 
             {/* Display for desktops */}
-            {/* Only show submissions if availble */}
+            {/* Only show submissions if available */}
             {(props.roundInfo.submissions && props.roundInfo.submissions.length !== 0) && <div className="d-none d-sm-none d-md-none d-lg-block">
+
+                {/* Box with Controls */}
+                <div className="slimBox" style={{ paddingRight: "1rem", paddingLeft: "1rem" }}>
+                    {editable &&
+                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                            <button style={{ marginRight: "7px" }}>
+                                Update
+                                <span className="material-icons" style={{ color: "#238839", fontSize: "12pt" }}>
+                                    done
+                                </span>
+                            </button>
+                            <button onClick={() => setEditable(false)}>
+                                Cancel
+                                <span className="material-icons" style={{ color: "#EB5757", fontSize: "12pt" }}>
+                                    close
+                                </span>
+                            </button>
+                        </div>}
+
+                    {!editable &&
+                        <div>
+                            <button onClick={() => setEditable(true)}>
+                                Grade
+                                <span className="material-icons" style={{ color: "#46B7A1", fontSize: "12pt" }}>
+                                    assignment_turned_in
+                                </span>
+                            </button>
+                        </div>}
+                </div>
 
                 {/* Table Column Headings */}
                 <div className="slimBox" style={{ fontSize: "20px", marginTop: "0.4rem", fontWeight: "500" }}>
@@ -59,26 +115,19 @@ const ManualGrading = (props) => {
                                 {submission.fullname}
                             </div>
                             <div style={{ display: "inline", marginLeft: "0.5rem" }}>
-                                {submission.filename}
+                                <a download={submission.filename} href={submission.fileURL.substr(58)} style={{ color: "#212529" }}>
+                                    {submission.filename}
+                                </a>
                             </div>
                             <div style={{ display: "inline", float: "right" }}>
-                                {submission.score}
+                                {!editable && submission.score}
+                                {editable &&
+                                    <input >
+                                    </input>
+                                }
                             </div>
-                            {/* <div style={{ display: "inline-block", width: "4rem" }}>
-                                {props.board[info].ranking}
-                            </div>
-                            <div style={{ display: "inline-block", marginLeft: "4.8rem", width: "11rem" }}>
-                                {props.board[info].username}
-                            </div>
-                            <div style={{ display: "inline", marginLeft: "0.5rem" }}>
-                                {props.board[info].name}
-                            </div>
-                            <div style={{ display: "inline", float: "right" }}>
-                                {props.board[info].roundScore}
-                            </div> */}
                         </div>
                     )
-
                 })}
             </div>}
 
