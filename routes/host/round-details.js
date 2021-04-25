@@ -1,4 +1,5 @@
     const { Router } = require (`express`);
+    const multer = require(`multer`);
     const Participant = require(`../../models/participant`);
     const Quest = require(`../../models/quest`);
     const Host = require(`../../models/host`);
@@ -22,6 +23,7 @@
     const Helper = require(`../helpers/helperFunctions`);
     const { findOne } = require("../../models/participant");
     const { makeLeaderboard } = require(`../helpers/leaderboard_helper`);
+    const { getImgUploadURL } = require(`../helpers/imgUploadHelper`);
 
     const check_quest_status = (questdata, currTime) =>{
         // Live quest
@@ -161,17 +163,24 @@
             
     });
 
-    router.post(`/:questid/:roundid/addquestion`, async (req, res) => {
+    const upload = multer({ dest: __dirname + `../../../../qs-uploaded-images/` });
+    router.post(`/:questid/:roundid/addquestion`, upload.single(`uploadedImage`), async (req, res) => {
         try{
             const quest_detail = await Quest.findOne({_id: req.params.questid});
             const round_detail = await Round.findOne({questName: quest_detail.questName, roundNum: req.params.roundid});
             const question_number = round_detail.numQuestions;
             
-            const question = await Question.updateOne({questName: quest_detail.questName, roundNum: req.params.roundid, questionNum: question_number + 1},
-                {$set: {questName: quest_detail.questName, roundNum: req.params.roundid, roundName: req.body.roundName, questionNum: question_number + 1, 
-                questionType: req.body.questionType, statement: req.body.statement, options: req.body.options, answer: req.body.answer}},
-                {upsert: true, runValidators: true})
-
+            if (req.file) {
+                const question = await Question.updateOne({questName: quest_detail.questName, roundNum: req.params.roundid, questionNum: question_number + 1},
+                    {$set: {questName: quest_detail.questName, roundNum: req.params.roundid, roundName: req.body.roundName, questionNum: question_number + 1, 
+                    questionType: req.body.questionType, statement: req.body.statement, options: req.body.options, answer: req.body.answer, imageURL: `${getImgUploadURL()}${req.file.filename}` }},
+                    {upsert: true, runValidators: true});
+            } else {
+                const question = await Question.updateOne({questName: quest_detail.questName, roundNum: req.params.roundid, questionNum: question_number + 1},
+                    {$set: {questName: quest_detail.questName, roundNum: req.params.roundid, roundName: req.body.roundName, questionNum: question_number + 1, 
+                    questionType: req.body.questionType, statement: req.body.statement, options: req.body.options, answer: req.body.answer, imageURL: "" }},
+                    {upsert: true, runValidators: true});
+            }
             const send_question_details = await Question.find({questName: quest_detail.questName, roundNum: req.params.roundid })
             const send_formatted_questions = await parseQuestions(send_question_details)
             const send_back = {}

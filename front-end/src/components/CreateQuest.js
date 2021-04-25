@@ -6,12 +6,12 @@ import Header from "./Header";
 import BreadCrumb from "./BreadCrumb";
 
 const CreateQuest = (props) => {
-  const [QuestName, setQuestName] = React.useState();
-  const [About, setAbout] = React.useState();
-  const [Description, setDescription] = React.useState();
-  const [Type, setType] = React.useState();
-  const [StartTime, setStartTime] = React.useState();
-  const [EndTime, setEndTime] = React.useState();
+  const [QuestName, setQuestName] = React.useState(undefined);
+  const [About, setAbout] = React.useState(undefined);
+  const [Description, setDescription] = React.useState(undefined);
+  const [Type, setType] = React.useState(undefined);
+  const [StartTime, setStartTime] = React.useState(undefined);
+  const [EndTime, setEndTime] = React.useState(undefined);
   const [logo, setLogo] = React.useState();
 
   const Create = async () => {
@@ -29,7 +29,7 @@ const CreateQuest = (props) => {
     formData.append(`endTime`, EndTime);
 
     const response = await fetch(
-      `http://localhost:4333/apitest/host/create-quest`,
+      `http://localhost:4333/api/host/create-edit-quest/create`,
       {
         method: "POST",
         header: { 'Content-Type': 'multipart/form-data' },

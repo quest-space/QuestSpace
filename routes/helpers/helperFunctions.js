@@ -10,14 +10,14 @@ const formatAMPM = (date) => {
   return strTime + ', ' + date.toDateString() + ` (PKST)`;
 }
 
-const check_Quest_Validity = (current, start, end) => {
-  if(start.getTime() < current){
-    return "past";
+const checkQuestValidity = (current, start, end) => {
+  if(start < current){
+    return "start<currTime";
   }
-  else if(start.getTime() > end.getTime()){
-    return "future";
+  else if(start >= end){
+    return "start>=end";
   }
-  else if(start.getTime() > current && start.getTime() < end.getTime()){
+  else {
     return "valid";
   }
 }; 
@@ -126,4 +126,4 @@ const handleErrorsFromDB = (err) => {
   return duplicationErr ? duplicationErr : parseDBError(err);
 }
 
-module.exports = { handleErrorsFromDB, getMissingParamsErr, getQuestStatus, formatAMPM, getConciseDate, check_Quest_Validity, check_Round_Validity };
+module.exports = { handleErrorsFromDB, getMissingParamsErr, getQuestStatus, formatAMPM, getConciseDate, checkQuestValidity, check_Round_Validity };
