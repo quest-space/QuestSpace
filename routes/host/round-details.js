@@ -230,7 +230,12 @@
                 const each = await Submission.updateOne({questName: quest_name, roundNum: req.params.roundid, participantUser: val.username},{$set: {roundScore: val.score}}) 
             });
 
-            sendRes(res, OK_STATUS_CODE, marksheet);
+            const new_leaderboard = await makeLeaderboard(req.params.questid, req.params.roundid, "host", "");
+            
+            const send_leaderboard = {}
+            send_leaderboard["leaderboard"] = new_leaderboard
+            
+            sendRes(res, OK_STATUS_CODE, send_leaderboard);
         }
         catch(err)
         {
