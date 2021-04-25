@@ -39,20 +39,19 @@ const Round = () => {
         } else {
             setRoundDetails(responseBody)
         }
-
     }
 
     useEffect(() => {
         if (started) {
             if (roundDetails.roundType === `Rapid Fire`) {
-                setRoundType(<RapidFireRound timer={roundDetails.timer} />)
+                setRoundType(<RapidFireRound timer={roundDetails.timer} prevRating={roundDetails.prevRating} />)
             } else if (roundDetails.roundType === `Quiz`) {
                 const totalTime = ((new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()) / 1000
-                setRoundType(<QuizRound timer={totalTime} />
+                setRoundType(<QuizRound timer={totalTime} prevRating={roundDetails.prevRating} />
                 )
             } else if (roundDetails.roundType === `Submission`) {
                 const totalTime = ((new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()) / 1000
-                setRoundType(<SubmissionRound endTime={roundDetails.endTime} />
+                setRoundType(<SubmissionRound endTime={roundDetails.endTime} prevRating={roundDetails.prevRating} />
                 )
             }
             console.log(`roundType set to render ${roundDetails.roundType} round questions`)

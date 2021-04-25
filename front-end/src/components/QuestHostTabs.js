@@ -93,26 +93,13 @@ const QuestHostTabs = (props) => {
             }
 
             {
-                tab == "Participant" && props.response.participants !== null && <HostParticipantList response={props.response} />
+                tab == "Participant" &&  <HostParticipantList response={props.response} setRender={props.setRender}/>
             }
 
             {
                 tab == "Leaderboard" && <HostLeaderboardList response={props.response} />
             }
-            {
-                tab == "Participant" && props.response.editable === false && props.response.participants === null &&
-                <div style={{
-                    border: "1px solid #C4C4C4",
-                    boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
-                    marginBottom: "5.5rem",
-                    marginTop: "3rem",
-                    marginLeft: "9%",
-                    marginRight: "9%",
-                    padding: "2rem"
-                }}>
-                    <i class="fas fa-exclamation-circle"></i> No Participants found!
-                </div>
-            }
+            
             <PageFooter />
         </div>
     )

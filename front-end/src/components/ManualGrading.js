@@ -14,7 +14,6 @@ const ManualGrading = (props) => {
     }
 
     const updateScores = async () => {
-
         const marksList = props.roundInfo.submissions.map((submission, index) => {
             return ({
                 username: submission.username,
@@ -41,6 +40,7 @@ const ManualGrading = (props) => {
         } else {
             const temp = { ...props.roundInfo }
             scores.forEach((score, index) => temp.submissions[index].score = score)
+            temp.leaderboard = responseBody.leaderboard
             props.setroundInfo(temp)
             setEditable(false)
         }
@@ -50,10 +50,8 @@ const ManualGrading = (props) => {
         const temp = [...scores]
         if (ev.target.value === `` || Number.isNaN(parseInt(ev.target.value)) || parseInt(ev.target.value) > props.roundInfo.rounds.marks) {
             temp[index] = null
-            console.log("setting to null")
         } else {
             temp[index] = parseInt(ev.target.value)
-            console.log("setting to ", ev.target.value)
         }
         setScores(temp)
     }
@@ -133,7 +131,7 @@ const ManualGrading = (props) => {
                     return (
                         <div key={index} className="slimBox" >
                             <div style={{ display: "inline-block", width: "4rem" }}>
-                                {index}
+                                {index + 1}
                             </div>
                             <div style={{ display: "inline-block", marginLeft: "4.8rem", width: "11rem" }}>
                                 {submission.username}
@@ -159,9 +157,40 @@ const ManualGrading = (props) => {
             </div>}
 
 
+            {/* Display for smaller screens */}
+            {/* Only show submissions if available */}
+            {(props.roundInfo.submissions && props.roundInfo.submissions.length !== 0) && <div className="d-lg-none">
 
-            {/* 
-            <div className="d-lg-none">
+                {/* Box with Controls */}
+                <div className="slimBox" style={{ paddingRight: "1rem", paddingLeft: "1rem" }}>
+                    {editable &&
+                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                            <button style={{ marginRight: "7px" }} onClick={() => updateScores()}>
+                                Update
+                                <span className="material-icons" style={{ color: "#238839", fontSize: "12pt" }}>
+                                    done
+                                </span>
+                            </button>
+                            <button onClick={() => setEditable(false)}>
+                                Cancel
+                                <span className="material-icons" style={{ color: "#EB5757", fontSize: "12pt" }}>
+                                    close
+                                </span>
+                            </button>
+                        </div>}
+
+                    {!editable &&
+                        <div>
+                            <button onClick={() => makeEditable()}>
+                                Grade
+                                <span className="material-icons" style={{ color: "#46B7A1", fontSize: "12pt" }}>
+                                    assignment_turned_in
+                                </span>
+                            </button>
+                        </div>}
+                </div>
+
+                {/* Table Column Headings */}
                 <div className="slimBox" style={{ fontSize: "20px", marginTop: "0.4rem", fontWeight: "500" }}>
                     <div style={{ display: "inline" }}>
                         Username
@@ -171,23 +200,27 @@ const ManualGrading = (props) => {
                     </div>
                 </div>
 
-                {Object.keys(props.board).map((info, j) => {
+                {/* List of submissions */}
+                {props.roundInfo.submissions.map((submission, index) => {
+
                     return (
-                        <div className="slimBox" >
+                        <div key={index} className="slimBox" >
                             <div style={{ display: "inline-block" }}>
-                                {props.board[info].ranking + ": "}
-                            </div>
-                            <div style={{ display: "inline-block" }}>
-                                {props.board[info].username}
+                                <a download={submission.filename} href={submission.fileURL.substr(58)} style={{ color: "#212529" }}>
+                                    {submission.username}
+                                </a>
                             </div>
                             <div style={{ display: "inline", float: "right" }}>
-                                {props.board[info].roundScore}
+                                {!editable && (submission.score !== null ? submission.score : `-`)}
+                                {editable &&
+                                    <input value={scores[index] !== null ? scores[index] : ``} onChange={(ev) => storeScore(ev, index)}>
+                                    </input>
+                                }
                             </div>
                         </div>
                     )
-
                 })}
-            </div> */}
+            </div>}
 
         </div>
     )
