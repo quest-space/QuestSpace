@@ -51,12 +51,9 @@ router.post(`/who-am-i`, async (req, res) => {
     });
   }
 });
-  
-  
 
 router.use(`/participant`, require(`./participant/participantRouter`));
-
 router.use(`/host`, require(`./host/hostRouter`));
-
+router.use(`/qs-admin`, require(`./qs-admin/qsAdminRouter`));
 
 module.exports = router;

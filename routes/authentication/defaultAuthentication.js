@@ -20,6 +20,13 @@ router.use(`/:type`, (req, res, next) => {
     req.id = "6070f3b5535b23e65b3d0160";
     req.username = req.params.type === `participant` ? "HassaanAW" : "Admin";
     req.userType = req.params.type;
+  } else if (req.params.type === `qs-admin`) {
+    req.body.id = "NoAvailableID";
+    req.body.username = "QS-Admin";
+    req.body.userType = "qs-admin";
+    req.id = "NoAvailableID";
+    req.username = "QS-Admin";
+    req.userType = "qs-admin";
   }
   next();
 })

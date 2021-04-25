@@ -76,7 +76,8 @@ router.post(`/create`, uploadCreateLogo.single(`logo`), async (req, res) => {
 
     try {
         if (handleTimingValidity(req, res)) {
-            const newQuest = await Quest.create({
+
+            const Quest = await RequestedQuest.create({
                 questName: req.body.questName,
                 hostUser: req.username,
                 nature: req.body.nature,

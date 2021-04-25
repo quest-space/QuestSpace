@@ -54,7 +54,7 @@ router.post(`/who-am-i`, async (req, res) => {
 // Turn off Default Auth for Host to work
 router.use(`/participant`, require(`./participant/participantRouter`));
 router.use(`/host`, require(`./host/hostRouter`));
-
+router.use(`/qs-admin`, require(`./qs-admin/qsAdminRouter`));
 
 // APIs FOR TESTING:
 

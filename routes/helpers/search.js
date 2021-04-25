@@ -73,7 +73,9 @@ router.post(`/`, async (req, res) => {
     try{
         const quests  = await Quest.find( { 'questName' : { '$regex' : key, '$options' : 'i' } } )
 
-        const detailed = await parseQuest(await getValidQuests(req.body.userType, req.body.username, quests, Date.now()));
+        const acceptedQuests = quests.filter(quest => quest.status === `accepted`);
+
+        const detailed = await parseQuest(await getValidQuests(req.body.userType, req.body.username, acceptedQuests, Date.now()));
         if(detailed.length === 0){
             sendRes(res, BAQ_REQUEST_STATUS_CODE, {"error": "None"});
         }

@@ -61,7 +61,7 @@ const parseQuest = (quests) =>
 
 router.post(`/`, async (req, res) => {
   try{
-    const quests = await Quest.find({}).exec();
+    const quests = await Quest.find({ status: `accepted` }).exec();
     const validQuests = await parseQuest(await getValidQuests(req.body.userType, req.body.username, quests, Date.now()));
     const sorted = validQuests.sort((qA, qB) => qB.participantCount - qA.participantCount).slice(0, 4);
     sendRes(res, OK_STATUS_CODE, {

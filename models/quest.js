@@ -53,6 +53,9 @@ const questSchema = new Schema({
     numRounds: {
         type: Number,
         default: 0
+    },
+    timeAcceptedOrRejected: {
+        type: Date
     }
 }, // Schema completed 
 {timestamps: true} // Add timestamp property
