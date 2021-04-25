@@ -38,8 +38,7 @@ const EditProfile = () => {
     const responseBody = await response.json();
     console.log("response", responseBody);
     setResponse1(responseBody);
-    setDateofBirth(responseBody.dateofbirth);
-    //setDateofBirth(responseBody.formatteddateofbirth);
+    setDateofBirth(responseBody.formatteddob);
     setFirstName(responseBody.firstname);
     setLastName(responseBody.lastname);
     setInstitution(responseBody.organization);
@@ -327,11 +326,11 @@ const EditProfile = () => {
         >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
           <button className="btnCancel" onClick={() => Cancel()}>
-            Cancel <i class="fa fa-times"></i>
+            Cancel <i className="fa fa-times"></i>
           </button>
           <span style={{ marginBottom: "0.5rem" }}>
             <button className="btnBegin" onClick={() => EditDets()}>
-              Update <i class="fa fa-check"></i>
+              Update <i className="fa fa-check"></i>
             </button>
           </span>
         </div>
