@@ -89,7 +89,7 @@ const QuestHostTabs = (props) => {
             }
 
             {
-                tab == "Rounds" && props.response.rounds !== null && <HostRoundsList response={props.response} setRender={props.setRender} />
+                tab == "Rounds"  && <HostRoundsList response={props.response} setRender={props.setRender} />
             }
 
             {
@@ -98,20 +98,6 @@ const QuestHostTabs = (props) => {
 
             {
                 tab == "Leaderboard" && <HostLeaderboardList response={props.response} />
-            }
-            {
-                tab == "Rounds" && props.response.editable === false && props.response.rounds === null &&
-                <div style={{
-                    border: "1px solid #C4C4C4",
-                    boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
-                    marginBottom: "5.5rem",
-                    marginTop: "3rem",
-                    marginLeft: "9%",
-                    marginRight: "9%",
-                    padding: "2rem"
-                }}>
-                    <i class="fas fa-exclamation-circle"></i> No Rounds Added!
-                </div>
             }
             {
                 tab == "Participant" && props.response.editable === false && props.response.participants === null &&
