@@ -18,7 +18,7 @@ const CREATED_STATUS_CODE = 201;
 const OK_STATUS_CODE = 200;
 const DEFAULT_RATING = 3;
 
-const { handleErrorsFromDB, getConciseDate } = require(`../helpers/helperFunctions`);
+const { handleErrorsFromDB, getConciseDate, check_Round_Validity} = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
 
 const currTime = Date.now();
@@ -150,15 +150,30 @@ router.post(`/:questid/addround`, async (req, res) => {
     try{
         const quest_detail = await Quest.findOne({_id: req.params.questid})
         const numrounds = quest_detail.numRounds
-        
-        const round = await Round.updateOne({questName: quest_detail.questName, roundNum: numrounds + 1}, {$set: {  roundName: req.body.roundName,  
-            roundNum: numrounds+1, roundType: req.body.roundType, description: req.body.description, 
-            startTime: req.body.startTime, endTime: req.body.endTime, timer: req.body.timer, eachMarks: req.body.eachMarks, totalMarks: req.body.totalMarks}},
-            {upsert: true, runValidators: true})
-        sendRes(res, OK_STATUS_CODE, round);
-        // Update numRound in quest         
-        const quest_update = await Quest.updateOne({_id: req.params.questid}, {$set: {numRounds: numrounds + 1}})
-        // auto increment round number completed here
+
+        const check = check_Round_Validity(quest_detail.startTime.getTime(), quest_detail.endTime.getTime(), Date.parse(req.body.startTime), Date.parse(req.body.endTime))
+        if(check == "valid"){
+            const round = await Round.updateOne({questName: quest_detail.questName, roundNum: numrounds + 1}, {$set: {  roundName: req.body.roundName,  
+                roundNum: numrounds+1, roundType: req.body.roundType, description: req.body.description, 
+                startTime: req.body.startTime, endTime: req.body.endTime, timer: req.body.timer, eachMarks: req.body.eachMarks, totalMarks: req.body.totalMarks}},
+                {upsert: true, runValidators: true})
+            sendRes(res, OK_STATUS_CODE, round);
+            // Update numRound in quest         
+            const quest_update = await Quest.updateOne({_id: req.params.questid}, {$set: {numRounds: numrounds + 1}})
+            // auto increment round number completed here
+        }
+        else if(check == "beforeQuest"){
+            sendRes(res, BAQ_REQUEST_STATUS_CODE, {"error": "Round must start after Quest begins"} );
+        }
+        else if(check == "startafterQuest"){
+            sendRes(res, BAQ_REQUEST_STATUS_CODE, {"error": "Round must begin before Quest ends"} );
+        }
+        else if(check == "future"){
+            sendRes(res, BAQ_REQUEST_STATUS_CODE, {"error": "Start time should be earlier than End time"} );
+        }
+        else if(check == "endafterQuest"){
+            sendRes(res, BAQ_REQUEST_STATUS_CODE, {"error": "Round must end before Quest ends"} );
+        }
     }
     catch(err)
     {
