@@ -87,7 +87,7 @@ const CardsContainer = (props) => {
                                                     {/* {console.log(cards[key][cardList][card].hostUser)} */}
                                                     {
                                                         props.tab !== "pending" ?
-                                                            <Link to={{ pathname: "hosthomepage/quest/" + cards[props.tab][cardList][card].questID }}><Cards
+                                                            <Link to={{ pathname: "/hosthomepage/quest/" + cards[props.tab][cardList][card].questID }}><Cards
                                                                 imgUrl={cards[props.tab][cardList][card].logoURL}
                                                                 title={cards[props.tab][cardList][card].questName}
                                                                 host={cards[props.tab][cardList][card].hostUser}
