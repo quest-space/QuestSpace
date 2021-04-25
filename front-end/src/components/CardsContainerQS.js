@@ -94,10 +94,10 @@ const CardsContainerQS = (props) => {
     
     return (
         <div>
-            <div className="container" id="cc" style={{ marginTop: '0rem', paddingBottom: "5.5rem" }}>
+            <div style={{ marginLeft:"9%", marginRight:"9%", paddingBottom: "5.5rem" }}>
                 <div style={{
-                    paddingLeft: '1.5rem',
-                    paddingTop: '5.5rem',
+                    // paddingLeft: '2.5rem',
+                    paddingTop: '3.5rem',
                     fontStyle: 'normal',
                     fontWeight: 'normal',
                     fontSize: '32px'
@@ -121,11 +121,11 @@ const CardsContainerQS = (props) => {
                                 } 
 
                                 return(
-                                    <div key = {j} style={{marginLeft:"9%", marginRight:"9%"}}>
-                                    <div className="card mb-9" style={{maxWidth: "100%", margin:"auto"}}>
+                                    <div key = {j} style={{ marginBottom:"1rem"}}>
+                                    <div className="card mb-9">
                                     <div className="row no-gutters">
                                       <div className="col-md-2">
-                                        <img src={response[props.tab][info].logoURL} style={{objectFit:"contain"}} className="card-img" alt="..."/>
+                                        <img src={response[props.tab][info].logoURL} style={{objectFit:"fill", height:"150px"}} className="card-img" alt="..."/>
                                       </div>
                                       <div className="col-md-8">
                                         <div className="card-body">
