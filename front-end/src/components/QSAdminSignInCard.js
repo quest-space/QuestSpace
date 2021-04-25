@@ -20,7 +20,7 @@ const QSAdminSignInCard = () => {
 
   const signInUser = async () => {
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/auth/signin/qs-admin`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/auth/signin/qs-admin`,
       {
         method: "POST",
         headers: {
