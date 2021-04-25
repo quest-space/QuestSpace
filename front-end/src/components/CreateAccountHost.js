@@ -33,7 +33,7 @@ const CreateAccountHost = (props) => {
     }
 
     const signUpHost = async () => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/auth/signup/host`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/auth/signup/host`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

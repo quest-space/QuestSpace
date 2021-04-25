@@ -18,9 +18,13 @@ const headings = {
 
 const CardsContainer = (props) => {
 
-    const history = useHistory()
-    const [response, setResponse] = React.useState({ "all": {} })
+    const history = useHistory();
+    const [cards, setCards] = React.useState({});
     const [render, setRender] = React.useState(false);
+
+    console.log({cards});
+
+    console.log(`TAB`,props.tab)
 
     const showError = (errors) => {
         alert(JSON.stringify(errors))
@@ -39,7 +43,7 @@ const CardsContainer = (props) => {
             }),
         })
         const responseBody = await resp.json()
-        setResponse(responseBody)
+        
         console.log(responseBody)
 
         if (resp.status !== 200) {
@@ -47,11 +51,11 @@ const CardsContainer = (props) => {
             showError(responseBody.errors)
         } else {
             console.log(`Fetch data successful`)
-
+            setCards(responseBody)
         }
     }
 
-    let cards = response
+    // let cards = response
     if (!render) {
         setRender(true)
         apiCall()
@@ -75,7 +79,7 @@ const CardsContainer = (props) => {
                     {headings[props.tab]}
                 </div>
 
-                {cards[props.tab].length > 0 &&
+                {cards[props.tab] && cards[props.tab].length > 0 &&
                     <div>
                         {
                             Object.keys(cards[props.tab]).map((cardList, j) => {
@@ -87,7 +91,7 @@ const CardsContainer = (props) => {
                                                     {/* {console.log(cards[key][cardList][card].hostUser)} */}
                                                     {
                                                         props.tab !== "pending" ?
-                                                            <Link to={{ pathname: "hosthomepage/quest/" + cards[props.tab][cardList][card].questID }}><Cards
+                                                            <Link to={{ pathname: "/hosthomepage/quest/" + cards[props.tab][cardList][card].questID }}><Cards
                                                                 imgUrl={cards[props.tab][cardList][card].logoURL}
                                                                 title={cards[props.tab][cardList][card].questName}
                                                                 host={cards[props.tab][cardList][card].hostUser}
@@ -117,7 +121,7 @@ const CardsContainer = (props) => {
                         }
                     </div>}
 
-                {cards[props.tab].length === 0 &&
+                {(!cards[props.tab] || (cards[props.tab] && cards[props.tab].length === 0)) &&
                     <div style={{
                         border: "1px solid #C4C4C4",
                         boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
@@ -125,7 +129,7 @@ const CardsContainer = (props) => {
                         margin: "1.5rem",
                         padding: "2rem"
                     }}>
-                        <i className="fas fa-exclamation-circle"></i> Not Available
+                        <i className="fas fa-exclamation-circle"></i>&nbsp;&nbsp;No Quests
                     </div>
                 }
 

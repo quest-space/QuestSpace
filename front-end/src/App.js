@@ -24,7 +24,6 @@ import ViewProfile from "./components/ViewProfile";
 import EditProfile from "./components/EditProfile";
 import EditProfileHost from "./components/EditProfileHost";
 import CreateQuest from "./components/CreateQuest";
-import QuestionModal from "./components/QuestionModal";
 
 const App = () => {
   return (
@@ -41,7 +40,7 @@ const App = () => {
         />
         <Route exact path="/hosthomepage" component={HostHomepage} />
         <Route exact path="/round" component={Round} />
-        <Route exact path="/qa" component={QuestEnrolled} />
+        {/* <Route exact path="/qa" component={QuestEnrolled} /> */}
         <Route exact path="/rounddetails" component={RoundDetails} />
         <Route exact path="/questdetails" component={QuestDetails} />
         <Route exact path="/header" component={Header} />
@@ -77,7 +76,6 @@ const App = () => {
           component={RoundLeaderboard}
         />
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/q" component={QuestionModal} />
       </Switch>
     </Router>
   );
