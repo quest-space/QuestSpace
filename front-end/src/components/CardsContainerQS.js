@@ -22,7 +22,7 @@ const CardsContainerQS = (props) => {
         alert(JSON.stringify(errors))
     }
 
-    const apiCall = async () => {
+    const fetchCards = async () => {
         const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/qs-admin/homepage`, {
         method: "POST",
             headers: {
@@ -43,7 +43,7 @@ const CardsContainerQS = (props) => {
     }
 
     const accept = async (qname) => {
-        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest//qs-admin/accept`, {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api//qs-admin/accept`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ const CardsContainerQS = (props) => {
     }
 
     const reject = async (qname) => {
-        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest//qs-admin/reject`, {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api//qs-admin/reject`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -94,10 +94,10 @@ const CardsContainerQS = (props) => {
     
     return (
         <div>
-            <div className="container" id="cc" style={{ marginTop: '0rem', paddingBottom: "5.5rem" }}>
+            <div style={{ marginLeft:"9%", marginRight:"9%", paddingBottom: "5.5rem" }}>
                 <div style={{
-                    paddingLeft: '1.5rem',
-                    paddingTop: '5.5rem',
+                    paddingBottom: '1.5rem',
+                    paddingTop: '3.5rem',
                     fontStyle: 'normal',
                     fontWeight: 'normal',
                     fontSize: '32px'
@@ -121,11 +121,11 @@ const CardsContainerQS = (props) => {
                                 } 
 
                                 return(
-                                    <div key = {j} style={{marginLeft:"9%", marginRight:"9%"}}>
-                                    <div className="card mb-9" style={{maxWidth: "100%", margin:"auto"}}>
+                                    <div key = {j} style={{ marginBottom:"1rem"}}>
+                                    <div className="card mb-9">
                                     <div className="row no-gutters">
                                       <div className="col-md-2">
-                                        <img src={response[props.tab][info].logoURL} style={{objectFit:"contain"}} className="card-img" alt="..."/>
+                                        <img src={response[props.tab][info].logoURL} style={{objectFit:"cover", height:"160px"}} className="card-img" alt="..."/>
                                       </div>
                                       <div className="col-md-8">
                                         <div className="card-body">
@@ -166,7 +166,7 @@ const CardsContainerQS = (props) => {
                         border: "1px solid #C4C4C4",
                         boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
                         // marginBottom:"5.5rem",
-                        margin: "1.5rem",
+                        // margin: "1.5rem",
                         padding: "2rem"
                     }}>
                         <i className="fas fa-exclamation-circle"></i> Not Available
