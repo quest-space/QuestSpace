@@ -96,7 +96,7 @@ const CardsContainerQS = (props) => {
         <div>
             <div style={{ marginLeft:"9%", marginRight:"9%", paddingBottom: "5.5rem" }}>
                 <div style={{
-                    // paddingLeft: '2.5rem',
+                    paddingBottom: '1.5rem',
                     paddingTop: '3.5rem',
                     fontStyle: 'normal',
                     fontWeight: 'normal',
@@ -125,7 +125,7 @@ const CardsContainerQS = (props) => {
                                     <div className="card mb-9">
                                     <div className="row no-gutters">
                                       <div className="col-md-2">
-                                        <img src={response[props.tab][info].logoURL} style={{objectFit:"cover", height:"150px"}} className="card-img" alt="..."/>
+                                        <img src={response[props.tab][info].logoURL} style={{objectFit:"cover", height:"160px"}} className="card-img" alt="..."/>
                                       </div>
                                       <div className="col-md-8">
                                         <div className="card-body">
@@ -166,7 +166,7 @@ const CardsContainerQS = (props) => {
                         border: "1px solid #C4C4C4",
                         boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
                         // marginBottom:"5.5rem",
-                        margin: "1.5rem",
+                        // margin: "1.5rem",
                         padding: "2rem"
                     }}>
                         <i className="fas fa-exclamation-circle"></i> Not Available
