@@ -49,9 +49,8 @@ const HostRoundsList = (props) => {
         history.push({ pathname: `/hosthomepage/quest/${questID}/round/${num}` })
     }
 
-    const addQuest = async () => {
-
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/addround`, {
+    const addQuest = async () => {    
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/addround`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
