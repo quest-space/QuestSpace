@@ -9,6 +9,8 @@ import HostRoundDetails from "./HostRoundDetails"
 import HostRapidFire from "./HostRapidFire"
 import HostQuiz from "./HostQuiz"
 import HostSubmission from "./HostSubmission"
+import HostLeaderboardList from "./HostLeaderboardList"
+import ManualGrading from "./ManualGrading"
 import "../css/HostRound.css"
 
 const HostRound = () => {
@@ -46,6 +48,8 @@ const HostRound = () => {
         console.log(`Round details fetched.`)
     }
 
+    console.log(roundInfo)
+
     return (
         <React.Fragment>
             <MainNavbarHost />
@@ -63,11 +67,17 @@ const HostRound = () => {
             {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Rapid Fire`) && <HostRapidFire roundInfo={roundInfo} setroundInfo={setroundInfo} />}
             {/* </div> */}
 
-            {/* View QUestions in case of quiz round */}
+            {/* View Questions in case of quiz round */}
             {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Quiz`) && <HostQuiz roundInfo={roundInfo} setroundInfo={setroundInfo} />}
 
-            {/* View QUestions in case of submission round */}
+            {/* View Questions in case of submission round */}
             {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Submission`) && <HostSubmission roundInfo={roundInfo} setroundInfo={setroundInfo} />}
+
+            {/* Manual Grading in case of submission based round */}
+            {tab === `Submissions` && <ManualGrading roundInfo={roundInfo} setroundInfo={setroundInfo} />}
+
+            {/* Leaderboard */}
+            {tab === `Leaderboard` && <HostLeaderboardList response={roundInfo} />}
 
             <PageFooter />
         </React.Fragment>
