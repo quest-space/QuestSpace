@@ -211,7 +211,7 @@ const MainNavbar = (props) => {
               to={{
                 pathname: '/hosthomepage',
                   state: {
-                    tab: 'all'
+                    tab: 'pending'
                   }
               }}
               >
