@@ -79,11 +79,15 @@ const HostRoundsList = (props) => {
             "eachMarks": 1,
         })
 
+        const responseBody = await response.json()
+        console.log('response', responseBody)
+
         if (response.status !== 200) {
             console.log(`Error fetching.`)
         } else {
             console.log(`Successful fetching.`)
             setDisplayForm(false)
+            setTimeForm(false)
             props.setRender(true)
         }
 
@@ -91,7 +95,7 @@ const HostRoundsList = (props) => {
 
     const deleteQuest = async (num) => {
 
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${num}/deleteround`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${num}/deleteround`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -104,6 +108,7 @@ const HostRoundsList = (props) => {
         })
 
         const responseBody = await response.json()
+        console.log('response', responseBody)
 
         if (response.status !== 200) {
             console.log(`Error fetching.`)
@@ -126,14 +131,16 @@ const HostRoundsList = (props) => {
             {props.response.rounds !== null && Object.keys(props.response.rounds).map((info, j) => {
                 const color = props.response.rounds[info].btnColor
                 return (
-                    <div key={j} className="myBox c" onClick={() => { goToRound(props.response.rounds[info].roundNum) }} style={{ paddingRight: "0rem", borderRadius: "0rem" }}>
+                    <div key={j} className="myBox c" style={{ paddingRight: "0rem", borderRadius: "0rem" }}>
 
                         {props.response.editable == true && <button className="cross1" onClick={() => { deleteQuest(props.response.rounds[info].roundNum) }}> <span className="material-icons" style={{ fontSize: "28px", color: "#EB5757" }}> close </span> </button>}
-                        <p style={{ fontWeight: "500", fontSize: "22px", marginBottom: "0rem", display: "inline-block", color: "rgb(49, 49, 49)" }}>{"Round " + props.response.rounds[info].roundNum + ": " + props.response.rounds[info].roundName}</p>
-                        <p style={{ fontWeight: "normal", fontSize: "18px", marginBottom: "0.5rem" }}>{props.response.rounds[info].roundType}</p>
-                        <p className="text-muted" style={left}>{"Starts: " + props.response.rounds[info].startTime}</p>
-                        <div>
-                            <p className="text-muted" style={left}>{"Ends: " + props.response.rounds[info].endTime}</p>
+                        <div onClick={() => { goToRound(props.response.rounds[info].roundNum) }}>
+                            <p style={{ fontWeight: "500", fontSize: "22px", marginBottom: "0rem", display: "inline-block", color: "rgb(49, 49, 49)" }}>{"Round " + props.response.rounds[info].roundNum + ": " + props.response.rounds[info].roundName}</p>
+                            <p style={{ fontWeight: "normal", fontSize: "18px", marginBottom: "0.5rem" }}>{props.response.rounds[info].roundType}</p>
+                            <p className="text-muted" style={left}>{"Starts: " + props.response.rounds[info].startTime}</p>
+                            <div>
+                                <p className="text-muted" style={left}>{"Ends: " + props.response.rounds[info].endTime}</p>
+                            </div>
                         </div>
                     </div>
                 )
@@ -299,24 +306,44 @@ const HostRoundsList = (props) => {
                 </div>
             }
             {
+                props.response.rounds === null && props.response.editable &&
+                <div>
+                    <div style={{
+                        border: "1px solid #C4C4C4", 
+                        boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
+                        // marginBottom: "5.5rem",
+                        marginTop: "3rem",
+                        marginLeft:"9%",
+                        marginRight:"9%",
+                        padding:"2rem"}}>
+                        <i className="fas fa-exclamation-circle"></i> No Rounds Added!
+                    </div>
+                    {/* {props.setRender(true)} */}
+                </div>
+            }
+            {
+                props.response.rounds === null && props.response.editable == false &&
+                <div>
+                    <div style={{
+                        border: "1px solid #C4C4C4", 
+                        boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
+                        marginBottom: "5.5rem",
+                        marginTop: "3rem",
+                        marginLeft:"9%",
+                        marginRight:"9%",
+                        padding:"2rem"}}>
+                        <i className="fas fa-exclamation-circle"></i> No Rounds Added!
+                    </div>
+                    {/* {props.setRender(true)} */}
+                </div>
+            }
+            {
                 props.response.editable == true &&
                 <div className="myBox dashedBox1">
                     <button style={{ width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={() => { setDisplayForm(true) }}><span className="material-icons" style={{ fontSize: "20pt; color: rgb(108, 108, 108)" }}>add</span> </button>
                 </div>
             }
-            {/* {
-                props.response.editable === false && props.response.rounds === null &&
-                <div style={{
-                    border: "1px solid #C4C4C4", 
-                    boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
-                    marginBottom: "5.5rem",
-                    marginTop: "3rem",
-                    marginLeft:"9%",
-                    marginRight:"9%",
-                    padding:"2rem"}}>
-                    <i className="fas fa-exclamation-circle"></i> No Rounds Added!
-                </div>
-            } */}
+            
 
         </div>
     )
