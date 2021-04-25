@@ -10,6 +10,36 @@ const formatAMPM = (date) => {
   return strTime + ', ' + date.toDateString() + ` (PKST)`;
 }
 
+const check_Quest_Validity = (current, start, end) => {
+  if(start.getTime() < current){
+    return "past";
+  }
+  else if(start.getTime() > end.getTime()){
+    return "future";
+  }
+  else if(start.getTime() > current && start.getTime() < end.getTime()){
+    return "valid";
+  }
+}; 
+
+const check_Round_Validity = (questStart, questEnd, roundstart, roundend) => {
+  if(roundstart < questStart ){
+    return "beforeQuest";
+  }
+  else if(roundstart > questEnd ){
+    return "startafterQuest";
+  }
+  else if(roundstart > roundend ){
+    return "future";
+  }
+  else if(roundend > questEnd){
+    return "endafterQuest";
+  }
+  else{
+    return "valid";
+  }
+}; 
+
 const getConciseDate = (date) => {
   date = new Date(date.getTime() + (5 * 60 * 60 * 1000));
   let hours = date.getHours();
@@ -96,4 +126,4 @@ const handleErrorsFromDB = (err) => {
   return duplicationErr ? duplicationErr : parseDBError(err);
 }
 
-module.exports = { handleErrorsFromDB, getMissingParamsErr, getQuestStatus, formatAMPM, getConciseDate };
+module.exports = { handleErrorsFromDB, getMissingParamsErr, getQuestStatus, formatAMPM, getConciseDate, check_Quest_Validity, check_Round_Validity };
