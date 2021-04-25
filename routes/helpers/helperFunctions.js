@@ -1,5 +1,5 @@
 const formatAMPM = (date) => {
-  date = new Date(date.getTime() + (5 * 60 * 60 * 1000));
+  date = new Date(date.getTime());
   let hours = date.getHours();
   let minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'pm' : 'am';
@@ -41,7 +41,7 @@ const check_Round_Validity = (questStart, questEnd, roundstart, roundend) => {
 }; 
 
 const getConciseDate = (date) => {
-  date = new Date(date.getTime() + (5 * 60 * 60 * 1000));
+  date = new Date(date.getTime());
   let hours = date.getHours();
   let minutes = date.getMinutes();
   const ampm = hours >= 12 ? 'pm' : 'am';
