@@ -23,7 +23,7 @@ const CardsContainerQS = (props) => {
     }
 
     const fetchCards = async () => {
-        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/qs-admin/homepage`, {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/qs-admin/homepage`, {
         method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ const CardsContainerQS = (props) => {
     }
 
     const accept = async (qname) => {
-        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api//qs-admin/accept`, {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest//qs-admin/accept`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ const CardsContainerQS = (props) => {
     }
 
     const reject = async (qname) => {
-        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api//qs-admin/reject`, {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest//qs-admin/reject`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
