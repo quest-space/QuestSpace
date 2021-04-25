@@ -59,7 +59,7 @@ const Tabs = (props) => {
                     onClick={() => setBar("Questions")}
                     style={{ borderBottom: bar2, width: props.roundType === `Submission` ? "25%" : "33.33%" }}
                 >
-                    Questions
+                    {props.roundType === `Submission` ? `Question` : `Questions`}
                 </button>
                 {props.roundType === `Submission` && <button
                     className="plain two"
