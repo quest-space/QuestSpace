@@ -131,7 +131,7 @@ const ManualGrading = (props) => {
                     return (
                         <div key={index} className="slimBox" >
                             <div style={{ display: "inline-block", width: "4rem" }}>
-                                {index}
+                                {index + 1}
                             </div>
                             <div style={{ display: "inline-block", marginLeft: "4.8rem", width: "11rem" }}>
                                 {submission.username}
