@@ -40,7 +40,7 @@ const App = () => {
         />
         <Route exact path="/hosthomepage" component={HostHomepage} />
         <Route exact path="/round" component={Round} />
-        <Route exact path="/qa" component={QuestEnrolled} />
+        {/* <Route exact path="/qa" component={QuestEnrolled} /> */}
         <Route exact path="/rounddetails" component={RoundDetails} />
         <Route exact path="/questdetails" component={QuestDetails} />
         <Route exact path="/header" component={Header} />

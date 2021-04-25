@@ -10,22 +10,22 @@ const JumbotronWithTabsQSAdmin = (props) => {
   const setBar = (x) => {
     props.setTab(x);
 
-    if (x === "Pending") {
+    if (x === "pending") {
       setBorderBar1("5px solid #ffffff");
       setBorderBar2("5px solid transparent");
       setBorderBar3("5px solid transparent");
       setBorderBar4("5px solid transparent");
-    } else if (x == "Accepted") {
+    } else if (x == "accepted") {
       setBorderBar1("5px solid transparent");
       setBorderBar3("5px solid transparent");
       setBorderBar2("5px solid #ffffff");
       setBorderBar4("5px solid transparent");
-    } else if (x == "Rejected") {
+    } else if (x == "rejected") {
       setBorderBar1("5px solid transparent");
       setBorderBar2("5px solid transparent");
       setBorderBar3("5px solid #ffffff");
       setBorderBar4("5px solid transparent");
-    } else if (x == "All") {
+    } else if (x == "all") {
       setBorderBar1("5px solid transparent");
       setBorderBar2("5px solid transparent");
       setBorderBar4("5px solid #ffffff");
@@ -55,7 +55,7 @@ const JumbotronWithTabsQSAdmin = (props) => {
               margin: "0em",
             }}
           >
-            Quest Creation Requests
+            Quest Requests
           </h1>
         </div>
       </div>
@@ -75,28 +75,28 @@ const JumbotronWithTabsQSAdmin = (props) => {
         >
           <button
             className="parent"
-            onClick={() => setBar("Pending")}
+            onClick={() => setBar("pending")}
             style={{ borderBottom: bar1, width: "25%" }}
           >
             Pending
           </button>
           <button
             className="parent"
-            onClick={() => setBar("Accepted")}
+            onClick={() => setBar("accepted")}
             style={{ borderBottom: bar2, width: "25%" }}
           >
             Accepted
           </button>
           <button
             className="parent"
-            onClick={() => setBar("Rejected")}
+            onClick={() => setBar("rejected")}
             style={{ borderBottom: bar3, width: "25%" }}
           >
             Rejected
           </button>
           <button
             className="parent"
-            onClick={() => setBar("All")}
+            onClick={() => setBar("all")}
             style={{ borderBottom: bar4, width: "25%" }}
           >
             All
@@ -127,25 +127,25 @@ const JumbotronWithTabsQSAdmin = (props) => {
         >
           <button
             className="dropdown-item dropKid"
-            onClick={() => setBar("Pending")}
+            onClick={() => setBar("pending")}
           >
             Pending
           </button>
           <button
             className="dropdown-item dropKid"
-            onClick={() => setBar("Accepted")}
+            onClick={() => setBar("accepted")}
           >
             Accepted
           </button>
           <button
             className="dropdown-item dropKid"
-            onClick={() => setBar("Rejected")}
+            onClick={() => setBar("rejected")}
           >
             Rejected
           </button>
           <button
             className="dropdown-item dropKid"
-            onClick={() => setBar("All")}
+            onClick={() => setBar("all")}
           >
             All
           </button>

@@ -5,12 +5,9 @@ const QSAdminDropdown = () => {
   // Added this function to send API call to sign out and redirect to sign in page.
   const history = useHistory();
   const SignOutUser = async () => {
-    const userString = history.location.pathname.includes("participant")
-      ? "participant"
-      : "host";
-    console.log("user string is", userString);
+
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/signout`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/qs-admin/signout`,
       {
         method: "POST",
         headers: {
@@ -83,7 +80,6 @@ const QSAdminDropdown = () => {
             fontWeight: 400,
             fontSize: 18,
             fontFamily: "Barlow",
-            // marginRight: "1.5rem",
             lineHeight: "1.6",
             color: "#313131",
             cursor: "pointer",

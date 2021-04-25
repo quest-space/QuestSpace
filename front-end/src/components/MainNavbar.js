@@ -39,7 +39,7 @@ const MainNavbar = (props) => {
     );
 
     const checkRespBody = await checkResp.json();
-    setUsername(checkRespBody.username);
+    setUsername(`${checkRespBody.firstname} ${checkRespBody.lastname}`);
   };
 
   const setInput = (ev) => {
@@ -156,24 +156,48 @@ const MainNavbar = (props) => {
               aria-labelledby="navbarDropdownMenuLink"
               style={{ border: "none", boxShadow: "none" }}
             >
-              <button
-                className="dropdown-item"
-                style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
-                onClick={() => {
-                  props.setTab("allQuests");
-                }}
+              <Link
+              style={{padding:0}}
+              to={{
+                pathname: '/participanthomepage',
+                  state: {
+                    tab: 'allQuests'
+                  }
+              }}
               >
-                All Quests
-              </button>
-              <button
-                className="dropdown-item"
-                style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
-                onClick={() => {
-                  props.setTab("all");
-                }}
+                <button
+                  className="dropdown-item"
+                  style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
+                  onClick={() => {
+                    if (props.setTab) {
+                      props.setTab("allQuests");
+                    }
+                  }}
+                >
+                  All Quests
+                </button>
+              </Link>
+              <Link
+              style={{padding:0}}
+              to={{
+                pathname: '/participanthomepage',
+                  state: {
+                    tab: 'all'
+                  }
+              }}
               >
-                My Quests
-              </button>
+                <button
+                  className="dropdown-item"
+                  style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
+                  onClick={() => {
+                    if (props.setTab) {
+                      props.setTab("all");
+                    }
+                  }}
+                >
+                  My Quests
+                </button>
+              </Link>
               {/* <a class="dropdown-item" href="#">Something else here</a> */}
             </div>
           </li>

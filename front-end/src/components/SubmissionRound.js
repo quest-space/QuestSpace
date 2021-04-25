@@ -126,7 +126,7 @@ const SubmissionRound = (props) => {
 
             </Container>
 
-            <QuestionModal trigger={show} onClose={onClose} text={modalText} />
+            <QuestionModal trigger={show} onClose={onClose} text={modalText} prevRating={props.prevRating} />
 
         </React.Fragment >
     )

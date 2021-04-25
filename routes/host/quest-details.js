@@ -81,7 +81,7 @@ router.post(`/:questid/addparticipant`, async (req, res) => {
     try{
         // Get participant name from body
         // Check if participant exists in Participant Collection -> only then add to quest. QuestName needed to add
-        const participant = await Participant.findOne({username: req.body.username})
+        const participant = await Participant.findOne({username: req.body.participant_username})
         if(participant === null){
             const error_msg = {
                 error: "Participant not found"
@@ -92,7 +92,7 @@ router.post(`/:questid/addparticipant`, async (req, res) => {
             // Participant exists
             const quest_detail = await Quest.findOne({_id: req.params.questid})
             const added = await Participation.updateOne({questName: quest_detail.questName, participantUser: participant.username}, 
-                {$set: {questName: quest_detail.questName, participantUser: req.body.username}},
+                {$set: {questName: quest_detail.questName, participantUser: req.body.participant_username}},
                 {upsert: true, runValidators: true})
             sendRes(res, OK_STATUS_CODE, added);
         }
@@ -110,7 +110,7 @@ router.post(`/:questid/removeparticipant`, async (req, res) => {
     try{
         // Get participant name from body
         // Check if participant exists in Participant Collection -> only then add to quest. QuestName needed to add
-        const participant = await Participant.findOne({username: req.body.username});
+        const participant = await Participant.findOne({username: req.body.participant_username});
         if(participant === null){
             const error_msg = {
                 error: "Participant not found"
@@ -131,7 +131,7 @@ router.post(`/:questid/removeparticipant`, async (req, res) => {
             }
             else{
                 // participant is enrolled. Now remove
-                const removed = await Participation.deleteOne({questName: quest_detail.questName, participantUser: req.body.username});
+                const removed = await Participation.deleteOne({questName: quest_detail.questName, participantUser: req.body.participant_username});
                 sendRes(res, OK_STATUS_CODE, removed);
             }
         }
