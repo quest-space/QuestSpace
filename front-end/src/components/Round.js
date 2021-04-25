@@ -22,7 +22,7 @@ const Round = () => {
 
 
     const fetchRoundDetails = async () => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -39,20 +39,19 @@ const Round = () => {
         } else {
             setRoundDetails(responseBody)
         }
-
     }
 
     useEffect(() => {
         if (started) {
             if (roundDetails.roundType === `Rapid Fire`) {
-                setRoundType(<RapidFireRound timer={roundDetails.timer} />)
+                setRoundType(<RapidFireRound timer={roundDetails.timer} prevRating={roundDetails.prevRating} />)
             } else if (roundDetails.roundType === `Quiz`) {
                 const totalTime = ((new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()) / 1000
-                setRoundType(<QuizRound timer={totalTime} />
+                setRoundType(<QuizRound timer={totalTime} prevRating={roundDetails.prevRating} />
                 )
             } else if (roundDetails.roundType === `Submission`) {
                 const totalTime = ((new Date(roundDetails.endTimeRaw)).getTime() - (new Date(roundDetails.startTimeRaw)).getTime()) / 1000
-                setRoundType(<SubmissionRound endTime={roundDetails.endTime} />
+                setRoundType(<SubmissionRound endTime={roundDetails.endTime} prevRating={roundDetails.prevRating} />
                 )
             }
             console.log(`roundType set to render ${roundDetails.roundType} round questions`)
@@ -66,8 +65,6 @@ const Round = () => {
         fetchRoundDetails()
         console.log(`Round details fetched.`)
     }
-
-    console.log("response gotten", roundDetails)
 
     return (
         <React.Fragment>

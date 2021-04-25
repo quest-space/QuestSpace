@@ -4,31 +4,25 @@ import '../css/common.css'
 
 const JumbotronWithTabs = (props) => {
 
-  const [bar1, setBorderBar1] = React.useState('5px solid #ffffff')
-  const [bar2, setBorderBar2] = React.useState('5px solid transparent')
-  const [bar3, setBorderBar3] = React.useState('5px solid transparent')
-        
+  const getBarColor = (tab, bar) => {
+    if (tab === 'home') {
+      if (bar === 'bar1') return '5px solid #ffffff';
+      if (bar === 'bar2') return '5px solid transparent';
+      if (bar === 'bar3') return '5px solid transparent';
+    } else if (tab === 'allQuests') {
+      if (bar === 'bar1') return '5px solid transparent';
+      if (bar === 'bar2') return '5px solid transparent';
+      if (bar === 'bar3') return '5px solid #ffffff';
+    } else {
+      if (bar === 'bar1') return '5px solid transparent';
+      if (bar === 'bar2') return '5px solid #ffffff';
+      if (bar === 'bar3') return '5px solid transparent';
+    }
+  }
 
   const setBar = (x) => {
-    if(x !== "myQuests"){
-      props.setTab(x)
-    }
-    if(x === 'home'){
-      setBorderBar3('5px solid transparent')
-      setBorderBar2('5px solid transparent')
-      setBorderBar1('5px solid #ffffff')
-    }
-    else if(x === 'allQuests'){
-      setBorderBar1('5px solid transparent')
-      setBorderBar2('5px solid transparent')
-      setBorderBar3('5px solid #ffffff')
-    }
-    else{
-      setBorderBar1('5px solid transparent')
-      setBorderBar3('5px solid transparent')
-      setBorderBar2('5px solid #ffffff')
-    }
-
+    if(x === "myQuests") x = "all";
+    props.setTab(x)
   }
 
   return(
@@ -44,9 +38,9 @@ const JumbotronWithTabs = (props) => {
       {/* TABS ON DESKTOP*/}
       <div className="col-md-12 d-none d-sm-none d-md-none d-lg-block" style={{margin:'0em', padding:'0em', backgroundColor:'#46b7a1'}}>
         <ul id="top" style={{margin:'0em', padding:'0em', paddingLeft: "9%", paddingRight:"9%"}}>
-          <button className="parent" onClick = {()=>setBar("home")} style={{borderBottom: bar1, width: '33.33%'}}>Home</button>
+          <button className="parent" onClick = {()=>setBar("home")} style={{borderBottom: getBarColor(props.tab, 'bar1'), width: '33.33%'}}>Home</button>
           <li className = "subnav" style={{width:"33.33%"}}>
-            <button className="parent"  onClick = {()=>setBar("myQuests")} style={{borderBottom: bar2, width: '100%'}} >My Quests<i className="fa fa-caret-down"></i></button>
+            <button className="parent"  onClick = {()=>setBar("myQuests")} style={{borderBottom: getBarColor(props.tab, 'bar2'), width: '100%'}} >My Quests&nbsp;&nbsp;<i className="fa fa-caret-down"></i></button>
           
               <ul id="subnav-list" style={{margin:'0em', padding:'0em'}}>
                 <li><button onClick = {()=>setBar("all")} className="kid" >All</button></li>
@@ -55,7 +49,7 @@ const JumbotronWithTabs = (props) => {
                 <li><button onClick = {()=>setBar("past")} className="kid" >Past</button></li>
               </ul>
           </li>
-          <button className="parent" onClick = {()=>setBar("allQuests")} style={{borderBottom: bar3, width: '33.33%'}}>All</button>
+          <button className="parent" onClick = {()=>setBar("allQuests")} style={{borderBottom: getBarColor(props.tab, 'bar3'), width: '33.33%'}}>All</button>
         </ul>
       </div>
       {/* TABS ON MOBILE */}
@@ -65,6 +59,7 @@ const JumbotronWithTabs = (props) => {
         Browse Quests
       </button>
       <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ width:"100%", margin:"0", padding:"0", borderWidth:"0", boxShadow:"none"}}>
+        <button className="dropdown-item dropKid" onClick = {()=>setBar("home")} >Home</button>
         <button className="dropdown-item dropKid" onClick = {()=>setBar("allQuests")} >All Quests</button>
         <button className="dropdown-item dropKid" onClick = {()=>setBar("live")} >All my Live Quests</button>
         <button className="dropdown-item dropKid" onClick = {()=>setBar("past")}>All my Past Quests</button>

@@ -21,7 +21,7 @@ const QuizRound = (props) => {
     const [modalText, setModalText] = React.useState("")
 
     const fetchQuestion = async (answer) => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}/attempt`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}/attempt`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -57,7 +57,6 @@ const QuizRound = (props) => {
                     setScore(responseBody.roundScore)
                 }
             }
-
         }
     }
 
@@ -66,7 +65,6 @@ const QuizRound = (props) => {
         if (!expireTime) return
 
         const difference = Math.floor(((new Date(expireTime)).getTime() - Date.now()) / 1000)
-
 
         if (difference < 0) {
             if (!show) {
@@ -110,7 +108,7 @@ const QuizRound = (props) => {
 
             </Container>}
 
-            <QuestionModal trigger={show} onClose={onClose} text={modalText} score={score} />
+            <QuestionModal trigger={show} onClose={onClose} text={modalText} score={score} prevRating={props.prevRating} />
 
         </React.Fragment >
     )
