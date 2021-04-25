@@ -11,7 +11,7 @@ const HostRapidFire = (props) => {
     const [showAddBox, setShowAddBox] = React.useState(true)
 
     const addQuestion = async (question) => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${roundID}/addquestion`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/addquestion`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ const HostRapidFire = (props) => {
     }
 
     const deleteQuestion = async (questionNum) => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${roundID}/${questionNum}/deletequestion`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/${questionNum}/deletequestion`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

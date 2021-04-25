@@ -68,7 +68,7 @@ const parseDBError = (err) => {
     errors: {}
   }
   // validation errors
-  if (err.message.includes('validation failed')) {
+  if (err.message.includes('validation failed') || err.message.includes('Validation failed')) {
     Object.keys(err.errors).forEach((field) => {
       try {
         errMsg[`errors`][field] = { 
