@@ -7,7 +7,7 @@ router.use("/participanthomepage/quest/:questID/round/:roundID", express.static(
 router.use("/participanthomepage/quest/:questID", express.static("front-end/build"));
 router.use("/hosthomepage/quest/:questID/round/:roundID", express.static("front-end/build"));
 router.use("/hosthomepage/quest/:questID", express.static("front-end/build"));
-
+router.use("/hosthomepage/createquest", express.static("front-end/build"));
 
 router.use("/", express.static("front-end/build"));
 router.use("/signin", express.static("front-end/build"));

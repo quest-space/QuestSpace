@@ -173,12 +173,12 @@
             if (req.file) {
                 const question = await Question.updateOne({questName: quest_detail.questName, roundNum: req.params.roundid, questionNum: question_number + 1},
                     {$set: {questName: quest_detail.questName, roundNum: req.params.roundid, roundName: req.body.roundName, questionNum: question_number + 1, 
-                    questionType: req.body.questionType, statement: req.body.statement, options: req.body.options, answer: req.body.answer, imageURL: `${getImgUploadURL()}${req.file.filename}` }},
+                    questionType: req.body.questionType, statement: req.body.statement, options: JSON.parse(req.body.options), answer: req.body.answer, imageURL: `${getImgUploadURL()}${req.file.filename}` }},
                     {upsert: true, runValidators: true});
             } else {
                 const question = await Question.updateOne({questName: quest_detail.questName, roundNum: req.params.roundid, questionNum: question_number + 1},
                     {$set: {questName: quest_detail.questName, roundNum: req.params.roundid, roundName: req.body.roundName, questionNum: question_number + 1, 
-                    questionType: req.body.questionType, statement: req.body.statement, options: req.body.options, answer: req.body.answer, imageURL: "" }},
+                    questionType: req.body.questionType, statement: req.body.statement, options: JSON.parse(req.body.options), answer: req.body.answer, imageURL: "" }},
                     {upsert: true, runValidators: true});
             }
             const send_question_details = await Question.find({questName: quest_detail.questName, roundNum: req.params.roundid })
