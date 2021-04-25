@@ -21,7 +21,7 @@ const HostSubmission = (props) => {
             formData.set(`uploadedImage`, image)
         }
 
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${roundID}/addquestion`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/addquestion`, {
             method: "POST",
             header: {
                 'Content-Type': 'multipart/form-data'
@@ -38,7 +38,7 @@ const HostSubmission = (props) => {
             return
         }
 
-        const response2 = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${roundID}/setEach`, {
+        const response2 = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/setEach`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ const HostSubmission = (props) => {
     }
 
     const deleteQuestion = async () => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${roundID}/1/deletequestion`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/1/deletequestion`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
