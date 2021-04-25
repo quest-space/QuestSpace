@@ -21,7 +21,7 @@ const ManualGrading = (props) => {
             })
         })
 
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/grade`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${roundID}/grade`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
