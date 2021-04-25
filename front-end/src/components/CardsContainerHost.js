@@ -84,6 +84,8 @@ const CardsContainer = (props) => {
                             return(
                                 <div key={k} className="col-lg-3 col-md-6 mb-4 mb-lg-0">
                                     {/* {console.log(cards[key][cardList][card].hostUser)} */}
+                                    {
+                                    props.tab !== "pending" ? 
                                     <Link to={{pathname: "hosthomepage/quest/"+cards[props.tab][cardList][card].questID}}><Cards 
                                         imgUrl = {cards[props.tab][cardList][card].logoURL}
                                         title = {cards[props.tab][cardList][card].questName}
@@ -93,6 +95,16 @@ const CardsContainer = (props) => {
                                         starsCount = {cards[props.tab][cardList][card].rating}
                                     />
                                     </Link>
+                                    :
+                                    <Cards 
+                                        imgUrl = {cards[props.tab][cardList][card].logoURL}
+                                        title = {cards[props.tab][cardList][card].questName}
+                                        host = {cards[props.tab][cardList][card].hostUser}
+                                        description = {cards[props.tab][cardList][card].description}  
+                                        date = {cards[props.tab][cardList][card].startDate}
+                                        starsCount = {cards[props.tab][cardList][card].rating}
+                                    />
+                                    }
                                 </div>       
                             )
                         })}
