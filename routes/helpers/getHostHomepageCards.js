@@ -29,7 +29,7 @@ const parseQuests = (quests, hostData, currTime) =>
       
       const parsedQuests = quests.map(({ _id, questName, hostUser, nature, description, startTime, endTime, logoURL, status }, i) => 
         ({ questID: _id, questName, hostUser, nature, description, startTime, endTime, logoURL,
-          startDate: startTime.toDateString(), endDate: endTime.toDateString(), status: getQuestStatus(startTime, endTime, currTime),
+          startDate: startTime, endDate: endTime, status: getQuestStatus(startTime, endTime, currTime),
           organization: hostData.organization, rating: hostData.rating, questStatus: status
         })
       );
@@ -43,22 +43,6 @@ const parseQuests = (quests, hostData, currTime) =>
     }
   })
 
-const getHomeCards = (participantQuests, allQuests, currTime) => ({
-    myQuests: groupArr(sortQuestsByProximity(participantQuests, currTime, `startTime`, `asc`).slice(0, 4)),
-    popularQuests: groupArr(allQuests.sort((qA, qB) => qB.participantCount - qA.participantCount).slice(0, 4))
-  });
-
-const getMyQuestCards = (participantQuests, currTime) => ({
-    allQuests: groupArr(participantQuests),
-    liveQuests: groupArr(participantQuests.filter(quest => quest.status === `Live`)),
-    upcomingQuests: groupArr(participantQuests.filter(quest => quest.status === `Upcoming`)),
-    pastQuests: groupArr(participantQuests.filter(quest => quest.status === `Past`))
-  });
-
-const getAllQuestCards = (allQuests) => ({
-  allQuests: groupArr(allQuests)
-});
-
 const getHostHomepageCards = async (username) => {
 
   try {
@@ -66,7 +50,7 @@ const getHostHomepageCards = async (username) => {
 
       const hostData = await Host.findOne({ username });
 
-      const allQuests = await parseQuests(await Quest.find({ hostUser: username }).sort({ createdAt: 'desc' }).exec(), hostData, currTime);
+      const allQuests = await parseQuests(await Quest.find({ hostUser: username }).sort({ createdAt: 'asc' }).exec(), hostData, currTime);
 
       const acceptedQuests = allQuests.filter(quest => quest.questStatus === `accepted`);
       const pendingQuests = allQuests.filter(quest => quest.questStatus === `pending`);

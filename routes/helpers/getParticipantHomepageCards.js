@@ -33,7 +33,7 @@ const parseQuests = (quests, currTime) =>
       
       const parsedQuests = quests.map(({ _id, questName, hostUser, nature, description, startTime, endTime, logoURL }, i) => 
         ({ questID: _id, questName, hostUser, nature, description, startTime, endTime, logoURL,
-          startDate: startTime.toDateString(), endDate: endTime.toDateString(), status: getQuestStatus(startTime, endTime, currTime),
+          startDate: startTime, endDate: endTime, status: getQuestStatus(startTime, endTime, currTime),
           participantCount: questParticipations[i].length
         })
       );
