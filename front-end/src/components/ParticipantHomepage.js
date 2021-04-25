@@ -5,13 +5,15 @@ import MainNavbar from "./MainNavbar";
 import PageFooter from "./PageFooter"
 
 
-const ParticipantHomepage = () => {
-  const [tab, setTab] = React.useState('home')
+const ParticipantHomepage = (props) => {
+
+  const [tab, setTab] = React.useState(props.location ? (props.location.state ? props.location.state.tab : 'home') : 'home');
+
   return (
     <div>
       <MainNavbar setTab={setTab} />
-      <JumbotronWithTabs setTab={setTab} />
-      <CardsContainer setTab={setTab} tab={tab}/>
+      <JumbotronWithTabs setTab={setTab} tab={tab} />
+      <CardsContainer setTab={setTab} tab={tab} />
       <PageFooter />
     </div>
   );

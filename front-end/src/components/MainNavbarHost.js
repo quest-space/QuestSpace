@@ -18,7 +18,7 @@ const MainNavbar = (props) => {
 
   const ProfileAPI = async () => {
     const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/who-am-i`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
       {
         method: "POST",
         headers: {
@@ -130,51 +130,102 @@ const MainNavbar = (props) => {
               aria-labelledby="navbarDropdownMenuLink"
               style={{ border: "none", boxShadow: "none" }}
             >
+              <Link
+              style={{padding:0}}
+              to={{
+                pathname: '/hosthomepage',
+                  state: {
+                    tab: 'all'
+                  }
+              }}
+              >
               <button
                 className="dropdown-item"
                 style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
                 onClick={() => {
-                  props.setTab("all");
+                  props.setTab && props.setTab("all");
                 }}
               >
                 All Quests
               </button>
+              </Link>
+              <Link
+              style={{padding:0}}
+              to={{
+                pathname: '/hosthomepage',
+                  state: {
+                    tab: 'live'
+                  }
+              }}
+              >
               <button
                 className="dropdown-item"
                 style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
                 onClick={() => {
-                  props.setTab("live");
+                  props.setTab && props.setTab("live");
                 }}
               >
                 Live Quests
               </button>
+              </Link>
+              <Link
+              style={{padding:0}}
+              to={{
+                pathname: '/hosthomepage',
+                  state: {
+                    tab: 'upcoming'
+                  }
+              }}
+              >
               <button
                 className="dropdown-item"
                 style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
                 onClick={() => {
-                  props.setTab("upcoming");
+                  props.setTab && props.setTab("upcoming");
                 }}
               >
                 Upcoming Quests
               </button>
+              </Link>
+              <Link
+              style={{padding:0}}
+              to={{
+                pathname: '/hosthomepage',
+                  state: {
+                    tab: 'past'
+                  }
+              }}
+              >
               <button
                 className="dropdown-item"
                 style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
                 onClick={() => {
-                  props.setTab("past");
+                  props.setTab && props.setTab("past");
                 }}
               >
                 Past Quests
               </button>
+              </Link>
+              <Link
+              style={{padding:0}}
+              to={{
+                pathname: '/hosthomepage',
+                  state: {
+                    tab: 'all'
+                  }
+              }}
+              >
               <button
                 className="dropdown-item"
                 style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
                 onClick={() => {
-                  props.setTab("pending");
+                  props.setTab && props.setTab("pending");
                 }}
               >
                 Pending Quests
               </button>
+              </Link>
+              
               {/* <a class="dropdown-item" href="#">Something else here</a> */}
             </div>
           </li>
