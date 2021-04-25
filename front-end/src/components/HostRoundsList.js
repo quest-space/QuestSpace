@@ -340,7 +340,7 @@ const HostRoundsList = (props) => {
             {
                 props.response.editable == true &&
                 <div className="myBox dashedBox1">
-                    <button style={{ width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={() => { setDisplayForm(true) }}><span className="material-icons" style={{ fontSize: "20pt; color: rgb(108, 108, 108)" }}>add</span> </button>
+                    <button style={{ width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={() => { setDisplayForm(true) }}><span className="material-icons" style={{ fontSize: "20pt", color: "rgb(108, 108, 108)" }}>add</span> </button>
                 </div>
             }
             

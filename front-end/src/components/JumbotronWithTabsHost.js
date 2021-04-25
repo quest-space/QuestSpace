@@ -57,17 +57,12 @@ const JumbotronWithTabs = (props) => {
         }}
       >
         <div className="container" style={{ margin: "0em", padding: "0rem" }}>
-          <h1
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "40px",
-              color: "#ffffff",
-              margin: "0em",
-            }}
-          >
-            Quests
-          </h1><br/>
+          <h1 className="display-4" style={{ fontWeight: "400", fontSize: "40px", color: "#ffffff", margin: "0em"}}>
+            QuestSpace
+          </h1>
+          <h2 className="display-4" style={{ fontWeight: "300", fontSize: "22px", color: "#ffffff", margin: "0em"}}>
+            Host
+          </h2>
         </div>
       </div>
       {/* TABS ON DESKTOP*/}
