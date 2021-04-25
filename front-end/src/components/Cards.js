@@ -15,7 +15,7 @@ const Cards = (props) => {
   return(
   
       <div className="c card" style ={{borderRadius: '1rem'}} >
-        <img src = {props.imgUrl}  alt="" className="cit card-img-top" style={{borderRadius: '1rem 1rem 0rem 0rem', objectFit:"contain"}}/>
+        <img src = {props.imgUrl}  alt="" className="cit card-img-top" style={{borderRadius: '1rem 1rem 0rem 0rem', objectFit:"cover"}}/>
         <div className="card-body" style={{paddingTop:'0.80em'}}>
           <h5 className="card-title" style={{margin:'0em',fontWeight: '500', color:"#313131"}}>{props.title}</h5>
           <p className= "text-muted" style={{margin:'0em', fontSize:'0.9rem'}}>{props.host}</p>
