@@ -6,12 +6,12 @@ import Header from "./Header";
 import BreadCrumb from "./BreadCrumb";
 
 const CreateQuest = (props) => {
-  const [QuestName, setQuestName] = React.useState();
-  const [About, setAbout] = React.useState();
-  const [Description, setDescription] = React.useState();
-  const [Type, setType] = React.useState();
-  const [StartTime, setStartTime] = React.useState();
-  const [EndTime, setEndTime] = React.useState();
+  const [QuestName, setQuestName] = React.useState(undefined);
+  const [About, setAbout] = React.useState(undefined);
+  const [Description, setDescription] = React.useState(undefined);
+  const [Type, setType] = React.useState(undefined);
+  const [StartTime, setStartTime] = React.useState(undefined);
+  const [EndTime, setEndTime] = React.useState(undefined);
   const [logo, setLogo] = React.useState();
 
   const Create = async () => {
@@ -21,22 +21,20 @@ const CreateQuest = (props) => {
     formData.append(`description`, Description);
     formData.append(`about`, About);
     formData.append(`startTime`, StartTime);
-    formData.append(`endTime`, EndTime);
     if (!logo) {
       alert(`Please upload a logo`);
       return;
     }
     formData.append(`logo`, logo);
+    formData.append(`endTime`, EndTime);
 
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/create-update`,
+      `http://localhost:4333/api/host/create-edit-quest/create`,
       {
         method: "POST",
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        header: { 'Content-Type': 'multipart/form-data' },
+        body: formData,
         credentials: "include",
-        body: formData
       }
     );
 
@@ -44,7 +42,7 @@ const CreateQuest = (props) => {
     const responseBody = await response.json();
 
     if (response.status !== 200) {
-      showError(responseBody.errors);
+      showError(responseBody);
     } else {
       console.log("Quest  Created Successfully!");
       history.push("/hosthomepage");
@@ -278,7 +276,11 @@ const CreateQuest = (props) => {
               accept="image/png, image/jpeg"
               //className="inputdetail"
               //placeholder={hidden_password}
-              onChange={(ev) => updateState(ev, setLogo)}
+              onChange={ev => { 
+                const file = ev.target.files[0];
+                console.log({file});
+                setLogo(file);
+              }}
             />
           </div>
         </p>

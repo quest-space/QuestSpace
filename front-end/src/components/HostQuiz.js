@@ -21,7 +21,6 @@ const HostQuiz = (props) => {
                 ...question,
                 questName: props.roundInfo.rounds.questName,
                 roundName: props.roundInfo.rounds.roundName,
-                // questionType: "MCQ",
             }),
             credentials: "include",
         })
