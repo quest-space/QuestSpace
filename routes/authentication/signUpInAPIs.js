@@ -7,6 +7,7 @@ const Host = require(`../../models/host`);
 const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
 const { createToken, maxAge } = require(`./jwsTokenization`);
 const { sendRes } = require(`../helpers/sendRes`);
+const { getQSAdminCredentials } = require(`../qs-admin/qsAdminCredentials`);
 
 // status codes
 const OK_STATUS_CODE = 200;
@@ -58,6 +59,38 @@ router.post(`/signin/host`, async (req, res) => {
   try {
     const host = await Host.login(username, password);
     const token = createToken(host._id, host.username, `host`);
+    res.cookie('qsUser', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    sendRes(res, OK_STATUS_CODE, {});
+  } catch (err) {
+    sendRes(res, BAQ_REQUEST_STATUS_CODE, handleErrorsFromDB(err));
+  }
+});
+
+const ensureCorrectQSAdminCredentials = (req) => {
+  const { username, password } = req.body;
+  const qsAdminCredentials = getQSAdminCredentials();
+  if (!username) {  
+    throw Error(`frd234sf,username,Username is required.,${username}`);
+  } 
+  if (!password) {
+    throw Error(`frd234sf,password,Password is required.,${password}`);
+  }
+  if (username === qsAdminCredentials.username) {
+    if (password === qsAdminCredentials.password) {
+      return;
+    } else {
+      throw Error(`frd234sf,password,Incorrect password.,${password}`);
+    }
+  } else {
+    throw Error(`frd234sf,username,Incorrect username.,${username}`);
+  }
+}
+
+// sign in handler [qsAdmin]
+router.post(`/signin/qs-admin`, async (req, res) => {
+  try {
+    ensureCorrectQSAdminCredentials(req);
+    const token = createToken(`NoAvailableID`, `QS-Admin`, `qs-admin`);
     res.cookie('qsUser', token, { httpOnly: true, maxAge: maxAge * 1000 });
     sendRes(res, OK_STATUS_CODE, {});
   } catch (err) {

@@ -11,6 +11,8 @@ const UNAUTHORIZED_STATUS_CODE = 401;
 const FORBIDDEN_STATUS_CODE = 403;
 const NOT_FOUND_STATUS_CODE = 404;
 
+const ACCEPTABLE_TYPES = [`who-am-i`, `participant`, `host`, `qs-admin`];
+
 // set vars to be used in routes
 const setGenericVars = (req, decodedToken) => {
   req.body.id = decodedToken.id;
@@ -23,7 +25,7 @@ const setGenericVars = (req, decodedToken) => {
 
 // filter out authentic users
 router.use(`/:type`, async (req, res, next) => {
-  if (req.params.type === `participant` || req.params.type === `host` || req.params.type === `who-am-i`) {
+  if (ACCEPTABLE_TYPES.includes(req.params.type)) {
     const token = req.cookies.qsUser;
     if (token) {
       try {
