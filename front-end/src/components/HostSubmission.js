@@ -7,17 +7,26 @@ const HostSubmission = (props) => {
 
     const { roundID, questID } = useParams()
 
-    const addSubmissionQuestion = async (question, marks) => {
+    const addSubmissionQuestion = async (question, image, marks) => {
+
+        const formData = new FormData()
+        for (let key in question) {
+            formData.set(key, question[key])
+        }
+        formData.set(`options`, JSON.stringify(question[`options`]))
+        formData.set(`questName`, props.roundInfo.rounds.questName)
+        formData.set(`roundName`, props.roundInfo.rounds.roundName)
+
+        if (image) {
+            formData.set(`uploadedImage`, image)
+        }
+
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/addquestion`, {
             method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
+            header: {
+                'Content-Type': 'multipart/form-data'
             },
-            body: JSON.stringify({
-                ...question,
-                questName: props.roundInfo.rounds.questName,
-                roundName: props.roundInfo.rounds.roundName,
-            }),
+            body: formData,
             credentials: "include",
         })
 
@@ -28,11 +37,6 @@ const HostSubmission = (props) => {
             alert(JSON.stringify(responseBody) + "Error in adding submission question.")
             return
         }
-        // else {
-        //     const temp = { ...props.roundInfo }
-        //     temp.questions = responseBody.questions
-        //     props.setroundInfo(temp)
-        // }
 
         const response2 = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/setEach`, {
             method: "POST",
@@ -54,6 +58,7 @@ const HostSubmission = (props) => {
             const temp = { ...props.roundInfo }
             temp.rounds.marks = marks
             temp.questions = responseBody.questions
+            console.log("questions received", responseBody.questions)
             props.setroundInfo(temp)
         }
     }

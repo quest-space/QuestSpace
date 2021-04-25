@@ -4,6 +4,7 @@ import HostMcqTemplate from "./HostMcqTemplate"
 const HostRapidFireTemplate = (props) => {
 
     const [question, setQuestion] = React.useState({})
+    const [image, setImage] = React.useState()
 
     const setStatement = (ev) => {
         const temp = { ...question }
@@ -42,7 +43,7 @@ const HostRapidFireTemplate = (props) => {
                     Uploaded Image:
                 </div>
                 <div className="questionText">
-                    <input type="file">
+                    <input type="file" accept="image/png, image/jpeg" onChange={(ev) => setImage(ev.target.files[0])}>
                     </input>
                 </div>
 
@@ -57,7 +58,7 @@ const HostRapidFireTemplate = (props) => {
                         undo
                     </span>
                 </div>
-                <div className="sidePanel" style={{ height: "100%", color: "#238839" }} onClick={() => props.addQuestion(question)}>
+                <div className="sidePanel" style={{ height: "100%", color: "#238839" }} onClick={() => props.addQuestion(question, image)}>
                     <span className="material-icons" style={{ fontSize: "28px" }}>
                         done
                     </span>
