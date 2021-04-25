@@ -158,6 +158,7 @@ const HostRoundsList = (props) => {
                         >
                         Name
                             <input
+                            required
                             type="text"
                             className="inputdetail responsive"
                             style={{fontSize:"18px",paddingTop: "0.5rem",display:"block"}}
@@ -182,6 +183,7 @@ const HostRoundsList = (props) => {
                             >
                             Start
                             <input
+                            required
                             type="text"
                             className="inputdetail responsive"
                             style={{fontSize:"18px",paddingTop: "0.5rem",display:"block"}}
@@ -208,6 +210,7 @@ const HostRoundsList = (props) => {
                             >
                             End
                             <input
+                            required
                             type="text"
                             className="inputdetail responsive"
                             style={{fontSize:"18px",paddingTop: "0.5rem",display:"block"}}
@@ -258,6 +261,7 @@ const HostRoundsList = (props) => {
                             >
                             Time Limit
                             <input
+                            required
                             type="text"
                             className="inputdetail responsive"
                             style={{fontSize:"18px",paddingTop: "0.5rem",display:"block"}}
@@ -282,6 +286,7 @@ const HostRoundsList = (props) => {
                         >
                         Description
                         <input
+                        required
                         type="text"
                         className="longinputdetail"
                         placeholder="Enter a description of your Round"
@@ -291,10 +296,25 @@ const HostRoundsList = (props) => {
                         </p>
                 </div>
             }
-            {props.response.editable == true &&
-            <div className="myBox dashedBox1">
-                <button style={{width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={()=> {setDisplayForm(true)}}><span className="material-icons" style={{fontSize: "20pt; color: rgb(108, 108, 108)"}}>add</span> </button>
-            </div>}
+            {
+                props.response.editable == true &&
+                <div className="myBox dashedBox1">
+                    <button style={{width: "100%", backgroundColor: "#FFFFFF", border: "none" }} onClick={()=> {setDisplayForm(true)}}><span className="material-icons" style={{fontSize: "20pt; color: rgb(108, 108, 108)"}}>add</span> </button>
+                </div>
+            }
+            {/* {
+                props.response.editable === false && props.response.rounds === null &&
+                <div style={{
+                    border: "1px solid #C4C4C4", 
+                    boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)", 
+                    marginBottom: "5.5rem",
+                    marginTop: "3rem",
+                    marginLeft:"9%",
+                    marginRight:"9%",
+                    padding:"2rem"}}>
+                    <i class="fas fa-exclamation-circle"></i> No Rounds Added!
+                </div>
+            } */}
 
         </div>
     )
