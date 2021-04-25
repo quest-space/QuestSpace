@@ -7,7 +7,7 @@ const QSAdminDropdown = () => {
   const SignOutUser = async () => {
 
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/qs-admin/signout`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/qs-admin/signout`,
       {
         method: "POST",
         headers: {

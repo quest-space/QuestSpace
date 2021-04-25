@@ -18,7 +18,7 @@ const MainNavbar = (props) => {
 
   const ProfileAPI = async () => {
     const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/who-am-i`,
       {
         method: "POST",
         headers: {
