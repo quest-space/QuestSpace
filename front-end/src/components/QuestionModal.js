@@ -3,16 +3,18 @@ import React from "react"
 
 const QuestionModal = (props) => {
 
-    // const [trigger, setTrigger] = React.useState(props.trigger)
-
     const closeModal = () => {
-        // setTrigger(false)
         props.onClose && props.onClose()
     }
 
+    const rating = 0
+
     return (
         <React.Fragment>
-            {props.trigger ? <div tabIndex="0" className="questionModal" onKeyDown={(ev) => {
+
+            {/* {props.trigger ? <div tabIndex="0" className="questionModal" onKeyDown={(ev) => { */}
+
+            {true ? <div tabIndex="0" className="questionModal" onKeyDown={(ev) => {
                 if (ev.key === `Escape` || ev.key === `Esc`)
                     closeModal()
             }}>
@@ -28,7 +30,7 @@ const QuestionModal = (props) => {
 
                     {/* Text */}
                     <p style={{ textAlign: "center" }}>
-                        {props.text}
+                        {props.text} Round has ended
                     </p>
 
                     {/* Score */}
@@ -37,6 +39,32 @@ const QuestionModal = (props) => {
                             Your score is {props.score}
                         </p>
                     }
+                    <p style= {{margin: "0px 0px 10px"}}>
+                        Your score is {props.score} 10
+                    </p>
+                    {/* Rating Stuff */}
+                    <p style={{ fontWeight: "500" , margin: "0px 0px 3px"}}>
+                        Rate the Host
+                    </p>
+
+                    <div style={{ display: "flex", flexDirection: "row" , margin:"0px 0px 25px"}}>
+                        {["", "", "", "", ""].map((_, index) => {
+                            if (index <= rating - 1) {
+                                return (
+                                    <i key={index} className="fa fa-star"></i>
+                                )
+                            } else {
+                                return (
+                                    <i key={index} className="far fa-star"></i>
+                                )
+                            }
+                        })}
+                    </div>
+                    
+                    <button>
+                        Rate
+                    </button>
+
                 </div>
             </div> : ``}
         </React.Fragment>
