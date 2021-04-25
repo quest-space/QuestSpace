@@ -125,7 +125,7 @@ const CardsContainerQS = (props) => {
                                     <div className="card mb-9">
                                     <div className="row no-gutters">
                                       <div className="col-md-2">
-                                        <img src={response[props.tab][info].logoURL} style={{objectFit:"fill", height:"150px"}} className="card-img" alt="..."/>
+                                        <img src={response[props.tab][info].logoURL} style={{objectFit:"cover", height:"150px"}} className="card-img" alt="..."/>
                                       </div>
                                       <div className="col-md-8">
                                         <div className="card-body">
