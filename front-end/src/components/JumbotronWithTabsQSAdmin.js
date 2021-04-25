@@ -55,7 +55,7 @@ const JumbotronWithTabsQSAdmin = (props) => {
               margin: "0em",
             }}
           >
-            Quest Creation Requests
+            Quest Requests
           </h1>
         </div>
       </div>
