@@ -17,6 +17,8 @@ const parseQuests = (quests, currTime) =>
   new Promise(async (resolve, reject) => {
     try {
       
+      quests = quests.sort((questA, questB) => (new Date(questB.createdAt)).getTime() - (new Date(questA.createdAt)).getTime());
+
       const hosts = await (Promise.all(quests.map((quest) => (
         Host.findOne({ username: quest.hostUser }).exec()
       ))));

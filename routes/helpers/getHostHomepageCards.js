@@ -26,11 +26,13 @@ const groupArr = (arr, grpLen=4) => {
 const parseQuests = (quests, hostData, currTime) => 
   new Promise(async (resolve, reject) => {
     try {
+
+      quests = quests.sort((questA, questB) => (new Date(questB.createdAt)).getTime() - (new Date(questA.createdAt)).getTime());
       
-      const parsedQuests = quests.map(({ _id, questName, hostUser, nature, description, startTime, endTime, logoURL, status }, i) => 
+      const parsedQuests = quests.map(({ _id, questName, hostUser, nature, description, startTime, endTime, logoURL, status, createdAt }, i) => 
         ({ questID: _id, questName, hostUser, nature, description, startTime, endTime, logoURL,
           startDate: startTime, endDate: endTime, status: getQuestStatus(startTime, endTime, currTime),
-          organization: hostData.organization, rating: hostData.rating, questStatus: status
+          organization: hostData.organization, rating: hostData.rating, questStatus: status, createdAt
         })
       );
       // console.log(quests);
@@ -50,7 +52,7 @@ const getHostHomepageCards = async (username) => {
 
       const hostData = await Host.findOne({ username });
 
-      const allQuests = await parseQuests(await Quest.find({ hostUser: username }).sort({ createdAt: 'asc' }).exec(), hostData, currTime);
+      const allQuests = await parseQuests(await Quest.find({ hostUser: username }).exec(), hostData, currTime);
 
       const acceptedQuests = allQuests.filter(quest => quest.questStatus === `accepted`);
       const pendingQuests = allQuests.filter(quest => quest.questStatus === `pending`);

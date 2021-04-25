@@ -26,6 +26,9 @@ const groupArr = (arr, grpLen=4) => {
 const parseQuests = (quests, currTime) => 
   new Promise(async (resolve, reject) => {
     try {
+
+      quests = quests.sort((questA, questB) => (new Date(questB.createdAt)).getTime() - (new Date(questA.createdAt)).getTime());
+
       // console.log(quests);
       const questParticipations = await Promise.all(quests.map(({ questName }) => 
         Participation.find({ questName }).exec()
@@ -78,7 +81,7 @@ const getParticipantHomepageCards = async (username) => {
       const currTime = Date.now();
 
       // fetch list of all quests in which participant registered
-      const participantParticipations = await Participation.find({ participantUser: username }).sort({ createdAt: 'asc' }).exec();
+      const participantParticipations = await Participation.find({ participantUser: username }).exec();
 
       let allQuests = await parseQuests(await Quest.find({ status : "accepted" }).sort({ createdAt: 'asc' }).exec(), currTime);
 

@@ -39,7 +39,7 @@ router.post(`/`, async (req, res) => {
       return;
     }
 
-    const updateQuest = updateOne({ questName: req.body.questName }, { status: `rejected` });
+    const updateQuest = Quest.updateOne({ questName: req.body.questName }, { $set: {status: `rejected`} }).exec();
 
     sendRes(res, OK_STATUS_CODE, updateQuest);
 
