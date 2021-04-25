@@ -22,7 +22,7 @@ const SignInCard = () => {
 
     const signInUser = async () => {
         const userString = user ? "participant" : "host"
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/auth/signin/${userString}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/auth/signin/${userString}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
