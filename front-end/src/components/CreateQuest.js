@@ -29,7 +29,7 @@ const CreateQuest = (props) => {
     formData.append(`endTime`, EndTime);
 
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/create-edit-quest/create`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/create-edit-quest/create`,
       {
         method: "POST",
         header: { 'Content-Type': 'multipart/form-data' },
