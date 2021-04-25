@@ -11,18 +11,26 @@ const HostQuiz = (props) => {
 
     const [showAddBox, setShowAddBox] = React.useState(true)
 
-    const addQuestion = async (question) => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${roundID}/addquestion`, {
+    const addQuestion = async (question, image) => {
+
+        const formData = new FormData()
+        for (let key in question) {
+            formData.set(key, question[key])
+        }
+        formData.set(`options`, JSON.stringify(question[`options`]))
+        formData.set(`questName`, props.roundInfo.rounds.questName)
+        formData.set(`roundName`, props.roundInfo.rounds.roundName)
+
+        if (image) {
+            formData.set(`uploadedImage`, image)
+        }
+
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/addquestion`, {
             method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
+            header: {
+                'Content-Type': 'multipart/form-data'
             },
-            body: JSON.stringify({
-                ...question,
-                questName: props.roundInfo.rounds.questName,
-                roundName: props.roundInfo.rounds.roundName,
-                // questionType: "MCQ",
-            }),
+            body: formData,
             credentials: "include",
         })
 

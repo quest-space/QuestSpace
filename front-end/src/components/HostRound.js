@@ -1,6 +1,6 @@
 import React from "react"
 import { useParams, useHistory } from "react-router-dom"
-import MainNavbar from "./MainNavbar"
+import MainNavbarHost from "./MainNavbarHost"
 import PageFooter from "./PageFooter"
 import Header from "./Header"
 import BreadCrumb from "./BreadCrumb"
@@ -8,6 +8,7 @@ import Tabs from "./Tabs"
 import HostRoundDetails from "./HostRoundDetails"
 import HostRapidFire from "./HostRapidFire"
 import HostQuiz from "./HostQuiz"
+import HostSubmission from "./HostSubmission"
 import "../css/HostRound.css"
 
 const HostRound = () => {
@@ -20,7 +21,7 @@ const HostRound = () => {
     const [roundInfo, setroundInfo] = React.useState({})
 
     const fetchRoundDetails = async () => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${roundID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +33,7 @@ const HostRound = () => {
 
         if (response.status !== 200) {
             console.log(`Error in fetching round information.`)
-            alert(JSON.stringify(responseBody), "Returning back to quest page")
+            alert(JSON.stringify(responseBody) + "Returning back to quest page")
             history.replace(`/hosthomepage/quest/${questID}`) //uncomment this later
         } else {
             setroundInfo(responseBody)
@@ -47,7 +48,7 @@ const HostRound = () => {
 
     return (
         <React.Fragment>
-            <MainNavbar />
+            <MainNavbarHost />
             <Header heading={`Round ${roundID}: ${roundInfo.rounds && roundInfo.rounds.roundName}`} subheading={roundInfo.rounds && roundInfo.rounds.roundType} />
             <BreadCrumb items={[{ text: "Home", to: "/hosthomepage" }, { text: roundInfo.rounds && roundInfo.rounds.questName, to: `/hosthomepage/quest/${questID}` }, { text: `Round ${roundID}`, to: `/hosthomepage/quest/${questID}/round/${roundID}` }]} />
 
@@ -64,6 +65,9 @@ const HostRound = () => {
 
             {/* View QUestions in case of quiz round */}
             {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Quiz`) && <HostQuiz roundInfo={roundInfo} setroundInfo={setroundInfo} />}
+
+            {/* View QUestions in case of submission round */}
+            {tab === `Questions` && (roundInfo.rounds && roundInfo.rounds.roundType === `Submission`) && <HostSubmission roundInfo={roundInfo} setroundInfo={setroundInfo} />}
 
             <PageFooter />
         </React.Fragment>

@@ -27,7 +27,7 @@ const MainNavbar = (props) => {
 
   const ProfileAPI = async () => {
     const checkResp = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/who-am-i`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/who-am-i`,
       {
         method: "POST",
         headers: {
@@ -72,9 +72,9 @@ const MainNavbar = (props) => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a
+        <Link
           className="d-none d-sm-none d-md-none d-lg-block navbar-brand"
-          href="#"
+          to="/participanthomepage"
         >
           <img
             src={questspacelogo}
@@ -92,7 +92,7 @@ const MainNavbar = (props) => {
             <span style={{ color: "#415F78" }}>Quest</span>
             <span style={{ color: "#46B7A1" }}>Space</span>
           </span>
-        </a>
+        </Link>
 
         <ul className="navbar-nav ml-auto">
           <form className="form-inline my-2 my-lg-0">
