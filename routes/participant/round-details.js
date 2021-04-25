@@ -124,6 +124,7 @@ router.post(`/:questid/:roundid`, async (req, res) => {
     const isAttemptFinished = SubmissionData ? SubmissionData.isAttemptFinished : false;
     
     
+
     if (Helper.getQuestStatus(find_round[0].startTime, find_round[0].endTime, currTime) === "Live") {
         
       const find_round = await Round.find({questName: find_quest[0].questName, roundNum: req.params.roundid})
@@ -140,6 +141,11 @@ router.post(`/:questid/:roundid`, async (req, res) => {
           isAttemptFinished: isAttemptFinished,
           roundType: find_round[0].roundType,
           logoURL: find_quest[0].logoURL
+      }
+
+      const rating = await Rating.findOne({ hostUser: find_quest[0].hostUser, participantUser: req.username });
+      if (rating) {
+        round_details[`prevRating`] = rating.score;
       }
 
       sendRes(res, OK_STATUS_CODE, round_details);
