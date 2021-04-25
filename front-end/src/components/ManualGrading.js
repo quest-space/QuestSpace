@@ -1,34 +1,61 @@
 import React from "react";
+import { useParams } from "react-router-dom"
 
 const ManualGrading = (props) => {
 
-    console.log(props.roundInfo)
+    const { roundID, questID } = useParams()
 
     const [editable, setEditable] = React.useState(false)
     const [scores, setScores] = React.useState([])
 
-    const updateScores = async () => {
-        // const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}`, {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     credentials: "include",
-        // })
-
-        // const responseBody = await response.json()
-
-        // if (response.status !== 200) {
-        //     console.log(`Error in fetching round information.`)
-        //     alert(JSON.stringify(responseBody) + "Returning back to quest page")
-        //     history.replace(`/hosthomepage/quest/${questID}`) //uncomment this later
-        // } else {
-        //     setroundInfo(responseBody)
-        // }
+    const makeEditable = () => {
+        setScores(props.roundInfo.submissions.map((submission) => submission.score))
+        setEditable(true)
     }
 
-    const storeScore = (ev) => {
+    const updateScores = async () => {
 
+        const marksList = props.roundInfo.submissions.map((submission, index) => {
+            return ({
+                username: submission.username,
+                score: scores[index]
+            })
+        })
+
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${roundID}/grade`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                marks: marksList,
+            }),
+            credentials: "include",
+        })
+
+        const responseBody = await response.json()
+
+        if (response.status !== 200) {
+            console.log(`Error in updating marks.`)
+            alert(JSON.stringify(responseBody) + "Error in updating marks.")
+        } else {
+            const temp = { ...props.roundInfo }
+            scores.forEach((score, index) => temp.submissions[index].score = score)
+            props.setroundInfo(temp)
+            setEditable(false)
+        }
+    }
+
+    const storeScore = (ev, index) => {
+        const temp = [...scores]
+        if (ev.target.value === `` || Number.isNaN(parseInt(ev.target.value)) || parseInt(ev.target.value) > props.roundInfo.rounds.marks) {
+            temp[index] = null
+            console.log("setting to null")
+        } else {
+            temp[index] = parseInt(ev.target.value)
+            console.log("setting to ", ev.target.value)
+        }
+        setScores(temp)
     }
 
     return (
@@ -56,7 +83,7 @@ const ManualGrading = (props) => {
                 <div className="slimBox" style={{ paddingRight: "1rem", paddingLeft: "1rem" }}>
                     {editable &&
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                            <button style={{ marginRight: "7px" }}>
+                            <button style={{ marginRight: "7px" }} onClick={() => updateScores()}>
                                 Update
                                 <span className="material-icons" style={{ color: "#238839", fontSize: "12pt" }}>
                                     done
@@ -72,7 +99,7 @@ const ManualGrading = (props) => {
 
                     {!editable &&
                         <div>
-                            <button onClick={() => setEditable(true)}>
+                            <button onClick={() => makeEditable()}>
                                 Grade
                                 <span className="material-icons" style={{ color: "#46B7A1", fontSize: "12pt" }}>
                                     assignment_turned_in
@@ -120,9 +147,9 @@ const ManualGrading = (props) => {
                                 </a>
                             </div>
                             <div style={{ display: "inline", float: "right" }}>
-                                {!editable && submission.score}
+                                {!editable && (submission.score !== null ? submission.score : `-`)}
                                 {editable &&
-                                    <input >
+                                    <input value={scores[index] !== null ? scores[index] : ``} onChange={(ev) => storeScore(ev, index)}>
                                     </input>
                                 }
                             </div>
