@@ -1,5 +1,5 @@
 import React from "react";
-import MainNavbar from "./MainNavbar";
+import MainNavbarHost from "./MainNavbarHost";
 import HeadSubhead from "./HeadSubhead";
 import BreadCrumb from "./BreadCrumb";
 import { useHistory } from "react-router-dom";
@@ -31,7 +31,7 @@ const ViewProfileFormatHost = (props) => {
 
   return (
     <div style={{ marginBottom: "80px" }}>
-      <MainNavbar />
+      <MainNavbarHost />
       <div
         id="fancy"
         className="jumbotron jumbotron-fluid"
