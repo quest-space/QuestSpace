@@ -14,7 +14,7 @@ const QuestionModal = (props) => {
     }
 
     const sendRating = async () => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/rate`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/rate`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
