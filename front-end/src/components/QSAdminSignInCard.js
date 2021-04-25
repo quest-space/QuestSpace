@@ -19,9 +19,8 @@ const QSAdminSignInCard = () => {
   };
 
   const signInUser = async () => {
-    const userString = "QSAdmin";
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/auth/signin/${userString}`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/auth/signin/qs-admin`,
       {
         method: "POST",
         headers: {
@@ -39,9 +38,8 @@ const QSAdminSignInCard = () => {
 
     const responseBody = await response.json();
 
-    history.push("/qsadminhomepage");
+    //history.push("/qsadminhomepage");
 
-    /*
     if (response.status !== 200) {
       console.log(`Error in sign in.`);
       showError(responseBody.errors);
@@ -49,7 +47,6 @@ const QSAdminSignInCard = () => {
       console.log(`Sign in success.`);
       history.push("/qsadminhomepage");
     }
-    */
   };
 
   const updateState = (ev, stateUpdateFn) => {
