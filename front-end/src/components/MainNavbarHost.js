@@ -61,7 +61,7 @@ const MainNavbar = (props) => {
       <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
         <Link
           className="d-none d-sm-none d-md-none d-lg-block navbar-brand"
-          href="/hosthomepage"
+          to="/hosthomepage"
         >
           <img
             src={questspacelogo}

@@ -42,7 +42,7 @@
   background: #ffffff;
   border: 1px solid #666666;
   box-sizing: border-box;
-  border-radius: 0px;
+  border-radius: 8px;
   padding: 0px 10px;
   outline: none;
   color: #666666;
@@ -50,6 +50,24 @@
   cursor: pointer;
   width: 110px;
   font-size: 12pt;
+}
+
+.questionArea input[type="number"] {
+  width: 50px;
+  border: none;
+  border-bottom: 1px solid #575757;
+}
+
+.questionArea button {
+  background-color: #5cc3ad;
+  border: 1px solid #f9f9f9;
+  box-sizing: border-box;
+  border-radius: 30px;
+  color: white;
+  width: 120px;
+  margin: 10px 0px 5px;
+  padding: 3px 0px;
+  float: right;
 }
 
 .questionHeading {
