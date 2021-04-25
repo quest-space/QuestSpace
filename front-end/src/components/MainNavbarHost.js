@@ -30,7 +30,7 @@ const MainNavbar = (props) => {
     );
 
     const checkRespBody = await checkResp.json();
-    setUsername(checkRespBody.username);
+    setUsername(`${checkRespBody.organization}`);
   };
 
   if (!render) {

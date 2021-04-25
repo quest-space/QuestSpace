@@ -22,9 +22,9 @@ const CardsContainerQS = (props) => {
         alert(JSON.stringify(errors))
     }
 
-    const fetchCards = async () => {
-        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest//qs-admin/homepage`, {
-            method: "POST",
+    const apiCall = async () => {
+        const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/qs-admin/homepage`, {
+        method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },

@@ -39,7 +39,7 @@ const MainNavbar = (props) => {
     );
 
     const checkRespBody = await checkResp.json();
-    setUsername(checkRespBody.username);
+    setUsername(`${checkRespBody.firstname} ${checkRespBody.lastname}`);
   };
 
   const setInput = (ev) => {
