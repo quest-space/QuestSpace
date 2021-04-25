@@ -105,19 +105,20 @@ const CreateQuest = (props) => {
           }}
         >
           Name
-          <div
-            style={{
-              paddingTop: "0.5rem",
-            }}
-          >
-            <input
-              type="text"
-              className="inputdetail"
-              placeholder="Enter quest name"
-              onChange={(ev) => updateState(ev, setQuestName)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.5rem",
+          }}
+        >
+          <input
+            type="text"
+            className="inputdetail"
+            placeholder="Enter quest name"
+            onChange={(ev) => updateState(ev, setQuestName)}
+          />
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -131,19 +132,20 @@ const CreateQuest = (props) => {
           }}
         >
           Type
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="text"
-              className="inputdetail"
-              placeholder="Enter quest type"
-              onChange={(ev) => updateState(ev, setType)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="text"
+            className="inputdetail"
+            placeholder="Enter quest type"
+            onChange={(ev) => updateState(ev, setType)}
+          />
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -157,19 +159,20 @@ const CreateQuest = (props) => {
           }}
         >
           Start
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="datetime-local"
-              className="inputdetail"
-              placeholder="Enter Start Time"
-              onChange={(ev) => updateState(ev, setStartTime)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="datetime-local"
+            className="inputdetail"
+            placeholder="Enter Start Time"
+            onChange={(ev) => updateState(ev, setStartTime)}
+          />
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -183,22 +186,23 @@ const CreateQuest = (props) => {
           }}
         >
           End
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="datetime-local"
-              className="inputdetail"
-              placeholder="1"
-              onfocus="this.type='datetime-local'"
-              onblur="if(this.value==='')this.type='text'"
-              //placeholder={response1.dateofbirth}
-              onChange={(ev) => updateState(ev, setEndTime)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="datetime-local"
+            className="inputdetail"
+            placeholder="1"
+            onfocus="this.type='datetime-local'"
+            onblur="if(this.value==='')this.type='text'"
+            //placeholder={response1.dateofbirth}
+            onChange={(ev) => updateState(ev, setEndTime)}
+          />
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -212,20 +216,21 @@ const CreateQuest = (props) => {
           }}
         >
           About
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="text"
-              className="longinputdetail"
-              placeholder="Enter a short description of your quest"
-              //placeholder={response1.organization}
-              onChange={(ev) => updateState(ev, setDescription)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="text"
+            className="longinputdetail"
+            placeholder="Enter a short description of your quest"
+            //placeholder={response1.organization}
+            onChange={(ev) => updateState(ev, setDescription)}
+          />
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -239,20 +244,21 @@ const CreateQuest = (props) => {
           }}
         >
           Description
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="text"
-              className="longinputdetail"
-              placeholder="Enter complete description of your quest"
-              //placeholder={response1.organization}
-              onChange={(ev) => updateState(ev, setAbout)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="text"
+            className="longinputdetail"
+            placeholder="Enter complete description of your quest"
+            //placeholder={response1.organization}
+            onChange={(ev) => updateState(ev, setAbout)}
+          />
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -266,24 +272,25 @@ const CreateQuest = (props) => {
           }}
         >
           Logo
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="file"
-              accept="image/png, image/jpeg"
-              //className="inputdetail"
-              //placeholder={hidden_password}
-              onChange={ev => { 
-                const file = ev.target.files[0];
-                console.log({file});
-                setLogo(file);
-              }}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="file"
+            accept="image/png, image/jpeg"
+            //className="inputdetail"
+            //placeholder={hidden_password}
+            onChange={ev => {
+              const file = ev.target.files[0];
+              console.log({ file });
+              setLogo(file);
+            }}
+          />
+        </div>
+        {/* </p> */}
 
         <div
           style={{

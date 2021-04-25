@@ -67,6 +67,8 @@ const Round = () => {
         console.log(`Round details fetched.`)
     }
 
+    console.log("response gotten", roundDetails)
+
     return (
         <React.Fragment>
             <MainNavbar />
