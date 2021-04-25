@@ -7,6 +7,7 @@ const HostSubmissionTemplate = (props) => {
         options: null,
         answer: "",
     })
+    const [image, setImage] = React.useState()
 
     const [marks, setMarks] = React.useState(100)
 
@@ -51,13 +52,13 @@ const HostSubmissionTemplate = (props) => {
                     Uploaded Image:
                 </div>
                 <div className="questionText">
-                    <input type="file">
+                    <input type="file" accept="image/png, image/jpeg" onChange={(ev) => setImage(ev.target.files[0])}>
                     </input>
                 </div>
 
                 {/* Button to update */}
                 <div>
-                    <button onClick={() => { props.addSubmissionQuestion(question, marks) }}>
+                    <button onClick={() => { props.addSubmissionQuestion(question, image, marks) }}>
                         Update
                     </button>
                 </div>

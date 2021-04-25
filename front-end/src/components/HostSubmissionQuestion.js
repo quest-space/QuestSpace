@@ -30,7 +30,7 @@ const HostSubmissionQuestion = (props) => {
                         Uploaded Image:
                     </div>
                     <div className="questionText">
-                        <img src={props.question.imageURL}>
+                        <img src={props.roundInfo.questions[0].imageURL}>
                         </img>
                     </div>
                 </div>}
