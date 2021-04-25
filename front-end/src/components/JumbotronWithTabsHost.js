@@ -2,46 +2,43 @@ import React from "react";
 import "../css/common.css";
 
 const JumbotronWithTabs = (props) => {
-  const [bar1, setBorderBar1] = React.useState("5px solid #ffffff");
-  const [bar2, setBorderBar2] = React.useState("5px solid transparent");
-  const [bar3, setBorderBar3] = React.useState("5px solid transparent");
-  const [bar4, setBorderBar4] = React.useState("5px solid transparent");
-  const [bar5, setBorderBar5] = React.useState("5px solid transparent");
+
+  const getBarColor = (tab, bar) => {
+    if (tab === 'all') {
+      if (bar === 'bar1') return '5px solid #ffffff';
+      if (bar === 'bar2') return '5px solid transparent';
+      if (bar === 'bar3') return '5px solid transparent';
+      if (bar === 'bar4') return '5px solid transparent';
+      if (bar === 'bar5') return '5px solid transparent';
+    } else if (tab === 'live') {
+      if (bar === 'bar1') return '5px solid transparent';
+      if (bar === 'bar2') return '5px solid #ffffff';
+      if (bar === 'bar3') return '5px solid transparent';
+      if (bar === 'bar4') return '5px solid transparent';
+      if (bar === 'bar5') return '5px solid transparent';
+    } else if (tab === 'upcoming') {
+      if (bar === 'bar1') return '5px solid transparent';
+      if (bar === 'bar2') return '5px solid transparent';
+      if (bar === 'bar3') return '5px solid #ffffff';
+      if (bar === 'bar4') return '5px solid transparent';
+      if (bar === 'bar5') return '5px solid transparent';
+    } else if (tab === 'past') {
+      if (bar === 'bar1') return '5px solid transparent';
+      if (bar === 'bar2') return '5px solid transparent';
+      if (bar === 'bar3') return '5px solid transparent';
+      if (bar === 'bar4') return '5px solid #ffffff';
+      if (bar === 'bar5') return '5px solid transparent';
+    } else {
+      if (bar === 'bar1') return '5px solid transparent';
+      if (bar === 'bar2') return '5px solid transparent';
+      if (bar === 'bar3') return '5px solid transparent';
+      if (bar === 'bar4') return '5px solid transparent';
+      if (bar === 'bar5') return '5px solid #ffffff';
+    }
+  }
 
   const setBar = (x) => {
     props.setTab(x);
-
-    if (x === "all") {
-      setBorderBar3("5px solid transparent");
-      setBorderBar2("5px solid transparent");
-      setBorderBar5("5px solid transparent");
-      setBorderBar4("5px solid transparent");
-      setBorderBar1("5px solid #ffffff");
-    } else if (x === "live") {
-      setBorderBar1("5px solid transparent");
-      setBorderBar3("5px solid transparent");
-      setBorderBar2("5px solid #ffffff");
-      setBorderBar4("5px solid transparent");
-      setBorderBar5("5px solid transparent");
-    } else if (x === "upcoming") {
-      setBorderBar1("5px solid transparent");
-      setBorderBar2("5px solid transparent");
-      setBorderBar3("5px solid #ffffff");
-      setBorderBar4("5px solid transparent");
-      setBorderBar5("5px solid transparent");
-    } else if (x === "past") {
-      setBorderBar1("5px solid transparent");
-      setBorderBar2("5px solid transparent");
-      setBorderBar4("5px solid #ffffff");
-      setBorderBar3("5px solid transparent");
-      setBorderBar5("5px solid transparent");
-    } else {
-      setBorderBar1("5px solid transparent");
-      setBorderBar3("5px solid transparent");
-      setBorderBar4("5px solid transparent");
-      setBorderBar2("5px solid transparent");
-      setBorderBar5("5px solid #ffffff");
-    }
   };
 
   return (
@@ -82,35 +79,35 @@ const JumbotronWithTabs = (props) => {
           <button
             className="parent"
             onClick={() => setBar("all")}
-            style={{ borderBottom: bar1, width: "20%" }}
+            style={{ borderBottom: getBarColor(props.tab, 'bar1'), width: "20%" }}
           >
             All
           </button>
           <button
             className="parent"
             onClick={() => setBar("live")}
-            style={{ borderBottom: bar2, width: "20%" }}
+            style={{ borderBottom: getBarColor(props.tab, 'bar2'), width: "20%" }}
           >
             Live
           </button>
           <button
             className="parent"
             onClick={() => setBar("upcoming")}
-            style={{ borderBottom: bar3, width: "20%" }}
+            style={{ borderBottom: getBarColor(props.tab, 'bar3'), width: "20%" }}
           >
             Upcoming
           </button>
           <button
             className="parent"
             onClick={() => setBar("past")}
-            style={{ borderBottom: bar4, width: "20%" }}
+            style={{ borderBottom: getBarColor(props.tab, 'bar4'), width: "20%" }}
           >
             Past
           </button>
           <button
             className="parent"
             onClick={() => setBar("pending")}
-            style={{ borderBottom: bar5, width: "20%" }}
+            style={{ borderBottom: getBarColor(props.tab, 'bar5'), width: "20%" }}
           >
             Pending
           </button>
