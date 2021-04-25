@@ -60,9 +60,6 @@ const Leaderboard = (props) => {
                     return (
                         <div className="slimBox" key={j}>
                             <div style={{ display: "inline-block" }}>
-                                {props.board[info].ranking + ": "}
-                            </div>
-                            <div style={{ display: "inline-block" }}>
                                 {props.board[info].username}
                             </div>
                             <div style={{ display: "inline", float: "right" }}>
