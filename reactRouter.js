@@ -40,6 +40,10 @@ router.use("/qsadminhomepage", async (req, res) => {
 router.use("/qsadminhomepage", ensureAuth('qs-admin'), express.static("front-end/build"));
 
 router.use(async (req, res) => {
+  if (req.url === '/api*') {
+    next();
+    return;
+  }
   try{
     const token = req.cookies.qsUser;
     const decodedToken = await verifyToken(token);
