@@ -7,6 +7,7 @@ const HostQuizTemplate = (props) => {
     // By default, the new qestion is mcq
     const [question, setQuestion] = React.useState({ questionType: "MCQ" })
     const [image, setImage] = React.useState()
+    const [errors, setErrors] = React.useState([``, ``])
 
     const setStatement = (ev) => {
         const temp = { ...question }
@@ -40,8 +41,10 @@ const HostQuizTemplate = (props) => {
 
     const verifyAndAddQuestion = () => {
         let error = ""
+        const temp = [``, ``]
         if (question.statement === undefined || question.statement === ``) {
             error = "Question Statement is missing."
+            temp[0] = "Question Statement is missing."
         }
 
         // For MCQ 
@@ -49,22 +52,30 @@ const HostQuizTemplate = (props) => {
             for (let i = 0; i < question.options.length; i++) {
                 if (question.options[i] === "") {
                     error = error + "\nEmpty answer choice present: either fill it in or remove it."
+                    temp[1] = "Empty answer choice present."
                     break
                 }
             }
 
-            if (checkDuplicates(question.options))
+            if (checkDuplicates(question.options)) {
                 error = error + "\nDuplicate answer choices present. Remove one of them."
+                temp[1] = temp[1] + " Duplicate answer choices present."
+            }
         }
 
         // For numeric question
         if (question.questionType === `Numeric`) {
-            if (question.answer === "")
+            if (question.answer === "") {
                 error = error + "\nCorrect Answer is not provided."
+                temp[1] = "Correct Answer is not provided."
+            }
         }
 
-        if (error !== "")
-            alert(error)
+        setErrors(temp)
+
+        if (error !== "") {
+            // alert(error)
+        }
         else
             props.addQuestion(question, image)
     }
@@ -92,6 +103,9 @@ const HostQuizTemplate = (props) => {
                 <div className="questionHeading">
                     Question Statement:
                 </div>
+                < div className="qError">
+                    {errors[0]}
+                </div>
                 <div className="questionText">
                     <textarea rows="1" placeholder="Enter here" onChange={(ev) => setStatement(ev)} onInput={(ev) => { ev.target.style.height = ''; ev.target.style.height = ev.target.scrollHeight + 'px' }}>
                     </textarea>
@@ -111,7 +125,12 @@ const HostQuizTemplate = (props) => {
                     Answer Type:
                 </div>
                 <div className="questionText">
-                    <select defaultValue="Multiple Choice" onChange={(ev) => setAnswerType(ev)}>
+                    <select defaultValue="Multiple Choice" onChange={(ev) => {
+                        const temp = [...errors]
+                        temp[1] = ``
+                        setErrors(temp)
+                        setAnswerType(ev)
+                    }}>
                         <option>
                             Multiple Choice
                         </option>
@@ -122,8 +141,8 @@ const HostQuizTemplate = (props) => {
                 </div>
 
                 {/* MCQ options or Numeric Response*/}
-                {question.questionType === `MCQ` && <HostMcqTemplate setMCQ={setMCQ} />}
-                {question.questionType === `Numeric` && <HostNumericTemplate setNumeric={setNumeric} />}
+                {question.questionType === `MCQ` && <HostMcqTemplate setMCQ={setMCQ} errors={errors} />}
+                {question.questionType === `Numeric` && <HostNumericTemplate setNumeric={setNumeric} errors={errors} />}
 
             </div>
 

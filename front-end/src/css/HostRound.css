@@ -179,3 +179,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; /*<-- Apparently some margin are still there even though it's hidden*/
 }
+
+.qError {
+  display: inline;
+  /* margin-left: 4px; */
+  color: #f13636;
+  font-size: 15px;
+}

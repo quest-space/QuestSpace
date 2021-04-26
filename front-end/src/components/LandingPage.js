@@ -23,7 +23,7 @@ const LandingPage = () => {
                 <Row style={{ paddingBottom: "0px", paddingLeft: "70px" }}>
 
                     <Col md="4" className="d-none d-md-block" style={{ paddingBottom: "200px" }}>
-                        <img src={questspace} style={{ paddingTop: "150px" }}>
+                        <img src={questspace} style={{ paddingTop: "100px" }}>
                         </img>
                         <div className="questspace">
                             <span style={{ color: "#415F78" }}>Quest</span>
@@ -85,7 +85,7 @@ const LandingPage = () => {
                         {/* <div style={{ display: "inline", paddingRight: "0px", float: "right" }}>
                             <Button text="About Us" class="btn2" href="#about" />
                         </div> */}
-                        <div style={{ display: "inline", float: "right", paddingTop: "100px" }}>
+                        <div style={{ display: "inline", float: "right", paddingTop: "40px" }}>
                             <Button text="Sign In" class="btn2" link="/signin" />
                         </div>
                         <div className="questspace">
