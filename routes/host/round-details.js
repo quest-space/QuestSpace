@@ -11,7 +11,7 @@
     const TimeFormatter = require(`../helpers/helperFunctions`);
 
     const router = Router();
-    const currTime = Date.now();
+    
 
     // global variables
     const FORBIDDEN_STATUS_CODE = 403;
@@ -61,7 +61,7 @@
 
     router.post(`/:questid/:roundid`, async (req, res) => {
         // Collect all round details here + Questions + Leaderbaord + Submission if it is a Submission based round. Add quest logo URL too
-        
+        const currTime = Date.now();
         try {
             // gather round details
             const quest_details = await Quest.findOne({_id: req.params.questid})

@@ -19,8 +19,6 @@ const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
 const Helper = require(`../helpers/helperFunctions`);
 
-const currTime = Date.now();
-
 router.post(`/:questid/:roundid/:questionid`, async (req, res) => {
     try{
         const quest_detail = await Quest.findOne({_id: req.params.questid})

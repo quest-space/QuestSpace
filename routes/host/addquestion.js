@@ -19,7 +19,7 @@ const { handleErrorsFromDB } = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
 const Helper = require(`../helpers/helperFunctions`);
 
-const currTime = Date.now();
+
 
 router.post(`/setEach/:questid/:roundid`, async (req, res) => {
     try{

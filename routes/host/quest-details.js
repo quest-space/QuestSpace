@@ -21,7 +21,7 @@ const DEFAULT_RATING = 3;
 const { handleErrorsFromDB, getConciseDate, check_Round_Validity} = require(`../helpers/helperFunctions`);
 const { sendRes } = require(`../helpers/sendRes`);
 
-const currTime = Date.now();
+
 
 // Function to check status of quest (live, past, upcoming)
 const check_quest_status = (questdata, currTime) =>{
@@ -29,7 +29,7 @@ const check_quest_status = (questdata, currTime) =>{
     console.log('currTime: ' + (new Date(currTime)).toString());
     console.log('startTime: ' + (new Date(questdata[0].startTime.getTime())).toString());
     console.log('endTime: ' + (new Date(questdata[0].endTime.getTime())).toString());
-    console.log('')
+    console.log('');
     console.log(`currTime: ${currTime}`);
     console.log(`startTime: ${questdata[0].startTime.getTime()}`);
     console.log(`endTime: ${questdata[0].endTime}`);
@@ -226,6 +226,7 @@ router.post(`/:questid/:roundid/deleteround`, async (req, res) => {
 });
 
 router.post(`/:questid`, async (req, res) => {
+    const currTime = Date.now();
     try{
     const find_quest = await Quest.find({ _id: req.params.questid}); // find quest by quest_id
 

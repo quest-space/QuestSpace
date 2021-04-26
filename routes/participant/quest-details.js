@@ -55,7 +55,7 @@ router.post(`/:questid/rate`, async (req, res) => {
 router.use(`/`, require(`./round-details`));
 
 //let username = 'HassaanAW';
-const currTime = Date.now();
+
 
 /* Idea: Check public or private
 If private, user is already enrolled. 
@@ -83,6 +83,8 @@ const check_quest_status = (questdata, currTime) =>{
 
 
 router.post(`/:questid`, async (req, res) => {
+    const currTime = Date.now();
+    
     try{
     const find_quest = await Quest.find({ _id: req.params.questid}); // find quest by quest_id
 

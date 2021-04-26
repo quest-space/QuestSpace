@@ -24,11 +24,12 @@ const { findOne } = require("../../models/participant");
 const { attemptRound } = require(`./attemptRound`);
 const { makeLeaderboard } = require(`../helpers/leaderboard_helper`);
 
-let username = 'HassaanAW';
-const currTime = Date.now();
+
 
 // authentication:
 router.use(`/:questid/:roundid`, async (req, res, next) => {
+
+  const currTime = Date.now();
   // console.log(`came here`);
   // console.log({participationData: req.body.participationData});
   // console.log({questData: req.body.questData});
@@ -115,7 +116,7 @@ router.post(`/:questid/:roundid/attempt`, async (req, res) => {
 });
 
 router.post(`/:questid/:roundid`, async (req, res) => {
-  
+  const currTime = Date.now();
   try {
     
     const find_quest = await Quest.find({ _id: req.params.questid}); // find quest by questid
