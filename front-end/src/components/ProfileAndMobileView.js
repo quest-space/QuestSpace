@@ -55,6 +55,7 @@ const ProfileAndMobileView = (props) => {
             boxShadow: "none",
           }}
         >
+          
           <div className="dropdown-item">
             <div className="circle1">
               <span className="initials1">{initials}</span>
