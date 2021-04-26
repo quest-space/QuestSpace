@@ -53,7 +53,7 @@ const EditQuestDetailsFormat = (props) => {
       formData.append(`logo`, logo);
     }
     
-    const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/create-edit-quest/edit`, {
+    const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/create-edit-quest/edit`, {
       method: "POST",
       header: { 'Content-Type': 'multipart/form-data' },
       body: formData,
