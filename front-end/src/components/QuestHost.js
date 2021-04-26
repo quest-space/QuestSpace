@@ -19,7 +19,7 @@ const QuestHost = () => {
     
     const requestQuest = async () => {
     
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

@@ -16,7 +16,7 @@ const SubmissionRound = (props) => {
     const [modalText, setModalText] = React.useState("")
 
     const fetchQuestion = async (answer) => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}/attempt`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}/attempt`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ const SubmissionRound = (props) => {
 
         const formData = new FormData(ev.target)
 
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}/submit`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}/submit`, {
             method: "POST",
             header: { 'Content-Type': 'multipart/form-data' },
             body: formData,
