@@ -23,6 +23,8 @@ const headings = {
 
 const CardsContainer = (props) => {
 
+    console.log(`tabVAULUEE`, props.tab);
+
     // const [cards, setCards] = React.useState({})
     const [response, setResponse] = React.useState({ "home": {} })
     const [render, setRender] = React.useState(false);
@@ -71,15 +73,17 @@ const CardsContainer = (props) => {
         tab = "myQuests"
     }
     let cards = response[tab]
+    console.log('response')
     console.log(cards)
     if (!render) {
+        
         setRender(true)
         apiCall()
     }
 
     return (
         <div>
-            {(props.tab === "home" || props.tab === "allQuests") &&
+            {(props.tab === "home" || props.tab === "allQuests") && cards &&
                 <div className="container" id="cc" style={{ marginTop: '0rem', paddingBottom: "5.5rem" }}>
                     {Object.keys(cards).map((key, i) => {
                         return (
@@ -134,7 +138,7 @@ const CardsContainer = (props) => {
                                         margin: "1.5rem",
                                         padding: "2rem"
                                     }}>
-                                        <i className="fas fa-exclamation-circle"></i> Not Available
+                                        <i className="fas fa-exclamation-circle"></i>&nbsp;&nbsp;No Quests
                                     </div>
                                 }
 
@@ -148,7 +152,7 @@ const CardsContainer = (props) => {
                 </div>
             }
             {
-                (props.tab === "live" || props.tab === "past" || props.tab === "upcoming" || props.tab === "all") &&
+                (props.tab === "live" || props.tab === "past" || props.tab === "upcoming" || props.tab === "all") && cards &&
                 <div className="container" id="cc" style={{ marginTop: '0rem', paddingBottom: "5.5rem" }}>
                     {Object.keys(cards).map((key, i) => {
                         return (
@@ -203,7 +207,7 @@ const CardsContainer = (props) => {
                                         margin: "1.5rem",
                                         padding: "2rem"
                                     }}>
-                                        <i className="fas fa-exclamation-circle"></i> Not Available
+                                        <i className="fas fa-exclamation-circle"></i>&nbsp;&nbsp;No Quests
                                     </div>
                                 }
 

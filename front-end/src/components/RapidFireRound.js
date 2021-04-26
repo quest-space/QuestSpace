@@ -98,7 +98,7 @@ const RapidFireRound = (props) => {
 
             </Container>}
 
-            <QuestionModal trigger={show} onClose={onClose} text={modalText} score={score} />
+            <QuestionModal trigger={show} onClose={onClose} text={modalText} score={score} prevRating={props.prevRating} />
 
         </React.Fragment >
     )

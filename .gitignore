@@ -118,6 +118,7 @@ dist
 
 # testing files
 test.js
+testdb.js
 dump.js
 testDB.js
 testdb.js

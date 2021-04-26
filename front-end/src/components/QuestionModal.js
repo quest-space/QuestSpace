@@ -1,20 +1,43 @@
 import React from "react"
-
+import { useParams } from "react-router-dom"
 
 const QuestionModal = (props) => {
+
+    const { questID } = useParams()
+
+    const [rating, setRating] = React.useState(props.prevRating ? props.prevRating : 0)
+    const [ratingHover, setRatingHover] = React.useState()
+    const [hover, setHover] = React.useState(false)
 
     const closeModal = () => {
         props.onClose && props.onClose()
     }
 
-    const rating = 0
+    const sendRating = async () => {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/rate`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ratingScore: rating,
+            }),
+            credentials: "include",
+        })
+
+        const responseBody = await response.json()
+
+        if (response.status !== 201) {
+            console.log(`Error in rating.`)
+            alert(JSON.stringify(responseBody) + "Error in rating.")
+        }
+        closeModal()
+    }
 
     return (
         <React.Fragment>
 
-            {/* {props.trigger ? <div tabIndex="0" className="questionModal" onKeyDown={(ev) => { */}
-
-            {true ? <div tabIndex="0" className="questionModal" onKeyDown={(ev) => {
+            {props.trigger ? <div tabIndex="0" className="questionModal" onKeyDown={(ev) => {
                 if (ev.key === `Escape` || ev.key === `Esc`)
                     closeModal()
             }}>
@@ -30,38 +53,52 @@ const QuestionModal = (props) => {
 
                     {/* Text */}
                     <p style={{ textAlign: "center" }}>
-                        {props.text} Round has ended
+                        {props.text}
                     </p>
 
                     {/* Score */}
                     {props.score !== undefined &&
-                        <p>
+                        <p style={{ margin: "0px 0px 10px" }}>
                             Your score is {props.score}
                         </p>
                     }
-                    <p style= {{margin: "0px 0px 10px"}}>
-                        Your score is {props.score} 10
-                    </p>
+
                     {/* Rating Stuff */}
-                    <p style={{ fontWeight: "500" , margin: "0px 0px 3px"}}>
+                    <p style={{ fontWeight: "500", margin: "0px 0px 3px" }}>
                         Rate the Host
                     </p>
 
-                    <div style={{ display: "flex", flexDirection: "row" , margin:"0px 0px 25px"}}>
-                        {["", "", "", "", ""].map((_, index) => {
+                    {/* Stars */}
+                    <div style={{ display: "flex", flexDirection: "row", margin: "0px 0px 10px", cursor: "pointer" }} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+
+                        {/* Rating when not hovered */}
+                        {!hover && ["", "", "", "", ""].map((_, index) => {
                             if (index <= rating - 1) {
                                 return (
-                                    <i key={index} className="fa fa-star"></i>
+                                    <i key={index} className="fa fa-star" onClick={() => setRating(index + 1)} onMouseEnter={() => setRatingHover(index + 1)}></i>
                                 )
                             } else {
                                 return (
-                                    <i key={index} className="far fa-star"></i>
+                                    <i key={index} className="far fa-star" onClick={() => setRating(index + 1)} onMouseEnter={() => setRatingHover(index + 1)}></i>
                                 )
                             }
                         })}
+                        {/* Rating when hovered */}
+                        {hover && ["", "", "", "", ""].map((_, index) => {
+                            if (index <= ratingHover - 1) {
+                                return (
+                                    <i key={index} className="fa fa-star" onClick={() => setRating(index + 1)} onMouseEnter={() => setRatingHover(index + 1)}></i>
+                                )
+                            } else {
+                                return (
+                                    <i key={index} className="far fa-star" onClick={() => setRating(index + 1)} onMouseEnter={() => setRatingHover(index + 1)}></i>
+                                )
+                            }
+                        })}
+
                     </div>
-                    
-                    <button>
+
+                    <button onClick={() => sendRating()}>
                         Rate
                     </button>
 

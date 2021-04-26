@@ -34,7 +34,7 @@ router.post(`/who-am-i`, async (req, res) => {
       returnObj[`lastname`] = partDetails.lastname;
       returnObj[`dateofbirth`] = partDetails.dateofbirth;
       returnObj[`organization`] = partDetails.organization;
-    } else if (req.body.username === `host`) {
+    } else if (req.body.userType === `host`) {
       const hostDetails = await Host.findOne({ username: req.body.username });
       returnObj[`organization`] = hostDetails.organization;
       returnObj[`representativeName`] = hostDetails.representativeName;
