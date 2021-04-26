@@ -22,7 +22,7 @@ const HostQuestDetails = (props) => {
                 paddingRight: "3rem"
             }}
         >
-            <QuestDetailsFormat
+            <EditQuestDetailsFormat
                 questname={props.response.quest.questName}
                 hostname={props.response.quest.hostUser}
                 hostrating={props.response.quest.rating}

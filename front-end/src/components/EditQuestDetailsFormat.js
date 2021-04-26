@@ -1,5 +1,6 @@
 import React from "react";
-import HeadSubhead from "./HeadSubhead";
+import EditHeadSubhead from "./EditHeadSubhead";
+import "../css/Details.css";
 import "../css/questdetails.css";
 
 /*
@@ -8,6 +9,12 @@ How to use:
 */
 
 const EditQuestDetailsFormat = (props) => {
+  const [questType, setQuestType] = React.useState(props.type);
+  const [startDate, setStartDate] = React.useState(props.startingtime);
+  const [endDate, setEndDate] = React.useState(props.endingtime);
+
+  console.log(startDate);
+  
   let full = [];
   let empty = [];
   for (let i = 0; i < parseInt(props.hostrating); i++) {
@@ -16,6 +23,15 @@ const EditQuestDetailsFormat = (props) => {
   for (let i = 0; i < 5 - parseInt(props.hostrating); i++) {
     empty.push(0);
   }
+
+  const updateState = (ev, stateUpdateFn) => {
+    stateUpdateFn(ev.target.value);
+  };
+
+  const setType = (ev) => {
+    setQuestType(ev.target.value)
+  }
+
   return (
     <div style={{ marginBottom: "80px" }}>
       <div
@@ -79,12 +95,84 @@ const EditQuestDetailsFormat = (props) => {
           return <i key={index} className="far fa-star"></i>;
         })}
         {/* </p> */}
+        {/*  */}
+        
+
+        {/* ------------------------- */}
 
         <div>
-          <HeadSubhead heading="Type" subheading={props.type} />
-          <HeadSubhead heading="Starts" subheading={props.startingtime} />
-          <HeadSubhead heading="Ends" subheading={props.endingtime} />
-          <HeadSubhead heading="About" subheading={props.about} />
+          <div
+            className="display-4"
+            style={{
+              paddingTop: "1rem",
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "#46B7A1",
+              marginLeft: "0rem",
+              wordWrap: "break-word",
+            }}
+          >
+            Type
+          </div>
+          <div
+            className="display-4"
+            style={{
+              fontWeight: "400",
+              fontSize: "19px",
+              color: "#313131",
+              marginLeft: "0rem",
+              wordWrap: "break-word",
+              paddingTop: `0.9em`
+            }}
+          >
+            <select defaultValue={props.type} onChange={(ev) => updateState(ev, setQuestType)} className="form-control" style={{ width: '10rem', maxWidth: '100%' }}>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div
+            className="display-4"
+            style={{
+              paddingTop: "1rem",
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "#46B7A1",
+              marginLeft: "0rem",
+              wordWrap: "break-word",
+            }}
+          >
+            Starts
+          </div>
+          <div
+            className="display-4"
+            style={{
+              fontWeight: "400",
+              fontSize: "19px",
+              color: "#313131",
+              marginLeft: "0rem",
+              wordWrap: "break-word"
+            }}
+          >
+            <input
+              required
+              type="datetime-local"
+              className="inputdetail responsive"
+              style={{ fontSize: "19px", paddingTop: "0.5rem", display: "block" }}
+              // onblur="if(this.value==='')this.type='text'"
+              value={startDate}
+              onChange={(ev) => updateState(ev, setStartDate)}
+            />
+          </div>
+        </div>
+
+
+        <div>
+          <EditHeadSubhead heading="Starts" subheading={props.startingtime} />
+          <EditHeadSubhead heading="Ends" subheading={props.endingtime} />
+          <EditHeadSubhead heading="About" subheading={props.about} />
         </div>
         {/* <div
           style={{
