@@ -8,14 +8,6 @@ How to use:
 <QuestDetailsFormat hostname="IEEE LUMS" hostrating="3" startingtime="11:00 am, 21st March 2021" endingtime="11:00 am, 22nd March 2021" type="Public" about="CodinGuru is being organized at national level as students from different universities across Pakistan are invited to exhibit their coding skills. It is being supervised by Department of Computer Science, SSE, LUMS. ... CodinGuru 2020 is all set to be bigger, brighter and bolder than its predecessor.CodinGuru is being organized at national level as students from different universities across Pakistan are invited to exhibit their coding skills. It is being supervised by Department of Computer Science, SSE, LUMS. ... CodinGuru 2020 is all set to be bigger, brighter and bolder than its predecessor." imgsrc={codinguru}/>
 */
 
-const parseDate = (date) => {
-  // const d = new Date(date);
-  // const val = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}T${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}.${d.getMilliseconds()}`;
-  // console.log({val});
-  // return val;
-  new Date()
-}
-
 const EditQuestDetailsFormat = (props) => {
   
   // normal variables:
@@ -30,6 +22,7 @@ const EditQuestDetailsFormat = (props) => {
   const [isPropsSet, setIsPropsSet] = React.useState(false);
 
   // errors:
+  const [errors, setErrors] = React.useState({});
 
   if (!isPropsSet && props.startTimeRaw) {
     setIsPropsSet(true);
@@ -65,8 +58,15 @@ const EditQuestDetailsFormat = (props) => {
     console.log('responseerros', responseBody.errors)
 
     if (response.status !== 200) {
-        console.log(`Error in fetching`)
-        alert(responseBody.errors);
+        console.log(`Error in fetching`);
+        if (responseBody.errors) {
+          setErrors(responseBody.errors);
+        } else if (responseBody.genericErrMsg) {
+          alert(responseBody.genericErrMsg);
+        } else {
+          console.log(responseBody.genericErrMsg);
+          alert(`There seems to be a problem. Pease contact QuestSpace team.`)
+        }
     } else {
         console.log(`Successful fetching`)
         props.requestQuest();
@@ -92,7 +92,8 @@ const EditQuestDetailsFormat = (props) => {
   };
 
   return (
-    <div style={{ marginBottom: "80px" }}>
+    <div>
+    <div style={{ marginBottom: "15px" }}>
       <div
         className="col-md-12"
         style={{ margin: "0em", padding: "0em" }}
@@ -171,7 +172,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            Type
+            Type&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
@@ -203,7 +204,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            Starts
+            Starts&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
@@ -224,6 +225,7 @@ const EditQuestDetailsFormat = (props) => {
               value={startDate}
               onChange={(ev) => updateState(ev, setStartDate)}
             />
+            {errors.startTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.startTime.message}</div>}
           </div>
         </div>
 
@@ -239,7 +241,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            Ends
+            Ends&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
@@ -260,6 +262,7 @@ const EditQuestDetailsFormat = (props) => {
               value={endDate}
               onChange={(ev) => updateState(ev, setEndDate)}
             />
+            {errors.endTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.endTime.message}</div>}
           </div>
         </div>
         
@@ -277,7 +280,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            Description
+            Description&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
@@ -297,6 +300,7 @@ const EditQuestDetailsFormat = (props) => {
               value={description}
               onChange={(ev) => updateState(ev, setDescription)}
             />
+            {errors.description && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.description.message}</div>}
           </div>
         </div>
 
@@ -314,7 +318,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            About
+            About&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
@@ -334,6 +338,7 @@ const EditQuestDetailsFormat = (props) => {
               value={about}
               onChange={(ev) => updateState(ev, setAbout)}
             />
+            {errors.about && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.about.message}</div>}
           </div>
         </div>
 
@@ -375,32 +380,9 @@ const EditQuestDetailsFormat = (props) => {
                 setLogo(file);
               }}
             />
+            {errors.logo && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.logo.message}</div>}
           </div>
         </div>
-
-
-        {props.editable && props.editable === true && <div>
-            <div className="d-none d-md-block" style={{ textAlign: "right" }}>
-                <button className="btnCancel" onClick={() => props.setIsEditing(false)}>
-                    Cancel <i className="fa fa-times"></i>
-                </button>
-                <span style={{ marginBottom: "0.5rem" }}>
-                    <button className="btnBegin" onClick={() => update()}>
-                    Update <i className="fa fa-check"></i>
-                    </button>
-                </span>
-            </div>
-            <div className="d-md-none" style={{ textAlign: "center" }}>
-                <button className="btnCancel" onClick={() => props.setIsEditing(false)}>
-                    Cancel <i className="fa fa-times"></i>
-                </button>
-                <span style={{ marginBottom: "0.5rem" }}>
-                    <button className="btnBegin" onClick={() => update()}>
-                    Update <i className="fa fa-check"></i>
-                    </button>
-                </span>
-            </div>
-        </div>}
 
         {/* ----------------------- */}
         {/* <div
@@ -418,6 +400,29 @@ const EditQuestDetailsFormat = (props) => {
           } */}
         {/* </div> */}
       </div>
+    </div>
+      {props.editable && props.editable === true && <div>
+        <div className="d-none d-md-block" style={{ textAlign: "right" }}>
+            <button className="btnCancel" onClick={() => props.setIsEditing(false)}>
+                Cancel <i className="fa fa-times"></i>
+            </button>
+            <span style={{ marginBottom: "0.5rem" }}>
+                <button className="btnBegin" onClick={() => update()}>
+                Update <i className="fa fa-check"></i>
+                </button>
+            </span>
+        </div>
+        <div className="d-md-none" style={{ textAlign: "center" }}>
+            <button className="btnCancel" onClick={() => props.setIsEditing(false)}>
+                Cancel <i className="fa fa-times"></i>
+            </button>
+            <span style={{ marginBottom: "0.5rem" }}>
+                <button className="btnBegin" onClick={() => update()}>
+                Update <i className="fa fa-check"></i>
+                </button>
+            </span>
+        </div>
+    </div>}
     </div>
   );
 };
