@@ -21,10 +21,10 @@ const HostParticipantList = (props) => {
       console.log(uname)
       const responseBody = await response.json()
       console.log('response', responseBody)
-      alert(responseBody)
 
       if (response.status !== 200) {
           console.log(`Error fetching.`)
+          alert(responseBody.error)
       } else {
           console.log(`Successful fetching.`)
           props.setRender(true)
@@ -42,12 +42,13 @@ const HostParticipantList = (props) => {
             "participant_username": uname,
         }),
       })
-      console.log(uname)
       const responseBody = await response.json()
       console.log('response', responseBody)
+      
 
       if (response.status !== 200) {
           console.log(`Error fetching.`)
+          alert(responseBody.error)
       } else {
           console.log(`Successful fetching.`)
           props.setRender(true)
