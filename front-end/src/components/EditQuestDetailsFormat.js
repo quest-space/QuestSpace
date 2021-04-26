@@ -225,7 +225,7 @@ const EditQuestDetailsFormat = (props) => {
               value={startDate}
               onChange={(ev) => updateState(ev, setStartDate)}
             />
-            {errors.startTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.startTime.message}</div>}
+            {errors.startTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.startTime.message}</div>}
           </div>
         </div>
 
@@ -262,7 +262,7 @@ const EditQuestDetailsFormat = (props) => {
               value={endDate}
               onChange={(ev) => updateState(ev, setEndDate)}
             />
-            {errors.endTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.endTime.message}</div>}
+            {errors.endTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.endTime.message}</div>}
           </div>
         </div>
 
@@ -300,7 +300,7 @@ const EditQuestDetailsFormat = (props) => {
               value={description}
               onChange={(ev) => updateState(ev, setDescription)}
             />
-            {errors.description && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.description.message}</div>}
+            {errors.description && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.description.message}</div>}
           </div>
         </div>
 
@@ -338,7 +338,7 @@ const EditQuestDetailsFormat = (props) => {
               value={about}
               onChange={(ev) => updateState(ev, setAbout)}
             />
-            {errors.about && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.about.message}</div>}
+            {errors.about && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.about.message}</div>}
           </div>
         </div>
 
@@ -380,7 +380,7 @@ const EditQuestDetailsFormat = (props) => {
                 setLogo(file);
               }}
             />
-            {errors.logo && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.logo.message}</div>}
+            {errors.logo && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.logo.message}</div>}
           </div>
         </div>
 

@@ -274,7 +274,7 @@ const EditProfileHost = (props) => {
             value={RepName}
             onChange={(ev) => updateState(ev, setRepName)}
           />
-          {errors.representativeName && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.representativeName.message}</div>}
+          {errors.representativeName && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.representativeName.message}</div>}
         </div>
         {/* </p> */}
 
@@ -302,7 +302,7 @@ const EditProfileHost = (props) => {
             value={RepDesignation}
             onChange={(ev) => updateState(ev, setRepDesignation)}
           />
-          {errors.representativeDesignation && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.representativeDesignation.message}</div>}
+          {errors.representativeDesignation && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.representativeDesignation.message}</div>}
         </div>
         {/* </p> */}
 
@@ -330,7 +330,7 @@ const EditProfileHost = (props) => {
             value={Phone}
             onChange={(ev) => updateState(ev, setPhone)}
           />
-          {errors.phone && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.phone.message}</div>}
+          {errors.phone && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.phone.message}</div>}
         </div>
         {/* </p> */}
 
@@ -358,7 +358,7 @@ const EditProfileHost = (props) => {
             value={Institution}
             onChange={(ev) => updateState(ev, setInstitution)}
           />
-          {errors.organization && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.organization.message}</div>}
+          {errors.organization && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.organization.message}</div>}
         </div>
         {/* </p> */}
 
@@ -386,7 +386,7 @@ const EditProfileHost = (props) => {
             placeholder={HiddenPassword}
             onChange={(ev) => updateState(ev, setPassword)}
           />
-          {errors.password && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.password.message}</div>}
+          {errors.password && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.password.message}</div>}
         </div>
         {/* </p> */}
 
