@@ -10,7 +10,7 @@ const HostParticipantList = (props) => {
     const [errorAdd, seterrorAdd] = React.useState("none")
 
     const removeParticipant = async (uname) => {
-      const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/removeparticipant`, {
+      const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/removeparticipant`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ const HostParticipantList = (props) => {
     } 
 
     const addParticipant = async (uname) => {
-      const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/addparticipant`, {
+      const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/addparticipant`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
