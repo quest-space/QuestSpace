@@ -53,6 +53,7 @@ router.use(async (req, res, next) => {
     res.cookie('qsUser', newToken, { httpOnly: true, maxAge: maxAge * 1000 });
     next();
   } catch (err) {
+    console.log('err', err.message);
     res.redirect('/signin');
   }
 });
