@@ -83,6 +83,7 @@ const HostRoundsList = (props) => {
 
         if (response.status !== 200) {
             console.log(`Error fetching.`)
+            alert(responseBody.error)
         } else {
             console.log(`Successful fetching.`)
             setDisplayForm(false)
@@ -132,9 +133,9 @@ const HostRoundsList = (props) => {
                 return (
                     <div key={j} className="myBox c" style={{ paddingRight: "0rem", borderRadius: "0rem" }}>
 
-                        {props.response.editable == true && <button className="cross1" onClick={() => { deleteQuest(props.response.rounds[info].roundNum) }}> <span className="material-icons" style={{ fontSize: "28px", color: "#EB5757" }}> close </span> </button>}
+                        {props.response.editable == true && <button className="cross1" onClick={() => { deleteQuest(props.response.rounds[info].roundNum) }}> <span className="material-icons" style={{ fontSize: "22px" }}> close </span> </button>}
                         <div onClick={() => { goToRound(props.response.rounds[info].roundNum) }}>
-                            <p style={{ fontWeight: "500", fontSize: "22px", marginBottom: "0rem", display: "inline-block", color: "rgb(49, 49, 49)" }}>{"Round " + props.response.rounds[info].roundNum + ": " + props.response.rounds[info].roundName}</p>
+                            <p style={{ fontWeight: "500", fontSize: "22px", marginBottom: "0rem", display: "inline-block", color: "#rgb(108, 108, 108)" }}>{"Round " + props.response.rounds[info].roundNum + ": " + props.response.rounds[info].roundName}</p>
                             <p style={{ fontWeight: "normal", fontSize: "18px", marginBottom: "0.5rem" }}>{props.response.rounds[info].roundType}</p>
                             <p className="text-muted" style={left}>{"Starts: " + props.response.rounds[info].startTime}</p>
                             <div>
@@ -147,12 +148,12 @@ const HostRoundsList = (props) => {
 
             {
                 displayForm === true && <div className="myBox" style={{ paddingRight: "0rem" }}>
-                    <button className="tick1" onClick={() => { addQuest() }}> <span className="material-icons" style={{ fontSize: "28px", color: "#238839" }}> done </span></button>
-                    <button className="cross1" onClick={() => { setDisplayForm(false) }}> <span className="material-icons" style={{ fontSize: "28px", color: "#EB5757" }}> close </span> </button>
+                    <button className="cross1" onClick={() => { setDisplayForm(false) }}> <span className="material-icons" style={{ fontSize: "22px" }}> close </span> </button>
+                    <button className="tick1" onClick={() => { addQuest() }}> <span className="material-icons" style={{ fontSize: "22px" }}> done </span></button>
 
-                    <p style={{ fontWeight: "600", fontSize: "22px", marginBottom: "0rem", display: "inline-block" }}>Add Round</p>
-                    <tr>
-                        <th style={{ display: "block" }}>
+                    <p style={{ fontWeight: "500", fontSize: "22px", marginBottom: "0rem", display: "inline-block" }}>Add Round</p>
+                    {/* <div style={{ display: "block" }}> */}
+                    <form>
                             <p
                                 className="display-4"
                                 style={{
@@ -166,19 +167,18 @@ const HostRoundsList = (props) => {
                             >
                                 Name
                                 <input
-                                    required
                                     type="text"
-                                    className="inputdetail responsive"
+                                    className="inputdetail "
                                     style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block" }}
                                     placeholder="Enter here"
                                     onChange={setName}
+                                    required
                                 />
                             </p>
-                        </th>
 
-                    </tr>
-                    <tr className="container responsive">
-                        <th>
+                    {/* </div> */}
+                    {/* <div> */}
+                        {/* <div className="column"> */}
                             <p
                                 className="display-4"
                                 style={{
@@ -191,25 +191,25 @@ const HostRoundsList = (props) => {
                             >
                                 Start
                                 <input
-                                    required
                                     type="text"
-                                    className="inputdetail responsive"
+                                    className="inputdetail "
                                     style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block" }}
                                     type="datetime-local"
                                     placeholder="1"
                                     onfocus="this.type='datetime-local'"
                                     onblur="if(this.value==='')this.type='text'"
                                     onChange={startDate}
+                                    required
                                 />
 
                             </p>
-                        </th>
-                        <th>
+                        {/* </div> */}
+                        {/* <div className="column"> */}
                             <p
                                 className="display-4"
                                 style={{
                                     paddingTop: "0.5rem",
-                                    paddingLeft: "3rem",
+                                    // marginLeft: "3rem",
                                     fontWeight: "400",
                                     fontSize: "18px",
                                     color: "#46B7A1",
@@ -218,27 +218,27 @@ const HostRoundsList = (props) => {
                             >
                                 End
                                 <input
-                                    required
                                     type="text"
-                                    className="inputdetail responsive"
+                                    className="inputdetail "
                                     style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block" }}
                                     type="datetime-local"
                                     placeholder="1"
                                     onfocus="this.type='datetime-local'"
                                     onblur="if(this.value==='')this.type='text'"
                                     onChange={endDate}
+                                    required
                                 />
 
                             </p>
-                        </th>
+                        {/* </div> */}
 
-                        <th>
-                            <div className="form-group form-inline" style={{ fontWeight: "600", fontSize: "22px", marginBottom: "0rem", display: "block" }}>
+                        {/* <div className="column"> */}
+                            {/* <div  style={{ fontWeight: "600", fontSize: "22px", marginBottom: "0rem", display: "block" }}> */}
                                 <p
                                     className="display-4"
                                     style={{
                                         paddingTop: "0.5rem",
-                                        paddingLeft: "3rem",
+                                        // paddingLeft: "3rem",
                                         marginBottom: "0rem",
                                         fontWeight: "400",
                                         fontSize: "18px",
@@ -248,19 +248,19 @@ const HostRoundsList = (props) => {
                                 >
                                     Type
                                 </p>
-                                <select onChange={setType} className="form-control" style={{ marginLeft: "3rem" }} id="sel1">
+                                <select onChange={setType} className="form-control" style={{ width:"30%" }} id="sel1">
                                     <option>Quiz</option>
                                     <option>Rapid Fire</option>
                                     <option>Submission</option>
                                 </select>
-                            </div>
-                        </th>
-
-                        {timeForm === true && <th>
+                        </form>
+                            {/* </div> */}
+                        {/* </div> */}
+                        {timeForm === true && <div>
                             <p
                                 className="display-4"
                                 style={{
-                                    paddingLeft: "3rem",
+                                    // paddingLeft: "3rem",
                                     fontWeight: "400",
                                     fontSize: "18px",
                                     color: "#46B7A1",
@@ -269,18 +269,18 @@ const HostRoundsList = (props) => {
                             >
                                 Time Limit
                                 <input
-                                    required
                                     type="text"
-                                    className="inputdetail responsive"
+                                    className="inputdetail "
                                     style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block" }}
                                     placeholder="Enter here"
                                     onChange={timeLimit}
+                                    required
                                 />
 
                             </p>
-                        </th>}
+                        </div>}
 
-                    </tr>
+                    {/* </div> */}
 
                     <p
                         className="display-4"
