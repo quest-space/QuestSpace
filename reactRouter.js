@@ -4,7 +4,7 @@ router = express.Router();
 const { createToken, verifyToken, maxAge } = require(`./routes/authentication/jwsTokenization`);
 
 const ensureAuth = (userType) => (
-  (req, res) => {
+  (req, res, next) => {
     if (userType === req.userType) {
       next();
     } else {
@@ -24,7 +24,7 @@ router.use("/", express.static("front-end/build"));
 router.use("/signin", express.static("front-end/build"));
 router.use("/signup", express.static("front-end/build"));
 
-router.use("/qsadminhomepage", async (req, res) => {
+router.use("/qsadminhomepage", async (req, res, next) => {
   try{
     const token = req.cookies.qsUser;
     const decodedToken = await verifyToken(token);
@@ -39,9 +39,10 @@ router.use("/qsadminhomepage", async (req, res) => {
 
 router.use("/qsadminhomepage", ensureAuth('qs-admin'), express.static("front-end/build"));
 
-router.use(async (req, res) => {
-  if (req.url === '/api*') {
+router.use(async (req, res, next) => {
+  if (req.url.includes('/api/') || req.url.includes('/apitest/')) {
     next();
+    console.log();
     return;
   }
   try{
