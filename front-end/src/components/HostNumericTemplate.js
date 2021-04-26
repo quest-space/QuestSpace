@@ -10,7 +10,7 @@ const HostNumericTemplate = (props) => {
             </div>
 
             <div className="questionText">
-                <input type="text" placeholder="Enter here" style={{
+                <input type="number" placeholder="Enter here" style={{
                     border: "none",
                     borderBottom: "solid 1px #575757",
                     width: "160px",

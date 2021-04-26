@@ -19,6 +19,37 @@ const HostRapidFireTemplate = (props) => {
         setQuestion(temp)
     }
 
+    const verifyAndAddQuestion = () => {
+        let error = ""
+        if (question.statement === undefined || question.statement === ``) {
+            error = "Question Statement is missing."
+        }
+
+        for (let i = 0; i < question.options.length; i++) {
+            if (question.options[i] === "") {
+                error = error + "\nEmpty answer choice present: either fill it in or remove it."
+                break
+            }
+        }
+
+        if (checkDuplicates(question.options))
+            error = error + "\nDuplicate answer choices present. Remove one of them."
+
+        if (error !== "")
+            alert(error)
+        else
+            props.addQuestion(question, image)
+    }
+
+    const checkDuplicates = (array) => {
+        for (let i = 0; i < array.length; i++) {
+            for (let j = i + 1; j < array.length; j++) {
+                if (array[i] === array[j]) return true
+            }
+        }
+        return false
+    }
+
     return (
         <div className="myBox questionTemplate">
             {/* Question Number */}
@@ -58,7 +89,7 @@ const HostRapidFireTemplate = (props) => {
                         undo
                     </span>
                 </div>
-                <div className="sidePanel" style={{ height: "100%", color: "#238839" }} onClick={() => props.addQuestion(question, image)}>
+                <div className="sidePanel" style={{ height: "100%", color: "#238839" }} onClick={() => verifyAndAddQuestion()}>
                     <span className="material-icons" style={{ fontSize: "28px" }}>
                         done
                     </span>
