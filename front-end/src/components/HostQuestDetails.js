@@ -4,8 +4,10 @@ import EditQuestDetailsFormat from "./EditQuestDetailsFormat";
 
 const HostQuestDetails = (props) => {
 
-    const Edit = () => {
+    const [isEditing, setIsEditing] = React.useState(false);
 
+    const edit = () => {
+        setIsEditing(true);
     }
 
     return (
@@ -22,26 +24,59 @@ const HostQuestDetails = (props) => {
                 paddingRight: "3rem"
             }}
         >
-            <EditQuestDetailsFormat
-                questname={props.response.quest.questName}
-                hostname={props.response.quest.hostUser}
-                hostrating={props.response.quest.rating}
-                startingtime={props.response.quest.startTime}
-                endingtime={props.response.quest.endTime}
-                type={props.response.quest.nature}
-                about={props.response.quest.about}
-                imgsrc={props.response.quest.logoURL}
-                left="3rem"
-                right="3rem"
-                top="3rem"
-            />
-
-            {props.response.editable == true && <div style={{ textAlign: "right" }}>
-                <button className="btnBegin" onClick={() => Edit()}>
-                    Edit <i className="far fa-edit"></i>
-                </button>
-            </div>}
-
+            { !isEditing ?
+                <div>
+                    <QuestDetailsFormat
+                        questname={props.response.quest.questName}
+                        hostname={props.response.quest.hostUser}
+                        hostrating={props.response.quest.rating}
+                        startingtime={props.response.quest.startTime}
+                        startTimeRaw={props.response.quest.startTimeRaw}
+                        endingtime={props.response.quest.endTime}
+                        endTimeRaw={props.response.quest.endTimeRaw}
+                        type={props.response.quest.nature}
+                        about={props.response.quest.about}
+                        description={props.response.quest.description}
+                        imgsrc={props.response.quest.logoURL}
+                        left="3rem"
+                        right="3rem"
+                        top="3rem"
+                    />
+                    {props.response.editable === true &&
+                    <div>
+                        <div className="d-none d-md-block" style={{ textAlign: "right" }}>
+                            <button className="btnBegin" onClick={() => edit()}>
+                                Edit <i className="far fa-edit"></i>
+                            </button>
+                        </div>
+                        <div className="d-md-none" style={{ textAlign: "center" }}>
+                            <button className="btnBegin" onClick={() => edit()}>
+                                Edit <i className="far fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>}
+                </div>
+            :
+                <EditQuestDetailsFormat
+                    questname={props.response.quest.questName}
+                    hostname={props.response.quest.hostUser}
+                    hostrating={props.response.quest.rating}
+                    startingtime={props.response.quest.startTime}
+                    startTimeRaw={props.response.quest.startTimeRaw}
+                    endingtime={props.response.quest.endTime}
+                    endTimeRaw={props.response.quest.endTimeRaw}
+                    type={props.response.quest.nature}
+                    about={props.response.quest.about}
+                    description={props.response.quest.description}
+                    imgsrc={props.response.quest.logoURL}
+                    editable={props.response.editable}
+                    requestQuest={props.requestQuest}
+                    setIsEditing={setIsEditing}
+                    left="3rem"
+                    right="3rem"
+                    top="3rem"
+                />
+            }
         </div>
 
     )
