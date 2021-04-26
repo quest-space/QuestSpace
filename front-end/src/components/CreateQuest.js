@@ -223,7 +223,7 @@ const CreateQuest = (props) => {
             //placeholder={response1.organization}
             onChange={(ev) => updateState(ev, setDescription)}
           />
-          {errors.description && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;</div>}
+          {errors.description && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.description.message}</div>}
         </div>
         {/* </p> */}
 
