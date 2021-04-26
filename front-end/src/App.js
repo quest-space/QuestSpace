@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import logo from './logos/logo.svg';
 import "./css/App.css";
 import LandingPage from "./components/LandingPage";
 import SignUpPage from "./components/SignUpPage";
@@ -24,6 +23,7 @@ import ViewProfile from "./components/ViewProfile";
 import EditProfile from "./components/EditProfile";
 import EditProfileHost from "./components/EditProfileHost";
 import CreateQuest from "./components/CreateQuest";
+import ErrorModal from "./components/ErrorModal";
 
 const App = () => {
   return (
@@ -76,6 +76,7 @@ const App = () => {
           component={RoundLeaderboard}
         />
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/q" component={ErrorModal} />
       </Switch>
     </Router>
   );
