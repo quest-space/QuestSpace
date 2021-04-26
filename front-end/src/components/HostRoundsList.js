@@ -15,6 +15,12 @@ const HostRoundsList = (props) => {
     const [lim, setlim] = React.useState(30)
     const [description, setDescription] = React.useState("")
 
+    const [errorStart, seterrorStart] = React.useState("none")
+    const [errorEnd, seterrorEnd] = React.useState("none")
+    const [errorMsg, seterrorMsg] = React.useState("")
+    const [errorTimer, seterrorTimer] = React.useState("none")
+
+
     const setName = (ev) => {
         setname(ev.target.value)
     }
@@ -39,6 +45,9 @@ const HostRoundsList = (props) => {
 
     const timeLimit = (ev) => {
         setlim(ev.target.value)
+        if(ev.target.value < "30" || ev.target.value > "300"){
+            seterrorTimer("block")
+        }
     }
 
     const descrip = (ev) => {
@@ -54,7 +63,8 @@ const HostRoundsList = (props) => {
     }
     
 
-    const addQuest = async (e) => {    
+    const addQuest = async () => {  
+        
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/addround`, {
             method: "POST",
             headers: {
@@ -73,22 +83,24 @@ const HostRoundsList = (props) => {
 
         })
 
-        console.log({
-            "roundName": name,
-            "startTime": startTime,
-            "endTime": endTime,
-            "roundType": type,
-            "timer": lim,
-            "description": description,
-            "eachMarks": 1,
-        })
-
         const responseBody = await response.json()
         console.log('response', responseBody)
+        seterrorStart("none")  
+        seterrorEnd("none")  
+        seterrorTimer("none")
+
+        if(responseBody.error == "Round must start after Quest begins" || responseBody.error == "Round must begin before Quest ends"){
+            seterrorStart("block")
+            seterrorMsg(responseBody.error)
+        }
+        else if(responseBody.error == "Round must end before Quest ends" || responseBody.error == "Start time should be earlier than End time"){
+            seterrorEnd("block")
+            seterrorMsg(responseBody.error)
+        }
 
         if (response.status !== 200) {
             console.log(`Error fetching.`)
-            alert(responseBody.error)
+            // alert(responseBody.error)
         } else {
             console.log(`Successful fetching.`)
             setDisplayForm(false)
@@ -98,7 +110,7 @@ const HostRoundsList = (props) => {
 
     }
 
-    const deleteQuest = async (num,e) => {
+    const deleteQuest = async (num) => {
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${num}/deleteround`, {
             method: "POST",
             headers: {
@@ -153,11 +165,10 @@ const HostRoundsList = (props) => {
             {
                 displayForm === true && <div className="myBox" style={{ paddingRight: "0rem" }}>
                     <form onSubmit={handleSubmit}>
-                    <button className="cross1" onClick={() => { setDisplayForm(false) }}> <span className="material-icons" style={{ fontSize: "22px" }}> close </span> </button>
+                    <button className="cross1" onClick={() => { setDisplayForm(false) }}> <span className="material-icons" style={{ fontSize: "22px" }}> close </span></button>
                     <button className="tick1" onClick={() => { addQuest() }}> <span className="material-icons" style={{ fontSize: "22px" }}> done </span></button>
 
                     <p style={{ fontWeight: "500", fontSize: "22px", marginBottom: "0rem", display: "inline-block" }}>Add Round</p>
-                    {/* <div style={{ display: "block" }}> */}
                     
                             <p
                                 className="display-4"
@@ -168,10 +179,10 @@ const HostRoundsList = (props) => {
                                     color: "#46B7A1",
                                     marginLeft: "0rem",
                                     wordWrap: "break-word",
-                                    marginBottom:"0rem"
+                                    marginBottom:"0.2rem"
                                 }}
                             >
-                                Name</p>
+                                Name<span style={{color:"#F70000"}}>*</span></p>
                                 <input
                                     type="text"
                                     className="inputdetail "
@@ -182,9 +193,7 @@ const HostRoundsList = (props) => {
                                 />
                             
 
-                    {/* </div> */}
-                    {/* <div> */}
-                        {/* <div className="column"> */}
+                   
                             <p
                                 className="display-4"
                                 style={{
@@ -196,7 +205,7 @@ const HostRoundsList = (props) => {
                                     marginBottom:"0rem"
                                 }}
                             >
-                                Start</p>
+                                Start<span style={{color:"#F70000"}}>*</span></p>
                                 <input
                                     type="text"
                                     className="inputdetail "
@@ -208,15 +217,14 @@ const HostRoundsList = (props) => {
                                     onChange={startDate}
                                     required
                                 />
-                                {/* <p>Round must start after Quest begins</p> */}
-                            
-                        {/* </div> */}
-                        {/* <div className="column"> */}
+                                <div style={{color:"#F70000", display:errorStart}}>
+                                <i className="fas fa-exclamation-circle"></i>
+                                &nbsp; <span>{errorMsg}</span>
+                                </div>
                             <p
                                 className="display-4"
                                 style={{
                                     paddingTop: "1rem",
-                                    // marginLeft: "3rem",
                                     fontWeight: "400",
                                     fontSize: "18px",
                                     color: "#46B7A1",
@@ -224,7 +232,7 @@ const HostRoundsList = (props) => {
                                     marginBottom:"0rem"
                                 }}
                             >
-                                End </p>
+                                End <span style={{color:"#F70000"}}>*</span></p>
                                 <input
                                     type="text"
                                     className="inputdetail "
@@ -236,25 +244,23 @@ const HostRoundsList = (props) => {
                                     onChange={endDate}
                                     required
                                 />
-                                {/* <p>Round must start after Quest begins</p> */}
-                           
-                        {/* </div> */}
-
-                        {/* <div className="column"> */}
-                            {/* <div  style={{ fontWeight: "600", fontSize: "22px", marginBottom: "0rem", display: "block" }}> */}
+                                <div style={{color:"#F70000", display:errorEnd}}>
+                                <i className="fas fa-exclamation-circle"></i>
+                                &nbsp; <span>{errorMsg}</span>
+                                </div>
+                                
                                 <p
                                     className="display-4"
                                     style={{
                                         paddingTop: "1rem",
-                                        // paddingLeft: "3rem",
-                                        marginBottom: "0rem",
+                                        marginBottom: "0.2rem",
                                         fontWeight: "400",
                                         fontSize: "18px",
                                         color: "#46B7A1",
                                         marginLeft: "0rem"
                                     }}
                                 >
-                                    Type
+                                    Type<span style={{color:"#F70000"}}>*</span>
                                 </p>
                                 <select onChange={setType} className="form-control" style={{ width:"30%" }} id="sel1">
                                     <option>Quiz</option>
@@ -262,34 +268,35 @@ const HostRoundsList = (props) => {
                                     <option>Submission</option>
                                 </select>
                         
-                            {/* </div> */}
-                        {/* </div> */}
+                      
                         {timeForm === true && <div>
                             <p
                                 className="display-4"
                                 style={{
-                                    // paddingLeft: "3rem",
                                     paddingTop: "1rem",
                                     fontWeight: "400",
                                     fontSize: "18px",
                                     color: "#46B7A1",
                                     marginLeft: "0rem",
+                                    marginBottom:"0.2rem"
                                 }}
                             >
-                                Time Limit
+                                Time Limit<span style={{color:"#F70000"}}>*</span></p>
                                 <input
                                     type="text"
                                     className="inputdetail "
-                                    style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block" }}
+                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block" }}
                                     placeholder="Enter here"
                                     onChange={timeLimit}
                                     required
                                 />
-
-                            </p>
+                                <div style={{color:"#F70000", display:errorTimer}}>
+                                <i className="fas fa-exclamation-circle"></i>
+                                &nbsp; <span>Time limit must lie in the range of 30 - 300 seconds</span>
+                                </div>
+                            
                         </div>}
 
-                    {/* </div> */}
 
                     <p
                         className="display-4"
@@ -299,18 +306,19 @@ const HostRoundsList = (props) => {
                             fontSize: "18px",
                             color: "#46B7A1",
                             marginLeft: "0rem",
+                            marginBottom:"0.2rem"
                         }}
                     >
-                        Description
+                        Description  <span style={{color:"#F70000"}}>*</span></p>
                         <input
                             type="text"
                             className="longinputdetail"
                             placeholder="Enter a description of your Round"
-                            style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block", width: "95%" }}
+                            style={{ fontSize: "18px", paddingTop: "0rem", display: "block", width: "95%" }}
                             onChange={descrip}
                             required
                         />
-                    </p>
+                
                     </form>
                 </div>
                
@@ -326,7 +334,7 @@ const HostRoundsList = (props) => {
                         marginLeft:"9%",
                         marginRight:"9%",
                         padding:"2rem"}}>
-                        <i className="fas fa-exclamation-circle"></i> No Rounds Added!
+                        <i className="fas fa-exclamation-circle"></i>&nbsp; No Rounds Added!
                     </div>
                     {/* {props.setRender(true)} */}
                 </div>
@@ -342,7 +350,7 @@ const HostRoundsList = (props) => {
                         marginLeft:"9%",
                         marginRight:"9%",
                         padding:"2rem"}}>
-                        <i className="fas fa-exclamation-circle"></i> No Rounds Added!
+                        <i className="fas fa-exclamation-circle"></i>&nbsp; No Rounds Added!
                     </div>
                     {/* {props.setRender(true)} */}
                 </div>

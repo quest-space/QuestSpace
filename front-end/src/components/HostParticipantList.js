@@ -24,7 +24,6 @@ const HostParticipantList = (props) => {
 
       if (response.status !== 200) {
           console.log(`Error fetching.`)
-          alert(responseBody.error)
       } else {
           console.log(`Successful fetching.`)
           props.setRender(true)
