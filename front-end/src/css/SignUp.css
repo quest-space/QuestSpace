@@ -259,3 +259,10 @@ select:-webkit-autofill:focus {
   color: #c4c4c4;
   font-size: 6px;
 }
+
+.signUpError {
+  display: inline;
+  margin-left: 4px;
+  color: #f13636;
+  font-size: 12px;
+}
