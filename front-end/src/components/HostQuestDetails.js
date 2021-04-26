@@ -1,5 +1,6 @@
 import React from "react";
 import QuestDetailsFormat from "./QuestDetailsFormat";
+import EditQuestDetailsFormat from "./EditQuestDetailsFormat";
 
 const HostQuestDetails = (props) => {
 
