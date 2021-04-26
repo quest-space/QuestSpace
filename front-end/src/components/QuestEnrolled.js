@@ -126,7 +126,7 @@ const QuestEnrolled = (props) => {
               padding: "2rem",
             }}
           >
-            <i class="fas fa-exclamation-circle"></i> Not Available
+            <i class="fas fa-exclamation-circle"></i>&nbsp; No Rounds available.
           </div>
         )}
 
@@ -148,7 +148,7 @@ const QuestEnrolled = (props) => {
               padding: "2rem",
             }}
           >
-            <i class="fas fa-exclamation-circle"></i> Not Available
+            <i class="fas fa-exclamation-circle"></i>&nbsp; No Rounds available.
           </div>
       }
 
@@ -157,20 +157,31 @@ const QuestEnrolled = (props) => {
       {props.x.status == "quest_and_round_details" &&
       <div>
         {/* Leaderboard Available */}
-        {tab == "Leaderboard" && props.x.leaderboard !== null && (
+        {tab == "Leaderboard" && props.x.leaderboard !== null && 
           <div>
 
           <div className="slimBox" style={{fontSize:"20px", marginTop: "3rem", paddingTop:"1rem", paddingBottom:"1rem"}}> 
-            <div style={{display:"inline"}}>
-              {"My Rank: " + props.x.leaderboard.individual.ranking}
-            </div>
-            <div style={{ float:"right"}}>
-              {"My Score: " + props.x.leaderboard.individual.roundScore}
-            </div>
+          {props.x.leaderboard.individual !== null?
+              <div> 
+                <div style={{display:"inline"}}>
+                  {"My Rank: " + props.x.leaderboard.individual.ranking}
+                </div>
+                <div style={{ float:"right"}}>
+                  {"My Score: " + props.x.leaderboard.individual.roundScore}
+                </div>
+              </div> :
+              <div>
+                <div style={{display:"inline"}}>
+                  {"My Rank:  -"}
+                </div>
+                <div style={{ float:"right"}}>
+                  {"My Score:  -"}
+                </div>
+              </div>}
           </div>
             <Leaderboard board = {props.x.leaderboard.full}/>
           </div>
-        )}
+        }
 
 
         {/* /* Leaderboard not Available  */}
@@ -186,7 +197,7 @@ const QuestEnrolled = (props) => {
               padding: "2rem",
             }}
           >
-            <i class="fas fa-exclamation-circle"></i> Not Available
+            <i class="fas fa-exclamation-circle"></i> &nbsp;Leaderboard not yet available.
           </div>
         )}
       </div>}
@@ -203,7 +214,7 @@ const QuestEnrolled = (props) => {
               padding: "2rem",
             }}
           >
-            <i class="fas fa-exclamation-circle"></i> Not Available
+            <i class="fas fa-exclamation-circle"></i>&nbsp; Leaderboard not available.
           </div>
         )}
       
