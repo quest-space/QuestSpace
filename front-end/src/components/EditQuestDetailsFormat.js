@@ -172,7 +172,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            Type
+            Type&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
@@ -204,7 +204,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            Starts
+            Starts&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
@@ -241,7 +241,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            Ends
+            Ends&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
@@ -280,7 +280,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            Description
+            Description&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
@@ -318,7 +318,7 @@ const EditQuestDetailsFormat = (props) => {
               wordWrap: "break-word",
             }}
           >
-            About
+            About&nbsp;<span style={{color:"#F70000"}}><sup>*</sup></span>
           </div>
           <div
             className="display-4"
