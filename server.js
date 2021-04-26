@@ -8,7 +8,7 @@ const PORT = 4333;
 
 // DB vars:
 const DB_URL = `mongodb://localhost:27017`;
-const DB_NAME = `testDBTalha`;
+const DB_NAME = `QuestSpaceDB`;
 
 const Rating = require(`./models/ratings`);
 
