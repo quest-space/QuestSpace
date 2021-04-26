@@ -48,7 +48,7 @@ const QuestEnrolled = (props) => {
       />
 
       {/* TABSS */}
-      <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
+      <div className="col-md-12 d-none d-sm-none d-md-block d-lg-block" style={{ margin: "0em", padding: "0em" }}>
         <ul
           id="top"
           style={{
@@ -83,6 +83,48 @@ const QuestEnrolled = (props) => {
           </button>
         </ul>
       </div>
+
+      <div className="dropdown d-lg-none d-sm-block">
+                <button
+                className="parent dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                style={{ textAlign: "center", width: "100%", marginTop:"-2rem" }}
+                >
+                Explore Quest
+                </button>
+                <div
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton"
+                style={{
+                    width: "100%",
+                    margin: "0",
+                    padding: "0",
+                    borderWidth: "0",
+                    boxShadow: "none",
+                }}
+                >
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Details")}
+                >
+                    Details
+                </button>
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Rounds")}
+                >
+                    Rounds
+                </button>
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Leaderboard")}
+                >
+                    Leaderboard
+                </button>
+                </div>
+            </div>
 
       {tab == "Details" && (
         <div
@@ -197,7 +239,7 @@ const QuestEnrolled = (props) => {
               padding: "2rem",
             }}
           >
-            <i class="fas fa-exclamation-circle"></i> &nbsp;Leaderboard not yet available.
+            <i class="fas fa-exclamation-circle"></i> &nbsp;Leaderboard not available.
           </div>
         )}
       </div>}

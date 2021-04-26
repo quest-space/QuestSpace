@@ -41,7 +41,7 @@ const QuestHostTabs = (props) => {
 
     return (
         <div>
-            <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
+            <div className="col-md-12 d-none d-sm-none d-md-block d-lg-block" style={{ margin: "0em", padding: "0em" }}>
                 <ul
                     id="top"
                     style={{
@@ -82,6 +82,54 @@ const QuestHostTabs = (props) => {
                         Leaderboard
                     </button>
                 </ul>
+            </div>
+
+            <div className="dropdown d-lg-none d-sm-block">
+                <button
+                className="parent dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                style={{ textAlign: "center", width: "100%", marginTop:"-2rem" }}
+                >
+                Explore Quest
+                </button>
+                <div
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton"
+                style={{
+                    width: "100%",
+                    margin: "0",
+                    padding: "0",
+                    borderWidth: "0",
+                    boxShadow: "none",
+                }}
+                >
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Details")}
+                >
+                    Details
+                </button>
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Rounds")}
+                >
+                    Rounds
+                </button>
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Participant")}
+                >
+                    Participant
+                </button>
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Leaderboard")}
+                >
+                    Leaderboard
+                </button>
+                </div>
             </div>
 
             {
