@@ -118,7 +118,13 @@ const makeLeaderboard = async (QuestID, RoundNum, userType, username) => {
             if(userType === "participant") // send individual information as well
             {
                 const ind_record = leaderboard.find(rec => rec.username === username); 
-                to_send['individual'] = ind_record;
+                if(ind_record === null){
+                    to_send['individual'] = null;
+                }
+                else{
+                    to_send['individual'] = ind_record;
+                }
+                
             }
             return to_send;
         
@@ -137,8 +143,13 @@ const makeLeaderboard = async (QuestID, RoundNum, userType, username) => {
             
             if(userType === "participant") // send individual information as well
             {
-                const ind_record = leaderboard.find(rec => rec.username === username); 
-                to_send['individual'] = ind_record;
+                const ind_record = leaderboard.find(rec => rec.username === username);
+                if(ind_record === null){
+                    to_send['individual'] = null;    
+                }
+                else{
+                    to_send['individual'] = ind_record;
+                } 
             }
             return to_send;
         }
