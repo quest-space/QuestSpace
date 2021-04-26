@@ -113,7 +113,9 @@ router.post(`/edit`, uploadUpdateLogo.single(`logo`), async (req, res) => {
             if (!startTimeValid) {
                 sendRes(res, BAQ_REQUEST_STATUS_CODE, {
                     errors: {
-                        startTime: `Quest should start before all of its individual rounds.`
+                        startTime: {
+                            message: `Quest should start before all of its individual rounds.`
+                        }
                     }
                 });
                 return;
@@ -125,7 +127,9 @@ router.post(`/edit`, uploadUpdateLogo.single(`logo`), async (req, res) => {
             if (!endTimeValid) {
                 sendRes(res, BAQ_REQUEST_STATUS_CODE, {
                     errors: {
-                        endTime: `Quest should end after all of its individual rounds have ended.`
+                        endTime: {
+                            message: `Quest should end after all of its individual rounds have ended.`
+                        }
                     }
                 });
                 return;
