@@ -94,11 +94,14 @@ const LandingPage = () => {
                         </div>
                         <div className="divider">
                         </div>
-                        <Stack class="col1" title="We give space to everyone!" text="The perfect place to show your intellect" img={false} button={<Button text="Join our space" class="btn1" href="#join" />} />
+                        <Stack class="col1" title="We give space to everyone!" text="The perfect place to show your intellect" img={false} button={<Button text="Join our space" class="btn1" href="#joinMobile" />} />
                     </div>
                 </Container>
+            </Container>
+            {/* Display on mobile */}
+            <Container fluid className="d-md-none" style={{ width: "100%", padding: "0px" }}>
                 <Container fluid>
-                    <Row id="join" style={{ paddingBottom: "00px" }}>
+                    <Row id="joinMobile" style={{ paddingBottom: "00px" }}>
                         <Col md="6" style={{ paddingTop: "100px", paddingBottom: "100px" }}>
                             <Stack class="col2" title="For Hosts" text="Host your Space, Design, Manage and Grade your Quests!" img={true} imgPath={Two} imgWidth="330" imgHeight="230" button={<Button text="Sign Up" class="btn3" link="/signup" />} />
                         </Col>
@@ -107,7 +110,9 @@ const LandingPage = () => {
                         </Col>
                     </Row>
                 </Container>
-
+            </Container>
+            {/* Display on mobile */}
+            <Container fluid className="d-md-none" style={{ width: "100%", padding: "0px" }}>
                 <Container fluid>
                     <Row id="about" style={{ paddingBottom: "100px" }}>
                         <Col md="4" style={{ padding: "50px" }}>
