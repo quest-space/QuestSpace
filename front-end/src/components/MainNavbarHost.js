@@ -30,7 +30,12 @@ const MainNavbar = (props) => {
     );
 
     const checkRespBody = await checkResp.json();
-    setUsername(`${checkRespBody.organization}`);
+
+    let displayName = `${checkRespBody.organization}`;
+    if (displayName.length > 15) {
+      displayName = displayName.substr(0,12) + `...`;
+    }
+    setUsername(displayName);
   };
 
   if (!render) {
