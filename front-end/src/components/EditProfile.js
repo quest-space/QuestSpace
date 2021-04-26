@@ -13,6 +13,7 @@ const EditProfile = () => {
   const [DateofBirth, setDateofBirth] = React.useState("");
   const [Institution, setInstitution] = React.useState("");
   const [render, setRender] = React.useState(false);
+  const [errors, setErrors] = React.useState()
 
   const history = useHistory();
 
