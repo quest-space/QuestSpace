@@ -36,7 +36,8 @@ const ManualGrading = (props) => {
 
         if (response.status !== 200) {
             console.log(`Error in updating marks.`)
-            alert(JSON.stringify(responseBody) + "Error in updating marks.")
+            // alert(JSON.stringify(responseBody) + "Error in updating marks.")
+            alert("Error in updating marks. Kindly try again.")
         } else {
             const temp = { ...props.roundInfo }
             scores.forEach((score, index) => temp.submissions[index].score = score)
@@ -48,10 +49,11 @@ const ManualGrading = (props) => {
 
     const storeScore = (ev, index) => {
         const temp = [...scores]
-        if (ev.target.value === `` || Number.isNaN(parseInt(ev.target.value)) || parseInt(ev.target.value) > props.roundInfo.rounds.marks) {
+        // if (ev.target.value === `` || Number.isNaN(parseInt(ev.target.value)) || parseInt(ev.target.value) > props.roundInfo.rounds.marks) {
+        if (ev.target.value === `` || ev.target.value > props.roundInfo.rounds.marks || ev.target.value < 0) {
             temp[index] = null
         } else {
-            temp[index] = parseInt(ev.target.value)
+            temp[index] = ev.target.value
         }
         setScores(temp)
     }
@@ -147,7 +149,7 @@ const ManualGrading = (props) => {
                             <div style={{ display: "inline", float: "right" }}>
                                 {!editable && (submission.score !== null ? submission.score : `-`)}
                                 {editable &&
-                                    <input value={scores[index] !== null ? scores[index] : ``} onChange={(ev) => storeScore(ev, index)}>
+                                    <input type="number" value={scores[index] !== null ? scores[index] : ``} onChange={(ev) => storeScore(ev, index)}>
                                     </input>
                                 }
                             </div>

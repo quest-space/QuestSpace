@@ -85,7 +85,7 @@ const QuestHostTabs = (props) => {
             </div>
 
             {
-                tab == "Details" && <HostQuestDetails response={props.response} />
+                tab == "Details" && <HostQuestDetails response={props.response} requestQuest={props.requestQuest}/>
             }
 
             {

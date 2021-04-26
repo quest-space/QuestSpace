@@ -20,7 +20,10 @@ const HostMcqTemplate = (props) => {
         if (options.length > 2) {
             if (answerIndex === index) {
                 setAnswerIndex(0)
+            } else if (answerIndex > index) {
+                setAnswerIndex(answerIndex - 1)
             }
+
             const temp = [...options]
             temp.splice(index, 1)
             setOptions(temp)

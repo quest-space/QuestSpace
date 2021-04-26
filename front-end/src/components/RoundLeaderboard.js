@@ -3,14 +3,14 @@ import Header from "./Header";
 import MainNavbar from "./MainNavbar";
 import PageFooter from "./PageFooter"
 import BreadCrumb from "./BreadCrumb";
-import {useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Leaderboard from "./Leaderboard"
 
 
 const RoundLeaderboard = () => {
 
     const location = useLocation();
-    const [response, setResponse] = React.useState({"individual":{}, "full":[]})
+    const [response, setResponse] = React.useState({ "individual": {}, "full": [] })
     const [render, setRender] = React.useState(false);
     const [tab, setTab] = React.useState('home')
     const { roundID, questID } = useParams()
@@ -18,12 +18,12 @@ const RoundLeaderboard = () => {
 
     const apiCall = async () => {
         const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/quest/${questID}/${roundID}/leaderboard
-        `,{
-            method:"POST",
-            headers:{
+        `, {
+            method: "POST",
+            headers: {
                 'Content-Type': 'application/json'
             },
-            credentials:"include",
+            credentials: "include",
             body: JSON.stringify({
                 username: "HassaanAW",
                 password: "hassaan123",
@@ -32,37 +32,37 @@ const RoundLeaderboard = () => {
         const responseBody = await resp.json()
         setResponse(responseBody)
         console.log(responseBody)
-    
+
         if (resp.status !== 200) {
             console.log(`Error. Couldn't fetch data.`)
-            setResponse({"quests":[]})
+            setResponse({ "quests": [] })
         } else {
             console.log(`Fetch data successful`)
         }
     }
 
-    if(!render){
+    if (!render) {
         setRender(true)
         apiCall()
     }
 
     return (
         <div>
-        <MainNavbar setTab={setTab}/>
-        <Header heading= {location.heading} subheading= {location.subheading} />
-        <BreadCrumb
-            items={[
-            { text: "Home", to: "/participanthomepage" },
-            {
-                text: location.heading,
-                to: `/participanthomepage/quest/${questID}`,
-            },
-            {
-                text: `Round ${roundID}: Leaderboard`,
-                to: `/participanthomepage/quest/${questID}/${roundID}/leaderboard`,
-            }
-            ]}
-        />
+            <MainNavbar setTab={setTab} />
+            <Header heading={location.heading} subheading={location.subheading} />
+            <BreadCrumb
+                items={[
+                    { text: "Home", to: "/participanthomepage" },
+                    {
+                        text: location.heading,
+                        to: `/participanthomepage/quest/${questID}`,
+                    },
+                    {
+                        text: `Round ${roundID}: Leaderboard`,
+                        to: `/participanthomepage/quest/${questID}/round/${roundID}/leaderboard`,
+                    }
+                ]}
+            />
 
         <div style={{
             paddingLeft:'9%', 
@@ -93,10 +93,11 @@ const RoundLeaderboard = () => {
                 </div>
               </div>}
           </div>
+          
         <Leaderboard board = {response.full}/>
 
 
-        <PageFooter />
+            <PageFooter />
         </div>
     );
 }
