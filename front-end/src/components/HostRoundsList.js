@@ -162,24 +162,25 @@ const HostRoundsList = (props) => {
                             <p
                                 className="display-4"
                                 style={{
-                                    paddingTop: "0.5rem",
+                                    paddingTop: "1rem",
                                     fontWeight: "400",
                                     fontSize: "18px",
                                     color: "#46B7A1",
                                     marginLeft: "0rem",
                                     wordWrap: "break-word",
+                                    marginBottom:"0rem"
                                 }}
                             >
-                                Name
+                                Name</p>
                                 <input
                                     type="text"
                                     className="inputdetail "
-                                    style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block" }}
+                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block" }}
                                     placeholder="Enter here"
                                     onChange={setName}
                                     required
                                 />
-                            </p>
+                            
 
                     {/* </div> */}
                     {/* <div> */}
@@ -187,18 +188,19 @@ const HostRoundsList = (props) => {
                             <p
                                 className="display-4"
                                 style={{
-                                    paddingTop: "0.5rem",
+                                    paddingTop: "1rem",
                                     fontWeight: "400",
                                     fontSize: "18px",
                                     color: "#46B7A1",
                                     marginLeft: "0rem",
+                                    marginBottom:"0rem"
                                 }}
                             >
-                                Start
+                                Start</p>
                                 <input
                                     type="text"
                                     className="inputdetail "
-                                    style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block" }}
+                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block" }}
                                     type="datetime-local"
                                     placeholder="1"
                                     onfocus="this.type='datetime-local'"
@@ -206,26 +208,27 @@ const HostRoundsList = (props) => {
                                     onChange={startDate}
                                     required
                                 />
-                                <p>Round must start after Quest begins</p>
-                            </p>
+                                {/* <p>Round must start after Quest begins</p> */}
+                            
                         {/* </div> */}
                         {/* <div className="column"> */}
                             <p
                                 className="display-4"
                                 style={{
-                                    paddingTop: "0.5rem",
+                                    paddingTop: "1rem",
                                     // marginLeft: "3rem",
                                     fontWeight: "400",
                                     fontSize: "18px",
                                     color: "#46B7A1",
                                     marginLeft: "0rem",
+                                    marginBottom:"0rem"
                                 }}
                             >
-                                End
+                                End </p>
                                 <input
                                     type="text"
                                     className="inputdetail "
-                                    style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block" }}
+                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block" }}
                                     type="datetime-local"
                                     placeholder="1"
                                     onfocus="this.type='datetime-local'"
@@ -233,8 +236,8 @@ const HostRoundsList = (props) => {
                                     onChange={endDate}
                                     required
                                 />
-
-                            </p>
+                                {/* <p>Round must start after Quest begins</p> */}
+                           
                         {/* </div> */}
 
                         {/* <div className="column"> */}
@@ -242,13 +245,13 @@ const HostRoundsList = (props) => {
                                 <p
                                     className="display-4"
                                     style={{
-                                        paddingTop: "0.5rem",
+                                        paddingTop: "1rem",
                                         // paddingLeft: "3rem",
                                         marginBottom: "0rem",
                                         fontWeight: "400",
                                         fontSize: "18px",
                                         color: "#46B7A1",
-                                        marginLeft: "0rem",
+                                        marginLeft: "0rem"
                                     }}
                                 >
                                     Type
@@ -258,7 +261,7 @@ const HostRoundsList = (props) => {
                                     <option>Rapid Fire</option>
                                     <option>Submission</option>
                                 </select>
-                        </form>
+                        
                             {/* </div> */}
                         {/* </div> */}
                         {timeForm === true && <div>
@@ -266,6 +269,7 @@ const HostRoundsList = (props) => {
                                 className="display-4"
                                 style={{
                                     // paddingLeft: "3rem",
+                                    paddingTop: "1rem",
                                     fontWeight: "400",
                                     fontSize: "18px",
                                     color: "#46B7A1",
@@ -290,7 +294,7 @@ const HostRoundsList = (props) => {
                     <p
                         className="display-4"
                         style={{
-                            paddingTop: "0.5rem",
+                            paddingTop: "1rem",
                             fontWeight: "400",
                             fontSize: "18px",
                             color: "#46B7A1",
@@ -302,12 +306,14 @@ const HostRoundsList = (props) => {
                             type="text"
                             className="longinputdetail"
                             placeholder="Enter a description of your Round"
+                            style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block", width: "95%" }}
                             onChange={descrip}
                             required
-                            style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block", width: "95%" }}
                         />
                     </p>
+                    </form>
                 </div>
+               
             }
             {
                 props.response.rounds === null && props.response.editable &&

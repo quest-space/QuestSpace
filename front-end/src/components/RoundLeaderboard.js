@@ -86,14 +86,14 @@ const RoundLeaderboard = () => {
               </div> :
               <div>
                 <div style={{display:"inline"}}>
-                  {"My Rank: You have not attempted any round yet"}
+                  {"My Rank: -"}
                 </div>
                 <div style={{ float:"right"}}>
-                  {"My Score: No score available"}
+                  {"My Score: -"}
                 </div>
               </div>}
           </div>
-          
+
         <Leaderboard board = {response.full}/>
 
 
