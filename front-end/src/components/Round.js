@@ -34,7 +34,8 @@ const Round = () => {
 
         if (response.status !== 200) {
             console.log(`Error in fetching roundDetails.`)
-            alert(JSON.stringify(responseBody), "Returning back to quest page")
+            // alert(JSON.stringify(responseBody), "Returning back to quest page")
+            alert("Error in fetching round details and returning back to quest page")
             history.replace(`/participanthomepage/quest/${questID}`)
         } else {
             setRoundDetails(responseBody)
