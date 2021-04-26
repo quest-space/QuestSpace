@@ -50,7 +50,7 @@ const HostRoundsList = (props) => {
     }
 
     const addQuest = async () => {    
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/addround`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/addround`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ const HostRoundsList = (props) => {
 
     const deleteQuest = async (num) => {
 
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${num}/deleteround`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${num}/deleteround`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
