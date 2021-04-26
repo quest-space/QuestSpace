@@ -55,7 +55,6 @@ const Round = () => {
                 setRoundType(<SubmissionRound endTime={roundDetails.endTime} prevRating={roundDetails.prevRating} />
                 )
             }
-            console.log(`roundType set to render ${roundDetails.roundType} round questions`)
         }
     }, [started])
 
@@ -64,7 +63,6 @@ const Round = () => {
     if (!roundFetched) {
         setRoundFetched(true)
         fetchRoundDetails()
-        console.log(`Round details fetched.`)
     }
 
     return (

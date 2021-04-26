@@ -11,6 +11,7 @@ const SubmissionRound = (props) => {
     const [expireTime, setExpireTime] = React.useState()
     const [timeLeft, setTimeLeft] = React.useState(`${props.timer}`)
     const [question, setQuestion] = React.useState({})
+    const [file, setFile] = React.useState()
 
     const [show, setShow] = React.useState(false)
     const [modalText, setModalText] = React.useState("")
@@ -50,8 +51,15 @@ const SubmissionRound = (props) => {
 
         if (difference < 0) {
             if (!show) {
-                setModalText("Round time has ended.")
-                setShow(true)
+                if (file === undefined) {
+                    setModalText("Round time has ended.")
+                    setShow(true)
+                } else {
+                    setModalText("Round time has ended and your chosen file is being autosubmitted.")
+                    setShow(true)
+                    autoSubmitFile(file)
+                }
+
             }
         } else {
             setTimeLeft(difference)
@@ -75,11 +83,33 @@ const SubmissionRound = (props) => {
         history.replace(`/participanthomepage/quest/${questID}`)
     }
 
-    const formSubmit = async (ev) => {
+    const autoSubmitFile = async () => {
+        const formData = new FormData()
+        formData.set(`submittedFile`, file)
 
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}/submit`, {
+            method: "POST",
+            header: { 'Content-Type': 'multipart/form-data' },
+            body: formData,
+            credentials: "include",
+        })
+
+        if (response.status === 201) {
+
+        } else {
+            alert("Your file could not be submitted.")
+        }
+    }
+
+    const submitFile = async (ev) => {
         ev.preventDefault()
+        const formData = new FormData()
+        formData.set(`submittedFile`, file)
 
-        const formData = new FormData(ev.target)
+        if (file === undefined) {
+            alert("No file has been chosen.")
+            return
+        }
 
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/quest/${questID}/${roundID}/submit`, {
             method: "POST",
@@ -117,8 +147,8 @@ const SubmissionRound = (props) => {
                     {question.imageURL && <img className="questionImg" src={question.imageURL} />}
 
                     {/* Submission Stuff */}
-                    <form onSubmit={formSubmit}>
-                        <input name="submittedFile" id="uploadFile" type="file" />
+                    <form onSubmit={submitFile}>
+                        <input name="submittedFile" id="uploadFile" type="file" onChange={(ev) => setFile(ev.target.files[0])} />
                         <input className="submitBtn" type='submit' />
                     </form>
                 </div>

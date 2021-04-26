@@ -124,7 +124,7 @@ const CreateQuest = (props) => {
             placeholder="Enter quest name"
             onChange={(ev) => updateState(ev, setQuestName)}
           />
-          {errors.questName && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.questName.message}</div>}
+          {errors.questName && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.questName.message}</div>}
         </div>
         {/* </p> */}
 
@@ -146,7 +146,7 @@ const CreateQuest = (props) => {
               <option value="public">Public</option>
               <option value="private">Private</option>
           </select>
-          {errors.nature && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.nature.message}</div>}
+          {errors.nature && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.nature.message}</div>}
         </div>
         {/* </p> */}
 
@@ -170,7 +170,7 @@ const CreateQuest = (props) => {
             placeholder="Enter Start Time"
             onChange={(ev) => updateState(ev, setStartTime)}
           />
-          {errors.startTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.startTime.message}</div>}
+          {errors.startTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.startTime.message}</div>}
         </div>
         {/* </p> */}
 
@@ -194,10 +194,10 @@ const CreateQuest = (props) => {
             placeholder="1"
             onfocus="this.type='datetime-local'"
             onblur="if(this.value==='')this.type='text'"
-            //placeholder={response1.dateofbirth}
+            // placeholder={response1.dateofbirth}
             onChange={(ev) => updateState(ev, setEndTime)}
           />
-          {errors.endTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.endTime.message}</div>}
+          {errors.endTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.endTime.message}</div>}
         </div>
         {/* </p> */}
 
@@ -223,7 +223,7 @@ const CreateQuest = (props) => {
             //placeholder={response1.organization}
             onChange={(ev) => updateState(ev, setDescription)}
           />
-          {errors.description && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.description.message}</div>}
+          {errors.description && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;</div>}
         </div>
         {/* </p> */}
 
@@ -248,7 +248,7 @@ const CreateQuest = (props) => {
             //placeholder={response1.organization}
             onChange={(ev) => updateState(ev, setAbout)}
           />
-          {errors.about && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.about.message}</div>}
+          {errors.about && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.about.message}</div>}
         </div>
         {/* </p> */}
 
@@ -277,7 +277,7 @@ const CreateQuest = (props) => {
               setLogo(file);
             }}
           />
-          {errors.logo && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.logo.message}</div>}
+          {errors.logo && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.logo.message}</div>}
         </div>
         {/* </p> */}
 

@@ -40,6 +40,9 @@ const HostMcqTemplate = (props) => {
             <div className="questionHeading">
                 Answer Choices:
             </div>
+            < div className="qError">
+                {props.errors[1]}
+            </div>
 
             <div className="questionText">
                 {/* Print already added options */}

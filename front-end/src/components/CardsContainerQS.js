@@ -67,7 +67,6 @@ const CardsContainerQS = (props) => {
     }
 
     const reject = async (flag, qname) => {
-        console.log(qname)
         if(flag){
         const resp = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/qs-admin/reject`, {
             method: "POST",
