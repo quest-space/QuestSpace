@@ -64,26 +64,37 @@ const RoundLeaderboard = () => {
                 ]}
             />
 
-            <div style={{
-                paddingLeft: '9%',
-                paddingTop: '4.5rem',
-                fontStyle: 'normal',
-                fontWeight: 'normal',
-                fontSize: '32px',
-                display: "block"
-            }}>
-                {`Round ${roundID}: Leaderboard`}
-            </div>
+        <div style={{
+            paddingLeft:'9%', 
+            paddingTop:'4.5rem', 
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+            fontSize: '32px',
+            display:"block"}}>
+            {`Round ${roundID}: Leaderboard`}
+        </div>
 
-            <div className="slimBox" style={{ fontSize: "20px", marginTop: "3rem", paddingTop: "1rem", paddingBottom: "1rem" }}>
-                <div style={{ display: "inline" }}>
-                    {"My Rank: " + response.individual.ranking}
+        <div className="slimBox" style={{fontSize:"20px", marginTop: "3rem", paddingTop:"1rem", paddingBottom:"1rem"}}> 
+        {response.individual !== null?
+              <div> 
+                <div style={{display:"inline"}}>
+                  {"My Rank: " + response.individual.ranking}
                 </div>
-                <div style={{ float: "right" }}>
-                    {"My Score: " + response.individual.roundScore}
+                <div style={{ float:"right"}}>
+                  {"My Score: " + response.individual.roundScore}
                 </div>
-            </div>
-            <Leaderboard board={response.full} />
+              </div> :
+              <div>
+                <div style={{display:"inline"}}>
+                  {"My Rank: -"}
+                </div>
+                <div style={{ float:"right"}}>
+                  {"My Score: -"}
+                </div>
+              </div>}
+          </div>
+
+        <Leaderboard board = {response.full}/>
 
 
             <PageFooter />
