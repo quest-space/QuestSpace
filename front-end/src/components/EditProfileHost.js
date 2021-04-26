@@ -21,6 +21,7 @@ const EditProfileHost = (props) => {
   const [RepName, setRepName] = React.useState("");
   const [RepDesignation, setRepDesignation] = React.useState("");
   const [HiddenPassword, setHiddenPassword] = React.useState("");
+  const [errors, setErrors] = React.useState({})
 
   const showError = (errors) => {
     alert(JSON.stringify(errors));
@@ -120,7 +121,15 @@ const EditProfileHost = (props) => {
 
     if (response.status !== 200) {
       console.log(`Error.`);
-      showError(responseBody.errors);
+      if (responseBody.errors) {
+        setErrors(responseBody.errors);
+      } else if (responseBody.genericErrMsg) {
+        alert(responseBody.genericErrMsg);
+      } else {
+        console.log(responseBody.genericErrMsg);
+        alert(`There seems to be a problem. Pease contact QuestSpace team.`)
+      }
+      // showError(responseBody.errors);
     } else {
       history.push("/viewprofile");
     }
@@ -197,18 +206,19 @@ const EditProfileHost = (props) => {
           }}
         >
           Username
-          <div
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "#313131",
-              wordWrap: "break-word",
-            }}
-          >
-            {response1.username}
-          </div>
         </p>
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {response1.username}
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -221,23 +231,24 @@ const EditProfileHost = (props) => {
           }}
         >
           Rating
-          <div
-            className="display-4"
-            style={{
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "#313131",
-              wordWrap: "break-word",
-            }}
-          >
-            {full.map((a, index) => {
-              return <i key={index} className="fa fa-star"></i>;
-            })}
-            {empty.map((a, index) => {
-              return <i key={index} className="far fa-star"></i>;
-            })}
-          </div>
         </p>
+        <div
+          className="display-4"
+          style={{
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#313131",
+            wordWrap: "break-word",
+          }}
+        >
+          {full.map((a, index) => {
+            return <i key={index} className="fa fa-star"></i>;
+          })}
+          {empty.map((a, index) => {
+            return <i key={index} className="far fa-star"></i>;
+          })}
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -251,19 +262,21 @@ const EditProfileHost = (props) => {
           }}
         >
           Representative Name
-          <div
-            style={{
-              paddingTop: "0.5rem",
-            }}
-          >
-            <input
-              type="text"
-              className="inputdetail"
-              value={RepName}
-              onChange={(ev) => updateState(ev, setRepName)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.5rem",
+          }}
+        >
+          <input
+            type="text"
+            className="inputdetail"
+            value={RepName}
+            onChange={(ev) => updateState(ev, setRepName)}
+          />
+          {errors.representativeName && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.representativeName.message}</div>}
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -277,19 +290,21 @@ const EditProfileHost = (props) => {
           }}
         >
           Representative Designation
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="text"
-              className="inputdetail"
-              value={RepDesignation}
-              onChange={(ev) => updateState(ev, setRepDesignation)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="text"
+            className="inputdetail"
+            value={RepDesignation}
+            onChange={(ev) => updateState(ev, setRepDesignation)}
+          />
+          {errors.representativeDesignation && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.representativeDesignation.message}</div>}
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -303,19 +318,21 @@ const EditProfileHost = (props) => {
           }}
         >
           Phone
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="text"
-              className="inputdetail"
-              value={Phone}
-              onChange={(ev) => updateState(ev, setPhone)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="text"
+            className="inputdetail"
+            value={Phone}
+            onChange={(ev) => updateState(ev, setPhone)}
+          />
+          {errors.phone && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.phone.message}</div>}
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -329,19 +346,21 @@ const EditProfileHost = (props) => {
           }}
         >
           Institution
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="text"
-              className="inputdetail"
-              value={Institution}
-              onChange={(ev) => updateState(ev, setInstitution)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="text"
+            className="inputdetail"
+            value={Institution}
+            onChange={(ev) => updateState(ev, setInstitution)}
+          />
+          {errors.organization && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.organization.message}</div>}
+        </div>
+        {/* </p> */}
 
         <p
           className="display-4"
@@ -355,19 +374,21 @@ const EditProfileHost = (props) => {
           }}
         >
           Password
-          <div
-            style={{
-              paddingTop: "0.2rem",
-            }}
-          >
-            <input
-              type="password"
-              className="inputdetail"
-              placeholder={HiddenPassword}
-              onChange={(ev) => updateState(ev, setPassword)}
-            />
-          </div>
         </p>
+        <div
+          style={{
+            paddingTop: "0.2rem",
+          }}
+        >
+          <input
+            type="password"
+            className="inputdetail"
+            placeholder={HiddenPassword}
+            onChange={(ev) => updateState(ev, setPassword)}
+          />
+          {errors.password && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.password.message}</div>}
+        </div>
+        {/* </p> */}
 
         <div
           style={{
@@ -379,11 +400,11 @@ const EditProfileHost = (props) => {
         >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
           <button className="btnCancel" onClick={() => Cancel()}>
-            Cancel <i class="fa fa-times"></i>
+            Cancel <i className="fa fa-times"></i>
           </button>
           <span style={{ paddingBottom: "0.5rem" }}>
             <button className="btnBegin" onClick={() => EditDets()}>
-              Update <i class="fa fa-check"></i>
+              Update <i className="fa fa-check"></i>
             </button>
           </span>
         </div>

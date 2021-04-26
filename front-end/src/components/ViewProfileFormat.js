@@ -105,7 +105,7 @@ const ViewProfileFormat = (props) => {
         >
           {/* <Button class="btnBegin" text="Begin" onClick={props.onClick} /> */}
           <button className="btnBegin" onClick={editProfile}>
-            Edit <i class="fa fa-edit"></i>
+            Edit <i className="fa fa-edit"></i>
           </button>
         </div>
       </div>
