@@ -140,6 +140,20 @@
   background-color: #5ec7b2 !important;
 }
 
+.dropKid1 {
+  /* box-sizing: content-box !important; */
+  background-color: #46b7a1 !important;
+  /* border-top:0.01px solid #ffffff !important; */
+  font-size: 16px !important;
+  color: #ffffff !important;
+  /* width: 100% !important; */
+  padding: 0.5rem 1.5rem !important;
+  /* box-shadow: black !important; */
+}
+.dropKid1:hover {
+  background-color: #5ec7b2 !important;
+}
+
 .plain {
   border: none;
   padding: 0;

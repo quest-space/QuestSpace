@@ -35,7 +35,8 @@ const Tabs = (props) => {
     }
 
     return (
-        <div className="col-md-12" style={{ margin: "0em", padding: "0em" }}>
+        <div>
+        <div className="col-md-12 d-none d-sm-none d-md-block d-lg-block" style={{ margin: "0em", padding: "0em" }}>
             <ul
                 id="top"
                 style={{
@@ -76,6 +77,57 @@ const Tabs = (props) => {
                     Leaderboard
                 </button>
             </ul>
+        </div>
+
+        {/* TABS MOBILE */}
+
+        <div className="dropdown d-lg-none d-sm-block">
+                <button
+                className="parent dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                style={{ textAlign: "center", width: "100%", marginTop:"-2rem" }}
+                >
+                Explore Quest
+                </button>
+                <div
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton"
+                style={{
+                    width: "100%",
+                    margin: "0",
+                    padding: "0",
+                    borderWidth: "0",
+                    boxShadow: "none",
+                }}
+                >
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Round Details")}
+                >
+                    Round Details
+                </button>
+                {props.roundType === `Submission` && <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Submissions")}
+                >
+                    Submissions
+                </button>}
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Questions")}
+                >
+                    Questions
+                </button>
+                <button
+                    className="dropdown-item dropKid"
+                    onClick={() => setBar("Leaderboard")}
+                >
+                    Leaderboard
+                </button>
+                </div>
+            </div>
         </div>
     )
 
