@@ -13,7 +13,7 @@ const EditProfile = () => {
   const [DateofBirth, setDateofBirth] = React.useState("");
   const [Institution, setInstitution] = React.useState("");
   const [render, setRender] = React.useState(false);
-  const [errors, setErrors] = React.useState()
+  const [errors, setErrors] = React.useState({});
 
   const history = useHistory();
 
@@ -89,7 +89,15 @@ const EditProfile = () => {
 
     if (response.status !== 200) {
       console.log(`Error.`);
-      showError(responseBody.errors);
+      if (responseBody.errors) {
+        setErrors(responseBody.errors);
+      } else if (responseBody.genericErrMsg) {
+        alert(responseBody.genericErrMsg);
+      } else {
+        console.log(responseBody.genericErrMsg);
+        alert(`There seems to be a problem. Pease contact QuestSpace team.`)
+      }
+      // showError(responseBody.errors);
     } else {
       history.push("/viewprofile");
     }
@@ -193,7 +201,7 @@ const EditProfile = () => {
             wordWrap: "break-word",
           }}
         >
-          First Name
+          First Name&nbsp;<span style={{ color: "#F70000" }}><sup>*</sup></span>
           <div
             style={{
               paddingTop: "0.2rem",
@@ -205,6 +213,7 @@ const EditProfile = () => {
               value={FirstName}
               onChange={(ev) => updateState(ev, setFirstName)}
             />
+            {errors.firstname && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.firstname.message}</div>}
           </div>
         </p>
 
@@ -219,7 +228,7 @@ const EditProfile = () => {
             wordWrap: "break-word",
           }}
         >
-          Last Name
+          Last Name&nbsp;<span style={{ color: "#F70000" }}><sup>*</sup></span>
           <div
             style={{
               paddingTop: "0.2rem",
@@ -233,6 +242,8 @@ const EditProfile = () => {
               value={LastName}
               onChange={(ev) => updateState(ev, setLastName)}
             />
+            {errors.lastname && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.lastname.message}</div>}
+
           </div>
         </p>
 
@@ -247,7 +258,7 @@ const EditProfile = () => {
             wordWrap: "break-word",
           }}
         >
-          Date of Birth
+          Date of Birth&nbsp;<span style={{ color: "#F70000" }}><sup>*</sup></span>
           <div
             style={{
               paddingTop: "0.2rem",
@@ -260,6 +271,7 @@ const EditProfile = () => {
               value={DateofBirth}
               onChange={(ev) => updateState(ev, setDateofBirth)}
             />
+            {errors.dateofbirth && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.dateofbirth.message}</div>}
           </div>
         </p>
 
@@ -274,7 +286,7 @@ const EditProfile = () => {
             wordWrap: "break-word",
           }}
         >
-          Institution
+          Institution&nbsp;<span style={{ color: "#F70000" }}><sup>*</sup></span>
           <div
             style={{
               paddingTop: "0.2rem",
@@ -287,6 +299,7 @@ const EditProfile = () => {
               value={Institution}
               onChange={(ev) => updateState(ev, setInstitution)}
             />
+            {errors.organization && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.organization.message}</div>}
           </div>
         </p>
 
@@ -301,7 +314,7 @@ const EditProfile = () => {
             wordWrap: "break-word",
           }}
         >
-          Password
+          Password&nbsp;<span style={{ color: "#F70000" }}><sup>*</sup></span>
           <div
             style={{
               paddingTop: "0.2rem",
@@ -314,6 +327,7 @@ const EditProfile = () => {
               placeholder={hidden_password}
               onChange={(ev) => updateState(ev, setPassword)}
             />
+            {errors.passwordlength && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.passwordlength.message}</div>}
           </div>
         </p>
 
