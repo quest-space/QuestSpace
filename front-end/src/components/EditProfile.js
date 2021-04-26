@@ -23,7 +23,7 @@ const EditProfile = () => {
 
   const ProfileAPI = async () => {
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/profile`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/profile`,
       {
         method: "POST",
         headers: {
@@ -65,7 +65,7 @@ const EditProfile = () => {
   const EditDets = async () => {
     console.log("starting");
     const response = await fetch(
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/participant/profile/submit`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/participant/profile/submit`,
       {
         method: "POST",
         headers: {
