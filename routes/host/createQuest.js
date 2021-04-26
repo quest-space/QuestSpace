@@ -17,7 +17,7 @@ const handleTimingValidity = (req, res) => {
         sendRes(res, BAQ_REQUEST_STATUS_CODE, {
             errors: {
                 startTime: {
-                    message: `Start time is required`,
+                    message: `Start time for the quest is required.`,
                     valueReceived: req.body.startTime
                 }
             }
@@ -28,7 +28,7 @@ const handleTimingValidity = (req, res) => {
         sendRes(res, BAQ_REQUEST_STATUS_CODE, {
             errors: {
                 endTime: {
-                    message: `End time is required`,
+                    message: `Ending time for the quest is required.`,
                     valueReceived: req.body.endTime
                 }
             }
@@ -40,9 +40,11 @@ const handleTimingValidity = (req, res) => {
         return true;
     } else if (validity === `start>=end`) {
         sendRes(res, BAQ_REQUEST_STATUS_CODE, {
-            endTime: {
-                message: `End time must be after Start Time`,
-                valueReceived: req.body.endTime
+            errors: {
+                endTime: {
+                    message: `A quest must not end before it starts.`,
+                    valueReceived: req.body.endTime
+                }
             }
         });
         return false;
@@ -51,7 +53,7 @@ const handleTimingValidity = (req, res) => {
         sendRes(res, BAQ_REQUEST_STATUS_CODE, {
             errors: {
                 startTime: {
-                    message: `Start Time cannot be a time in the past`,
+                    message: `A quest must not start at a time in the past.`,
                     valueReceived: req.body.startTime
                 }
             }
@@ -67,7 +69,7 @@ router.post(`/create`, uploadCreateLogo.single(`logo`), async (req, res) => {
         sendRes(res, BAQ_REQUEST_STATUS_CODE, {
             errors: {
                 logo: {
-                    message: `Logo not provided`
+                    message: `A logo for the quest is required.`
                 }
             }
         });
@@ -114,7 +116,7 @@ router.post(`/edit`, uploadUpdateLogo.single(`logo`), async (req, res) => {
                 sendRes(res, BAQ_REQUEST_STATUS_CODE, {
                     errors: {
                         startTime: {
-                            message: `Quest should start before all of its individual rounds.`
+                            message: `A quest has to start before all of its individual rounds start.`
                         }
                     }
                 });
@@ -128,7 +130,7 @@ router.post(`/edit`, uploadUpdateLogo.single(`logo`), async (req, res) => {
                 sendRes(res, BAQ_REQUEST_STATUS_CODE, {
                     errors: {
                         endTime: {
-                            message: `Quest should end after all of its individual rounds have ended.`
+                            message: `A quest cannot end before all of its rounds have not yet ended.`
                         }
                     }
                 });
