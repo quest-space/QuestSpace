@@ -1,5 +1,4 @@
 import React from "react"
-import "../css/SignUp.css"
 import "bootstrap"
 import { Link } from "react-router-dom"
 
@@ -7,13 +6,28 @@ const CreateAccountCommon = (props) => {
 
     const switchUser = () => {
         props.setUser(!props.user)
+        props.setUserName(``)
+        props.setPassword(``)
+        props.setErrors([``, ``, ``, ``, ``, ``])
     }
 
     const switchNext = () => {
-        props.setNext(true)
+        if (props.userName.length === 0 && props.password.length === 0) {
+            props.setErrors([`This is a required field.`, `This is a required field.`, ``, ``, ``, ``])
+        } else if (props.userName.length === 0) {
+            props.setErrors([`This is a required field.`, ``, ``, ``, ``, ``])
+        } else if (props.password.length === 0) {
+            props.setErrors([``, `This is a required field.`, ``, ``, ``, ``])
+        } else {
+            props.setErrors([``, ``, ``, ``, ``, ``])
+            props.setNext(true)
+        }
     }
 
-    const updateState = (ev, stateUpdateFn) => {
+    const updateState = (ev, stateUpdateFn, index) => {
+        const temp = [...props.errors]
+        temp[index] = ``
+        props.setErrors(temp)
         stateUpdateFn(ev.target.value)
     }
 
@@ -46,22 +60,30 @@ const CreateAccountCommon = (props) => {
                 <div className="formRow">
                     <div className="formColSignUp">
                         <label className="formLabelSignUp">Username</label>
+                        <div className="signUpError">
+                            {props.errors[0]}
+                        </div>
                     </div>
+
                 </div>
                 <div className="formRow">
                     <div className="formColSignUp">
-                        <input type="text" className="inputSignUp" placeholder="Enter here" value={props.userName} onChange={(ev) => updateState(ev, props.setUserName)} />
+                        <input type="text" className="inputSignUp" placeholder="Enter here" value={props.userName} onChange={(ev) => updateState(ev, props.setUserName, 0)} />
                     </div>
                 </div>
 
                 <div className="formRow">
                     <div className="formColSignUp">
                         <label className="formLabelSignUp">Password</label>
+                        <div className="signUpError">
+                            {props.errors[1]}
+                        </div>
                     </div>
+
                 </div>
                 <div className="formRow">
                     <div className="formColSignUp">
-                        <input type="password" className="inputSignUp" placeholder="Enter here" value={props.password} onChange={(ev) => updateState(ev, props.setPassword)} />
+                        <input type="password" className="inputSignUp" placeholder="Enter here" value={props.password} onChange={(ev) => updateState(ev, props.setPassword, 1)} />
                     </div>
                 </div>
             </form>

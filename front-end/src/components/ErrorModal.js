@@ -1,18 +1,18 @@
 import React from "react"
 
-
 const ErrorModal = (props) => {
 
-    // const [trigger, setTrigger] = React.useState(props.trigger)
-
     const closeModal = () => {
-        // setTrigger(false)
         props.onClose && props.onClose()
     }
 
+    const errors = ["Username not defined", "use a bigger password", "You are unauthroized"]
+
     return (
         <React.Fragment>
-            {props.trigger ? <div tabIndex="0" className="questionModal" onKeyDown={(ev) => {
+            {/* {props.trigger ? <div tabIndex="0" className="questionModal" onKeyDown={(ev) => { */}
+
+            {true ? <div tabIndex="0" className="questionModal" onKeyDown={(ev) => {
                 if (ev.key === `Escape` || ev.key === `Esc`)
                     closeModal()
             }}>
@@ -24,10 +24,17 @@ const ErrorModal = (props) => {
                     </div>
 
                     {/* Error Icon */}
-                    <i className="fa fa-check-circle" aria-hidden="true" style={{ color: "#46B7A1", fontSize: "60px", paddingBottom: "20px" }}></i>
+                    <i className="fas fa-times-circle" aria-hidden="true" style={{ color: "#f13636", fontSize: "60px", paddingBottom: "20px" }}></i>
 
-                    {/* Erros to show */}
-                    {props.error && props.error.map((error, index) => {
+                    {/* Errors to show */}
+                    {/* {props.errors && props.errors.map((error, index) => {
+                        return (
+                            <p key={index} style={{ textAlign: "center" }}>
+                                {error}
+                            </p>
+                        )
+                    })} */}
+                    {errors.map((error, index) => {
                         return (
                             <p key={index} style={{ textAlign: "center" }}>
                                 {error}
