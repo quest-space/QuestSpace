@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import React from "react"
+import { useParams} from "react-router-dom"
 import AddBox from "./AddBox"
 import HostRapidFireTemplate from "./HostRapidFireTemplate"
 import HostMcqQuestion from "./HostMcqQuestion"
@@ -38,7 +38,8 @@ const HostRapidFire = (props) => {
 
         if (response.status !== 200) {
             console.log(`Error in adding question.`)
-            alert(JSON.stringify(responseBody) + "Error in adding question.")
+            // alert(JSON.stringify(responseBody) + "Error in adding question.")
+            alert("Error in adding question. Kindly retry.")
         } else {
             const temp = { ...props.roundInfo }
             temp.questions = responseBody.questions
@@ -60,7 +61,8 @@ const HostRapidFire = (props) => {
 
         if (response.status !== 200) {
             console.log(`Error in deleting question.`)
-            alert(JSON.stringify(responseBody), "Error in deleting question.")
+            // alert(JSON.stringify(responseBody), "Error in deleting question.")
+            alert("Error in deleting question. Kindly retry.")
         } else {
             const temp = { ...props.roundInfo }
             temp.questions = responseBody.questions

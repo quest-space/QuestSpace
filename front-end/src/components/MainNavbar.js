@@ -39,7 +39,12 @@ const MainNavbar = (props) => {
     );
 
     const checkRespBody = await checkResp.json();
-    setUsername(`${checkRespBody.firstname} ${checkRespBody.lastname}`);
+
+    let displayName = `${checkRespBody.firstname} ${checkRespBody.lastname}`;
+    if (displayName.length > 15) {
+      displayName = displayName.substr(0,12) + `...`;
+    }
+    setUsername(displayName);
   };
 
   const setInput = (ev) => {

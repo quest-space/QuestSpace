@@ -38,7 +38,8 @@ const HostQuiz = (props) => {
 
         if (response.status !== 200) {
             console.log(`Error in adding question.`)
-            alert(JSON.stringify(responseBody), "Error in adding question.")
+            // alert(JSON.stringify(responseBody), "Error in adding question.")
+            alert("Error in adding question. Kindly retry.")
         } else {
             const temp = { ...props.roundInfo }
             temp.questions = responseBody.questions
@@ -60,7 +61,8 @@ const HostQuiz = (props) => {
 
         if (response.status !== 200) {
             console.log(`Error in deleting question.`)
-            alert(JSON.stringify(responseBody), "Error in deleting question.")
+            // alert(JSON.stringify(responseBody), "Error in deleting question.")
+            alert("Error in deleting question. Kindly retry.")
         } else {
             const temp = { ...props.roundInfo }
             temp.questions = responseBody.questions

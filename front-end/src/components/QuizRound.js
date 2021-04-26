@@ -36,8 +36,9 @@ const QuizRound = (props) => {
 
         if (response.status !== 201) {
             console.log(`Error in fetching questionDeatils.`)
-            alert(JSON.stringify(responseBody))
-            onClose()
+            alert("Error in fetching question. Kindly refresh the page.")
+            // alert(JSON.stringify(responseBody))
+            // onClose()
         } else {
             // const responseBody = { "nextQuestion": { "questionNum": 1, "statement": "When did Pakistan come into being?", "options": ["1945", "1947", "1948", "None of the above"] }, "expireTime": "2021-04-22T19:26:39.839Z", "expireDateTime": "Thu Apr 22 2021 19:26:39 GMT+0000 (Coordinated Universal Time)", "currTime": "Thu Apr 22 2021 19:25:04 GMT+0000 (Coordinated Universal Time)", "score": 0, "answerStatus": "incorrect", "roundScore": 0 }
             // only set expireTime if not set previously

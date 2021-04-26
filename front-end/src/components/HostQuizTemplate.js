@@ -24,7 +24,8 @@ const HostQuizTemplate = (props) => {
     const setNumeric = (answer) => {
         const temp = { ...question }
         temp.options = []
-        temp.answer = parseFloat(answer)
+        // temp.answer = parseFloat(answer)
+        temp.answer = answer
         setQuestion(temp)
     }
 
@@ -35,6 +36,46 @@ const HostQuizTemplate = (props) => {
         else if (ev.target.value === `Numeric Response`)
             temp.questionType = `Numeric`
         setQuestion(temp)
+    }
+
+    const verifyAndAddQuestion = () => {
+        let error = ""
+        if (question.statement === undefined || question.statement === ``) {
+            error = "Question Statement is missing."
+        }
+
+        // For MCQ 
+        if (question.questionType === `MCQ`) {
+            for (let i = 0; i < question.options.length; i++) {
+                if (question.options[i] === "") {
+                    error = error + "\nEmpty answer choice present: either fill it in or remove it."
+                    break
+                }
+            }
+
+            if (checkDuplicates(question.options))
+                error = error + "\nDuplicate answer choices present. Remove one of them."
+        }
+
+        // For numeric question
+        if (question.questionType === `Numeric`) {
+            if (question.answer === "")
+                error = error + "\nCorrect Answer is not provided."
+        }
+
+        if (error !== "")
+            alert(error)
+        else
+            props.addQuestion(question, image)
+    }
+
+    const checkDuplicates = (array) => {
+        for (let i = 0; i < array.length; i++) {
+            for (let j = i + 1; j < array.length; j++) {
+                if (array[i] === array[j]) return true
+            }
+        }
+        return false
     }
 
     return (
@@ -93,7 +134,7 @@ const HostQuizTemplate = (props) => {
                         undo
                     </span>
                 </div>
-                <div className="sidePanel" style={{ height: "100%", color: "#238839" }} onClick={() => props.addQuestion(question, image)}>
+                <div className="sidePanel" style={{ height: "100%", color: "#238839" }} onClick={() => verifyAndAddQuestion()}>
                     <span className="material-icons" style={{ fontSize: "28px" }}>
                         done
                     </span>

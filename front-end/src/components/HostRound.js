@@ -35,7 +35,8 @@ const HostRound = () => {
 
         if (response.status !== 200) {
             console.log(`Error in fetching round information.`)
-            alert(JSON.stringify(responseBody) + "Returning back to quest page")
+            // alert(JSON.stringify(responseBody) + " Returning back to quest page.")
+            alert("Error in fetching round information. Returning back to quest page.")
             history.replace(`/hosthomepage/quest/${questID}`) //uncomment this later
         } else {
             setroundInfo(responseBody)
@@ -47,8 +48,6 @@ const HostRound = () => {
         fetchRoundDetails()
         console.log(`Round details fetched.`)
     }
-
-    console.log(roundInfo)
 
     return (
         <React.Fragment>

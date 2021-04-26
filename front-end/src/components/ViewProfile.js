@@ -26,13 +26,14 @@ const ViewProfile = () => {
 
     const checkRespBody = await checkResp.json();
     console.log("response", checkRespBody);
+    // setuserString(checkRespBody.type);
+    //
     setuserString(checkRespBody.type);
-    //setuserString("host");
     console.log("Userstring: ", userString);
 
     const response = await fetch(
       //`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/profile`,
-      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${userString}/profile`,
+      `http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/${checkRespBody.type}/profile`,
       {
         method: "POST",
         headers: {
@@ -44,6 +45,8 @@ const ViewProfile = () => {
           password: "hassaan123",
         }),
       }
+
+      
     );
 
     console.log("response is", response);
@@ -60,10 +63,11 @@ const ViewProfile = () => {
     }
   };
 
-  ProfileAPI();
+  
 
   if (!render) {
     setRender(true);
+    ProfileAPI();
   }
 
   return (

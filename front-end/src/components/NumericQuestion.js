@@ -41,7 +41,7 @@ const NumericQuestion = (props) => {
                         Write your answer in the given box.
                     </div>
 
-                    <input className="questionNumeric" onChange={(ev) => {
+                    <input type="number" className="questionNumeric" defaultValue={null} onChange={(ev) => {
                         setSelectedOption(ev.target.value)
                     }}>
                     </input>

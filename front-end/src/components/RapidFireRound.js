@@ -34,8 +34,9 @@ const RapidFireRound = (props) => {
 
         if (response.status !== 201) {
             console.log(`Error in fetching questionDeatils.`)
-            alert(JSON.stringify(responseBody))
-            onClose()
+            // alert(JSON.stringify(responseBody))
+            alert("Error in fetching question. Kindly refresh the page.")
+            // onClose()
         } else {
             // only set expireTime if not set previously
             if (!expireTime) {
