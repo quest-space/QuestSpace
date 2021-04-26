@@ -81,7 +81,7 @@ const QuestDetailsFormat = (props) => {
         {/* </p> */}
 
         <div>
-          <HeadSubhead heading="Type" subheading={props.type} />
+          <HeadSubhead heading="Type" subheading={props.type ? props.type.charAt(0).toUpperCase() + props.type.substr(1) : props.type} />
           <HeadSubhead heading="Starts" subheading={props.startingtime} />
           <HeadSubhead heading="Ends" subheading={props.endingtime} />
           {props.description && <HeadSubhead heading="Description" subheading={props.description} />}

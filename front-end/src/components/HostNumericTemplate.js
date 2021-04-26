@@ -8,6 +8,9 @@ const HostNumericTemplate = (props) => {
             <div className="questionHeading">
                 Correct Answer:
             </div>
+            < div className="qError">
+                {props.errors[1]}
+            </div>
 
             <div className="questionText">
                 <input type="number" placeholder="Enter here" style={{

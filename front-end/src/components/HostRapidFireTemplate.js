@@ -5,6 +5,7 @@ const HostRapidFireTemplate = (props) => {
 
     const [question, setQuestion] = React.useState({})
     const [image, setImage] = React.useState()
+    const [errors, setErrors] = React.useState([``, ``])
 
     const setStatement = (ev) => {
         const temp = { ...question }
@@ -21,22 +22,31 @@ const HostRapidFireTemplate = (props) => {
 
     const verifyAndAddQuestion = () => {
         let error = ""
+        const temp = [``, ``]
         if (question.statement === undefined || question.statement === ``) {
+            temp[0] = "Question Statement is missing."
             error = "Question Statement is missing."
         }
 
         for (let i = 0; i < question.options.length; i++) {
             if (question.options[i] === "") {
                 error = error + "\nEmpty answer choice present: either fill it in or remove it."
+                temp[1] = "Empty answer choice present."
                 break
             }
         }
 
-        if (checkDuplicates(question.options))
+        if (checkDuplicates(question.options)) {
             error = error + "\nDuplicate answer choices present. Remove one of them."
+            temp[1] = temp[1] + " Duplicate answer choices present."
+        }
 
-        if (error !== "")
-            alert(error)
+        setErrors(temp)
+
+        if (error !== "") {
+            // alert(error)
+
+        }
         else
             props.addQuestion(question, image)
     }
@@ -64,6 +74,9 @@ const HostRapidFireTemplate = (props) => {
                 <div className="questionHeading">
                     Question Statement:
                 </div>
+                < div className="qError">
+                    {errors[0]}
+                </div>
                 <div className="questionText">
                     <textarea rows="1" placeholder="Enter here" onChange={(ev) => setStatement(ev)} onInput={(ev) => { ev.target.style.height = ''; ev.target.style.height = ev.target.scrollHeight + 'px' }}>
                     </textarea>
@@ -79,7 +92,7 @@ const HostRapidFireTemplate = (props) => {
                 </div>
 
                 {/* MCQ options */}
-                <HostMcqTemplate setMCQ={setMCQ} />
+                <HostMcqTemplate setMCQ={setMCQ} errors={errors} />
             </div>
 
             {/* Right Sidepanel */}

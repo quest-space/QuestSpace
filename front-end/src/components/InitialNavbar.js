@@ -55,10 +55,10 @@ const InitialNavbar = (props) => {
             </span>
           </Link>
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a
                 className="nav-link"
-                href="#"
+                href="http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/#about"
                 style={{
                   fontWeight: 400,
                   fontSize: 18,
@@ -69,7 +69,7 @@ const InitialNavbar = (props) => {
               >
                 About us
               </a>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link
                 className="nav-link"
