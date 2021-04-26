@@ -109,7 +109,7 @@ const CardsContainerQS = (props) => {
                     {headings[props.tab]}
                 </div>
 
-                {response[props.tab].length > 0 &&
+                {response[props.tab] && response[props.tab].length > 0 &&
                     <div>
                         {
 
@@ -201,13 +201,13 @@ const CardsContainerQS = (props) => {
                         }
                     </div>}
 
-                {response[props.tab].length === 0 &&
+                {response[props.tab] && response[props.tab].length === 0 &&
                     <div style={{
                         border: "1px solid #C4C4C4",
                         boxShadow: "1px 2px 10px 2px rgba(0, 0, 0, 0.1)",
                         padding: "2rem"
                     }}>
-                        <i className="fas fa-exclamation-circle"></i> Not Available
+                        <i className="fas fa-exclamation-circle"></i>&nbsp; No Quests
                     </div>
                 }
 

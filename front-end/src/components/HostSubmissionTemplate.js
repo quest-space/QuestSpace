@@ -1,3 +1,4 @@
+import { type } from "jquery"
 import React from "react"
 
 const HostSubmissionTemplate = (props) => {
@@ -18,11 +19,24 @@ const HostSubmissionTemplate = (props) => {
     }
 
     const updateMarks = (ev) => {
-        // if (parseInt(ev.target.value) === 0) {
-        //     setMarks(100)
-        // } else {
         setMarks(ev.target.value)
-        // }
+    }
+
+    const addQuestion = () => {
+        let error = ""
+        if (question.statement === undefined || question.statement === "") {
+            error = "Question Statement is missing."
+        }
+        if (marks === "") {
+            error = error + " Maximum marks are missing."
+        } else if (parseInt(marks) != marks) {
+            error = error + " Maximum marks must be an integer."
+        }
+
+        if (error !== "")
+            alert(error)
+        else
+            props.addSubmissionQuestion(question, image, marks)
     }
 
     return (
@@ -58,7 +72,7 @@ const HostSubmissionTemplate = (props) => {
 
                 {/* Button to update */}
                 <div>
-                    <button onClick={() => { props.addSubmissionQuestion(question, image, marks) }}>
+                    <button onClick={() => addQuestion()}>
                         Update
                     </button>
                 </div>
