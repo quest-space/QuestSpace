@@ -6,6 +6,8 @@ const HostParticipantList = (props) => {
 
     const { questID } = useParams()
     const [name, setname] = React.useState("")
+    const [errorMsg, seterrorMsg] = React.useState("")
+    const [errorAdd, seterrorAdd] = React.useState("none")
 
     const removeParticipant = async (uname) => {
       const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/removeparticipant`, {
@@ -21,7 +23,6 @@ const HostParticipantList = (props) => {
       console.log(uname)
       const responseBody = await response.json()
       console.log('response', responseBody)
-      alert(responseBody)
 
       if (response.status !== 200) {
           console.log(`Error fetching.`)
@@ -42,12 +43,17 @@ const HostParticipantList = (props) => {
             "participant_username": uname,
         }),
       })
-      console.log(uname)
       const responseBody = await response.json()
       console.log('response', responseBody)
+      seterrorAdd("none")
+      if(responseBody.error == "Participant not found"){
+          seterrorAdd("block")
+          seterrorMsg(responseBody.error)
+      }
 
       if (response.status !== 200) {
           console.log(`Error fetching.`)
+        //   alert(responseBody.error)
       } else {
           console.log(`Successful fetching.`)
           props.setRender(true)
@@ -63,16 +69,22 @@ const HostParticipantList = (props) => {
             
               {
                 props.response.editable && <div className="slimBox d-none d-sm-none d-md-none d-lg-block" style={{fontSize:"20px", paddingTop:"1rem", paddingBottom:"1rem"}}> 
+                <form style={{display:"inline-block"}}>
                   <input
-                      required
                       type="text"
                       className="inputdetail responsive"
                       style={{ fontSize: "16px", paddingTop: "0.5rem", display: "inline-block" }}
                       placeholder="Participant Username"
                       onChange={setName}
                   />
+                </form>
                   <button className="simpleButton1" onClick={() =>{addParticipant(name)}}>Add <span className="material-icons" style={{ fontSize: "24px", color: "#46B7A1",lineHeight: "29px", float:"right" }}>add</span> </button>
+                  <div style={{color:"#F70000", fontSize:"16px", display:errorAdd}}>
+                    <i className="fas fa-exclamation-circle"></i>
+                    &nbsp; <span>{errorMsg}</span>
+                    </div>
                 </div>
+                
               }
               {props.response.participants !== null && <div>
               
@@ -115,14 +127,19 @@ const HostParticipantList = (props) => {
 
                   {   
                     props.response.editable && <div className="slimBox" style={{fontSize:"20px", paddingTop:"1rem", paddingBottom:"1rem"}}> 
+                    
                     <input
-                        required
                         type="text"
                         className="inputdetail responsive"
                         style={{ fontSize: "16px", paddingTop: "0.5rem", display: "inline-block" }}
                         placeholder="Participant Username"
                         onChange={setName}
                     />
+                    <div style={{color:"#F70000", fontSize:"16px", display:errorAdd}}>
+                    <i className="fas fa-exclamation-circle"></i>
+                    &nbsp; <span>{errorMsg}</span>
+                    </div>
+
                     <button className="simpleButton11" onClick={() =>{addParticipant(name)}}>Add <span className="material-icons" style={{ fontSize: "24px", color: "#46B7A1",lineHeight: "29px", float:"right" }}>add</span> </button>
                     </div>
                   }

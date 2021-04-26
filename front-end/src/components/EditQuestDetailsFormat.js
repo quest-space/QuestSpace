@@ -9,7 +9,7 @@ How to use:
 */
 
 const EditQuestDetailsFormat = (props) => {
-  
+
   // normal variables:
   const [questType, setQuestType] = React.useState(``);
   const [startDate, setStartDate] = React.useState(``);
@@ -27,8 +27,8 @@ const EditQuestDetailsFormat = (props) => {
   if (!isPropsSet && props.startTimeRaw) {
     setIsPropsSet(true);
     setQuestType(props.type);
-    setStartDate((new Date(new Date(props.startTimeRaw).getTime() + 5*60*60*1000)).toISOString().substr(0,23));
-    setEndDate((new Date(new Date(props.endTimeRaw).getTime() + 5*60*60*1000)).toISOString().substr(0,23));
+    setStartDate((new Date(new Date(props.startTimeRaw).getTime() + 5 * 60 * 60 * 1000)).toISOString().substr(0, 23));
+    setEndDate((new Date(new Date(props.endTimeRaw).getTime() + 5 * 60 * 60 * 1000)).toISOString().substr(0, 23));
     setAbout(props.about);
     setDescription(props.description);
   }
@@ -45,7 +45,7 @@ const EditQuestDetailsFormat = (props) => {
     if (logo) {
       formData.append(`logo`, logo);
     }
-    
+
     const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/create-edit-quest/edit`, {
       method: "POST",
       header: { 'Content-Type': 'multipart/form-data' },
@@ -68,16 +68,16 @@ const EditQuestDetailsFormat = (props) => {
           alert(`There seems to be a problem. Pease contact QuestSpace team.`)
         }
     } else {
-        console.log(`Successful fetching`)
-        props.requestQuest();
-        props.setIsEditing(false);
+      console.log(`Successful fetching`)
+      props.requestQuest();
+      props.setIsEditing(false);
     }
   }
 
   console.log(`startDate`, startDate);
   console.log(`startTimeRaw`, props.startTimeRaw);
   props.endTimeRaw && console.log(`endTimeRaw`, new Date(props.endTimeRaw).toISOString());
-  
+
   let full = [];
   let empty = [];
   for (let i = 0; i < parseInt(props.hostrating); i++) {
@@ -156,7 +156,7 @@ const EditQuestDetailsFormat = (props) => {
         })}
         {/* </p> */}
         {/*  */}
-        
+
 
         {/* ------------------------- */}
 
@@ -186,8 +186,8 @@ const EditQuestDetailsFormat = (props) => {
             }}
           >
             <select defaultValue={questType} onChange={(ev) => updateState(ev, setQuestType)} className="form-control" style={{ width: '10rem', maxWidth: '100%' }}>
-                <option value="public">Public</option>
-                <option value="private">Private</option>
+              <option value="public">Public</option>
+              <option value="private">Private</option>
             </select>
           </div>
         </div>
@@ -220,12 +220,12 @@ const EditQuestDetailsFormat = (props) => {
               required
               type="datetime-local"
               className="inputdetail responsive"
-              style={{ fontSize: "19px", paddingTop: "0.5rem", display: "block", width: '25rem', maxWidth: '100%'  }}
+              style={{ fontSize: "19px", paddingTop: "0.5rem", display: "block", width: '25rem', maxWidth: '100%' }}
               // onblur="if(this.value==='')this.type='text'"
               value={startDate}
               onChange={(ev) => updateState(ev, setStartDate)}
             />
-            {errors.startTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.startTime.message}</div>}
+            {errors.startTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.startTime.message}</div>}
           </div>
         </div>
 
@@ -257,15 +257,15 @@ const EditQuestDetailsFormat = (props) => {
               required
               type="datetime-local"
               className="inputdetail responsive"
-              style={{ fontSize: "19px", paddingTop: "0.5rem", display: "block", width: '25rem', maxWidth: '100%'  }}
+              style={{ fontSize: "19px", paddingTop: "0.5rem", display: "block", width: '25rem', maxWidth: '100%' }}
               // onblur="if(this.value==='')this.type='text'"
               value={endDate}
               onChange={(ev) => updateState(ev, setEndDate)}
             />
-            {errors.endTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.endTime.message}</div>}
+            {errors.endTime && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.endTime.message}</div>}
           </div>
         </div>
-        
+
         {/* ----------------------- */}
 
         <div>
@@ -300,7 +300,7 @@ const EditQuestDetailsFormat = (props) => {
               value={description}
               onChange={(ev) => updateState(ev, setDescription)}
             />
-            {errors.description && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.description.message}</div>}
+            {errors.description && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.description.message}</div>}
           </div>
         </div>
 
@@ -334,11 +334,11 @@ const EditQuestDetailsFormat = (props) => {
               required
               type="text"
               className="inputdetail responsive"
-              style={{ paddingTop: "0.5rem", fontSize: "19px",  display: "block", width: '25rem', maxWidth: '100%' }}
+              style={{ paddingTop: "0.5rem", fontSize: "19px", display: "block", width: '25rem', maxWidth: '100%' }}
               value={about}
               onChange={(ev) => updateState(ev, setAbout)}
             />
-            {errors.about && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.about.message}</div>}
+            {errors.about && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.about.message}</div>}
           </div>
         </div>
 
@@ -372,7 +372,7 @@ const EditQuestDetailsFormat = (props) => {
             <input
               required
               type="file"
-              style={{ paddingTop: "0.8rem", fontSize: "18px",  display: "block", width: '25rem', maxWidth: '100%' }}
+              style={{ paddingTop: "0.8rem", fontSize: "18px", display: "block", width: '25rem', maxWidth: '100%' }}
               accept="image/png, image/jpeg"
               onChange={ev => {
                 const file = ev.target.files[0];
@@ -380,7 +380,7 @@ const EditQuestDetailsFormat = (props) => {
                 setLogo(file);
               }}
             />
-            {errors.logo && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}>{errors.logo.message}</div>}
+            {errors.logo && <div style={{ paddingTop: "0.4rem", fontSize: "18px", color: "#F70000" }}><i className="fas fa-exclamation-circle"></i>&nbsp;{errors.logo.message}</div>}
           </div>
         </div>
 
@@ -392,8 +392,8 @@ const EditQuestDetailsFormat = (props) => {
             alignItems: "center",
             paddingTop: "1.5rem",
           }} */}
-        
-          {/* {props.buttonShow === "1" &&
+
+        {/* {props.buttonShow === "1" &&
             <button className="btnBegin" onClick={() => props.onClick(true)}>
               Enroll
             </button>
