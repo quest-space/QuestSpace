@@ -60,7 +60,7 @@ const QuestHost = () => {
                 
             </div>
             }
-            <QuestHostTabs response = {response} setRender={setRender}/>
+            <QuestHostTabs response = {response} setRender={setRender} requestQuest={requestQuest}/>
             {/* <PageFooter /> */}
 
         </div>
