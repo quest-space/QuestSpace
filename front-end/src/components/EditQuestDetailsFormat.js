@@ -17,7 +17,7 @@ const parseDate = (date) => {
 }
 
 const EditQuestDetailsFormat = (props) => {
-  
+
   // normal variables:
   const [questType, setQuestType] = React.useState(``);
   const [startDate, setStartDate] = React.useState(``);
@@ -34,8 +34,8 @@ const EditQuestDetailsFormat = (props) => {
   if (!isPropsSet && props.startTimeRaw) {
     setIsPropsSet(true);
     setQuestType(props.type);
-    setStartDate((new Date(new Date(props.startTimeRaw).getTime() + 5*60*60*1000)).toISOString().substr(0,23));
-    setEndDate((new Date(new Date(props.endTimeRaw).getTime() + 5*60*60*1000)).toISOString().substr(0,23));
+    setStartDate((new Date(new Date(props.startTimeRaw).getTime() + 5 * 60 * 60 * 1000)).toISOString().substr(0, 23));
+    setEndDate((new Date(new Date(props.endTimeRaw).getTime() + 5 * 60 * 60 * 1000)).toISOString().substr(0, 23));
     setAbout(props.about);
     setDescription(props.description);
   }
@@ -52,7 +52,7 @@ const EditQuestDetailsFormat = (props) => {
     if (logo) {
       formData.append(`logo`, logo);
     }
-    
+
     const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/create-edit-quest/edit`, {
       method: "POST",
       header: { 'Content-Type': 'multipart/form-data' },
@@ -65,19 +65,19 @@ const EditQuestDetailsFormat = (props) => {
     console.log('responseerros', responseBody.errors)
 
     if (response.status !== 200) {
-        console.log(`Error in fetching`)
-        alert(responseBody.errors);
+      console.log(`Error in fetching`)
+      alert(responseBody.errors);
     } else {
-        console.log(`Successful fetching`)
-        props.requestQuest();
-        props.setIsEditing(false);
+      console.log(`Successful fetching`)
+      props.requestQuest();
+      props.setIsEditing(false);
     }
   }
 
   console.log(`startDate`, startDate);
   console.log(`startTimeRaw`, props.startTimeRaw);
   props.endTimeRaw && console.log(`endTimeRaw`, new Date(props.endTimeRaw).toISOString());
-  
+
   let full = [];
   let empty = [];
   for (let i = 0; i < parseInt(props.hostrating); i++) {
@@ -155,7 +155,7 @@ const EditQuestDetailsFormat = (props) => {
         })}
         {/* </p> */}
         {/*  */}
-        
+
 
         {/* ------------------------- */}
 
@@ -185,8 +185,8 @@ const EditQuestDetailsFormat = (props) => {
             }}
           >
             <select defaultValue={questType} onChange={(ev) => updateState(ev, setQuestType)} className="form-control" style={{ width: '10rem', maxWidth: '100%' }}>
-                <option value="public">Public</option>
-                <option value="private">Private</option>
+              <option value="public">Public</option>
+              <option value="private">Private</option>
             </select>
           </div>
         </div>
@@ -219,7 +219,7 @@ const EditQuestDetailsFormat = (props) => {
               required
               type="datetime-local"
               className="inputdetail responsive"
-              style={{ fontSize: "19px", paddingTop: "0.5rem", display: "block", width: '25rem', maxWidth: '100%'  }}
+              style={{ fontSize: "19px", paddingTop: "0.5rem", display: "block", width: '25rem', maxWidth: '100%' }}
               // onblur="if(this.value==='')this.type='text'"
               value={startDate}
               onChange={(ev) => updateState(ev, setStartDate)}
@@ -255,14 +255,14 @@ const EditQuestDetailsFormat = (props) => {
               required
               type="datetime-local"
               className="inputdetail responsive"
-              style={{ fontSize: "19px", paddingTop: "0.5rem", display: "block", width: '25rem', maxWidth: '100%'  }}
+              style={{ fontSize: "19px", paddingTop: "0.5rem", display: "block", width: '25rem', maxWidth: '100%' }}
               // onblur="if(this.value==='')this.type='text'"
               value={endDate}
               onChange={(ev) => updateState(ev, setEndDate)}
             />
           </div>
         </div>
-        
+
         {/* ----------------------- */}
 
         <div>
@@ -330,7 +330,7 @@ const EditQuestDetailsFormat = (props) => {
               required
               type="text"
               className="inputdetail responsive"
-              style={{ paddingTop: "0.5rem", fontSize: "19px",  display: "block", width: '25rem', maxWidth: '100%' }}
+              style={{ paddingTop: "0.5rem", fontSize: "19px", display: "block", width: '25rem', maxWidth: '100%' }}
               value={about}
               onChange={(ev) => updateState(ev, setAbout)}
             />
@@ -367,7 +367,7 @@ const EditQuestDetailsFormat = (props) => {
             <input
               required
               type="file"
-              style={{ paddingTop: "0.8rem", fontSize: "18px",  display: "block", width: '25rem', maxWidth: '100%' }}
+              style={{ paddingTop: "0.8rem", fontSize: "18px", display: "block", width: '25rem', maxWidth: '100%' }}
               accept="image/png, image/jpeg"
               onChange={ev => {
                 const file = ev.target.files[0];
@@ -380,26 +380,26 @@ const EditQuestDetailsFormat = (props) => {
 
 
         {props.editable && props.editable === true && <div>
-            <div className="d-none d-md-block" style={{ textAlign: "right" }}>
-                <button className="btnCancel" onClick={() => props.setIsEditing(false)}>
-                    Cancel <i className="fa fa-times"></i>
-                </button>
-                <span style={{ marginBottom: "0.5rem" }}>
-                    <button className="btnBegin" onClick={() => update()}>
-                    Update <i className="fa fa-check"></i>
-                    </button>
-                </span>
-            </div>
-            <div className="d-md-none" style={{ textAlign: "center" }}>
-                <button className="btnCancel" onClick={() => props.setIsEditing(false)}>
-                    Cancel <i className="fa fa-times"></i>
-                </button>
-                <span style={{ marginBottom: "0.5rem" }}>
-                    <button className="btnBegin" onClick={() => update()}>
-                    Update <i className="fa fa-check"></i>
-                    </button>
-                </span>
-            </div>
+          <div className="d-none d-md-block" style={{ textAlign: "right" }}>
+            <button className="btnCancel" onClick={() => props.setIsEditing(false)}>
+              Cancel <i className="fa fa-times"></i>
+            </button>
+            <span style={{ marginBottom: "0.5rem" }}>
+              <button className="btnBegin" onClick={() => update()}>
+                Update <i className="fa fa-check"></i>
+              </button>
+            </span>
+          </div>
+          <div className="d-md-none" style={{ textAlign: "center" }}>
+            <button className="btnCancel" onClick={() => props.setIsEditing(false)}>
+              Cancel <i className="fa fa-times"></i>
+            </button>
+            <span style={{ marginBottom: "0.5rem" }}>
+              <button className="btnBegin" onClick={() => update()}>
+                Update <i className="fa fa-check"></i>
+              </button>
+            </span>
+          </div>
         </div>}
 
         {/* ----------------------- */}
@@ -410,8 +410,8 @@ const EditQuestDetailsFormat = (props) => {
             alignItems: "center",
             paddingTop: "1.5rem",
           }} */}
-        
-          {/* {props.buttonShow === "1" &&
+
+        {/* {props.buttonShow === "1" &&
             <button className="btnBegin" onClick={() => props.onClick(true)}>
               Enroll
             </button>
