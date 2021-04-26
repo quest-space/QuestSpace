@@ -1,8 +1,9 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 const NumericQuestion = (props) => {
 
     const [selectedOption, setSelectedOption] = React.useState(props.option)
+    const [num, setNum] = React.useState()
 
     const secondsToString = (seconds) => {
         const hr = Math.floor(seconds / 60 / 60);
@@ -41,8 +42,8 @@ const NumericQuestion = (props) => {
                         Write your answer in the given box.
                     </div>
 
-                    <input type="number" className="questionNumeric" defaultValue={null} onChange={(ev) => {
-                        setSelectedOption(ev.target.value)
+                    <input type="number" className="questionNumeric" onChange={(ev) => {
+                        setNum(ev.target.value)
                     }}>
                     </input>
                 </div>
@@ -54,7 +55,8 @@ const NumericQuestion = (props) => {
                         <div>
                             Next&nbsp;
                             <i className="fas fa-chevron-circle-right" onClick={() => {
-                                props.setOption(selectedOption)
+                                props.setOption(num)
+                                setNum()
                             }} style={{ cursor: "pointer" }}></i>
                         </div>
                     </div>
