@@ -49,7 +49,12 @@ const HostRoundsList = (props) => {
         history.push({ pathname: `/hosthomepage/quest/${questID}/round/${num}` })
     }
 
-    const addQuest = async () => {    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    }
+    
+
+    const addQuest = async (e) => {    
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/addround`, {
             method: "POST",
             headers: {
@@ -93,8 +98,7 @@ const HostRoundsList = (props) => {
 
     }
 
-    const deleteQuest = async (num) => {
-
+    const deleteQuest = async (num,e) => {
         const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${num}/deleteround`, {
             method: "POST",
             headers: {
@@ -148,12 +152,13 @@ const HostRoundsList = (props) => {
 
             {
                 displayForm === true && <div className="myBox" style={{ paddingRight: "0rem" }}>
+                    <form onSubmit={handleSubmit}>
                     <button className="cross1" onClick={() => { setDisplayForm(false) }}> <span className="material-icons" style={{ fontSize: "22px" }}> close </span> </button>
                     <button className="tick1" onClick={() => { addQuest() }}> <span className="material-icons" style={{ fontSize: "22px" }}> done </span></button>
 
                     <p style={{ fontWeight: "500", fontSize: "22px", marginBottom: "0rem", display: "inline-block" }}>Add Round</p>
                     {/* <div style={{ display: "block" }}> */}
-                    <form>
+                    
                             <p
                                 className="display-4"
                                 style={{
@@ -201,7 +206,7 @@ const HostRoundsList = (props) => {
                                     onChange={startDate}
                                     required
                                 />
-
+                                <p>Round must start after Quest begins</p>
                             </p>
                         {/* </div> */}
                         {/* <div className="column"> */}
@@ -294,11 +299,11 @@ const HostRoundsList = (props) => {
                     >
                         Description
                         <input
-                            required
                             type="text"
                             className="longinputdetail"
                             placeholder="Enter a description of your Round"
                             onChange={descrip}
+                            required
                             style={{ fontSize: "18px", paddingTop: "0.5rem", display: "block", width: "95%" }}
                         />
                     </p>

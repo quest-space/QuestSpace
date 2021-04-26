@@ -75,12 +75,23 @@ const RoundLeaderboard = () => {
         </div>
 
         <div className="slimBox" style={{fontSize:"20px", marginTop: "3rem", paddingTop:"1rem", paddingBottom:"1rem"}}> 
-            <div style={{display:"inline"}}>
-              {"My Rank: " + response.individual.ranking}
-            </div>
-            <div style={{ float:"right"}}>
-              {"My Score: " + response.individual.roundScore}
-            </div>
+        {response.individual !== null?
+              <div> 
+                <div style={{display:"inline"}}>
+                  {"My Rank: " + response.individual.ranking}
+                </div>
+                <div style={{ float:"right"}}>
+                  {"My Score: " + response.individual.roundScore}
+                </div>
+              </div> :
+              <div>
+                <div style={{display:"inline"}}>
+                  {"My Rank: You have not attempted any round yet"}
+                </div>
+                <div style={{ float:"right"}}>
+                  {"My Score: No score available"}
+                </div>
+              </div>}
           </div>
         <Leaderboard board = {response.full}/>
 
