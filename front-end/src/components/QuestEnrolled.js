@@ -126,7 +126,7 @@ const QuestEnrolled = (props) => {
               padding: "2rem",
             }}
           >
-            <i class="fas fa-exclamation-circle"></i> Not Available
+            <i class="fas fa-exclamation-circle"></i>&nbsp; No Rounds available.
           </div>
         )}
 
@@ -148,7 +148,7 @@ const QuestEnrolled = (props) => {
               padding: "2rem",
             }}
           >
-            <i class="fas fa-exclamation-circle"></i> Not Available
+            <i class="fas fa-exclamation-circle"></i>&nbsp; No Rounds available.
           </div>
       }
 
@@ -197,7 +197,7 @@ const QuestEnrolled = (props) => {
               padding: "2rem",
             }}
           >
-            <i class="fas fa-exclamation-circle"></i> Not Available
+            <i class="fas fa-exclamation-circle"></i> &nbsp;Leaderboard not yet available.
           </div>
         )}
       </div>}
@@ -214,7 +214,7 @@ const QuestEnrolled = (props) => {
               padding: "2rem",
             }}
           >
-            <i class="fas fa-exclamation-circle"></i> Not Available
+            <i class="fas fa-exclamation-circle"></i>&nbsp; Leaderboard not available.
           </div>
         )}
       
