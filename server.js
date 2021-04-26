@@ -26,12 +26,12 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(`/uploaded-file`, express.static("../qs-uploaded-files"));
 app.use(`/uploaded-img`, express.static("../qs-uploaded-images"));
 
-// app.use(require('./front-end/front-end-routes'));
-app.use(require('./reactRouter'));
-
 // use parser middleware
 app.use(express.json()); // Parse JSON
 app.use(cookieParser()); // Parse Cookies
+
+// app.use(require('./front-end/front-end-routes'));
+app.use(require('./reactRouter'));
 
 // initialize routes
 app.use('/api', require('./routes/mainRouter'));
