@@ -25,15 +25,6 @@ const { sendRes } = require(`../helpers/sendRes`);
 
 // Function to check status of quest (live, past, upcoming)
 const check_quest_status = (questdata, currTime) =>{
-    console.log('---------')
-    console.log('currTime: ' + (new Date(currTime)).toString());
-    console.log('startTime: ' + (new Date(questdata[0].startTime.getTime())).toString());
-    console.log('endTime: ' + (new Date(questdata[0].endTime.getTime())).toString());
-    console.log('');
-    console.log(`currTime: ${currTime}`);
-    console.log(`startTime: ${questdata[0].startTime.getTime()}`);
-    console.log(`endTime: ${questdata[0].endTime}`);
-    console.log('---------')
     // Live quest
     if((questdata[0].startTime.getTime() < currTime) && (currTime < questdata[0].endTime.getTime() ) ){ 
         
@@ -246,7 +237,8 @@ router.post(`/:questid`, async (req, res) => {
         organization: organization,
         status: check_quest_status(find_quest, currTime),
         rating: rating,
-        nature: find_quest[0].nature
+        nature: find_quest[0].nature,
+        logoURL: find_quest[0].logoURL
       }
     const to_send = {}
 
