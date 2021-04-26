@@ -58,7 +58,7 @@ const InitialNavbar = (props) => {
             <li className="nav-item">
               <a
                 className="nav-link"
-                href="#"
+                href="http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/#about"
                 style={{
                   fontWeight: 400,
                   fontSize: 18,
