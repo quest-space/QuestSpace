@@ -98,6 +98,7 @@ const Quest = () => {
                     hostrating={response.quest.rating}
                     startingtime={response.quest.startTime}
                     endingtime= {response.quest.endTime}
+                    description={response.quest.description}
                     type= {response.quest.nature}
                     about={response.quest.about}
                     imgsrc={response.quest.logoURL}

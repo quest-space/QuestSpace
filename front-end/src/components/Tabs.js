@@ -81,47 +81,53 @@ const Tabs = (props) => {
 
         {/* TABS MOBILE */}
 
-        <div className="dropdown d-lg-none d-sm-block">
-                <button
-                className="parent dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                style={{ textAlign: "center", width: "100%", marginTop:"-2rem" }}
-                >
-                Explore Quest
+        <div className="dropdown d-lg-none d-sm-block" style={{marginLeft:"9%", marginRight:"9%", marginBottom:"0", paddingBottom:"0rem", marginBottom:"-2.7rem", paddingTop:"5rem"}}>
+                
+                 <button
+                    className="plainSp dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton top"
+                    data-toggle="dropdown"
+                    style={{width:"100%", fontSize:"18px", fontWeight:"500", paddingTop:"0.5rem", paddingBottom:"0.5rem"
+                    }}
+                    >
+                    Manage Your Round
                 </button>
+                
                 <div
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton"
-                style={{
-                    width: "100%",
-                    margin: "0",
-                    padding: "0",
-                    borderWidth: "0",
-                    boxShadow: "none",
-                }}
+                style={{margin:"0", padding:"0", width:"100%"}}
                 >
+
                 <button
-                    className="dropdown-item dropKid"
+                    className="dropdown-item dropKid1"
                     onClick={() => setBar("Round Details")}
                 >
                     Round Details
                 </button>
                 {props.roundType === `Submission` && <button
-                    className="dropdown-item dropKid"
+                    className="dropdown-item dropKid1"
                     onClick={() => setBar("Submissions")}
                 >
                     Submissions
                 </button>}
-                <button
-                    className="dropdown-item dropKid"
+
+                {props.roundType === `Submission` ? <button
+                    className="dropdown-item dropKid1"
                     onClick={() => setBar("Questions")}
                 >
-                    Questions
-                </button>
+                    Question
+                </button>:
                 <button
-                    className="dropdown-item dropKid"
+                className="dropdown-item dropKid1"
+                onClick={() => setBar("Questions")}
+                >
+                    Questions
+                </button>}
+
+                <button
+                    className="dropdown-item dropKid1"
                     onClick={() => setBar("Leaderboard")}
                 >
                     Leaderboard

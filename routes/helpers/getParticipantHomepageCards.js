@@ -83,7 +83,8 @@ const getParticipantHomepageCards = async (username) => {
       // fetch list of all quests in which participant registered
       const participantParticipations = await Participation.find({ participantUser: username }).exec();
 
-      let allQuests = await parseQuests(await Quest.find({ status : "accepted" }).sort({ createdAt: 'asc' }).exec(), currTime);
+//      let allQuests = await parseQuests(await Quest.find({ status : "accepted" }).sort({ createdAt: 'asc' }).exec(), currTime);
+      let allQuests = (await parseQuests(await Quest.find({ status : "accepted" }).exec(), currTime)).sort((questA, questB) => (new Date(questB.createdAt)).getTime() - (new Date(questA.createdAt)).getTime());
 
       const participantQuests = [];
       

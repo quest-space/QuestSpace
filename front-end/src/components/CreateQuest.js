@@ -1,5 +1,5 @@
 import React from "react";
-import MainNavbar from "./MainNavbar";
+import MainNavbarHost from "./MainNavbarHost";
 import "../css/Details.css";
 import { Link, useHistory } from "react-router-dom";
 import Header from "./Header";
@@ -72,7 +72,7 @@ const CreateQuest = (props) => {
 
   return (
     <div style={{ marginBottom: "80px" }}>
-      <MainNavbar />
+      <MainNavbarHost />
       <Header heading="Create New Quest" subheading=" " />
       <BreadCrumb
         items={[

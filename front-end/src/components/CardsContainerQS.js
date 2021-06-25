@@ -162,34 +162,56 @@ const CardsContainerQS = (props) => {
                                             <th style={{margin: "auto"}}>
                                                 <div style={{display:"inline-block"}}>
                                                 {response[props.tab][info].buttons.length === 1? 
-                                                <button id="myButton1" 
-                                                style=
-                                                {{
-                                                    border:"1px solid #C4C4C4",
-                                                    backgroundColor:changeColor[response[props.tab][info].buttons[0].color]}}>    
-                                                    {response[props.tab][info].buttons[0].text}
-                                                </button> :
+                                                <div>
+                                                    <button id="myButton1" className="d-lg-none d-md-block"
+                                                    style=
+                                                    {{
+                                                        border:"1px solid #C4C4C4",
+                                                        marginBottom:"1.5rem",
+                                                        backgroundColor:changeColor[response[props.tab][info].buttons[0].color]}}>    
+                                                        {response[props.tab][info].buttons[0].text}
+                                                    </button>
+                                                    <button id="myButton1" className="d-none d-sm-none d-md-none d-lg-block"
+                                                    style=
+                                                    {{
+                                                        border:"1px solid #C4C4C4",
+                                                        backgroundColor:changeColor[response[props.tab][info].buttons[0].color]}}>    
+                                                        {response[props.tab][info].buttons[0].text}
+                                                    </button>
+                                                </div>
+                                                :
                                                 <div>
                                                 <button id="myButton1" onClick={()=>{accept(response[props.tab][info].buttons[0].isClickable,response[props.tab][info].questName)}}
                                                 style=
                                                 {{
                                                     border:"1px solid #C4C4C4",
                                                     backgroundColor:changeColor[response[props.tab][info].buttons[0].color],
-                                                    marginBottom:"0.2rem"
+                                                    marginBottom:"0.3rem",
                                                  }}>
                                                      {response[props.tab][info].buttons[0].text}
                                                 </button>
 
-                                                <button id="myButton1" onClick={()=>{reject(response[props.tab][info].buttons[1].isClickable,response[props.tab][info].questName)}}
+                                                <button id="myButton1" className="d-lg-none d-md-block" onClick={()=>{reject(response[props.tab][info].buttons[1].isClickable,response[props.tab][info].questName)}}
                                                 style=
                                                 {{
                                                     border:"1px solid #C4C4C4", 
                                                     backgroundColor:changeColor[response[props.tab][info].buttons[1].color],
                                                     color:"black",
-                                                    marginTop:"0.2rem"
+                                                    marginBottom:"1.5rem"
                                                 }}>
                                                     {response[props.tab][info].buttons[1].text}
                                                 </button>
+
+                                                <button id="myButton1" className="d-none d-sm-none d-md-none d-lg-block" onClick={()=>{reject(response[props.tab][info].buttons[1].isClickable,response[props.tab][info].questName)}}
+                                                style=
+                                                {{
+                                                    border:"1px solid #C4C4C4", 
+                                                    backgroundColor:changeColor[response[props.tab][info].buttons[1].color],
+                                                    color:"black"
+                                                }}>
+                                                    {response[props.tab][info].buttons[1].text}
+                                                </button>
+
                                                 </div>}
                                                 </div>
                                             </th>

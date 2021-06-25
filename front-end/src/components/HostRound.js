@@ -49,6 +49,8 @@ const HostRound = () => {
         console.log(`Round details fetched.`)
     }
 
+	console.log(roundInfo)
+
     return (
         <React.Fragment>
             <MainNavbarHost />

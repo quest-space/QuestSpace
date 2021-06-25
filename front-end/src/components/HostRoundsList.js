@@ -65,7 +65,7 @@ const HostRoundsList = (props) => {
 
     const addQuest = async () => {  
         
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/addround`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/addround`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -111,7 +111,7 @@ const HostRoundsList = (props) => {
     }
 
     const deleteQuest = async (num) => {
-        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/api/host/quest/${questID}/${num}/deleteround`, {
+        const response = await fetch(`http://ec2-13-233-137-233.ap-south-1.compute.amazonaws.com/apitest/host/quest/${questID}/${num}/deleteround`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -185,8 +185,8 @@ const HostRoundsList = (props) => {
                                 Name<span style={{color:"#F70000"}}>*</span></p>
                                 <input
                                     type="text"
-                                    className="inputdetail "
-                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block" }}
+                                    className="inputdetail"
+                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block", maxWidth:"80%" }}
                                     placeholder="Enter here"
                                     onChange={setName}
                                     required
@@ -208,8 +208,8 @@ const HostRoundsList = (props) => {
                                 Start<span style={{color:"#F70000"}}>*</span></p>
                                 <input
                                     type="text"
-                                    className="inputdetail "
-                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block" }}
+                                    className="inputdetail"
+                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block", maxWidth:"80%" }}
                                     type="datetime-local"
                                     placeholder="1"
                                     onfocus="this.type='datetime-local'"
@@ -235,8 +235,8 @@ const HostRoundsList = (props) => {
                                 End <span style={{color:"#F70000"}}>*</span></p>
                                 <input
                                     type="text"
-                                    className="inputdetail "
-                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block" }}
+                                    className="inputdetail"
+                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block", maxWidth:"80%" }}
                                     type="datetime-local"
                                     placeholder="1"
                                     onfocus="this.type='datetime-local'"
@@ -284,8 +284,8 @@ const HostRoundsList = (props) => {
                                 Time Limit<span style={{color:"#F70000"}}>*</span></p>
                                 <input
                                     type="text"
-                                    className="inputdetail "
-                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block" }}
+                                    className="inputdetail"
+                                    style={{ fontSize: "18px", paddingTop: "0rem", display: "block", maxWidth:"80%" }}
                                     placeholder="Enter here"
                                     onChange={timeLimit}
                                     required
@@ -314,7 +314,7 @@ const HostRoundsList = (props) => {
                             type="text"
                             className="longinputdetail"
                             placeholder="Enter a description of your Round"
-                            style={{ fontSize: "18px", paddingTop: "0rem", display: "block", width: "95%" }}
+                            style={{ fontSize: "18px", paddingTop: "0rem", display: "block", width: "90%" }}
                             onChange={descrip}
                             required
                         />

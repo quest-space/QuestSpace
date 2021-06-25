@@ -18,7 +18,7 @@ const BAQ_REQUEST_STATUS_CODE = 400;
 router.post(`/signup/participant`, async (req, res) => {
   const { username, password, firstname, lastname, dateofbirth, organization } = req.body;
   try {
-    const participant = await Participant.create({ username, password, passwordlength: password.length, firstname, lastname, dateofbirth, organization });
+    const participant = await Participant.create({ username: username.trim(), password: password.trim(), passwordlength: (password.trim()).length, firstname, lastname, dateofbirth, organization });
     const token = createToken(participant._id, participant.username, `participant`);
     res.cookie('qsUser', token, { httpOnly: true, maxAge: maxAge * 1000 });
     sendRes(res, CREATED_STATUS_CODE, {}) // req succeeded and led to a resource creation
@@ -31,7 +31,7 @@ router.post(`/signup/participant`, async (req, res) => {
 router.post(`/signup/host`, async (req, res) => {
   const { username, password, organization, phone, representativeName, representativeDesignation } = req.body;
   try {
-    const host = await Host.create({ username, password, passwordlength: password.length, organization, phone, representativeName, representativeDesignation });
+    const host = await Host.create({ username: username.trim(), password: password.trim(), passwordlength: (password.trim()).length, organization, phone, representativeName, representativeDesignation });
     const token = createToken(host._id, host.username, `host`);
     res.cookie('qsUser', token, { httpOnly: true, maxAge: maxAge * 1000 });
     sendRes(res, CREATED_STATUS_CODE, {}) // req succeeded and led to a resource creation
@@ -42,6 +42,8 @@ router.post(`/signup/host`, async (req, res) => {
 
 // sign in handler [participant]
 router.post(`/signin/participant`, async (req, res) => {
+  req.body.username = req.body.username.trim();
+  req.body.password = req.body.password.trim();
   const { username, password } = req.body;
   try {
     const participant = await Participant.login(username, password);
@@ -55,6 +57,8 @@ router.post(`/signin/participant`, async (req, res) => {
 
 // sign in handler [host]
 router.post(`/signin/host`, async (req, res) => {
+  req.body.username = req.body.username.trim();
+  req.body.password = req.body.password.trim();  
   const { username, password } = req.body;
   try {
     const host = await Host.login(username, password);
@@ -67,6 +71,8 @@ router.post(`/signin/host`, async (req, res) => {
 });
 
 const ensureCorrectQSAdminCredentials = (req) => {
+  req.body.username = req.body.username.trim();
+  req.body.password = req.body.password.trim();
   const { username, password } = req.body;
   const qsAdminCredentials = getQSAdminCredentials();
   if (!username) {  

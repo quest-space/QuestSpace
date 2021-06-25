@@ -71,7 +71,7 @@ router.post(`/`, async (req, res) => {
     console.log({initkey, key});
 
     try{
-        const quests  = await Quest.find( { 'questName' : { '$regex' : key, '$options' : 'i' } } )
+        const quests  = (await Quest.find( { 'questName' : { '$regex' : key, '$options' : 'i' } } ).exec()).sort((questA, questB) => (new Date(questB.createdAt)).getTime() - (new Date(questA.createdAt)).getTime());
 
         const acceptedQuests = quests.filter(quest => quest.status === `accepted`);
 

@@ -83,48 +83,47 @@ const QuestHostTabs = (props) => {
                     </button>
                 </ul>
             </div>
-
-            <div className="dropdown d-lg-none d-sm-block">
+            
+             {/* TABS ON MOBILE */}
+            <div className="dropdown d-lg-none d-sm-block" style={{marginLeft:"9%", marginRight:"9%", marginBottom:"0", paddingBottom:"0rem", marginBottom:"-2.7rem", paddingTop:"5rem"}}>
+                
                 <button
-                className="parent dropdown-toggle"
+                className="plainSp dropdown-toggle"
                 type="button"
-                id="dropdownMenuButton"
+                id="dropdownMenuButton top"
                 data-toggle="dropdown"
-                style={{ textAlign: "center", width: "100%", marginTop:"-2rem" }}
+                style={{width:"100%", fontSize:"18px", fontWeight:"500", paddingTop:"0.5rem", paddingBottom:"0.5rem"
+                }}
                 >
-                Explore Quest
+                Manage Your Quest
                 </button>
+                
                 <div
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton"
-                style={{
-                    width: "100%",
-                    margin: "0",
-                    padding: "0",
-                    borderWidth: "0",
-                    boxShadow: "none",
-                }}
+                style={{margin:"0", padding:"0", width:"100%"}}
                 >
+
                 <button
-                    className="dropdown-item dropKid"
+                    className="dropdown-item dropKid1"
                     onClick={() => setBar("Details")}
                 >
                     Details
                 </button>
                 <button
-                    className="dropdown-item dropKid"
+                    className="dropdown-item dropKid1"
                     onClick={() => setBar("Rounds")}
                 >
                     Rounds
                 </button>
                 <button
-                    className="dropdown-item dropKid"
+                    className="dropdown-item dropKid1"
                     onClick={() => setBar("Participant")}
                 >
                     Participant
                 </button>
                 <button
-                    className="dropdown-item dropKid"
+                    className="dropdown-item dropKid1"
                     onClick={() => setBar("Leaderboard")}
                 >
                     Leaderboard

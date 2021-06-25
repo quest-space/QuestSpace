@@ -74,7 +74,7 @@ const Round = () => {
 
             <div className="roundArea">
                 {/* Round Details when round not started by participant */}
-                {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={roundDetails.timer && `${roundDetails.timer} seconds`} about={roundDetails.description} onClick={setStarted} />}
+                {!started && <RoundDetailsFormat startingtime={roundDetails.startTime} endingtime={roundDetails.endTime} allowedtime={roundDetails.roundType === "Rapid Fire" &&  roundDetails.timer && `${roundDetails.timer} seconds`} about={roundDetails.description} onClick={setStarted} />}
 
                 {/* Specific round type component once round has been started by participant */}
                 {/* change it to started */}

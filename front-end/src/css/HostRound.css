@@ -186,3 +186,16 @@ input::-webkit-inner-spin-button {
   color: #f13636;
   font-size: 15px;
 }
+
+.questionArea input[type="file"] {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .questionTemplate {
+    padding: 0px 0px 0px 0px;
+  }
+  .mcqOption textarea {
+    width: 100%;
+  }
+}

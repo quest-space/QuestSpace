@@ -67,6 +67,7 @@ const HostRoundDetails = (props) => {
                         <HeadSubhead heading="Type" subheading={props.roundDetails && props.roundDetails.roundType} />
                         <HeadSubhead heading="Starts" subheading={props.roundDetails && props.roundDetails.startTime} />
                         <HeadSubhead heading="Ends" subheading={props.roundDetails && props.roundDetails.endTime} />
+			{props.roundDetails &&  props.roundDetails.timer && <HeadSubhead heading="Allowed Time" subheading={props.roundDetails && props.roundDetails.timer} />}
                         <HeadSubhead heading="Description and Guidelines" subheading={props.roundDetails && props.roundDetails.description} />
                     </div>
                     <div
