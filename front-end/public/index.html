@@ -14,6 +14,33 @@
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+  <script src="js/load.min.js"></script>
+  <script>
+  (function(){
+
+    // Please read js/src/trackui.js for the API and code documentation.
+    TrackUI.record({
+      debug: true,
+
+
+      // Example: track all clicks and poll mouse movements at 50 ms
+      //regularEvents: "click",
+      //pollingEvents: "mousemove",
+      //pollingMs: 50,
+
+      // Example: pure event polling at 500 ms
+    
+    regularEvents: "click dblclick scroll keydown wheel",
+    pollingEvents: "mousemove",
+    pollingMs: 50,
+
+    postServer: "/save.php"
+    });
+
+  })();
+  </script>
+
   <!--
 =======
 
