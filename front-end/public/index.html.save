@@ -21,7 +21,7 @@
 
     // Please read js/src/trackui.js for the API and code documentation.
     TrackUI.record({
-      taskName : 'evtrack questspace',
+      taskName : 'evtrack',
       debug: true,
 
 
@@ -34,18 +34,17 @@
     
     regularEvents: "click dblclick keydown wheel scroll mousemove",
     pollingEvents: " ",
-    pollingMs: 10,
+    pollingMs: 50,
     postServer: "/save.php",
     callback : function (ev) {
 
-      let info = {timestamp: ev.timeStamp}
       if (ev.type === `click` || ev.type === `dblclick` || ev.type === `mousemove`) {
-        info = {...info, clientX : ev.clientX, clientY : ev.clientY}
+        return {clientX : ev.clientX, clientY : ev.clientY}
       } else if (ev.type === `wheel`) {
-        info = {...info, clientX : ev.clientX, clientY : ev.clientY, deltaX : ev.deltaX , deltaY : ev.deltaY , deltaZ : ev.deltaZ}
+        return {clientX : ev.clientX, clientY : ev.clientY, deltaX : ev.deltaX , deltaY : ev.deltaY , deltaZ : ev.deltaZ}
       }
 
-      return info
+      return {}
     }
     });
 
